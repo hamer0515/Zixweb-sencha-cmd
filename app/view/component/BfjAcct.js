@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.component.BfjAcct', {
 			extend : 'Ext.form.ComboBox',
 			alias : 'widget.bfjacct',
-			width : 490,
+			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {

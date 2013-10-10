@@ -33,8 +33,7 @@ a {
 }
 
 .downloadfileagain {
-	background-image:
-		url('../images/icons/download_file_again.png');
+	background-image: url('../images/icons/download_file_again.png');
 	margin-right: 5px;
 }
 
@@ -70,6 +69,11 @@ a {
 
 .detail {
 	background-image: url('../images/icons/detail.png');
+	margin-right: 5px;
+}
+
+.revoke {
+	background-image: url('../images/icons/revoke.png');
 	margin-right: 5px;
 }
 

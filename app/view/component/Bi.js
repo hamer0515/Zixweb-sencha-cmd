@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.component.Bi', {
 			extend : 'Ext.form.ComboBox',
 			alias : 'widget.bi',
-			width : 490,
+			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {

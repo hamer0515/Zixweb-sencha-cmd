@@ -38,26 +38,24 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 						return false;
 					}
 				},
-				listeners : {
-					load : function(thiz, records, successful, eOpts) {
-						if (!successful) {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '备付金存款科目历史数据加载失败,请联系管理员',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
-							return;
-						}
-						var jsonData = thiz.proxy.reader.jsonData.success;
-						if (jsonData && jsonData === 'forbidden') {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '抱歉，没有备付金存款科目历史数据访问权限',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
-						}
+				load : function(thiz, records, successful, eOpts) {
+					if (!successful) {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '备付金存款科目历史数据加载失败,请联系管理员',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+						return;
+					}
+					var jsonData = thiz.proxy.reader.jsonData.success;
+					if (jsonData && jsonData === 'forbidden') {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '抱歉，没有备付金存款科目历史数据访问权限',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
 					}
 				}
 			}
@@ -69,7 +67,7 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 					id : 'depositbfjhistform',
 
 					fieldDefaults : {
-						labelWidth : 90
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -85,14 +83,14 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 												id : 'book_hist_deposit_bfj_to'
 											},
 											vtype : 'dateinterval',
-											width : 193
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_hist_deposit_bfj_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											allowBlank : false,
-											width : 193
+											width : 180
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -101,13 +99,13 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 											xtype : 'textfield',
 											name : 'id',
 											margin : '0 10 0 0',
-											width : 288,
+											width : 516,
 											vtype : 'id',
 											fieldLabel : 'ID'
 										}, {
 											xtype : 'textfield',
 											fieldLabel : '原始凭证ID',
-											width : 288,
+											width : 516,
 											name : 'ys_id',
 											vtype : "money"
 										}]
@@ -137,12 +135,12 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 														xtype : 'textfield',
 														name : 'j_from',
 														margin : '0 10 0 0',
-														width : 193,
+														width : 180,
 														vtype : "money"
 													}, {
 														xtype : 'textfield',
 														name : 'j_to',
-														width : 193,
+														width : 180,
 														margin : '0 10 0 0',
 														vtype : "money"
 													}]
@@ -154,13 +152,12 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 														xtype : 'textfield',
 														name : 'd_from',
 														margin : '0 10 0 0',
-														width : 193,
+														width : 180,
 														vtype : "money"
 													}, {
 														xtype : 'textfield',
 														name : 'd_to',
-														width : 193,
-														margin : '0 10 0 0',
+														width : 180,
 														vtype : "money"
 													}]
 										}]

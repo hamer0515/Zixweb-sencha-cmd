@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.component.YsType', {
 			extend : 'Ext.form.ComboBox',
 			alias : 'widget.ystype',
-			width : 490,
+			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
 			store : 'Zixweb.store.component.YsType',
