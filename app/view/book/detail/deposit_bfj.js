@@ -101,7 +101,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 					id : 'depositbfjdetailform',
 
 					fieldDefaults : {
-						labelWidth : 90
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -117,7 +117,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 												id : 'book_detail_deposit_bfj_to'
 											},
 											vtype : 'dateinterval',
-											width : 192
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_detail_deposit_bfj_to',
@@ -125,12 +125,11 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
-											width : 192
+											width : 180
 										}, {
 											xtype : 'bfjacct',
 											name : 'bfj_acct',
-											margin : '0 10 0 0',
-											fieldLabel : '备付金帐号'
+											fieldLabel : '银行账户号及开户行'
 										}]
 							}, {
 								xtype : 'hsx',

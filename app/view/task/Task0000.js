@@ -165,7 +165,7 @@ Ext.define('Zixweb.view.task.Task0000', {
 								sortable : false,
 								flex : 1,
 								renderer : function(value) {
-									var text = ['待审核', '审核通过', '审核未通过']
+									var text = ['待审核', '审核通过', '审核未通过'];
 									return text[value];
 								}
 							}, {
@@ -213,7 +213,8 @@ Ext.define('Zixweb.view.task.Task0000', {
 												items : task0000detail,
 												id : 'center_task0000_detail_'
 														+ rec.data.id,
-												title : '0000录入审核编号' +rec.data.id+ '详细信息'
+												title : '0000录入审核编号'
+														+ rec.data.id + '详细信息'
 											}).show();
 										}
 										viewport.doLayout();

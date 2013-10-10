@@ -1,7 +1,8 @@
 Ext.define('Zixweb.controller.Yspz', {
 			extend : 'Ext.app.Controller',
 			views : ['Zixweb.view.yspz.yspzq.Detail',
-					'Zixweb.view.yspz.revoke_cause'],
+					'Zixweb.view.yspz.revoke_cause',
+					'Zixweb.view.yspz.yspzq.y0000'],
 
 			init : function() {
 				this.control({
@@ -14,6 +15,7 @@ Ext.define('Zixweb.controller.Yspz', {
 				var panel = Ext.getCmp('yspzrevoke_causeform');
 				var form = panel.getForm();
 				if (form.isValid()) {
+					var params = form.getValues();
 					form.submit({
 								clientValidation : true,
 								url : panel.url,
@@ -33,7 +35,15 @@ Ext.define('Zixweb.controller.Yspz', {
 												.getCmp('center_tab_container');
 										var active = tabpanel.getActiveTab();
 										var detail = active.down('yspzqdetail');
-										detail.store.reload();
+										if (detail) {
+											detail.store.reload();
+										}
+										var ypanel = Ext.getCmp('center_y'
+												+ params.ys_type);
+										if (ypanel) {
+											ypanel.down('gridpanel').store
+													.reload();
+										}
 										Ext.MessageBox.show({
 													title : '消息',
 													msg : '凭证撤销成功',

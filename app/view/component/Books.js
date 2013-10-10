@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.component.Books', {
 			extend : 'Ext.form.ComboBox',
 			alias : 'widget.books',
-			width : 490,
+			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {

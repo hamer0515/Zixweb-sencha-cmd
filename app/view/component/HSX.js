@@ -26,11 +26,12 @@ Ext.define('Zixweb.view.component.HSX', {
 				xtype : 'combobox',
 				fieldLabel : '第' + this.names[i] + '核算项',
 				store : store,
+				labelWidth : 140,
 				queryMode : 'local',
 				name : this.submitNames[i],
 				anyMatch : true,
 				margin : '0 10 0 0',
-				width : 240,
+				width : 516,
 				displayField : 'name',
 				valueField : 'value',
 				listeners : {
@@ -75,7 +76,7 @@ Ext.define('Zixweb.view.component.HSX', {
 				}
 			}
 			container.items.push(item);
-			if ((parseInt(i) + 1) % 4 == 0) {
+			if ((parseInt(i) + 1) % 2 == 0) {
 				this.items.push(container);
 				container = undefined;
 			}

@@ -81,10 +81,6 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 								var viewport = grid.up('viewport'), center = viewport
 										.down('center'), id = 'book_detail_'
 										+ rec.data.url, cmp = Ext.getCmp(id);
-								var store = Ext.data.StoreManager
-										.lookup('Zixweb.store.book.detail.'
-												+ rec.data.url);
-								store.removeAll(true);
 								if (cmp) {
 									center.setActiveTab(cmp);
 								} else {
@@ -110,10 +106,6 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 								var viewport = grid.up('viewport'), center = viewport
 										.down('center'), id = 'book_hist_'
 										+ rec.data.url, cmp = Ext.getCmp(id);
-								var store = Ext.data.StoreManager
-										.lookup('Zixweb.store.book.hist.'
-												+ rec.data.url);
-								store.removeAll(true);
 								if (cmp) {
 									center.setActiveTab(cmp);
 								} else {

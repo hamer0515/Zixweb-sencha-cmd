@@ -93,6 +93,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		bfj_acct : "Ext.createByAlias('widget.bfjacct', {submitValue : false})",
 		zyzj_acct : "Ext.createByAlias('widget.zyzjacct', {submitValue : false})",
 		zjbd_type : "Ext.createByAlias('widget.zjbdtype', {submitValue : false})",
+		wlzj_type : "Ext.createByAlias('widget.wlzjtype', {submitValue : false})",
 		zjbd_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
 		tx_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
 		e_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
@@ -108,6 +109,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		bfj_acct : '备付金银行账号',
 		zyzj_acct : '自有资金银行账号',
 		zjbd_type : '资金变动类型',
+		wlzj_type : '往来类型',
 		zjbd_date : '银行出入账日期',
 		tx_date : '交易日期',
 		e_date : '差错日期',
@@ -182,11 +184,13 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 					items : [{
 								xtype : 'books',
 								margin : '0 10 0 0',
+								width : 490,
 								id : 'pzlritztzjbook',
 								submitValue : false,
 								fieldLabel : '借方科目'
 							}, {
 								xtype : 'books',
+								width : 490,
 								submitValue : false,
 								fieldLabel : '贷方科目',
 								id : 'pzlritztzdbook'
