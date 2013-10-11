@@ -70,7 +70,7 @@ Ext.define('Zixweb.view.zqqr.query', {
 					id : 'zqqrqueryform',
 
 					fieldDefaults : {
-						labelWidth : 90
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -81,7 +81,7 @@ Ext.define('Zixweb.view.zqqr.query', {
 											format : 'Y-m-d',
 											name : 'sm_date',
 											margin : '0 10 0 0',
-											width : 283
+											width : 516
 										}, {
 											fieldLabel : '状态',
 											xtype : 'zqqrstatus',

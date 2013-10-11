@@ -68,20 +68,20 @@ Ext.define('Zixweb.view.book.detail.txamt_dgd', {
 								grid.down('#bi').show();
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
-								/***********************************************
-								 * var fir = grid.down('#bi'); var oldindex_fir =
-								 * grid.headerCt .getHeaderIndex(fir); if
-								 * (oldindex_fir != 0) {
-								 * grid.headerCt.move(oldindex_fir, 0); } var
-								 * sec = grid.down('#tx_date'); var oldindex_sec =
-								 * grid.headerCt .getHeaderIndex(sec); if
-								 * (oldindex_sec != 1) {
-								 * grid.headerCt.move(oldindex_sec, 1); } var
-								 * thi = grid.down('#period'); var oldindex_thi =
-								 * grid.headerCt .getHeaderIndex(thi); if
-								 * (oldindex_thi != 2) {
-								 * grid.headerCt.move(oldindex_thi, 2); }
-								 **********************************************/
+
+								var fir = grid.down('#bi');
+								var oldindex_fir = grid.headerCt
+										.getHeaderIndex(fir);
+								grid.headerCt.move(oldindex_fir, 0);
+								var sec = grid.down('#tx_date');
+								var oldindex_sec = grid.headerCt
+										.getHeaderIndex(sec);
+								grid.headerCt.move(oldindex_sec, 1);
+								var thi = grid.down('#period');
+								var oldindex_thi = grid.headerCt
+										.getHeaderIndex(thi);
+								grid.headerCt.move(oldindex_thi, 2);
+
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

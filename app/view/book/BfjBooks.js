@@ -64,7 +64,7 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 						width : 80,
 						align : 'center',
 						items : [{
-							tooltip : '详细',
+							tooltip : '汇总',
 							getClass : function(v, meta, rec) {
 								if (rec.data.url) {
 									return 'detail';
@@ -100,7 +100,7 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 								}
 							}
 						}, {
-							tooltip : '历史信息',
+							tooltip : '明细查询',
 							handler : function(grid, rowIndex, colIndex) {
 								var rec = grid.getStore().getAt(rowIndex);
 								var viewport = grid.up('viewport'), center = viewport

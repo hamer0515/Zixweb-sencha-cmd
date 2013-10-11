@@ -70,11 +70,17 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_byf', {
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
 								var fir = grid.down('#bi');
+								var fir = grid.down('#tx_date');
+								var fir = grid.down('#period');
 								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
 									grid.headerCt.move(oldindex, 0);
-								}
+								var	secindex = grid.headerCt
+										.getHeaderIndex(sec);
+									grid.headerCt.move(secindex, 1);
+								var	thiindex = grid.headerCt
+										.getHeaderIndex(thi);
+									grid.headerCt.move(thiindex, 2);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -214,14 +220,7 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_byf', {
 							return bi.getAt(index).data.name;
 						},
 						flex : 1
-					}, {
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
+					},  {
 						text : "交易日期",
 						dataIndex : 'tx_date',
 						itemId : 'tx_date',
@@ -229,6 +228,13 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_byf', {
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
+						text : "期间日期",
+						dataIndex : 'period',
+						itemId : 'period',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					},{
 						text : "借方金额",
 						dataIndex : 'j',
 						sortable : false,

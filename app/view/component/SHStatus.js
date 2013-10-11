@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.component.SHStatus', {
 			extend : 'Ext.form.ComboBox',
 			alias : 'widget.shstatus',
-			width : 288,
+			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {

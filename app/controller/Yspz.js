@@ -2,7 +2,9 @@ Ext.define('Zixweb.controller.Yspz', {
 			extend : 'Ext.app.Controller',
 			views : ['Zixweb.view.yspz.yspzq.Detail',
 					'Zixweb.view.yspz.revoke_cause',
-					'Zixweb.view.yspz.yspzq.y0000'],
+					'Zixweb.view.yspz.yspzq.y0000',
+					'Zixweb.view.yspz.yspzq.y0018',
+					'Zixweb.view.yspz.yspzq.y0012'],
 
 			init : function() {
 				this.control({

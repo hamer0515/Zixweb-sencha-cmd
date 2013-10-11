@@ -58,11 +58,13 @@ Ext.define('Zixweb.view.book.detail.cost_dfss', {
 								grid.down('#p').show();
 								grid.down('#period').show();
 								var fir = grid.down('#p');
-								var oldindex = grid.headerCt
+								var sec = grid.down('#period');
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
+									grid.headerCt.move(firindex, 0);
+								var	secindex = grid.headerCt
+										.getHeaderIndex(sec);
+									grid.headerCt.move(secindex, 1);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

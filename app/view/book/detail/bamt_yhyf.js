@@ -10,114 +10,121 @@ Ext.define('Zixweb.view.book.detail.bamt_yhyf', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['zyzj_acct', 'period','zjbd_date','zjbd_type', 'j', 'd'],
+			fields : ['zyzj_acct', 'period', 'zjbd_date', 'zjbd_type', 'j', 'd'],
 
-					pageSize : 50,
-					remoteSort : true,
+			pageSize : 50,
+			remoteSort : true,
 
-					proxy : {
-						type : 'ajax',
-						api : {
-							read : 'book/detail/bamt_yhyf'
-						},
-						reader : {
-							type : 'json',
-							root : 'data',
-							totalProperty : 'totalCount',
-							successProperty : 'success'
-						}
-					},
-					listeners : {
-						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('bamtyhyfdetailform')
-									.getForm();
-							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_bamt_yhyf_grid');
-							grid.down('#zyzj_acct').hide();
-							grid.down('#period').hide();
-                            grid.down('#zjbd_date').hide();
-                            grid.down('#zjbd_type').hide();
-							var columns = grid.columns;
-							if (values.fir) {
-								var fir = grid.down('#' + values.fir);
-								fir.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							if (values.sec) {
-								var sec = grid.down('#' + values.sec);
-								sec.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(sec);
-								if (oldindex != 1) {
-									grid.headerCt.move(oldindex, 1);
-								}
-							}
-                            if (values.thi) {
-                                var thi = grid.down('#' + values.thi);
-                                thi.show();
-                                var oldindex = grid.headerCt
-                                        .getHeaderIndex(thi);
-                                if (oldindex != 2) {
-                                    grid.headerCt.move(oldindex, 2);
-                                }
-                            }
-                           if (values.fou) {
-                                var fou = grid.down('#' + values.fou);
-                                fou.show();
-                                var oldindex = grid.headerCt
-                                        .getHeaderIndex(fou);
-                                if (oldindex != 3) {
-                                    grid.headerCt.move(oldindex, 3);
-                                }
-                            }
-
-
-							if (!(values.fir || values.sec ||values.thi || values.fou)) {
-								grid.down('#zyzj_acct').show();
-								grid.down('#period').show();
-                                grid.down('#zjbd_date').show();
-                                grid.down('#zjbd_type').show();
-								var fir = grid.down('#zyzj_acct');
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							grid.getView().refresh();
-							if (form.isValid()) {
-								store.proxy.extraParams = values;
-							} else {
-								return false;
-							}
-						},
-						load : function(thiz, records, successful, eOpts) {
-							if (!successful) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '已核应付银行款科目详细数据加载失败,请联系管理员',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-								return;
-							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
-							if (jsonData && jsonData === 'forbidden') {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '抱歉，没有已核应付银行款科目详细数据访问权限',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-							}
+			proxy : {
+				type : 'ajax',
+				api : {
+					read : 'book/detail/bamt_yhyf'
+				},
+				reader : {
+					type : 'json',
+					root : 'data',
+					totalProperty : 'totalCount',
+					successProperty : 'success'
+				}
+			},
+			listeners : {
+				beforeload : function(store, operation, eOpts) {
+					var form = Ext.getCmp('bamtyhyfdetailform').getForm();
+					var values = form.getValues();
+					var grid = Ext.getCmp('book_detail_bamt_yhyf_grid');
+					grid.down('#zyzj_acct').hide();
+					grid.down('#period').hide();
+					grid.down('#zjbd_date').hide();
+					grid.down('#zjbd_type').hide();
+					var columns = grid.columns;
+					if (values.fir) {
+						var fir = grid.down('#' + values.fir);
+						fir.show();
+						var oldindex = grid.headerCt.getHeaderIndex(fir);
+						if (oldindex != 0) {
+							grid.headerCt.move(oldindex, 0);
 						}
 					}
-				});
+					if (values.sec) {
+						var sec = grid.down('#' + values.sec);
+						sec.show();
+						var oldindex = grid.headerCt.getHeaderIndex(sec);
+						if (oldindex != 1) {
+							grid.headerCt.move(oldindex, 1);
+						}
+					}
+					if (values.thi) {
+						var thi = grid.down('#' + values.thi);
+						thi.show();
+						var oldindex = grid.headerCt.getHeaderIndex(thi);
+						if (oldindex != 2) {
+							grid.headerCt.move(oldindex, 2);
+						}
+					}
+					if (values.fou) {
+						var fou = grid.down('#' + values.fou);
+						fou.show();
+						var oldindex = grid.headerCt.getHeaderIndex(fou);
+						if (oldindex != 3) {
+							grid.headerCt.move(oldindex, 3);
+						}
+					}
+
+					if (!(values.fir || values.sec || values.thi || values.fou)) {
+						grid.down('#zyzj_acct').show();
+						grid.down('#period').show();
+						grid.down('#zjbd_date').show();
+						grid.down('#zjbd_type').show();
+						var fir = grid.down('#zyzj_acct');
+						var sec = grid.down('#period');
+						var thi = grid.down('#zjbd_date');
+						var fou = grid.down('#zjbd_type');
+						var firindex = grid.headerCt.getHeaderIndex(fir);
+						if (firindex != 0) {
+							grid.headerCt.move(firindex, 0);
+						}
+						var secindex = grid.headerCt.getHeaderIndex(sec);
+						if (secindex != 1) {
+							grid.headerCt.move(secindex, 1);
+						}
+						var thiindex = grid.headerCt.getHeaderIndex(thi);
+						if (thiindex != 2) {
+							grid.headerCt.move(thiindex, 2);
+						}
+						var fouindex = grid.headerCt.getHeaderIndex(fou);
+						if (fouindex != 3) {
+							grid.headerCt.move(fouindex, 3);
+						}
+					}
+					grid.getView().refresh();
+					if (form.isValid()) {
+						store.proxy.extraParams = values;
+					} else {
+						return false;
+					}
+				},
+				load : function(thiz, records, successful, eOpts) {
+					if (!successful) {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '已核应付银行款科目详细数据加载失败,请联系管理员',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+						return;
+					}
+					var jsonData = thiz.proxy.reader.jsonData.success;
+					if (jsonData && jsonData === 'forbidden') {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '抱歉，没有已核应付银行款科目详细数据访问权限',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+					}
+				}
+			}
+		});
 		this.store = store;
 		this.items = [{
 					xtype : 'form',
@@ -180,26 +187,22 @@ Ext.define('Zixweb.view.book.detail.bamt_yhyf', {
 										}, {
 											xtype : 'zjbdtype',
 											name : 'zjbd_type',
-//											margin : '0 10 0 0',
 											fieldLabel : '资金变动类型'
 										}]
-							},{
+							}, {
 								xtype : 'hsx',
 								data : [{
-											'value': "zyzj_acct",
+											'value' : "zyzj_acct",
 											'name' : "自有资金银行账号"
-										},
-                                        {
-                                            'value' : "zjbd_date",
-                                            'name'  : "银行出入账日期"
-                                        },
-                                        {
-                                            'value' : "zjbd_type",
-                                            'name'  : "资金变动类型"
-                                        },
-                                        {
+										}, {
 											'value' : "period",
-											'name'  : "期间日期"
+											'name' : "期间日期"
+										}, {
+											'value' : "zjbd_date",
+											'name' : "资金变动日期"
+										}, {
+											'value' : "zjbd_type",
+											'name' : "资金变动类型"
 										}]
 							}, {
 								xtype : 'button',
@@ -240,6 +243,20 @@ Ext.define('Zixweb.view.book.detail.bamt_yhyf', {
 						},
 						flex : 2
 					}, {
+						text : "期间日期",
+						dataIndex : 'period',
+						itemId : 'period',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "资金变动日期",
+						itemId : 'zjbd_date',
+						dataIndex : 'zjbd_date',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
 						text : "资金变动类型",
 						itemId : 'zjbd_type',
 						dataIndex : 'zjbd_type',
@@ -251,20 +268,6 @@ Ext.define('Zixweb.view.book.detail.bamt_yhyf', {
 							return zjbdtype.getAt(index).data.name;
 						},
 						flex : 1
-					},{
-						text : "资金变动日期",
-						itemId : 'zjbd_date',
-						dataIndex : 'zjbd_date',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "借方金额",
 						dataIndex : 'j',

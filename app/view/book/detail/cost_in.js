@@ -68,11 +68,17 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 								grid.down('#p').show();
 								grid.down('#period').show();
 								var fir = grid.down('#c');
+								var sec = grid.down('#p');
+								var thi = grid.down('#period');
 								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
 									grid.headerCt.move(oldindex, 0);
-								}
+								var	secindex = grid.headerCt
+										.getHeaderIndex(sec);
+									grid.headerCt.move(secindex, 1);
+								var	thiindex = grid.headerCt
+										.getHeaderIndex(thi);
+									grid.headerCt.move(thiindex, 2);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -189,7 +195,13 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 								dock : 'bottom',
 								displayInfo : true
 							}],
-					columns : [{
+					columns : [ {
+						text : "客户编号",
+						dataIndex : 'c',
+						itemId : 'c',
+						sortable : false,
+						flex : 1
+					},{
 						text : "产品类型",
 						itemId : 'p',
 						dataIndex : 'p',
@@ -201,12 +213,6 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 							return product.getAt(index).data.name;
 						},
 						flex : 2
-					}, {
-						text : "客户编号",
-						dataIndex : 'c',
-						itemId : 'c',
-						sortable : false,
-						flex : 1
 					}, {
 						text : "期间日期",
 						dataIndex : 'period',

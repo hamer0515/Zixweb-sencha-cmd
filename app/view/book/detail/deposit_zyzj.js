@@ -59,11 +59,13 @@ Ext.define('Zixweb.view.book.detail.deposit_zyzj', {
 								grid.down('#zyzj_acct').show();
 								grid.down('#period').show();
 								var fir = grid.down('#zyzj_acct');
-								var oldindex = grid.headerCt
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
+								grid.headerCt.move(firindex, 0);
+								var sec = grid.down('#period');
+								var secindex = grid.headerCt
+										.getHeaderIndex(fir);
+								grid.headerCt.move(secindex, 1);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

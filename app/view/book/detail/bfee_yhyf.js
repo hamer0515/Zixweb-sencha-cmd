@@ -76,11 +76,26 @@ Ext.define('Zixweb.view.book.detail.bfee_yhyf', {
 						grid.down('#zjbd_date').show();
 						grid.down('#zjbd_type').show();
 						var fir = grid.down('#bfj_acct');
-						var oldindex = grid.headerCt.getHeaderIndex(fir);
-						if (oldindex != 0) {
-							grid.headerCt.move(oldindex, 0);
+						var sec = grid.down('#period');
+						var thi = grid.down('#zjbd_date');
+						var fou = grid.down('#zjbd_type');
+						var firindex = grid.headerCt.getHeaderIndex(fir);
+						if (firindex != 0) {
+							grid.headerCt.move(firindex, 0);
 						}
-					}
+						var	secindex = grid.headerCt.getHeaderIndex(sec);
+						if (secindex != 1){
+							grid.headerCt.move(secindex, 1);
+						}
+						var	thiindex = grid.headerCt.getHeaderIndex(thi);
+						if (thiindex != 2){
+							grid.headerCt.move(thiindex, 2);
+						}
+						var	fouindex = grid.headerCt.getHeaderIndex(fou);
+						if (fouindex != 3){
+							grid.headerCt.move(fouindex, 3);
+						}
+						}
 					grid.getView().refresh();
 					if (form.isValid()) {
 						store.proxy.extraParams = values;
@@ -181,14 +196,14 @@ Ext.define('Zixweb.view.book.detail.bfee_yhyf', {
 											'value' : "bfj_acct",
 											'name' : "备付金银行账号"
 										}, {
+											'value' : "period",
+											'name' : "期间日期"
+										}, {
 											'value' : "zjbd_date",
-											'name' : "银行出入账日期"
+											'name' : "资金变动日期"
 										}, {
 											'value' : "zjbd_type",
 											'name' : "资金变动类型"
-										}, {
-											'value' : "period",
-											'name' : "期间日期"
 										}]
 							}, {
 								xtype : 'button',
@@ -229,6 +244,20 @@ Ext.define('Zixweb.view.book.detail.bfee_yhyf', {
 						},
 						flex : 2
 					}, {
+						text : "期间日期",
+						dataIndex : 'period',
+						itemId : 'period',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "资金变动日期",
+						itemId : 'zjbd_date',
+						dataIndex : 'zjbd_date',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
 						text : "资金变动类型",
 						itemId : 'zjbd_type',
 						dataIndex : 'zjbd_type',
@@ -240,20 +269,6 @@ Ext.define('Zixweb.view.book.detail.bfee_yhyf', {
 							return zjbdtype.getAt(index).data.name;
 						},
 						flex : 1
-					}, {
-						text : "资金变动日期",
-						itemId : 'zjbd_date',
-						dataIndex : 'zjbd_date',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "借方金额",
 						dataIndex : 'j',

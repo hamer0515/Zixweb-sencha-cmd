@@ -105,12 +105,32 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 								grid.down('#bi').show();
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
-								/***********************************************
-								 * var fir = grid.down('#bfj_acct'); var
-								 * oldindex = grid.headerCt
-								 * .getHeaderIndex(fir); if (oldindex != 0) {
-								 * grid.headerCt.move(oldindex, 0); }
-								 **********************************************/
+
+								var fir = grid.down('#c');
+								var firindex = grid.headerCt
+										.getHeaderIndex(fir);
+								grid.headerCt.move(firindex, 0);
+								var sec = grid.down('#p');
+								var secindex = grid.headerCt
+										.getHeaderIndex(sec);
+								grid.headerCt.move(secindex, 1);
+								var thi = grid.down('#fp');
+								var thiindex = grid.headerCt
+										.getHeaderIndex(thi);
+								grid.headerCt.move(thiindex, 2);
+								var fou = grid.down('#bi');
+								var fouindex = grid.headerCt
+										.getHeaderIndex(fou);
+								grid.headerCt.move(oldindex, 3);
+								var fiv = grid.down('#tx_date');
+								var fivindex = grid.headerCt
+										.getHeaderIndex(fiv);
+								grid.headerCt.move(fivindex, 4);
+								var six = grid.down('#period');
+								var sixindex = grid.headerCt
+										.getHeaderIndex(six);
+								grid.headerCt.move(sixindex, 5);
+
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -198,7 +218,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 											name : 'tx_date_to',
 											margin : '0 10 0 0',
 											width : 180
-										},{
+										}, {
 											xtype : 'textfield',
 											name : 'c',
 											fieldLabel : '客户id',
@@ -207,7 +227,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
-								items : [ {
+								items : [{
 											xtype : 'textfield',
 											name : 'fp',
 											margin : '0 10 0 0',

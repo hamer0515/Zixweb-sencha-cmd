@@ -81,11 +81,21 @@ Ext.define('Zixweb.view.book.detail.cfee_dqhf', {
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
 								var fir = grid.down('#c');
-								var oldindex = grid.headerCt
+								var sec = grid.down('#cust_proto');
+								var thi = grid.down('#tx_date');
+								var fou = grid.down('#period');
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
+									grid.headerCt.move(firindex, 0);
+							    var secindex = grid.headerCt
+										.getHeaderIndex(sec);
+									grid.headerCt.move(secindex, 1);
+								var thiindex = grid.headerCt
+										.getHeaderIndex(thi);
+									grid.headerCt.move(thiindex, 2);
+								var fouindex = grid.headerCt
+										.getHeaderIndex(fou);
+									grid.headerCt.move(fouindex, 3);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

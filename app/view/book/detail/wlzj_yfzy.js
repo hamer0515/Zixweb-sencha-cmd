@@ -59,11 +59,13 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfzy', {
 								grid.down('#wlzj_type').show();
 								grid.down('#period').show();
 								var fir = grid.down('#wlzj_type');
-								var oldindex = grid.headerCt
+								var sec = grid.down('#period');
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
+									grid.headerCt.move(firindex, 0);
+							    var secindex = grid.headerCt
+										.getHeaderIndex(sec);
+									grid.headerCt.move(secindex, 1);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

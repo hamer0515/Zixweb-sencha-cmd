@@ -57,11 +57,11 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 									grid.headerCt.move(oldindex, 1);
 								}
 							}
-                            if (values.thir) {
-                                var thir = grid.down('#' + values.thir);
-                                thir.show();
+                            if (values.thi) {
+                                var thi = grid.down('#' + values.thi);
+                                thi.show();
                                 var oldindex = grid.headerCt
-                                        .getHeaderIndex(thir);
+                                        .getHeaderIndex(thi);
                                 if (oldindex != 2) {
                                     grid.headerCt.move(oldindex, 2);
                                 }
@@ -75,17 +75,27 @@ Ext.define('Zixweb.view.book.detail.bsc', {
                                     grid.headerCt.move(oldindex, 3);
                                 }
                             }
-                            if (!(values.fir || values.sec || values.thir || values.fou)) {
+                            if (!(values.fir || values.sec || values.thi || values.fou)) {
 								grid.down('#bfj_acct').show();
 								grid.down('#zjbd_type').show();
 								grid.down('#e_date').show();
 								grid.down('#period').show();
 								var fir = grid.down('#bfj_acct');
-								var oldindex = grid.headerCt
+								var sec = grid.down('#zjbd_type');
+								var thi = grid.down('#e_date');
+								var fou = grid.down('#period');
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
+									grid.headerCt.move(firindex, 0);
+							    var secindex = grid.headerCt
+										.getHeaderIndex(sec);
+									grid.headerCt.move(secindex, 1);
+								var thiindex = grid.headerCt
+										.getHeaderIndex(thi);
+									grid.headerCt.move(thiindex, 2);
+								var fouindex = grid.headerCt
+										.getHeaderIndex(fou);
+									grid.headerCt.move(fouindex, 3);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

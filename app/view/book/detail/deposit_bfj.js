@@ -51,19 +51,15 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 								sec.show();
 								var oldindex = grid.headerCt
 										.getHeaderIndex(sec);
-								if (oldindex != 1) {
-									grid.headerCt.move(oldindex, 1);
-								}
+								grid.headerCt.move(oldindex, 1);
 							}
 							if (!(values.fir || values.sec)) {
 								grid.down('#bfj_acct').show();
 								grid.down('#period').show();
 								var fir = grid.down('#bfj_acct');
-								var oldindex = grid.headerCt
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
+								grid.headerCt.move(firindex, 0);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

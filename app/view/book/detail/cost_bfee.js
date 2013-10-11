@@ -75,10 +75,25 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 						grid.down('#c').show();
 						grid.down('#p').show();
 						grid.down('#period').show();
-						var fir = grid.down('#c');
-						var oldindex = grid.headerCt.getHeaderIndex(fir);
-						if (oldindex != 0) {
-							grid.headerCt.move(oldindex, 0);
+						var fir = grid.down('#bi');
+						var sec = grid.down('#c');
+						var thi = grid.down('#p');
+						var fou = grid.down('#period');
+						var firindex = grid.headerCt.getHeaderIndex(fir);
+						if (firindex != 0) {
+							grid.headerCt.move(firindex, 0);
+						}
+					    var secindex = grid.headerCt.getHeaderIndex(sec);
+					    if (secindex != 1) {
+							grid.headerCt.move(secindex, 1);
+					    }
+						var	thiindex = grid.headerCt.getHeaderIndex(thi);
+						if (thiindex != 2) {
+							grid.headerCt.move(thiindex, 2);
+						}
+						var	fouindex = grid.headerCt.getHeaderIndex(fou);
+						if (fouindex != 3) {
+							grid.headerCt.move(fouindex, 3);
 						}
 					}
 					grid.getView().refresh();
@@ -206,18 +221,6 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 								displayInfo : true
 							}],
 					columns : [{
-						text : "产品类型",
-						itemId : 'p',
-						dataIndex : 'p',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var product = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Product');
-							var index = product.findExact('id', value);
-							return product.getAt(index).data.name;
-						},
-						flex : 1
-					}, {
 						text : "银行接口编号",
 						itemId : 'bi',
 						dataIndex : 'bi',
@@ -234,6 +237,18 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 						dataIndex : 'c',
 						itemId : 'c',
 						sortable : false,
+						flex : 1
+					}, {
+						text : "产品类型",
+						itemId : 'p',
+						dataIndex : 'p',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var product = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.Product');
+							var index = product.findExact('id', value);
+							return product.getAt(index).data.name;
+						},
 						flex : 1
 					}, {
 						text : "期间日期",

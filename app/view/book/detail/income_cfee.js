@@ -70,11 +70,14 @@ Ext.define('Zixweb.view.book.detail.income_cfee', {
 								grid.down('#p').show();
 								grid.down('#period').show();
 								var fir = grid.down('#c');
+								var sec = grid.down('#p');
+								var thi = grid.down('#period');
 								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
 									grid.headerCt.move(oldindex, 0);
-								}
+									oldindex = grid.headerCt
+										.getHeaderIndex(sec);
+									grid.headerCt.move(oldindex, 1);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -191,6 +194,12 @@ Ext.define('Zixweb.view.book.detail.income_cfee', {
 								displayInfo : true
 							}],
 					columns : [{
+						text : "客户编号",
+						dataIndex : 'c',
+						itemId : 'c',
+						sortable : false,
+						flex : 1
+					}, {
 						text : "产品类型",
 						itemId : 'p',
 						dataIndex : 'p',
@@ -202,12 +211,6 @@ Ext.define('Zixweb.view.book.detail.income_cfee', {
 							return product.getAt(index).data.name;
 						},
 						flex : 2
-					}, {
-						text : "客户编号",
-						dataIndex : 'c',
-						itemId : 'c',
-						sortable : false,
-						flex : 1
 					}, {
 						text : "期间日期",
 						dataIndex : 'period',

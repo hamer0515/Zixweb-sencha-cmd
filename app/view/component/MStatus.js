@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.component.MStatus', {
 			extend : 'Ext.form.ComboBox',
 			alias : 'widget.mstatus',
-			width : 288,
+			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {

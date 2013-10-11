@@ -37,49 +37,46 @@ Ext.define('Zixweb.view.book.detail.txamt_yhys', {
 					grid.down('#zjbd_type').hide();
 					grid.down('#zjbd_date').hide();
 					grid.down('#period').hide();
-					var columns = grid.columns;
+					var hsxes = [];
 					if (values.fir) {
-						var fir = grid.down('#' + values.fir);
-						fir.show();
-						var oldindex = grid.headerCt.getHeaderIndex(fir);
-						if (oldindex != 0) {
-							grid.headerCt.move(oldindex, 0);
-						}
+						hsxes.push(values.fir);
 					}
 					if (values.sec) {
-						var sec = grid.down('#' + values.sec);
-						sec.show();
-						var oldindex = grid.headerCt.getHeaderIndex(sec);
-						if (oldindex != 1) {
-							grid.headerCt.move(oldindex, 1);
-						}
+						hsxes.push(values.sec);
 					}
 					if (values.thi) {
-						var thi = grid.down('#' + values.thi);
-						thi.show();
-						var oldindex_thi = grid.headerCt.getHeaderIndex(thi);
-						if (oldindex_thi != 2) {
-							grid.headerCt.move(oldindex_thi, 2);
-						}
+						hsxes.push(values.thi);
 					}
 					if (values.fou) {
-						var fou = grid.down('#' + values.fou);
-						fou.show();
-						var oldindex_fou = grid.headerCt.getHeaderIndex(fou);
-						if (oldindex_fou != 3) {
-							grid.headerCt.move(oldindex_fou, 3);
-						}
+						hsxes.push(values.fou);
 					}
-					if (!(values.fir || values.sec || values.thi || values.fou)) {
+					if (!values) {
 						grid.down('#bfj_acct').show();
 						grid.down('#zjbd_type').show();
 						grid.down('#zjbd_date').show();
 						grid.down('#period').show();
-						/*******************************************************
-						 * var fir = grid.down('#bfj_acct'); var oldindex =
-						 * grid.headerCt .getHeaderIndex(fir); if (oldindex !=
-						 * 0) { grid.headerCt.move(oldindex, 0); }
-						 ******************************************************/
+						var fir = grid.down('#bfj_acct');
+						var firindex = grid.headerCt.getHeaderIndex(fir);
+						grid.headerCt.move(firindex, 0);
+						var sec = grid.down('#zjbd_type');
+						var secindex = grid.headerCt.getHeaderIndex(sec);
+						grid.headerCt.move(secindex, 1);
+						var thi = grid.down('#zjbd_date');
+						var thiindex = grid.headerCt.getHeaderIndex(thi);
+						grid.headerCt.move(thiindex, 2);
+						var fou = grid.down('#period');
+						var fouindex = grid.headerCt.getHeaderIndex(fou);
+						grid.headerCt.move(fouindex, 3);
+					} else {
+						for (var i = 0; i < hsxes.length; i++) {
+							var item = grid.down('#' + hsxes[i]);
+							item.show();
+						}
+						for (var i = 0; i < hsxes.length; i++) {
+							var item = grid.down('#' + hsxes[i]);
+							var pos = grid.headerCt.getHeaderIndex(item);
+							grid.headerCt.move(pos, i);
+						}
 					}
 					grid.getView().refresh();
 					if (form.isValid()) {

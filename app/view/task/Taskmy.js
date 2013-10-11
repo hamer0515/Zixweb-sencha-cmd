@@ -74,7 +74,7 @@ Ext.define('Zixweb.view.task.Taskmy', {
 					id : 'taskmyform',
 
 					fieldDefaults : {
-						labelWidth : 90
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -85,24 +85,24 @@ Ext.define('Zixweb.view.task.Taskmy', {
 											format : 'Y-m-d',
 											name : 'from',
 											margin : '0 10 0 0',
-											width : 193
+											width : 180
 										}, {
 											xtype : 'datefield',
 											format : 'Y-m-d',
 											name : 'to',
-											width : 193
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'textfield',
+											name : 'id',
+											width : 516,
+											vtype : 'id',
+											fieldLabel : '任务编号'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
-											xtype : 'textfield',
-											name : 'id',
-											margin : '0 10 0 0',
-											width : 288,
-											vtype : 'id',
-											fieldLabel : '任务编号'
-										}, {
 											xtype : 'shtype',
 											name : 'type',
 											margin : '0 10 0 0',
@@ -110,7 +110,6 @@ Ext.define('Zixweb.view.task.Taskmy', {
 										}, {
 											xtype : 'shstatus',
 											name : 'status',
-											margin : '0 10 0 0',
 											fieldLabel : '审核状态'
 										}]
 
@@ -244,8 +243,8 @@ Ext.define('Zixweb.view.task.Taskmy', {
 												xtype : 'panel',
 												items : taskmy,
 												id : id,
-												title : '我的' + t
-														+ '任務编号'+rec.data.id+'详细信息'
+												title : '我的' + t + '任務编号'
+														+ rec.data.id + '详细信息'
 											}).show();
 										}
 										viewport.doLayout();

@@ -104,12 +104,43 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 								grid.down('#fp').show();
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
-								var fir = grid.down('#c');
-								var oldindex = grid.headerCt
+								var fir = grid.down('#bi');
+								var sec = grid.down('#c');
+								var thi = grid.down('#p');
+								var fou = grid.down('#fp');
+								var fiv = grid.down('#tx_date');
+								var six = grid.down('#period');
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
+								if ( firindex != 0 ) {
+									grid.headerCt.move(firindex, 0);
 								}
+								var	secindex = grid.headerCt
+										.getHeaderIndex(sec);
+								if (secindex != 1) {
+									grid.headerCt.move(secindex, 1);
+								}
+								var thiindex = grid.headerCt
+										.getHeaderIndex(thi);
+								if (thiindex != 2) {
+									grid.headerCt.move(thiindex, 2);
+								}
+							    var fouindex= grid.headerCt
+										.getHeaderIndex(fou);
+							    if (fouindex != 3) {
+									grid.headerCt.move(fouindex, 3);
+							    }
+								var	fivindex = grid.headerCt
+										.getHeaderIndex(fiv);
+								if (fivindex != 4) {
+									grid.headerCt.move(fivindex, 4);
+								}
+								var	sixindex = grid.headerCt
+										.getHeaderIndex(six);
+							    if (sixindex != 5) {
+									grid.headerCt.move(sixindex, 5);
+								}
+							
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -225,23 +256,23 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 							}, {
 								xtype : 'hsx',
 								data : [{
-											'value' : "bi",
-											'name' : "银行接口编号"
-										}, {
 											'value' : "c",
 											'name' : "客户编号"
 										}, {
 											'value' : "p",
 											'name' : "产品类型"
 										}, {
+											'value' : "bi",
+											'name' : "银行接口编号"
+										}, {
 											'value' : "fp",
 											'name' : "周期确认规则"
 										}, {
-											'value' : "tx_date",
-											'name' : "交易日期"
-										}, {
 											'value' : "period",
 											'name' : "期间日期"
+										}, {
+											'value' : "tx_date",
+											'name' : "交易日期"
 										}]
 							}, {
 								xtype : 'button',
@@ -270,6 +301,12 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 								displayInfo : true
 							}],
 					columns : [{
+						text : "客户编号",
+						dataIndex : 'c',
+						itemId : 'c',
+						sortable : false,
+						flex : 1
+					}, {
 						text : "产品类型",
 						itemId : 'p',
 						dataIndex : 'p',
@@ -293,13 +330,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 							return bi.getAt(index).data.name;
 						},
 						flex : 1
-					}, {
-						text : "客户编号",
-						dataIndex : 'c',
-						itemId : 'c',
-						sortable : false,
-						flex : 1
-					}, {
+					},  {
 						text : "周期确认规则",
 						dataIndex : 'fp',
 						itemId : 'fp',

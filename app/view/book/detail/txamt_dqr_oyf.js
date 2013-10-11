@@ -70,11 +70,18 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oyf', {
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
 								var fir = grid.down('#bi');
-								var oldindex = grid.headerCt
+								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
+								grid.headerCt.move(firindex, 0);
+								var sec = grid.down('#tx_date');
+								var secindex = grid.headerCt
+										.getHeaderIndex(sec);
+								grid.headerCt.move(secindex, 1);
+								var thi = grid.down('#period');
+								var thiindex = grid.headerCt
+										.getHeaderIndex(thi);
+								grid.headerCt.move(thiindex, 2);
+
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
