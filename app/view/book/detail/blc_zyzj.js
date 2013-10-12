@@ -69,17 +69,23 @@ Ext.define('Zixweb.view.book.detail.blc_zyzj', {
 								grid.down('#e_date').show();
 								grid.down('#period').show();
 								var fir = grid.down('#zyzj_acct');
-								var firindex = grid.headerCt
+								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
-								grid.headerCt.move(firindex, 0);
+								if (oldindex != 0) {
+									grid.headerCt.move(oldindex, 0);
+								}
 								var sec = grid.down('#e_date');
-								var secindex = grid.headerCt
+								var oldindex = grid.headerCt
 										.getHeaderIndex(sec);
-								grid.headerCt.move(secindex, 1);
+								if (oldindex != 1) {
+									grid.headerCt.move(oldindex, 1);
+								}
 								var thi = grid.down('#period');
-								var thiindex = grid.headerCt
+								var oldindex = grid.headerCt
 										.getHeaderIndex(thi);
-								grid.headerCt.move(thiindex, 2);
+								if (oldindex != 2) {
+									grid.headerCt.move(oldindex, 2);
+								}
 
 							}
 							grid.getView().refresh();

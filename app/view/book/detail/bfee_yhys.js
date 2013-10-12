@@ -77,20 +77,25 @@ Ext.define('Zixweb.view.book.detail.bfee_yhys', {
 						grid.down('#period').show();
 
 						var fir = grid.down('#bfj_acct');
-						var firindex = grid.headerCt.getHeaderIndex(fir);
-						grid.headerCt.move(firindex, 0);
-
+						var oldindex = grid.headerCt.getHeaderIndex(fir);
+						if (oldindex != 0) {
+							grid.headerCt.move(oldindex, 0);
+						}
 						var sec = grid.down('#zjbd_type');
-						var secindex = grid.headerCt.getHeaderIndex(sec);
-						grid.headerCt.move(secindex, 1);
-
+						var oldindex = grid.headerCt.getHeaderIndex(sec);
+						if (oldindex != 1) {
+							grid.headerCt.move(oldindex, 1);
+						}
 						var thi = grid.down('#zjbd_date');
-						var thiindex = grid.headerCt.getHeaderIndex(thi);
-						grid.headerCt.move(thiindex, 2);
-
+						var oldindex = grid.headerCt.getHeaderIndex(thi);
+						if (oldindex != 2) {
+							grid.headerCt.move(oldindex, 2);
+						}
 						var fou = grid.down('#period');
-						var fouindex = grid.headerCt.getHeaderIndex(fou);
-						grid.headerCt.move(fouindex, 3);
+						var oldindex = grid.headerCt.getHeaderIndex(fou);
+						if (oldindex != 3) {
+							grid.headerCt.move(oldindex, 3);
+						}
 					}
 					grid.getView().refresh();
 					if (form.isValid()) {

@@ -48,9 +48,11 @@ Ext.define('Zixweb.view.book.detail.wlzj_yszy', {
                             if (!(values.fir)) {
                                 grid.down('#period').show();
                                 var fir = grid.down('#period');
-                                var firindex = grid.headerCt
+                                var oldindex = grid.headerCt
                                         .getHeaderIndex(fir);
-                                    grid.headerCt.move(firindex, 0);
+                                if (oldindex != 0) {
+                                    grid.headerCt.move(oldindex, 0);
+                                }
                             }
 							grid.getView().refresh();
 							if (form.isValid()) {

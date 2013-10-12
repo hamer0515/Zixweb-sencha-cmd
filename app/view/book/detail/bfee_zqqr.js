@@ -11,113 +11,132 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-			fields : ['fp', 'bi', 'tx_date', 'period', 'j', 'd'],
+					fields : ['fp', 'bi', 'tx_date', 'period', 'j',	'd'],
 
-			pageSize : 50,
-			remoteSort : true,
+					pageSize : 50,
+					remoteSort : true,
 
-			proxy : {
-				type : 'ajax',
-				api : {
-					read : 'book/detail/bfee_zqqr'
-				},
-				reader : {
-					type : 'json',
-					root : 'data',
-					totalProperty : 'totalCount',
-					successProperty : 'success'
-				}
-			},
-			listeners : {
-				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('bfeezqqrdetailform').getForm();
-					var values = form.getValues();
-					var grid = Ext.getCmp('book_detail_bfee_zqqr_grid');
-					grid.down('#fp').hide();
-					grid.down('#bi').hide();
-					grid.down('#tx_date').hide();
-					grid.down('#period').hide();
-					var columns = grid.columns;
-					if (values.fir) {
-						var fir = grid.down('#' + values.fir);
-						fir.show();
-						var oldindex = grid.headerCt.getHeaderIndex(fir);
-						if (oldindex != 0) {
-							grid.headerCt.move(oldindex, 0);
+					proxy : {
+						type : 'ajax',
+						api : {
+							read : 'book/detail/bfee_zqqr'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
+						}
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp('bfeezqqrdetailform')
+									.getForm();
+							var values = form.getValues();
+							var grid = Ext
+									.getCmp('book_detail_bfee_zqqr_grid');
+							grid.down('#fp').hide();
+							grid.down('#bi').hide();
+							grid.down('#tx_date').hide();
+							grid.down('#period').hide();
+							var columns = grid.columns;
+							if (values.fir) {
+								var fir = grid.down('#' + values.fir);
+								fir.show();
+								var oldindex = grid.headerCt
+										.getHeaderIndex(fir);
+								if (oldindex != 0) {
+									grid.headerCt.move(oldindex, 0);
+								}
+							}
+							if (values.sec) {
+								var sec = grid.down('#' + values.sec);
+								sec.show();
+								var oldindex = grid.headerCt
+										.getHeaderIndex(sec);
+								if (oldindex != 1) {
+									grid.headerCt.move(oldindex, 1);
+								}
+							}
+							if (values.thi) {
+								var thi = grid.down('#' + values.thi);
+								thi.show();
+								var oldindex_thi = grid.headerCt
+										.getHeaderIndex(thi);
+								if (oldindex_thi != 2) {
+									grid.headerCt.move(oldindex_thi, 2);
+								}
+							}
+							if (values.fou) {
+								var fou = grid.down('#' + values.fou);
+								fou.show();
+								var oldindex_fou = grid.headerCt
+										.getHeaderIndex(fou);
+								if (oldindex_fou != 3) {
+									grid.headerCt.move(oldindex_fou, 3);
+								}
+							}
+							if (!(values.fir || values.sec || values.thi
+									|| values.fou || values.fiv || values.six)) {
+  							    grid.down('#bi').show();
+  							    grid.down('#fp').show();
+								grid.down('#tx_date').show();
+								grid.down('#period').show();
+								
+								var fir = grid.down('#bi');
+								var oldindex = grid.headerCt
+										.getHeaderIndex(fir);
+								if (oldindex != 0) {
+									grid.headerCt.move(oldindex, 0);
+								}
+								var sec = grid.down('#fp');
+								var oldindex = grid.headerCt
+										.getHeaderIndex(sec);
+								if (oldindex != 1) {
+									grid.headerCt.move(oldindex, 1);
+								}
+								var thi = grid.down('#tx_date');
+								var oldindex = grid.headerCt
+										.getHeaderIndex(thi);
+								if (oldindex != 2) {
+									grid.headerCt.move(oldindex, 2);
+								}
+								var fou = grid.down('#period');
+								var oldindex = grid.headerCt
+										.getHeaderIndex(fou);
+								if (oldindex != 3) {
+									grid.headerCt.move(oldindex, 3);
+								}
+							}
+							grid.getView().refresh();
+							if (form.isValid()) {
+								store.proxy.extraParams = values;
+							} else {
+								return false;
+							}
+						},
+						load : function(thiz, records, successful, eOpts) {
+							if (!successful) {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '周期确认银行手续费科目详细数据加载失败,请联系管理员',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							var jsonData = thiz.proxy.reader.jsonData.success;
+							if (jsonData && jsonData === 'forbidden') {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '抱歉，没有周期确认银行手续费科目详细数据访问权限',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+							}
 						}
 					}
-					if (values.sec) {
-						var sec = grid.down('#' + values.sec);
-						sec.show();
-						var oldindex = grid.headerCt.getHeaderIndex(sec);
-						if (oldindex != 1) {
-							grid.headerCt.move(oldindex, 1);
-						}
-					}
-					if (values.thi) {
-						var thi = grid.down('#' + values.thi);
-						thi.show();
-						var oldindex_thi = grid.headerCt.getHeaderIndex(thi);
-						if (oldindex_thi != 2) {
-							grid.headerCt.move(oldindex_thi, 2);
-						}
-					}
-					if (values.fou) {
-						var fou = grid.down('#' + values.fou);
-						fou.show();
-						var oldindex_fou = grid.headerCt.getHeaderIndex(fou);
-						if (oldindex_fou != 3) {
-							grid.headerCt.move(oldindex_fou, 3);
-						}
-					}
-					if (!(values.fir || values.sec || values.thi || values.fou)) {
-						grid.down('#bi').show();
-						grid.down('#fp').show();
-						grid.down('#tx_date').show();
-						grid.down('#period').show();
-
-						var fir = grid.down('#bi');
-						var firindex = grid.headerCt.getHeaderIndex(fir);
-						grid.headerCt.move(firindex, 0);
-						var sec = grid.down('#fp');
-						var secindex = grid.headerCt.getHeaderIndex(sec);
-						grid.headerCt.move(secindex, 1);
-						var thi = grid.down('#tx_date');
-						var thiindex = grid.headerCt.getHeaderIndex(thi);
-						grid.headerCt.move(thiindex, 2);
-						var fou = grid.down('#period');
-						var fouindex = grid.headerCt.getHeaderIndex(fou);
-						grid.headerCt.move(fouindex, 3);
-					}
-					grid.getView().refresh();
-					if (form.isValid()) {
-						store.proxy.extraParams = values;
-					} else {
-						return false;
-					}
-				},
-				load : function(thiz, records, successful, eOpts) {
-					if (!successful) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '周期确认银行手续费科目详细数据加载失败,请联系管理员',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					var jsonData = thiz.proxy.reader.jsonData.success;
-					if (jsonData && jsonData === 'forbidden') {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '抱歉，没有周期确认银行手续费科目详细数据访问权限',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-					}
-				}
-			}
-		});
+				});
 		this.store = store;
 		this.items = [{
 					xtype : 'form',

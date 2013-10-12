@@ -56,31 +56,25 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 									grid.headerCt.move(oldindex, 1);
 								}
 							}
-                            if (values.thi) {
-                                var thi = grid.down('#' + values.thi);
-                                thi.show();
+                            if (values.thir) {
+                                var thir = grid.down('#' + values.thir);
+                                thir.show();
                                 var oldindex = grid.headerCt
-                                        .getHeaderIndex(thi);
+                                        .getHeaderIndex(thir);
                                 if (oldindex != 2) {
                                     grid.headerCt.move(oldindex, 2);
                                 }
                             }
-							if (!(values.fir || values.sec || values.thi)) {
+							if (!(values.fir || values.sec || values.thir)) {
 								grid.down('#zyzj_acct').show();
 								grid.down('#e_date').show();
 								grid.down('#period').show();
 								var fir = grid.down('#zyzj_acct');
-								var sec = grid.down('#e_date');
-								var thi = grid.down('#period');
-								var firindex = grid.headerCt
+								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
-									grid.headerCt.move(firindex, 0);
-							    var secindex = grid.headerCt
-										.getHeaderIndex(sec);
-									grid.headerCt.move(secindex, 1);
-								var thiindex = grid.headerCt
-										.getHeaderIndex(thi);
-									grid.headerCt.move(thiindex, 2);
+								if (oldindex != 0) {
+									grid.headerCt.move(oldindex, 0);
+								}
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {

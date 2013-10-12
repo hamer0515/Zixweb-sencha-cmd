@@ -76,7 +76,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0000', {
 											xtype : 'textfield',
 											fieldLabel : 'ID',
 											width : 516,
-											name : 'ys_id',
+											name : 'id',
 											vtype : "id"
 										}]
 							}, {

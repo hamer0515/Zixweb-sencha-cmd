@@ -72,15 +72,21 @@ Ext.define('Zixweb.view.book.detail.txamt_dgd', {
 								var fir = grid.down('#bi');
 								var oldindex_fir = grid.headerCt
 										.getHeaderIndex(fir);
-								grid.headerCt.move(oldindex_fir, 0);
+								if (oldindex_fir != 0) {
+									grid.headerCt.move(oldindex_fir, 0);
+								}
 								var sec = grid.down('#tx_date');
 								var oldindex_sec = grid.headerCt
 										.getHeaderIndex(sec);
-								grid.headerCt.move(oldindex_sec, 1);
+								if (oldindex_sec != 1) {
+									grid.headerCt.move(oldindex_sec, 1);
+								}
 								var thi = grid.down('#period');
 								var oldindex_thi = grid.headerCt
 										.getHeaderIndex(thi);
-								grid.headerCt.move(oldindex_thi, 2);
+								if (oldindex_thi != 2) {
+									grid.headerCt.move(oldindex_thi, 2);
+								}
 
 							}
 							grid.getView().refresh();

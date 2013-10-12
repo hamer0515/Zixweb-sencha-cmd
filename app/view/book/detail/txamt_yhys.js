@@ -31,55 +31,55 @@ Ext.define('Zixweb.view.book.detail.txamt_yhys', {
 			listeners : {
 				beforeload : function(store, operation, eOpts) {
 					var form = Ext.getCmp('txamtyhysdetailform').getForm();
-					var values = form.getValues();
-					var grid = Ext.getCmp('book_detail_txamt_yhys_grid');
-					grid.down('#bfj_acct').hide();
-					grid.down('#zjbd_type').hide();
-					grid.down('#zjbd_date').hide();
-					grid.down('#period').hide();
-					var hsxes = [];
-					if (values.fir) {
-						hsxes.push(values.fir);
-					}
-					if (values.sec) {
-						hsxes.push(values.sec);
-					}
-					if (values.thi) {
-						hsxes.push(values.thi);
-					}
-					if (values.fou) {
-						hsxes.push(values.fou);
-					}
-					if (!values) {
-						grid.down('#bfj_acct').show();
-						grid.down('#zjbd_type').show();
-						grid.down('#zjbd_date').show();
-						grid.down('#period').show();
-						var fir = grid.down('#bfj_acct');
-						var firindex = grid.headerCt.getHeaderIndex(fir);
-						grid.headerCt.move(firindex, 0);
-						var sec = grid.down('#zjbd_type');
-						var secindex = grid.headerCt.getHeaderIndex(sec);
-						grid.headerCt.move(secindex, 1);
-						var thi = grid.down('#zjbd_date');
-						var thiindex = grid.headerCt.getHeaderIndex(thi);
-						grid.headerCt.move(thiindex, 2);
-						var fou = grid.down('#period');
-						var fouindex = grid.headerCt.getHeaderIndex(fou);
-						grid.headerCt.move(fouindex, 3);
-					} else {
-						for (var i = 0; i < hsxes.length; i++) {
-							var item = grid.down('#' + hsxes[i]);
-							item.show();
-						}
-						for (var i = 0; i < hsxes.length; i++) {
-							var item = grid.down('#' + hsxes[i]);
-							var pos = grid.headerCt.getHeaderIndex(item);
-							grid.headerCt.move(pos, i);
-						}
-					}
-					grid.getView().refresh();
 					if (form.isValid()) {
+						var values = form.getValues();
+						var grid = Ext.getCmp('book_detail_txamt_yhys_grid');
+						grid.down('#bfj_acct').hide();
+						grid.down('#zjbd_type').hide();
+						grid.down('#zjbd_date').hide();
+						grid.down('#period').hide();
+						var hsxes = [];
+						if (values.fir) {
+							hsxes.push(values.fir);
+						}
+						if (values.sec) {
+							hsxes.push(values.sec);
+						}
+						if (values.thi) {
+							hsxes.push(values.thi);
+						}
+						if (values.fou) {
+							hsxes.push(values.fou);
+						}
+						if (!values) {
+							grid.down('#bfj_acct').show();
+							grid.down('#zjbd_type').show();
+							grid.down('#zjbd_date').show();
+							grid.down('#period').show();
+							var fir = grid.down('#bfj_acct');
+							var firindex = grid.headerCt.getHeaderIndex(fir);
+							grid.headerCt.move(firindex, 0);
+							var sec = grid.down('#zjbd_type');
+							var secindex = grid.headerCt.getHeaderIndex(sec);
+							grid.headerCt.move(secindex, 1);
+							var thi = grid.down('#zjbd_date');
+							var thiindex = grid.headerCt.getHeaderIndex(thi);
+							grid.headerCt.move(thiindex, 2);
+							var fou = grid.down('#period');
+							var fouindex = grid.headerCt.getHeaderIndex(fou);
+							grid.headerCt.move(fouindex, 3);
+						} else {
+							for (var i = 0; i < hsxes.length; i++) {
+								var item = grid.down('#' + hsxes[i]);
+								item.show();
+							}
+							for (var i = 0; i < hsxes.length; i++) {
+								var item = grid.down('#' + hsxes[i]);
+								var pos = grid.headerCt.getHeaderIndex(item);
+								grid.headerCt.move(pos, i);
+							}
+						}
+						grid.getView().refresh();
 						store.proxy.extraParams = values;
 					} else {
 						return false;
