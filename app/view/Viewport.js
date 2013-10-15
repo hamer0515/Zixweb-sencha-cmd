@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.Viewport', {
 			extend : 'Ext.container.Viewport',
 			requires : ['Ext.data.TreeStore', 'Ext.layout.container.Border',
-					'Ext.ux.TabScrollerMenu', 'Ext.toolbar.Paging',
+					'Ext.toolbar.Paging',
 					'Ext.grid.plugin.RowExpander',
 					'Ext.ux.TabScrollerMenu',
 					'Ext.ux.TabCloseMenu',

@@ -51,7 +51,7 @@ Ext.define('Zixweb.view.book.detail.txamt_yhys', {
 						if (values.fou) {
 							hsxes.push(values.fou);
 						}
-						if (!values) {
+						if (hsxes.length == 0) {
 							grid.down('#bfj_acct').show();
 							grid.down('#zjbd_type').show();
 							grid.down('#zjbd_date').show();
@@ -73,10 +73,17 @@ Ext.define('Zixweb.view.book.detail.txamt_yhys', {
 								var item = grid.down('#' + hsxes[i]);
 								item.show();
 							}
+							var old = [];
 							for (var i = 0; i < hsxes.length; i++) {
 								var item = grid.down('#' + hsxes[i]);
 								var pos = grid.headerCt.getHeaderIndex(item);
-								grid.headerCt.move(pos, i);
+								if (pos != i) {
+									var p = old.indexOf(i);
+									if (p == -1) {
+										grid.headerCt.move(pos, i);
+										old.push(pos);
+									}
+								}
 							}
 						}
 						grid.getView().refresh();

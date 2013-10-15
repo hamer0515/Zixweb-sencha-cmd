@@ -284,8 +284,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.role.Edit": [],
   "Zixweb.view.yspz.yspzq.y0056": [],
   "Zixweb.view.component.SHStatus": [],
-  "Zixweb.view.yspz.yspzq.y0057": [],
   "Zixweb.view.zjdz.bfjgzcx": [],
+  "Zixweb.view.yspz.yspzq.y0057": [],
   "Zixweb.view.yspz.yspzq.y0058": [],
   "Zixweb.view.book.hist.wlzj_ysbf": [],
   "Zixweb.view.yspz.yspzq.y0051": [],
@@ -343,9 +343,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0074": [],
   "Zixweb.view.yspz.yspzq.y0095": [],
   "Zixweb.view.yspz.yspzq.y0075": [],
+  "Zixweb.controller.Zjdz": [],
   "Zixweb.view.yspz.yspzq.y0096": [],
   "Zixweb.view.yspz.yspzq.y0076": [],
-  "Zixweb.controller.Zjdz": [],
   "Zixweb.view.yspz.yspzq.y0077": [],
   "Zixweb.view.yspz.yspzq.y0078": [],
   "Zixweb.view.yspz.yspzq.y0099": [],
@@ -958,11 +958,11 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.component.SHStatus": [
     "widget.shstatus"
   ],
-  "Zixweb.view.yspz.yspzq.y0057": [
-    "widget.y0057"
-  ],
   "Zixweb.view.zjdz.bfjgzcx": [
     "widget.zjdzbfjgzcx"
+  ],
+  "Zixweb.view.yspz.yspzq.y0057": [
+    "widget.y0057"
   ],
   "Zixweb.view.yspz.yspzq.y0058": [
     "widget.y0058"
@@ -1111,13 +1111,13 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0075": [
     "widget.y0075"
   ],
+  "Zixweb.controller.Zjdz": [],
   "Zixweb.view.yspz.yspzq.y0096": [
     "widget.y0096"
   ],
   "Zixweb.view.yspz.yspzq.y0076": [
     "widget.y0076"
   ],
-  "Zixweb.controller.Zjdz": [],
   "Zixweb.view.yspz.yspzq.y0077": [
     "widget.y0077"
   ],

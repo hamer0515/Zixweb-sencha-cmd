@@ -309,7 +309,7 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 															async : false,
 															url : 'taskpzcx/deny',
 															params : {
-																id : rec.data.deny
+																id : rec.data.id
 															},
 															success : function(
 																	response) {

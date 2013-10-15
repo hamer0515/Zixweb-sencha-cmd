@@ -446,7 +446,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 						return false;
 					}
 					if (f === 'amt') {
-						data[fl]["j_book"][f] = parseInt(parseFloat(jbook[f])
+						data[fl]["j_book"]['j'] = parseInt(parseFloat(jbook[f])
 								* 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {
@@ -465,7 +465,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 						return false;
 					}
 					if (f === 'amt') {
-						data[fl]["d_book"][f] = parseInt(parseFloat(dbook[f])
+						data[fl]["d_book"]['d'] = parseInt(parseFloat(dbook[f])
 								* 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {

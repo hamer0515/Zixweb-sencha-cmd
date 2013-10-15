@@ -49,14 +49,16 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 						flex : 1,
 						dataIndex : 'j',
 						renderer : function(value) {
-							return Ext.util.Format.number(value, '0,0.00');
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
 						text : '轧差贷方余额',
 						flex : 1,
 						dataIndex : 'd',
 						renderer : function(value) {
-							return Ext.util.Format.number(value, '0,0.00');
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
 						xtype : 'actioncolumn',
