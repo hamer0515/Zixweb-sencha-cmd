@@ -169,29 +169,32 @@ Ext.define('Zixweb.view.yspz.yspzq.y0010', {
 								sortable : false,
 								flex : 1
 							}, {
-                                text : "备付金帐号",
-                                itemId : 'bfj_acct',
-                                dataIndex : 'bfj_acct',
-                                sortable : false,
-                                renderer : function(value, p, record) {
-                                    var bfjacct = Ext.data.StoreManager
-                                            .lookup('Zixweb.store.component.BfjAcct');
-                                    var index = bfjacct.findExact('id', value);
-                                    return bfjacct.getAt(index).data.name;
-                                },
-                                flex : 2
-                             }, {
-                                text : "自有资金银行账号",
-                                itemId : 'zyzj_acct',
-                                dataIndex : 'zyzj_acct',
-                                sortable : false,
-                                renderer : function(value, p, record) {
-                                    var zyzjacct = Ext.data.StoreManager
-                                            .lookup('Zixweb.store.component.ZyzjAcct');
-                                    var index = zyzjacct.findExact('id', value);
-                                    return zyzjacct.getAt(index).data.name;
-                                },
-                                flex : 2
+								text : "备付金帐号",
+								itemId : 'bfj_acct',
+								dataIndex : 'bfj_acct',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var bfjacct = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.BfjAcct');
+									var index = bfjacct.findExact('id', value);
+									return bfjacct.getAt(index).data.name;
+								},
+								flex : 2
+							}, {
+								text : "自有资金银行账号",
+								itemId : 'zyzj_acct',
+								dataIndex : 'zyzj_acct',
+								sortable : false,
+								renderer : function(value, p, record) {
+									if (!value) {
+										return '';
+									}
+									var zyzjacct = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.ZyzjAcct');
+									var index = zyzjacct.findExact('id', value);
+									return zyzjacct.getAt(index).data.name;
+								},
+								flex : 2
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',
@@ -209,7 +212,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0010', {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
 								}
-							},{
+							}, {
 								xtype : 'actioncolumn',
 								text : '操作',
 								width : 100,

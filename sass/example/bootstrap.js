@@ -15,7 +15,6 @@ Ext.Loader.addClassPathMappings({
   "Ext.locale.zh_CN.form.field.Text": "../../../ext/locale/ext-lang-zh_CN.js",
   "Ext.locale.zh_CN.form.field.VTypes": "../../../ext/locale/ext-lang-zh_CN.js",
   "Ext.locale.zh_CN.form.field.Base": "../../../ext/locale/ext-lang-zh_CN.js",
-  "overrides.ComboBox": "../../overrides/ComboBox.js",
   "overrides.TabCloseMenu": "../../overrides/TabCloseMenu.js",
   "Ext.locale.zh_CN.grid.plugin.DragDrop": "../../../ext/locale/ext-lang-zh_CN.js",
   "Ext": "../../../ext/src",
@@ -24,8 +23,8 @@ Ext.Loader.addClassPathMappings({
   "overrides.BasicForm": "../../overrides/BasicForm.js",
   "overrides": "../../../packages/my-custom-theme/overrides",
   "Ext.locale.zh_CN.grid.header.Container": "../../../ext/locale/ext-lang-zh_CN.js",
-  "overrides.RowExpander": "../../overrides/RowExpander.js",
   "Ext.locale.zh_CN.window.MessageBox": "../../../ext/locale/ext-lang-zh_CN.js",
+  "overrides.RowExpander": "../../overrides/RowExpander.js",
   "Ext.locale.zh_CN.form.field.ComboBox": "../../../ext/locale/ext-lang-zh_CN.js",
   "Ext.locale.zh_CN.form.field.Number": "../../../ext/locale/ext-lang-zh_CN.js",
   "overrides.VType": "../../overrides/VType.js",
@@ -131,9 +130,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.book.hist.lfee_psp": [],
   "Ext.ux.event.Player": [],
   "Zixweb.view.book.hist.deposit_bfj": [],
-  "Zixweb.view.book.hist.bfee_zqqr": [],
   "Ext.locale.zh_CN.grid.PropertyColumnModel": [],
   "Zixweb.view.book.detail.bfee_cwwf": [],
+  "Zixweb.view.book.hist.bfee_zqqr": [],
   "Ext.ux.ToolbarDroppable": [],
   "Zixweb.view.zjdz.bfjdetail": [],
   "Zixweb.view.book.hist.bfee_zqqr_zg": [],
@@ -287,7 +286,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.component.SHStatus": [],
   "Zixweb.view.zjdz.bfjgzcx": [],
   "Zixweb.view.yspz.yspzq.y0057": [],
-  "overrides.ComboBox": [],
   "Zixweb.view.yspz.yspzq.y0058": [],
   "Zixweb.view.book.hist.wlzj_ysbf": [],
   "Zixweb.view.yspz.yspzq.y0051": [],
@@ -596,12 +594,12 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.book.hist.deposit_bfj": [
     "widget.book_hist_deposit_bfj"
   ],
-  "Zixweb.view.book.hist.bfee_zqqr": [
-    "widget.book_hist_bfee_zqqr"
-  ],
   "Ext.locale.zh_CN.grid.PropertyColumnModel": [],
   "Zixweb.view.book.detail.bfee_cwwf": [
     "widget.book_detail_bfee_cwwf"
+  ],
+  "Zixweb.view.book.hist.bfee_zqqr": [
+    "widget.book_hist_bfee_zqqr"
   ],
   "Ext.ux.ToolbarDroppable": [],
   "Zixweb.view.zjdz.bfjdetail": [
@@ -966,7 +964,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0057": [
     "widget.y0057"
   ],
-  "overrides.ComboBox": [],
   "Zixweb.view.yspz.yspzq.y0058": [
     "widget.y0058"
   ],

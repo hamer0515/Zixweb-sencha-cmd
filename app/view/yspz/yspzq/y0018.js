@@ -10,7 +10,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0018', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'flag', 'period', 'bfj_acct_bj',
+							'crt_user', 'tx_amt'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -78,6 +79,20 @@ Ext.define('Zixweb.view.yspz.yspzq.y0018', {
 											width : 516,
 											name : 'id',
 											vtype : "id"
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'bfjacct',
+											fieldLabel : '本金备付金银行账号',
+											margin : '0 10 0 0',
+											name : 'bfj_acct_bj'
+										}, {
+											xtype : 'textfield',
+											fieldLabel : '录入员',
+											width : 516,
+											name : 'crt_user'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -160,9 +175,38 @@ Ext.define('Zixweb.view.yspz.yspzq.y0018', {
 								dataIndex : 'period',
 								itemId : 'period',
 								sortable : false,
-								flex : 2,
+								flex : 3,
 								renderer : Ext.util.Format
 										.dateRenderer('Y年m月d日')
+							}, {
+								text : "本金备付金银行账号",
+								dataIndex : 'bfj_acct_bj',
+								itemId : 'bfj_acct_bj',
+								sortable : false,
+								flex : 4,
+								renderer : function(value, p, record) {
+									var bfjacctin = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.BfjAcct');
+									var index = bfjacctin
+											.findExact('id', value);
+									return bfjacctin.getAt(index).data.name;
+								}
+							}, {
+								text : "录入员",
+								dataIndex : 'crt_user',
+								itemId : 'crt_user',
+								sortable : false,
+								flex : 4
+							}, {
+								text : "客户备付金汇入金额",
+								dataIndex : 'tx_amt',
+								itemId : 'tx_amt',
+								sortable : false,
+								flex : 4,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
 							}, {
 								text : "撤销状态",
 								dataIndex : 'flag',
@@ -172,7 +216,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0018', {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
 								}
-							},{
+							}, {
 								xtype : 'actioncolumn',
 								text : '操作',
 								width : 100,

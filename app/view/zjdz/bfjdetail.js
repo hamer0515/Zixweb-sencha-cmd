@@ -212,8 +212,8 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 									}
 								});
 						field.on('blur', function(e, t, eOpts) {
-									var value = t.value.replace(',', '', 'g');
-									value = value.trim();
+									var value = t.value.replace(',', '', 'g')
+											.trim();
 									if (!/^(-)?(([1-9]{1}\d*)|([0]{1}))(\.\d+)?$/
 											.exec(value)) {
 										value = 0;
