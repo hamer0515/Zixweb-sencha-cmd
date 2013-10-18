@@ -10,7 +10,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0010', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'bfj_acct', 'zjzy_acct', 'flag', 'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -83,6 +83,19 @@ Ext.define('Zixweb.view.yspz.yspzq.y0010', {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
+											xtype : 'bfjacct',
+											fieldLabel : '备付金帐号',
+											margin : '0 10 0 0',
+											name : 'bfj_acct'
+										}, {
+											xtype : 'zjbdtype',
+											fieldLabel : '备付金资金变动类型',
+											name : 'bfj_zjbd_type'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
 											xtype : 'rstatus',
 											fieldLabel : '撤销状态',
 											margin : '0 10 0 0',
@@ -121,7 +134,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0010', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width : 320
+											width : 516
 										}]
 							}, {
 								xtype : 'button',
@@ -155,6 +168,30 @@ Ext.define('Zixweb.view.yspz.yspzq.y0010', {
 								dataIndex : 'id',
 								sortable : false,
 								flex : 1
+							}, {
+                                text : "备付金帐号",
+                                itemId : 'bfj_acct',
+                                dataIndex : 'bfj_acct',
+                                sortable : false,
+                                renderer : function(value, p, record) {
+                                    var bfjacct = Ext.data.StoreManager
+                                            .lookup('Zixweb.store.component.BfjAcct');
+                                    var index = bfjacct.findExact('id', value);
+                                    return bfjacct.getAt(index).data.name;
+                                },
+                                flex : 2
+                             }, {
+                                text : "自有资金银行账号",
+                                itemId : 'zyzj_acct',
+                                dataIndex : 'zyzj_acct',
+                                sortable : false,
+                                renderer : function(value, p, record) {
+                                    var zyzjacct = Ext.data.StoreManager
+                                            .lookup('Zixweb.store.component.ZyzjAcct');
+                                    var index = zyzjacct.findExact('id', value);
+                                    return zyzjacct.getAt(index).data.name;
+                                },
+                                flex : 2
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',

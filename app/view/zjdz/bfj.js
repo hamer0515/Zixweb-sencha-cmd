@@ -166,6 +166,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 											.createByAlias('widget.zjdzbfjdetail');
 									zjdzbfjdetail.store.load({
 												params : {
+													tag : 1,
 													zjbd_date : rec.data.zjdz_date,
 													acct_id : rec.data.b_acct
 												}

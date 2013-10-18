@@ -3,7 +3,10 @@ Ext.define('Zixweb.view.component.Routes', {
 			alias : 'widget.routes',
 
 			id : 'component.routes',
-			layout : 'fit',
+			layout : {
+				type : 'table',
+				columns : 1
+			},
 			autoShow : true,
 			border : false,
 			cls : 'x-unselectable',

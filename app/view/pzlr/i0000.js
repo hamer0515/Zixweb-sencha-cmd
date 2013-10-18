@@ -446,8 +446,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 						return false;
 					}
 					if (f === 'amt') {
-						data[fl]["j_book"]['j'] = parseInt(parseFloat(jbook[f])
-								* 100);
+						data[fl]["j_book"]['j'] = Ext.Number
+								.correctFloat(parseFloat(jbook[f]) * 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {
 						// 借方日期对象转换为日期字符串
@@ -465,8 +465,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 						return false;
 					}
 					if (f === 'amt') {
-						data[fl]["d_book"]['d'] = parseInt(parseFloat(dbook[f])
-								* 100);
+						data[fl]["d_book"]['d'] = Ext.Number
+								.correctFloat(parseFloat(dbook[f]) * 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {
 						// 贷方日期对象转换为日期字符串

@@ -10,7 +10,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'flag', 'period','bfj_acct_in','bfj_acct_out'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -83,6 +83,20 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
+											xtype : 'bfjacct',
+											fieldLabel : '入款备付金银行账号',
+											margin : '0 10 0 0',
+											name : 'bfj_acct_in'
+										}, {
+											xtype : 'bfjacct',
+											fieldLabel : '出款备付金银行账号',
+											width : 516,
+											name : 'bfj_acct_out'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
 											xtype : 'rstatus',
 											fieldLabel : '撤销状态',
 											margin : '0 10 0 0',
@@ -121,7 +135,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width : 320
+											width :516 
 										}]
 							}, {
 								xtype : 'button',
@@ -155,6 +169,30 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 								dataIndex : 'id',
 								sortable : false,
 								flex : 1
+							}, {
+								text : "入款备付金银行账号",
+								itemId : 'bfj_acct_in',
+								dataIndex : 'bfj_acct_in',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var bfjacctin = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.BfjAcct');
+									var index = bfjacctin.findExact('id', value);
+									return bfjacctin.getAt(index).data.name;
+								},
+								flex : 2
+							}, {
+								text : "出款备付金银行账号",
+								itemId : 'bfj_acct_out',
+								dataIndex : 'bfj_acct_out',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var bfjacctout = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.BfjAcct');
+									var index = bfjacctout.findExact('id', value);
+									return bfjacctout.getAt(index).data.name;
+								},
+								flex : 2
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',

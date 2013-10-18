@@ -14,10 +14,6 @@ Ext.define('Zixweb.view.component.HSX', {
 				});
 		var container;
 		for (var i in data) {
-			var store = new Ext.data.Store({
-						fields : ['value', 'name'],
-						data : data
-					});
 			if (container == undefined) {
 				container = Ext
 						.decode("{xtype : 'fieldcontainer',layout : 'hbox',items : []}");
@@ -25,7 +21,10 @@ Ext.define('Zixweb.view.component.HSX', {
 			var item = {
 				xtype : 'combobox',
 				fieldLabel : '第' + this.names[i] + '核算项',
-				store : store,
+				store : new Ext.data.Store({
+							fields : ['value', 'name'],
+							data : data
+						}),
 				labelWidth : 140,
 				queryMode : 'local',
 				name : this.submitNames[i],

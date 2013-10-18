@@ -27,6 +27,9 @@ Ext.define('Zixweb.store.component.Books', {
 									icon : Ext.Msg.ERROR
 								});
 					}
+				},
+				filterchange:function( store, filters, eOpts ){
+					console.log(filters);
 				}
 			}
 		});

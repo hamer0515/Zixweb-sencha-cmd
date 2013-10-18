@@ -13,8 +13,9 @@ Ext.Loader.addClassPathMappings({
   "Ext.rtl.EventObjectImpl": "../ext/src/rtl/EventObject.js",
   "overrides.Table": "overrides/Table.js",
   "overrides.Date": "overrides/Date.js",
-  "overrides.TabCloseMenu": "overrides/TabCloseMenu.js",
+  "overrides.ComboBox": "overrides/ComboBox.js",
   " Ext.Msg": "../ext/src/window/MessageBox.js",
+  "overrides.TabCloseMenu": "overrides/TabCloseMenu.js",
   "Ext": "../ext/src",
   "overrides.Format": "overrides/Format.js",
   "Zixweb.Application": "app/application.js"
@@ -254,6 +255,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.component.SHStatus": [],
   "Zixweb.view.zjdz.bfjgzcx": [],
   "Zixweb.view.yspz.yspzq.y0057": [],
+  "overrides.ComboBox": [],
   "Zixweb.view.yspz.yspzq.y0058": [],
   "Zixweb.view.book.hist.wlzj_ysbf": [],
   "Zixweb.view.yspz.yspzq.y0051": [],
@@ -914,6 +916,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0057": [
     "widget.y0057"
   ],
+  "overrides.ComboBox": [],
   "Zixweb.view.yspz.yspzq.y0058": [
     "widget.y0058"
   ],

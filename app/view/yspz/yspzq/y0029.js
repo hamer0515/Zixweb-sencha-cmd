@@ -10,7 +10,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0029', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'flag', 'bfj_acct_bj', 'tx_amt', 'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -83,6 +83,33 @@ Ext.define('Zixweb.view.yspz.yspzq.y0029', {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
+											xtype : 'bi',
+											name : 'bi',
+											fieldLabel : '银行接口编号',
+											margin : '0 10 0 0'
+										}, {
+											xtype : 'bfjacct',
+											name : 'bfj_acct_bj',
+											fieldLabel : '本金备付金银行账号'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'textfield',
+											name : 'c',
+											width : 516,
+											fieldLabel : '客户编号',
+											margin : '0 10 0 0'
+										}, {
+											xtype : 'product',
+											name : 'p',
+											fieldLabel : '产品类型'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
 											xtype : 'rstatus',
 											fieldLabel : '撤销状态',
 											margin : '0 10 0 0',
@@ -121,7 +148,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0029', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width : 320
+											width : 516
 										}]
 							}, {
 								xtype : 'button',
@@ -155,6 +182,28 @@ Ext.define('Zixweb.view.yspz.yspzq.y0029', {
 								dataIndex : 'id',
 								sortable : false,
 								flex : 1
+							}, {
+                                text : "本金备付金银行帐号",
+                                itemId : 'bfj_acct_bj',
+                                dataIndex : 'bfj_acct_bj',
+                                sortable : false,
+                                renderer : function(value, p, record) {
+                                    var bfjacct = Ext.data.StoreManager
+                                            .lookup('Zixweb.store.component.BfjAcct');
+                                    var index = bfjacct.findExact('id', value);
+                                    return bfjacct.getAt(index).data.name;
+                                },
+                                flex : 2
+                            }, {
+								text : "本金备付金银行出账金额",
+								itemId : 'tx_amt',
+								dataIndex : 'tx_amt',
+								sortable : false,
+								flex : 2,
+								renderer : function(value) {
+										return Ext.util.Format.number(
+										parseInt(value) / 100, '0,0.00');
+								}
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',

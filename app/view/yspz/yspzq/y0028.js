@@ -10,7 +10,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0028', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'c', 'cfee', 'cwws_cfee', 'flag', 'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -83,6 +83,34 @@ Ext.define('Zixweb.view.yspz.yspzq.y0028', {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
+											xtype : 'textfield',
+											fieldLabel : '交易流水编号',
+											width : 516,
+											name : 'ssn',
+											margin : '0 10 0 0'
+										}, {
+											xtype : 'textfield',
+											name : 'c',
+											width : 516,
+											fieldLabel : '客户编号'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'wlzjtype',
+											name : 'wlzj_type',
+											fieldLabel : '往来类型',
+											margin : '0 10 0 0'
+										}, {
+											xtype : 'product',
+											name : 'p',
+											fieldLabel : '产品类型'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
 											xtype : 'rstatus',
 											fieldLabel : '撤销状态',
 											margin : '0 10 0 0',
@@ -121,7 +149,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0028', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width : 320
+											width : 516
 										}]
 							}, {
 								xtype : 'button',
@@ -155,6 +183,32 @@ Ext.define('Zixweb.view.yspz.yspzq.y0028', {
 								dataIndex : 'id',
 								sortable : false,
 								flex : 1
+							}, {
+								text : "客户编号",
+								itemId : 'c',
+								dataIndex : 'c',
+								sortable : false,
+								flex : 2
+							}, {
+								text : "备付金内扣客户手续费金额",
+								itemId : 'cfee',
+								dataIndex : 'cfee',
+								sortable : false,
+								renderer : function(value) {
+										return Ext.util.Format.number(
+										parseInt(value) / 100, '0,0.00');
+								},
+								flex : 2
+							}, {
+								text : "财务外收客户手续费金额",
+								itemId : 'cwws_cfee',
+								dataIndex : 'cwws_cfee',
+								sortable : false,
+								renderer : function(value) {
+										return Ext.util.Format.number(
+										parseInt(value) / 100, '0,0.00');
+								},
+								flex : 2
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',

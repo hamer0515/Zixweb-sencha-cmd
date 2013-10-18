@@ -10,7 +10,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0031', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'bfj_acct', 'cc_bfee', 'flag', 'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -83,6 +83,57 @@ Ext.define('Zixweb.view.yspz.yspzq.y0031', {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
+											xtype : 'bi',
+											fieldLabel : '银行接口编号',
+											margin : '0 10 0 0',
+											name : 'bi'
+										}, {
+											xtype : 'bfjacct',
+											fieldLabel : '备付金内扣银行账号',
+											name : 'bfj_acct'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'product',
+											name : 'p',
+											fieldLabel : '产品类型',
+											margin : '0 10 0 0'
+										}, {
+											xtype : 'textfield',
+											name : 'c',
+											width : 516,
+											fieldLabel : '客户编号'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								fieldLabel : '交易日期范围',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'tx_date_from',
+											margin : '0 10 0 0',
+											allowBlank : true,
+											verify : {
+												id : 'yspzq_y0031_tx_date_to'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : 'yspzq_y0031_tx_date_to',
+											format : 'Y-m-d',
+											name : 'tx_date_to',
+											margin : '0 10 0 0',
+											allowBlank : true,
+											width : 180
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
 											xtype : 'rstatus',
 											fieldLabel : '撤销状态',
 											margin : '0 10 0 0',
@@ -121,7 +172,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0031', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width : 320
+											width : 516
 										}]
 							}, {
 								xtype : 'button',
@@ -155,6 +206,28 @@ Ext.define('Zixweb.view.yspz.yspzq.y0031', {
 								dataIndex : 'id',
 								sortable : false,
 								flex : 1
+						    }, {
+                                text : "备付金内扣银行账号",
+                                itemId : 'bfj_acct',
+                                dataIndex : 'bfj_acct',
+                                sortable : false,
+                                renderer : function(value, p, record) {
+                                    var bfjacct = Ext.data.StoreManager
+                                            .lookup('Zixweb.store.component.BfjAcct');
+                                    var index = bfjacct.findExact('id', value);
+                                    return bfjacct.getAt(index).data.name;
+                                },
+                                flex : 2
+                            }, {
+								text : " 周期确认备付金内扣银行手续费金额",
+								itemId : 'cc_bfee',
+								dataIndex : 'cc_bfee',
+								sortable : false,
+								flex : 2,
+								renderer : function(value) {
+										return Ext.util.Format.number(
+										parseInt(value) / 100, '0,0.00');
+								}
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',
