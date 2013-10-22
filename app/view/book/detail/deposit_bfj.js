@@ -44,7 +44,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 								if (values.sec) {
 									hsxes.push(values.sec);
 								}
-								if (!hsxes) {
+								if (hsxes.length == 0) {
 									grid.down('#bfj_acct').show();
 									grid.down('#period').show();
 									var fir = grid.down('#bfj_acct');

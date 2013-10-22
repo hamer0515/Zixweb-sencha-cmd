@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.pzlr.i0015', {
+Ext.define('Zixweb.view.pzlr.i0014', {
 	extend : 'Ext.form.Panel',
-	alias : 'widget.i0015',
+	alias : 'widget.i0014',
 
 	border : false,
 	fieldDefaults : {
@@ -19,31 +19,13 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 					layout : 'hbox',
 					items : [{
 								xtype : 'bfjacct',
-								name : 'bfj_acct_out',
+								name : 'bfj_acct',
 								margin : '0 10 0 0',
-								fieldLabel : '出款银行帐号',
+								fieldLabel : '收款银行账号',
 								allowBlank : false
 							}, {
 								xtype : 'datefield',
-								fieldLabel : '出帐期间',
-								format : 'Y-m-d',
-								name : 'zjbd_date_out',
-								width : 516,
-								allowBlank : false
-							}]
-
-				}, {
-					xtype : 'fieldcontainer',
-					layout : 'hbox',
-					items : [{
-								xtype : 'bfjacct',
-								name : 'bfj_acct_in',
-								margin : '0 10 0 0',
-								fieldLabel : '收款银行帐号',
-								allowBlank : false
-							}, {
-								xtype : 'datefield',
-								fieldLabel : '入帐期间',
+								fieldLabel : '入账日期',
 								format : 'Y-m-d',
 								name : 'zjbd_date_in',
 								width : 516,
@@ -52,20 +34,16 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 
 				}, {
 					xtype : 'fieldcontainer',
-					layout : 'hbox',
+					layout : {
+						type : 'vbox',
+						align : 'left'
+					},
+					width : 1042,
 					items : [{
 								xtype : 'textfield',
-								name : 'zjhb_amt',
+								name : 'zhlx_amt',
 								width : 516,
-								margin : '0 10 0 0',
-								fieldLabel : '资金划拨金额',
-								allowBlank : false,
-								vtype : 'money'
-							}, {
-								xtype : 'textfield',
-								name : 'bfj_bfee',
-								width : 516,
-								fieldLabel : '银行手续费金额',
+								fieldLabel : '利息收入金额',
 								allowBlank : false,
 								vtype : 'money'
 							}]
@@ -91,7 +69,7 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 														.getValues();
 												form.getForm().submit({
 													clientValidation : true,
-													url : '/pzlr/i0015',
+													url : '/pzlr/i0014',
 													success : function(form,
 															action) {
 														var result = action.result.success;
@@ -100,7 +78,7 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 																Ext.MessageBox
 																		.show({
 																			title : '警告',
-																			msg : '抱歉，没有i0015录入权限',
+																			msg : '抱歉，没有i0014录入权限',
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
 																		});
@@ -109,13 +87,13 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 															Ext.MessageBox
 																	.show({
 																		title : '提示',
-																		msg : 'i0015添加成功',
+																		msg : 'i0014添加成功',
 																		closable : false,
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.INFO,
 																		fn : function() {
 																			Ext
-																					.getCmp('center_i0015')
+																					.getCmp('center_i0014')
 																					.close();
 																		}
 																	});

@@ -178,7 +178,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.pzlr.mission": [],
   "Ext.ux.event.RecorderManager": [],
   "Zixweb.view.book.detail.cost_in": [],
-  "Zixweb.controller.Main": [],
   "Ext.ux.ProgressBarPager": [],
   "Zixweb.view.component.ZjbdType": [],
   "Zixweb.view.book.detail.bfj_cust": [],
@@ -221,6 +220,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.book.detail.wlzj_yfbf": [],
   "Zixweb.view.pzlr.i0015": [],
   "Ext.ux.LiveSearchGridPanel": [],
+  "Zixweb.view.pzlr.i0014": [],
   "Zixweb.view.book.detail.bamt_yhyf": [],
   "Zixweb.view.yspz.yspzq.y0049": [],
   "Ext.ux.grid.filter.DateFilter": [],
@@ -276,7 +276,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.task.Task0000": [],
   "Ext.ux.DataView.LabelEditor": [],
   "Zixweb.store.component.ZQQRStatus": [],
-  "Zixweb.view.Main": [],
   "Ext.ux.grid.filter.StringFilter": [],
   "Zixweb.view.yspz.yspzq.y0068": [],
   "Zixweb.view.yspz.yspzq.y0069": [],
@@ -722,7 +721,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.book.detail.cost_in": [
     "widget.book_detail_cost_in"
   ],
-  "Zixweb.controller.Main": [],
   "Ext.ux.ProgressBarPager": [],
   "Zixweb.view.component.ZjbdType": [
     "widget.zjbdtype"
@@ -829,6 +827,9 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.i0015"
   ],
   "Ext.ux.LiveSearchGridPanel": [],
+  "Zixweb.view.pzlr.i0014": [
+    "widget.i0014"
+  ],
   "Zixweb.view.book.detail.bamt_yhyf": [
     "widget.book_detail_bamt_yhyf"
   ],
@@ -974,9 +975,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.ux.DataView.LabelEditor": [],
   "Zixweb.store.component.ZQQRStatus": [],
-  "Zixweb.view.Main": [
-    "widget.app-main"
-  ],
   "Ext.ux.grid.filter.StringFilter": [
     "gridfilter.string"
   ],

@@ -49,14 +49,16 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 						flex : 1,
 						dataIndex : 'j',
 						renderer : function(value) {
-							return Ext.util.Format.number(parseInt(value) / 100, '0,0.00');
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
 						text : '轧差贷方余额',
 						flex : 1,
 						dataIndex : 'd',
 						renderer : function(value) {
-							return Ext.util.Format.number(parseInt(value) / 100, '0,0.00');
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
 						xtype : 'actioncolumn',
@@ -92,9 +94,11 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 													+ rec.data.url
 										},
 										id : 'book_detail_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目详细'
+										title : rec.data.text
+												.substr(rec.data.text
+														.indexOf("-")
+														+ 1)
+												+ '科目汇总'
 									}).show();
 									viewport.doLayout();
 								}
@@ -116,9 +120,11 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 											xtype : 'book_hist_' + rec.data.url
 										},
 										id : 'book_hist_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目历史信息'
+										title : rec.data.text
+												.substr(rec.data.text
+																.indexOf("-")
+																+ 1)
+												+ '科目明细查询'
 									}).show();
 									viewport.doLayout();
 								}

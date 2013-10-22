@@ -143,8 +143,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		'21' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应付银行-已核应付交易款'}",
 		'22' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应收银行-已核应收交易款'}",
 		'23' : "{source : {amt : ''},book_name : '往来-应付备付'}",
-		'24' : "{source : {amt : ''},book_name : '往来-应付自有'}",
-		'25' : "{source : {amt : ''},book_name : '往来-应收备付'}",
+		'24' : "{source : {amt : '', wlzj_type:''},book_name : '往来-应付自有'}",
+		'25' : "{source : {amt : '', wlzj_type:''},book_name : '往来-应收备付'}",
 		'26' : "{source : {amt : ''},book_name : '往来-应收自有'}",
 		'27' : "{source : {c : '',cust_proto : '',tx_date : '',amt : ''},book_name : '应收账款-客户-分润方承担品牌费'}",
 		'28' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '其他应收款-待确认交易款'}",
@@ -266,7 +266,6 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 										success : function(response) {
 											var v = Ext
 													.decode(response.responseText).success;
-											console.log('before result:' + v);
 											result = v;
 										}
 									});

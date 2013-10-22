@@ -94,9 +94,11 @@ Ext.define('Zixweb.view.book.AllBooks', {
 													+ rec.data.url
 										},
 										id : 'book_detail_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目详细'
+										title : rec.data.text
+												.substr(rec.data.text
+																.indexOf("-")
+																+ 1)
+												+ '科目汇总'
 									}).show();
 									viewport.doLayout();
 								}
@@ -118,9 +120,11 @@ Ext.define('Zixweb.view.book.AllBooks', {
 											xtype : 'book_hist_' + rec.data.url
 										},
 										id : 'book_hist_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目历史信息'
+										title : rec.data.text
+												.substr(rec.data.text
+																.indexOf("-")
+																+ 1)
+												+ '科目明细查询'
 									}).show();
 									viewport.doLayout();
 								}

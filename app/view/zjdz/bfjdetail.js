@@ -296,7 +296,6 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 										'', 'g'));
 								j = Ext.Number.correctFloat(j);
 								d = Ext.Number.correctFloat(d);
-								console.log('j:' + j + ",d:" + d);
 								if (j != d) {
 									Ext.MessageBox.alert('警告', '请先计算长短款');
 									return;

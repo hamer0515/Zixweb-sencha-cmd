@@ -10,9 +10,7 @@ Ext.define('Zixweb.view.pzlr.i0018', {
 		type : 'vbox',
 		align : 'center'
 	},
-	prev_jdbook : [],
 	bodyPadding : 10,
-	current_fl : 1,
 
 	initComponent : function() {
 		var form = this;
