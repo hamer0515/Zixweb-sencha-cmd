@@ -3,73 +3,74 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 	alias : 'widget.book_hist_bsc',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-			fields : ['id', 'bfj_acct', 'zjbd_type', 'e_date',  'period', 'j', 'd', 'ys_id', 'ys_type'],
+					fields : ['id', 'bfj_acct', 'zjbd_type', 'e_date',
+							'period', 'j', 'd', 'ys_id', 'ys_type'],
 
-			pageSize : 50,
-			remoteSort : true,
+					pageSize : 50,
+					remoteSort : true,
 
-			proxy : {
-				type : 'ajax',
-				api : {
-					read : 'book/hist/bsc'
-				},
-				reader : {
-					type : 'json',
-					root : 'data',
-					totalProperty : 'totalCount',
-					successProperty : 'success'
-				}
-			},
-			listeners : {
-				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('bschistform').getForm();
-					var values = form.getValues();
-					var grid = Ext.getCmp('book_hist_bsc_grid');
-					if (form.isValid()) {
-						store.proxy.extraParams = values;
-					} else {
-						return false;
-					}
-				},
-				listeners : {
-					load : function(thiz, records, successful, eOpts) {
-						if (!successful) {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '备付金银行短款科目历史数据加载失败,请联系管理员',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
-							return;
+					proxy : {
+						type : 'ajax',
+						api : {
+							read : 'book/hist/bsc'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
 						}
-						var jsonData = thiz.proxy.reader.jsonData.success;
-						if (jsonData && jsonData === 'forbidden') {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '抱歉，没有备付金银行短款科目历史数据访问权限',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp('bschistform').getForm();
+							var values = form.getValues();
+							var grid = Ext.getCmp('book_hist_bsc_grid');
+							if (form.isValid()) {
+								store.proxy.extraParams = values;
+							} else {
+								return false;
+							}
+						},
+						listeners : {
+							load : function(thiz, records, successful, eOpts) {
+								if (!successful) {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '备付金银行短款科目历史数据加载失败,请联系管理员',
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
+									return;
+								}
+								var jsonData = thiz.proxy.reader.jsonData.success;
+								if (jsonData && jsonData === 'forbidden') {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '抱歉，没有备付金银行短款科目历史数据访问权限',
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
+								}
+							}
 						}
 					}
-				}
-			}
-		});
+				});
 		this.store = store;
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
 					id : 'bschistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
-						labelWidth : 140 
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -93,30 +94,30 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 											name : 'period_to',
 											allowBlank : false,
 											width : 180
-                                        }, {
-                                            xtype : 'fieldcontainer',
-                                            fieldLabel : '差错日期范围',
-                                            layout : 'hbox',
-                                            items : [{
-                                                       xtype : 'datefield',
-                                                       format : 'Y-m-d',
-                                                       name : 'e_date_from',
-                                                       margin : '0 10 0 0',
-                                                       verify : {
-                                                           id : 'book_hist_bsc_to_4'
-                                                       },
-                                                      vtype : 'dateinterval',
-                                                      width : 180
-                                                  }, {
-                                                      xtype : 'datefield',
-                                                      id : 'book_hist_bsc_to_4',
-                                                      format : 'Y-m-d',
-                                                      name : 'e_date_to',
-                                                      margin : '0 10 0 0',
-                                                      width : 180
-                                            }]
-                                  }]
-                            }, {
+										}, {
+											xtype : 'fieldcontainer',
+											fieldLabel : '差错日期范围',
+											layout : 'hbox',
+											items : [{
+														xtype : 'datefield',
+														format : 'Y-m-d',
+														name : 'e_date_from',
+														margin : '0 10 0 0',
+														verify : {
+															id : 'book_hist_bsc_to_4'
+														},
+														vtype : 'dateinterval',
+														width : 180
+													}, {
+														xtype : 'datefield',
+														id : 'book_hist_bsc_to_4',
+														format : 'Y-m-d',
+														name : 'e_date_to',
+														margin : '0 10 0 0',
+														width : 180
+													}]
+										}]
+							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
@@ -131,39 +132,39 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 											fieldLabel : '原始凭证ID',
 											width : 516,
 											name : 'ys_id',
-                                            margin : '0 10 0 0',
+											margin : '0 10 0 0',
 											vtype : "money"
 										}, {
-                                            xtype : 'ystype',
-                                            name : 'ys_type',
-                                            fieldLabel : '原始凭证类型'
-                                        }]
-                            }, {
-                                xtype : 'fieldcontainer',
-                                fieldLabel : '差错日期范围',
-                                layout : 'hbox',
-                                items : [{
-                                          xtype : 'datefield',
-                                          format : 'Y-m-d',
-                                          name : 'e_date_from',
-                                          margin : '0 10 0 0',
-                                          verify : {
-                                                    id : 'book_detail_bsc_to_4'
-                                                   },
-                                          vtype : 'dateinterval',
-                                          width : 180
-                                      }, {
-                                          xtype : 'datefield',
-                                          id : 'book_detail_bsc_to_4',
-                                          format : 'Y-m-d',
-                                          name : 'e_date_to',
-                                          margin : '0 10 0 0',
-                                          width : 180
-                                      }, {
-                                          xtype : 'ystype',
-                                          name : 'ys_type',
-                                          fieldLabel : '原始凭证类型'
-                                        }]
+											xtype : 'ystype',
+											name : 'ys_type',
+											fieldLabel : '原始凭证类型'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								fieldLabel : '差错日期范围',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'e_date_from',
+											margin : '0 10 0 0',
+											verify : {
+												id : 'book_detail_bsc_to_4'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : 'book_detail_bsc_to_4',
+											format : 'Y-m-d',
+											name : 'e_date_to',
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'ystype',
+											name : 'ys_type',
+											fieldLabel : '原始凭证类型'
+										}]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -172,10 +173,10 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 											name : 'bfj_acct',
 											margin : '0 10 0 0',
 											fieldLabel : '备付金账号'
-										},{
-                                            xtype : 'zjbdtype',
-                                            name : 'zjbd_type',
-                                            fieldLabel : '资金变动类型'
+										}, {
+											xtype : 'zjbdtype',
+											name : 'zjbd_type',
+											fieldLabel : '资金变动类型'
 										}]
 
 							}, {
@@ -231,10 +232,10 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_bsc_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{
@@ -261,19 +262,19 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 									return bfjacct.getAt(index).data.name;
 								},
 								flex : 2
-							}, {    
-                                text : "资金变动类型",
-                                itemId : 'zjbd_type',
-                                dataIndex : 'zjbd_type',
-                                sortable : false,
-                                renderer : function(value, p, record) {
-                                    var zjbdtype = Ext.data.StoreManager
-                                             .lookup('Zixweb.store.component.ZjbdType');
-                                    var index = zjbdtype.findExact('id', value);
-                                    return zjbdtype.getAt(index).data.name;
-                                 },
-                                flex : 2
-                            }, {
+							}, {
+								text : "资金变动类型",
+								itemId : 'zjbd_type',
+								dataIndex : 'zjbd_type',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var zjbdtype = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.ZjbdType');
+									var index = zjbdtype.findExact('id', value);
+									return zjbdtype.getAt(index).data.name;
+								},
+								flex : 2
+							}, {
 								text : "差错日期",
 								dataIndex : 'e_date',
 								itemId : 'e_date',

@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 	alias : 'widget.book_detail_wlzj_yfbf',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -32,8 +30,7 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 							var form = Ext.getCmp('wlzjyfbfdetailform')
 									.getForm();
 							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_wlzj_yfbf_grid');
+							var grid = Ext.getCmp('book_detail_wlzj_yfbf_grid');
 							grid.down('#period').hide();
 							var columns = grid.columns;
 							if (values.fir) {
@@ -45,15 +42,15 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 									grid.headerCt.move(oldindex, 0);
 								}
 							}
-                            if (!(values.fir)) {
-                                grid.down('#period').show();
-                                var fir = grid.down('#period');
-                                var oldindex = grid.headerCt
-                                        .getHeaderIndex(fir);
-                                if (oldindex != 0) {
-                                    grid.headerCt.move(oldindex, 0);
-                                }
-                            }
+							if (!(values.fir)) {
+								grid.down('#period').show();
+								var fir = grid.down('#period');
+								var oldindex = grid.headerCt
+										.getHeaderIndex(fir);
+								if (oldindex != 0) {
+									grid.headerCt.move(oldindex, 0);
+								}
+							}
 							grid.getView().refresh();
 							if (form.isValid()) {
 								store.proxy.extraParams = values;
@@ -88,9 +85,11 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 					xtype : 'form',
 					title : '查询',
 					id : 'wlzjyfbfdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
-						labelWidth : 140 
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -106,7 +105,7 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 												id : 'book_detail_wlzj_yfbf_to'
 											},
 											vtype : 'dateinterval',
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_detail_wlzj_yfbf_to',
@@ -114,14 +113,14 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
-											width : 180 
-							            }, {
-								            xtype : 'hsx',
-								            data : [{
-											'value' : "period",
-											'name' : "期间日期"
+											width : 180
+										}, {
+											xtype : 'hsx',
+											data : [{
+														'value' : "period",
+														'name' : "期间日期"
+													}]
 										}]
-                                    }]
 							}, {
 								xtype : 'button',
 								text : '查询',
@@ -137,10 +136,10 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_wlzj_yfbf_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
@@ -149,32 +148,33 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 								displayInfo : true
 							}],
 					columns : [{
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "借方金额",
-						dataIndex : 'j',
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}, {
-						text : "贷方金额",
-						dataIndex : 'd',
-						width : 100,
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}]
+								text : "期间日期",
+								dataIndex : 'period',
+								itemId : 'period',
+								sortable : false,
+								flex : 1,
+								renderer : Ext.util.Format
+										.dateRenderer('Y年m月d日')
+							}, {
+								text : "借方金额",
+								dataIndex : 'j',
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}, {
+								text : "贷方金额",
+								dataIndex : 'd',
+								width : 100,
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}]
 				}];
 		this.callParent(arguments);
 	}

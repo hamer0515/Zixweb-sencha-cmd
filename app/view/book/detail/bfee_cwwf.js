@@ -3,14 +3,12 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 	alias : 'widget.book_detail_bfee_cwwf',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['bi','tx_date', 'period', 'j', 'd'],
+					fields : ['bi', 'tx_date', 'period', 'j', 'd'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -32,8 +30,7 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 							var form = Ext.getCmp('bfeecwwfdetailform')
 									.getForm();
 							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_bfee_cwwf_grid');
+							var grid = Ext.getCmp('book_detail_bfee_cwwf_grid');
 							grid.down('#bi').hide();
 							grid.down('#tx_date').hide();
 							grid.down('#period').hide();
@@ -69,7 +66,7 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 								grid.down('#bi').show();
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
-								
+
 								var fir = grid.down('#bi');
 								var oldindex_fir = grid.headerCt
 										.getHeaderIndex(fir);
@@ -88,7 +85,7 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 								if (oldindex_thi != 2) {
 									grid.headerCt.move(oldindex_thi, 2);
 								}
-								
+
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -124,6 +121,8 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 					xtype : 'form',
 					title : '查询',
 					id : 'bfeecwwfdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -151,13 +150,13 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
-										},{
-								            xtype : 'bi',
-								            name : 'bi',
+										}, {
+											xtype : 'bi',
+											name : 'bi',
 											margin : '0 10 0 0',
 											fieldLabel : '银行借口编号BI'
 										}]
-							},{
+							}, {
 								xtype : 'fieldcontainer',
 								fieldLabel : '交易日期范围',
 								layout : 'hbox',
@@ -167,19 +166,19 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 											name : 'tx_date_from',
 											margin : '0 10 0 0',
 											verify : {
-													id : 'book_detail_bfee_cwwf_to_2'
-													},
-													vtype : 'dateinterval',
-													width : 180
-												}, {
-													xtype : 'datefield',
-													id : 'book_detail_bfee_cwwf_to_2',
-													format : 'Y-m-d',
-													name : 'tx_date_to',
-													margin : '0 10 0 0',
-													width : 180
-												}]
-							},{
+												id : 'book_detail_bfee_cwwf_to_2'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : 'book_detail_bfee_cwwf_to_2',
+											format : 'Y-m-d',
+											name : 'tx_date_to',
+											margin : '0 10 0 0',
+											width : 180
+										}]
+							}, {
 								xtype : 'hsx',
 								data : [{
 											'value' : "bi",
@@ -206,10 +205,10 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_bfee_cwwf_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
@@ -236,7 +235,7 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 						sortable : false,
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					},{
+					}, {
 						text : "期间日期",
 						dataIndex : 'period',
 						itemId : 'period',

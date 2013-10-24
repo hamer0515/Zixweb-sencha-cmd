@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.hist.txamt_dqr_byf', {
 	alias : 'widget.book_hist_txamt_dqr_byf',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -70,6 +68,8 @@ Ext.define('Zixweb.view.book.hist.txamt_dqr_byf', {
 					xtype : 'form',
 					title : '查询',
 					id : 'depositbfjhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -200,10 +200,10 @@ Ext.define('Zixweb.view.book.hist.txamt_dqr_byf', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_txamt_dqr_byf_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

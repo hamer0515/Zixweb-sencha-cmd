@@ -10,7 +10,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period','bfj_acct_bj','bi','tx_amt'],
+					fields : ['id', 'flag', 'period', 'bfj_acct_bj', 'bi',
+							'tx_amt'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -220,7 +221,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
 								}
-							},{
+							}, {
 								xtype : 'actioncolumn',
 								text : '操作',
 								width : 100,

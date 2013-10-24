@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.pzlr.mission', {
 	alias : 'widget.pzlrmission',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -64,6 +62,8 @@ Ext.define('Zixweb.view.pzlr.mission', {
 					xtype : 'form',
 					title : '查询',
 					id : 'pzlrmissionform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 120
@@ -109,10 +109,9 @@ Ext.define('Zixweb.view.pzlr.mission', {
 								}
 							}]
 				}, {
-					title : '结果',
 					xtype : 'gridpanel',
 					id : 'pzlrmissiongrid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{
@@ -606,8 +605,8 @@ Ext.define('Zixweb.view.pzlr.mission', {
 												xtype : 'panel',
 												items : pzlrjob,
 												id : 'job_' + rec.data.id,
-												title : 
-														'任务' + rec.data.id+'详细信息'
+												title : '任务' + rec.data.id
+														+ '详细信息'
 											}).show();
 											viewport.doLayout();
 										}

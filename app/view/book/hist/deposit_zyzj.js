@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.hist.deposit_zyzj', {
 	alias : 'widget.book_hist_deposit_zyzj',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -65,6 +63,8 @@ Ext.define('Zixweb.view.book.hist.deposit_zyzj', {
 					xtype : 'form',
 					title : '查询',
 					id : 'depositzyzjhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -175,10 +175,10 @@ Ext.define('Zixweb.view.book.hist.deposit_zyzj', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_deposit_zyzj_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

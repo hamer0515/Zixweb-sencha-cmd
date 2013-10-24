@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.task.Task0000', {
 	alias : 'widget.task0000',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -71,6 +69,8 @@ Ext.define('Zixweb.view.task.Task0000', {
 					xtype : 'form',
 					title : '特种调帐单审核查询',
 					id : 'task0000form',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -128,10 +128,9 @@ Ext.define('Zixweb.view.task.Task0000', {
 								}
 							}]
 				}, {
-					title : '特种调帐单审核列表',
 					xtype : 'gridpanel',
 					id : 'task0000grid',
-					height : 500,
+					height : 'auto',
 
 					store : store,
 					dockedItems : [{

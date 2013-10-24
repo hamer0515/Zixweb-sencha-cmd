@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.income_zhlx', {
 	alias : 'widget.book_detail_income_zhlx',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -62,10 +60,10 @@ Ext.define('Zixweb.view.book.detail.income_zhlx', {
 								var sec = grid.down('#period');
 								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-									grid.headerCt.move(firindex, 0);
-								var	secindex = grid.headerCt
+								grid.headerCt.move(firindex, 0);
+								var secindex = grid.headerCt
 										.getHeaderIndex(sec);
-									grid.headerCt.move(secindex, 1);
+								grid.headerCt.move(secindex, 1);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -101,6 +99,8 @@ Ext.define('Zixweb.view.book.detail.income_zhlx', {
 					xtype : 'form',
 					title : '查询',
 					id : 'incomezhlxdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -158,10 +158,10 @@ Ext.define('Zixweb.view.book.detail.income_zhlx', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_income_zhlx_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

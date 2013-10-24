@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 	alias : 'widget.book_detail_cost_bfee_zg',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -112,10 +110,10 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 								var six = grid.down('#period');
 								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-								if ( firindex != 0 ) {
+								if (firindex != 0) {
 									grid.headerCt.move(firindex, 0);
 								}
-								var	secindex = grid.headerCt
+								var secindex = grid.headerCt
 										.getHeaderIndex(sec);
 								if (secindex != 1) {
 									grid.headerCt.move(secindex, 1);
@@ -125,22 +123,22 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 								if (thiindex != 2) {
 									grid.headerCt.move(thiindex, 2);
 								}
-							    var fouindex= grid.headerCt
+								var fouindex = grid.headerCt
 										.getHeaderIndex(fou);
-							    if (fouindex != 3) {
+								if (fouindex != 3) {
 									grid.headerCt.move(fouindex, 3);
-							    }
-								var	fivindex = grid.headerCt
+								}
+								var fivindex = grid.headerCt
 										.getHeaderIndex(fiv);
 								if (fivindex != 4) {
 									grid.headerCt.move(fivindex, 4);
 								}
-								var	sixindex = grid.headerCt
+								var sixindex = grid.headerCt
 										.getHeaderIndex(six);
-							    if (sixindex != 5) {
+								if (sixindex != 5) {
 									grid.headerCt.move(sixindex, 5);
 								}
-							
+
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -176,6 +174,8 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 					xtype : 'form',
 					title : '查询',
 					id : 'costbfeezgdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -289,10 +289,10 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_cost_bfee_zg_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
@@ -301,75 +301,77 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 								displayInfo : true
 							}],
 					columns : [{
-						text : "客户编号",
-						dataIndex : 'c',
-						itemId : 'c',
-						sortable : false,
-						flex : 1
-					}, {
-						text : "产品类型",
-						itemId : 'p',
-						dataIndex : 'p',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var product = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Product');
-							var index = product.findExact('id', value);
-							return product.getAt(index).data.name;
-						},
-						flex : 1
-					}, {
-						text : "银行接口编号",
-						itemId : 'bi',
-						dataIndex : 'bi',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var bi = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Bi');
-							var index = bi.findExact('id', value);
-							return bi.getAt(index).data.name;
-						},
-						flex : 1
-					},  {
-						text : "周期确认规则",
-						dataIndex : 'fp',
-						itemId : 'fp',
-						sortable : false,
-						flex : 1
-					}, {
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "交易日期",
-						dataIndex : 'tx_date',
-						itemId : 'tx_date',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "借方金额",
-						dataIndex : 'j',
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}, {
-						text : "贷方金额",
-						dataIndex : 'd',
-						width : 100,
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}]
+								text : "客户编号",
+								dataIndex : 'c',
+								itemId : 'c',
+								sortable : false,
+								flex : 1
+							}, {
+								text : "产品类型",
+								itemId : 'p',
+								dataIndex : 'p',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var product = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.Product');
+									var index = product.findExact('id', value);
+									return product.getAt(index).data.name;
+								},
+								flex : 1
+							}, {
+								text : "银行接口编号",
+								itemId : 'bi',
+								dataIndex : 'bi',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var bi = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.Bi');
+									var index = bi.findExact('id', value);
+									return bi.getAt(index).data.name;
+								},
+								flex : 1
+							}, {
+								text : "周期确认规则",
+								dataIndex : 'fp',
+								itemId : 'fp',
+								sortable : false,
+								flex : 1
+							}, {
+								text : "期间日期",
+								dataIndex : 'period',
+								itemId : 'period',
+								sortable : false,
+								flex : 1,
+								renderer : Ext.util.Format
+										.dateRenderer('Y年m月d日')
+							}, {
+								text : "交易日期",
+								dataIndex : 'tx_date',
+								itemId : 'tx_date',
+								sortable : false,
+								flex : 1,
+								renderer : Ext.util.Format
+										.dateRenderer('Y年m月d日')
+							}, {
+								text : "借方金额",
+								dataIndex : 'j',
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}, {
+								text : "贷方金额",
+								dataIndex : 'd',
+								width : 100,
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}]
 				}];
 		this.callParent(arguments);
 	}

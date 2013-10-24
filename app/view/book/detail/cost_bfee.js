@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 	alias : 'widget.book_detail_cost_bfee',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -83,15 +81,15 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 						if (firindex != 0) {
 							grid.headerCt.move(firindex, 0);
 						}
-					    var secindex = grid.headerCt.getHeaderIndex(sec);
-					    if (secindex != 1) {
+						var secindex = grid.headerCt.getHeaderIndex(sec);
+						if (secindex != 1) {
 							grid.headerCt.move(secindex, 1);
-					    }
-						var	thiindex = grid.headerCt.getHeaderIndex(thi);
+						}
+						var thiindex = grid.headerCt.getHeaderIndex(thi);
 						if (thiindex != 2) {
 							grid.headerCt.move(thiindex, 2);
 						}
-						var	fouindex = grid.headerCt.getHeaderIndex(fou);
+						var fouindex = grid.headerCt.getHeaderIndex(fou);
 						if (fouindex != 3) {
 							grid.headerCt.move(fouindex, 3);
 						}
@@ -130,6 +128,8 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 					xtype : 'form',
 					title : '查询',
 					id : 'costbfeedetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -209,10 +209,10 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_cost_bfee_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

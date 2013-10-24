@@ -3,127 +3,120 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 	alias : 'widget.book_detail_bsc',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['bfj_acct', 'zjbd_type', 'e_date', 'period', 'j', 'd'],
+			fields : ['bfj_acct', 'zjbd_type', 'e_date', 'period', 'j', 'd'],
 
-					pageSize : 50,
-					remoteSort : true,
+			pageSize : 50,
+			remoteSort : true,
 
-					proxy : {
-						type : 'ajax',
-						api : {
-							read : 'book/detail/bsc'
-						},
-						reader : {
-							type : 'json',
-							root : 'data',
-							totalProperty : 'totalCount',
-							successProperty : 'success'
-						}
-					},
-					listeners : {
-						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('bscdetailform')
-									.getForm();
-							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_bsc_grid');
-							grid.down('#bfj_acct').hide();
-							grid.down('#zjbd_type').hide();
-							grid.down('#e_date').hide();
-							grid.down('#period').hide();
-							var columns = grid.columns;
-							if (values.fir) {
-								var fir = grid.down('#' + values.fir);
-								fir.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							if (values.sec) {
-								var sec = grid.down('#' + values.sec);
-								sec.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(sec);
-								if (oldindex != 1) {
-									grid.headerCt.move(oldindex, 1);
-								}
-							}
-                            if (values.thir) {
-                                var thir = grid.down('#' + values.thir);
-                                thir.show();
-                                var oldindex = grid.headerCt
-                                        .getHeaderIndex(thir);
-                                if (oldindex != 2) {
-                                    grid.headerCt.move(oldindex, 2);
-                                }
-                            }
-                            if (values.fou) {
-                                var fou = grid.down('#' + values.fou);
-                                fou.show();
-                                var oldindex = grid.headerCt
-                                        .getHeaderIndex(fou);
-                                if (oldindex != 3) {
-                                    grid.headerCt.move(oldindex, 3);
-                                }
-                            }
-                            if (!(values.fir || values.sec || values.thir || values.fou)) {
-								grid.down('#bfj_acct').show();
-								grid.down('#zjbd_type').show();
-								grid.down('#e_date').show();
-								grid.down('#period').show();
-								var fir = grid.down('#bfj_acct');
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							grid.getView().refresh();
-							if (form.isValid()) {
-								store.proxy.extraParams = values;
-							} else {
-								return false;
-							}
-						},
-						load : function(thiz, records, successful, eOpts) {
-							if (!successful) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '备付金银行短款科目详细数据加载失败,请联系管理员',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-								return;
-							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
-							if (jsonData && jsonData === 'forbidden') {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '抱歉，没有备付金银行短款科目详细数据访问权限',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-							}
+			proxy : {
+				type : 'ajax',
+				api : {
+					read : 'book/detail/bsc'
+				},
+				reader : {
+					type : 'json',
+					root : 'data',
+					totalProperty : 'totalCount',
+					successProperty : 'success'
+				}
+			},
+			listeners : {
+				beforeload : function(store, operation, eOpts) {
+					var form = Ext.getCmp('bscdetailform').getForm();
+					var values = form.getValues();
+					var grid = Ext.getCmp('book_detail_bsc_grid');
+					grid.down('#bfj_acct').hide();
+					grid.down('#zjbd_type').hide();
+					grid.down('#e_date').hide();
+					grid.down('#period').hide();
+					var columns = grid.columns;
+					if (values.fir) {
+						var fir = grid.down('#' + values.fir);
+						fir.show();
+						var oldindex = grid.headerCt.getHeaderIndex(fir);
+						if (oldindex != 0) {
+							grid.headerCt.move(oldindex, 0);
 						}
 					}
-				});
+					if (values.sec) {
+						var sec = grid.down('#' + values.sec);
+						sec.show();
+						var oldindex = grid.headerCt.getHeaderIndex(sec);
+						if (oldindex != 1) {
+							grid.headerCt.move(oldindex, 1);
+						}
+					}
+					if (values.thir) {
+						var thir = grid.down('#' + values.thir);
+						thir.show();
+						var oldindex = grid.headerCt.getHeaderIndex(thir);
+						if (oldindex != 2) {
+							grid.headerCt.move(oldindex, 2);
+						}
+					}
+					if (values.fou) {
+						var fou = grid.down('#' + values.fou);
+						fou.show();
+						var oldindex = grid.headerCt.getHeaderIndex(fou);
+						if (oldindex != 3) {
+							grid.headerCt.move(oldindex, 3);
+						}
+					}
+					if (!(values.fir || values.sec || values.thir || values.fou)) {
+						grid.down('#bfj_acct').show();
+						grid.down('#zjbd_type').show();
+						grid.down('#e_date').show();
+						grid.down('#period').show();
+						var fir = grid.down('#bfj_acct');
+						var oldindex = grid.headerCt.getHeaderIndex(fir);
+						if (oldindex != 0) {
+							grid.headerCt.move(oldindex, 0);
+						}
+					}
+					grid.getView().refresh();
+					if (form.isValid()) {
+						store.proxy.extraParams = values;
+					} else {
+						return false;
+					}
+				},
+				load : function(thiz, records, successful, eOpts) {
+					if (!successful) {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '备付金银行短款科目详细数据加载失败,请联系管理员',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+						return;
+					}
+					var jsonData = thiz.proxy.reader.jsonData.success;
+					if (jsonData && jsonData === 'forbidden') {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '抱歉，没有备付金银行短款科目详细数据访问权限',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+					}
+				}
+			}
+		});
 		this.store = store;
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
 					id : 'bscdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
-						labelWidth : 140 
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -139,7 +132,7 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 												id : 'book_detail_bsc_to'
 											},
 											vtype : 'dateinterval',
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_detail_bsc_to',
@@ -147,7 +140,7 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'bfjacct',
 											name : 'bfj_acct',
@@ -166,14 +159,14 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 												id : 'book_detail_bsc_to_1'
 											},
 											vtype : 'dateinterval',
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_detail_bsc_to_1',
 											format : 'Y-m-d',
 											name : 'e_date_to',
 											margin : '0 10 0 0',
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'zjbdtype',
 											name : 'zjbd_type',
@@ -209,10 +202,10 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_bsc_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

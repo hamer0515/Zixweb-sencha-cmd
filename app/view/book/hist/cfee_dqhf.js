@@ -3,73 +3,74 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 	alias : 'widget.book_hist_cfee_dqhf',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-			fields : ['id', 'c','cust_proto', 'tx_date',  'period', 'j', 'd', 'ys_id', 'ys_type'],
+					fields : ['id', 'c', 'cust_proto', 'tx_date', 'period',
+							'j', 'd', 'ys_id', 'ys_type'],
 
-			pageSize : 50,
-			remoteSort : true,
+					pageSize : 50,
+					remoteSort : true,
 
-			proxy : {
-				type : 'ajax',
-				api : {
-					read : 'book/hist/cfee_dqhf'
-				},
-				reader : {
-					type : 'json',
-					root : 'data',
-					totalProperty : 'totalCount',
-					successProperty : 'success'
-				}
-			},
-			listeners : {
-				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('cfeedqhfhistform').getForm();
-					var values = form.getValues();
-					var grid = Ext.getCmp('book_hist_cfee_dqhf_grid');
-					if (form.isValid()) {
-						store.proxy.extraParams = values;
-					} else {
-						return false;
-					}
-				},
-				listeners : {
-					load : function(thiz, records, successful, eOpts) {
-						if (!successful) {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '定期划付客户手续费科目历史数据加载失败,请联系管理员',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
-							return;
+					proxy : {
+						type : 'ajax',
+						api : {
+							read : 'book/hist/cfee_dqhf'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
 						}
-						var jsonData = thiz.proxy.reader.jsonData.success;
-						if (jsonData && jsonData === 'forbidden') {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '抱歉，没有定期划付客户手续费科目历史数据访问权限',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp('cfeedqhfhistform').getForm();
+							var values = form.getValues();
+							var grid = Ext.getCmp('book_hist_cfee_dqhf_grid');
+							if (form.isValid()) {
+								store.proxy.extraParams = values;
+							} else {
+								return false;
+							}
+						},
+						listeners : {
+							load : function(thiz, records, successful, eOpts) {
+								if (!successful) {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '定期划付客户手续费科目历史数据加载失败,请联系管理员',
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
+									return;
+								}
+								var jsonData = thiz.proxy.reader.jsonData.success;
+								if (jsonData && jsonData === 'forbidden') {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '抱歉，没有定期划付客户手续费科目历史数据访问权限',
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
+								}
+							}
 						}
 					}
-				}
-			}
-		});
+				});
 		this.store = store;
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
 					id : 'cfeedqhfhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
-						labelWidth : 140 
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -85,15 +86,15 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 												id : 'book_hist_cfee_dqhf_to_3'
 											},
 											vtype : 'dateinterval',
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_hist_cfee_dqhf_to_3',
 											format : 'Y-m-d',
 											name : 'period_to',
 											allowBlank : false,
-											width : 180 
-                                        }]
+											width : 180
+										}]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -113,33 +114,33 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 										}]
 
 							}, {
-                                xtype : 'fieldcontainer',
-                                fieldLabel : '交易日期范围',
-                                layout : 'hbox',
-                                items : [{
-                                           xtype : 'datefield',
-                                           format : 'Y-m-d',
-                                           name : 'tx_date_from',
-                                           margin : '0 10 0 0',
-                                           allowBlank : true,
-                                           verify : {
-                                                     id : 'book_hist_cfee_dqhf_to_4'
-                                                    },
-                                           vtype : 'dateinterval',
-                                           width : 180
-                                       }, {
-                                           xtype : 'datefield',
-                                           id : 'book_hist_cfee_dqhf_to_4',
-                                           format : 'Y-m-d',
-                                           name : 'tx_date_to',
-                                           margin : '0 10 0 0',
-                                           allowBlank : true,
-                                           width : 180
-                                       }, {
-                                           xtype : 'ystype',
-                                           name : 'ys_type',
-                                           fieldLabel : '原始凭证类型'
-                                        }]
+								xtype : 'fieldcontainer',
+								fieldLabel : '交易日期范围',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'tx_date_from',
+											margin : '0 10 0 0',
+											allowBlank : true,
+											verify : {
+												id : 'book_hist_cfee_dqhf_to_4'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : 'book_hist_cfee_dqhf_to_4',
+											format : 'Y-m-d',
+											name : 'tx_date_to',
+											margin : '0 10 0 0',
+											allowBlank : true,
+											width : 180
+										}, {
+											xtype : 'ystype',
+											name : 'ys_type',
+											fieldLabel : '原始凭证类型'
+										}]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -147,12 +148,12 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 											xtype : 'textfield',
 											name : 'c',
 											margin : '0 10 0 0',
-                                            width : 516, 
+											width : 516,
 											fieldLabel : '客户编号'
 										}, {
 											xtype : 'textfield',
 											name : 'cust_proto',
-                                            width : 516, 
+											width : 516,
 											fieldLabel : '客户协议编号'
 										}]
 
@@ -209,10 +210,10 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_cfee_dqhf_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{
@@ -232,14 +233,14 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 								itemId : 'c',
 								dataIndex : 'c',
 								sortable : false,
-								flex :1 
+								flex : 1
 							}, {
-                                text : "客户协议编号",
-                                itemId : 'cust_proto',
-                                dataIndex : 'cust_proto',
-                                sortable : false,
-                                flex :1
-                            }, {
+								text : "客户协议编号",
+								itemId : 'cust_proto',
+								dataIndex : 'cust_proto',
+								sortable : false,
+								flex : 1
+							}, {
 								text : "交易日期",
 								dataIndex : 'tx_date',
 								itemId : 'tx_date',
@@ -248,14 +249,14 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 								renderer : Ext.util.Format
 										.dateRenderer('Y年m月d日')
 							}, {
-                                text : "期间日期",
-                                dataIndex : 'period',
-                                itemId : 'period',
-                                sortable : false,
-                                flex : 1,
-                                renderer : Ext.util.Format
-                                        .dateRenderer('Y年m月d日')
-                            }, {
+								text : "期间日期",
+								dataIndex : 'period',
+								itemId : 'period',
+								sortable : false,
+								flex : 1,
+								renderer : Ext.util.Format
+										.dateRenderer('Y年m月d日')
+							}, {
 								text : "借方金额",
 								dataIndex : 'j',
 								sortable : false,

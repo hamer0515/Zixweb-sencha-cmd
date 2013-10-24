@@ -3,8 +3,9 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 	alias : 'widget.bookbfj',
 	useArrows : true,
 	rootVisible : false,
-	height : 540,
+	height : 'auto',
 	disableSelection : true,
+	border : false,
 
 	initComponent : function() {
 
@@ -122,8 +123,8 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 										id : 'book_hist_' + rec.data.url,
 										title : rec.data.text
 												.substr(rec.data.text
-																.indexOf("-")
-																+ 1)
+														.indexOf("-")
+														+ 1)
 												+ '科目明细查询'
 									}).show();
 									viewport.doLayout();

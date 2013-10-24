@@ -3,8 +3,9 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 	alias : 'widget.bookzyzj',
 	useArrows : true,
 	rootVisible : false,
-	height : 540,
+	height : 'auto',
 	disableSelection : true,
+	border : false,
 
 	initComponent : function() {
 

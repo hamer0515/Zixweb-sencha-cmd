@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.hist.cost_bfee_zg', {
 	alias : 'widget.book_hist_cost_bfee_zg',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -70,6 +68,8 @@ Ext.define('Zixweb.view.book.hist.cost_bfee_zg', {
 					xtype : 'form',
 					title : '查询',
 					id : 'depositbfjhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -225,10 +225,10 @@ Ext.define('Zixweb.view.book.hist.cost_bfee_zg', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_cost_bfee_zg_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

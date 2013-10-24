@@ -2,7 +2,7 @@ Ext.define('Zixweb.view.user.List', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.userlist',
 	disableSelection : true,
-	height : 540,
+	height : 'auto',
 
 	initComponent : function() {
 		var store = new Ext.data.Store({

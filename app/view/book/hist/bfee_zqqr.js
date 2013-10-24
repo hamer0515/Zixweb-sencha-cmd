@@ -3,15 +3,13 @@ Ext.define('Zixweb.view.book.hist.bfee_zqqr', {
 	alias : 'widget.book_hist_bfee_zqqr',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id','fp', 'period', 'bi',
-							'tx_date', 'j', 'd', 'ys_id', 'ys_type'],
+					fields : ['id', 'fp', 'period', 'bi', 'tx_date', 'j', 'd',
+							'ys_id', 'ys_type'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -30,11 +28,9 @@ Ext.define('Zixweb.view.book.hist.bfee_zqqr', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('bfeezqqrhistform')
-									.getForm();
+							var form = Ext.getCmp('bfeezqqrhistform').getForm();
 							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_hist_bfee_zqqr_grid');
+							var grid = Ext.getCmp('book_hist_bfee_zqqr_grid');
 							if (form.isValid()) {
 								store.proxy.extraParams = values;
 							} else {
@@ -70,6 +66,8 @@ Ext.define('Zixweb.view.book.hist.bfee_zqqr', {
 					xtype : 'form',
 					title : '查询',
 					id : 'bfeezqqrhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -141,7 +139,7 @@ Ext.define('Zixweb.view.book.hist.bfee_zqqr', {
 											name : 'ys_id'
 										}]
 
-							},  {
+							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
@@ -155,7 +153,7 @@ Ext.define('Zixweb.view.book.hist.bfee_zqqr', {
 											fieldLabel : '原始凭证类型'
 										}]
 
-							},{
+							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
@@ -208,10 +206,10 @@ Ext.define('Zixweb.view.book.hist.bfee_zqqr', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_bfee_zqqr_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{
@@ -238,7 +236,7 @@ Ext.define('Zixweb.view.book.hist.bfee_zqqr', {
 									return bi.getAt(index).data.name;
 								},
 								flex : 1
-							} ,{
+							}, {
 								text : "周期确认规则",
 								itemId : 'fp',
 								dataIndex : 'fp',

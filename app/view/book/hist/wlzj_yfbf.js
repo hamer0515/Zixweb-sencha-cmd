@@ -3,70 +3,70 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfbf', {
 	alias : 'widget.book_hist_wlzj_yfbf',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-			fields : ['id', 'period', 'j', 'd', 'ys_id', 'ys_type'],
+					fields : ['id', 'period', 'j', 'd', 'ys_id', 'ys_type'],
 
-			pageSize : 50,
-			remoteSort : true,
+					pageSize : 50,
+					remoteSort : true,
 
-			proxy : {
-				type : 'ajax',
-				api : {
-					read : 'book/hist/wlzj_yfbf'
-				},
-				reader : {
-					type : 'json',
-					root : 'data',
-					totalProperty : 'totalCount',
-					successProperty : 'success'
-				}
-			},
-			listeners : {
-				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('wlzjyfbfhistform').getForm();
-					var values = form.getValues();
-					var grid = Ext.getCmp('book_hist_wlzj_yfbf_grid');
-					if (form.isValid()) {
-						store.proxy.extraParams = values;
-					} else {
-						return false;
-					}
-				},
-				listeners : {
-					load : function(thiz, records, successful, eOpts) {
-						if (!successful) {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '应付备付科目历史数据加载失败,请联系管理员',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
-							return;
+					proxy : {
+						type : 'ajax',
+						api : {
+							read : 'book/hist/wlzj_yfbf'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
 						}
-						var jsonData = thiz.proxy.reader.jsonData.success;
-						if (jsonData && jsonData === 'forbidden') {
-							Ext.MessageBox.show({
-										title : '警告',
-										msg : '抱歉，没有应付备付科目历史数据访问权限',
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp('wlzjyfbfhistform').getForm();
+							var values = form.getValues();
+							var grid = Ext.getCmp('book_hist_wlzj_yfbf_grid');
+							if (form.isValid()) {
+								store.proxy.extraParams = values;
+							} else {
+								return false;
+							}
+						},
+						listeners : {
+							load : function(thiz, records, successful, eOpts) {
+								if (!successful) {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '应付备付科目历史数据加载失败,请联系管理员',
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
+									return;
+								}
+								var jsonData = thiz.proxy.reader.jsonData.success;
+								if (jsonData && jsonData === 'forbidden') {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '抱歉，没有应付备付科目历史数据访问权限',
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
+								}
+							}
 						}
 					}
-				}
-			}
-		});
+				});
 		this.store = store;
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
 					id : 'wlzjyfbfhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -94,10 +94,10 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfbf', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
-                                        }, {
-                                            xtype : 'ystype',
-                                            name : 'ys_type',
-                                            fieldLabel : '原始凭证类型'
+										}, {
+											xtype : 'ystype',
+											name : 'ys_type',
+											fieldLabel : '原始凭证类型'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -170,10 +170,10 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfbf', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_wlzj_yfbf_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

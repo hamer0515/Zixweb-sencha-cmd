@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.hist.bfj_cust', {
 	alias : 'widget.book_hist_bfj_cust',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -69,6 +67,8 @@ Ext.define('Zixweb.view.book.hist.bfj_cust', {
 					xtype : 'form',
 					title : '查询',
 					id : 'depositbfjhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -181,10 +181,10 @@ Ext.define('Zixweb.view.book.hist.bfj_cust', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_bfj_cust_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

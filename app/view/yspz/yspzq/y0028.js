@@ -195,8 +195,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0028', {
 								dataIndex : 'cfee',
 								sortable : false,
 								renderer : function(value) {
-										return Ext.util.Format.number(
-										parseInt(value) / 100, '0,0.00');
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
 								},
 								flex : 2
 							}, {
@@ -205,8 +205,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0028', {
 								dataIndex : 'cwws_cfee',
 								sortable : false,
 								renderer : function(value) {
-										return Ext.util.Format.number(
-										parseInt(value) / 100, '0,0.00');
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
 								},
 								flex : 2
 							}, {
@@ -226,7 +226,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0028', {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
 								}
-							},{
+							}, {
 								xtype : 'actioncolumn',
 								text : '操作',
 								width : 100,

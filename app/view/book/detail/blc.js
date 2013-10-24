@@ -3,9 +3,6 @@ Ext.define('Zixweb.view.book.detail.blc', {
 	alias : 'widget.book_detail_blc',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
-
 		border : false
 	},
 
@@ -130,6 +127,8 @@ Ext.define('Zixweb.view.book.detail.blc', {
 					xtype : 'form',
 					title : '查询',
 					id : 'blcdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -218,10 +217,10 @@ Ext.define('Zixweb.view.book.detail.blc', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_blc_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

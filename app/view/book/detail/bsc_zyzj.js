@@ -3,14 +3,12 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 	alias : 'widget.book_detail_bsc_zyzj',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['zyzj_acct','e_date', 'period', 'j', 'd'],
+					fields : ['zyzj_acct', 'e_date', 'period', 'j', 'd'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -32,8 +30,7 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 							var form = Ext.getCmp('bsczyzjdetailform')
 									.getForm();
 							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_bsc_zyzj_grid');
+							var grid = Ext.getCmp('book_detail_bsc_zyzj_grid');
 							grid.down('#zyzj_acct').hide();
 							grid.down('#e_date').hide();
 							grid.down('#period').hide();
@@ -56,15 +53,15 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 									grid.headerCt.move(oldindex, 1);
 								}
 							}
-                            if (values.thir) {
-                                var thir = grid.down('#' + values.thir);
-                                thir.show();
-                                var oldindex = grid.headerCt
-                                        .getHeaderIndex(thir);
-                                if (oldindex != 2) {
-                                    grid.headerCt.move(oldindex, 2);
-                                }
-                            }
+							if (values.thir) {
+								var thir = grid.down('#' + values.thir);
+								thir.show();
+								var oldindex = grid.headerCt
+										.getHeaderIndex(thir);
+								if (oldindex != 2) {
+									grid.headerCt.move(oldindex, 2);
+								}
+							}
 							if (!(values.fir || values.sec || values.thir)) {
 								grid.down('#zyzj_acct').show();
 								grid.down('#e_date').show();
@@ -110,9 +107,11 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 					xtype : 'form',
 					title : '查询',
 					id : 'bsczyzjdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
-						labelWidth : 140 
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -128,7 +127,7 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 												id : 'book_detail_bsc_zyzj_to_1'
 											},
 											vtype : 'dateinterval',
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_detail_bsc_zyzj_to_1',
@@ -136,34 +135,34 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
-											width : 180 
+											width : 180
 										}]
-                            }, {    
-                               xtype : 'fieldcontainer',
-                               fieldLabel : '差错日期范围',
-                               layout : 'hbox',
-                               items : [{
-                                         xtype : 'datefield',
-                                         format : 'Y-m-d',
-                                         name : 'e_date_from',
-                                         margin : '0 10 0 0',
-                                         verify : {
-                                                   id : 'book_detail_bsc_zyzj_to_2'
-                                                  },
-                                         vtype : 'dateinterval',
-                                         width : 180
-                                     }, {
-                                         xtype : 'datefield',
-                                         id : 'book_detail_bsc_zyzj_to_2',
-                                         format : 'Y-m-d',
-                                         name : 'e_date_to',
-                                         margin : '0 10 0 0',
-                                         width : 180 
-                                     }, {
-                                         xtype : 'zyzjacct',
-                                         name : 'zyzj_acct',
-                                         fieldLabel : '自有资金帐号'
-                                        }]
+							}, {
+								xtype : 'fieldcontainer',
+								fieldLabel : '差错日期范围',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'e_date_from',
+											margin : '0 10 0 0',
+											verify : {
+												id : 'book_detail_bsc_zyzj_to_2'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : 'book_detail_bsc_zyzj_to_2',
+											format : 'Y-m-d',
+											name : 'e_date_to',
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'zyzjacct',
+											name : 'zyzj_acct',
+											fieldLabel : '自有资金帐号'
+										}]
 							}, {
 								xtype : 'hsx',
 								data : [{
@@ -191,10 +190,10 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_bsc_zyzj_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

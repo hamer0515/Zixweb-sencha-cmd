@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 	alias : 'widget.zjdzbfj',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -65,6 +63,8 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 					xtype : 'form',
 					title : '查询',
 					id : 'zjdzbfjform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -109,10 +109,9 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 								}
 							}]
 				}, {
-					title : '结果',
 					xtype : 'gridpanel',
 					id : 'zjdzbfjgrid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

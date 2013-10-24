@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 	alias : 'widget.taskpzcx',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -72,6 +70,8 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 					xtype : 'form',
 					title : '凭证撤销审核查询',
 					id : 'taskpzcxform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -129,10 +129,9 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 								}
 							}]
 				}, {
-					title : '凭证撤销审核列表',
 					xtype : 'gridpanel',
 					id : 'taskpzcxgrid',
-					height : 500,
+					height : 'auto',
 
 					store : store,
 					dockedItems : [{

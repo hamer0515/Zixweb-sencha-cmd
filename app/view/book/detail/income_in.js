@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.income_in', {
 	alias : 'widget.book_detail_income_in',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -73,13 +71,13 @@ Ext.define('Zixweb.view.book.detail.income_in', {
 								var thi = grid.down('#period');
 								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
-									grid.headerCt.move(oldindex, 0);
-								var	secindex = grid.headerCt
+								grid.headerCt.move(oldindex, 0);
+								var secindex = grid.headerCt
 										.getHeaderIndex(sec);
-									grid.headerCt.move(secindex, 1);
-								var	thiindex = grid.headerCt
+								grid.headerCt.move(secindex, 1);
+								var thiindex = grid.headerCt
 										.getHeaderIndex(thi);
-									grid.headerCt.move(thiindex, 2);
+								grid.headerCt.move(thiindex, 2);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -115,6 +113,8 @@ Ext.define('Zixweb.view.book.detail.income_in', {
 					xtype : 'form',
 					title : '查询',
 					id : 'incomeindetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -185,10 +185,10 @@ Ext.define('Zixweb.view.book.detail.income_in', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_income_in_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
@@ -197,50 +197,51 @@ Ext.define('Zixweb.view.book.detail.income_in', {
 								displayInfo : true
 							}],
 					columns : [{
-						text : "客户编号",
-						dataIndex : 'c',
-						itemId : 'c',
-						sortable : false,
-						flex : 1
-					}, {
-						text : "产品类型",
-						itemId : 'p',
-						dataIndex : 'p',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var product = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Product');
-							var index = product.findExact('id', value);
-							return product.getAt(index).data.name;
-						},
-						flex : 2
-					},  {
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "借方金额",
-						dataIndex : 'j',
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}, {
-						text : "贷方金额",
-						dataIndex : 'd',
-						width : 100,
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}]
+								text : "客户编号",
+								dataIndex : 'c',
+								itemId : 'c',
+								sortable : false,
+								flex : 1
+							}, {
+								text : "产品类型",
+								itemId : 'p',
+								dataIndex : 'p',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var product = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.Product');
+									var index = product.findExact('id', value);
+									return product.getAt(index).data.name;
+								},
+								flex : 2
+							}, {
+								text : "期间日期",
+								dataIndex : 'period',
+								itemId : 'period',
+								sortable : false,
+								flex : 1,
+								renderer : Ext.util.Format
+										.dateRenderer('Y年m月d日')
+							}, {
+								text : "借方金额",
+								dataIndex : 'j',
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}, {
+								text : "贷方金额",
+								dataIndex : 'd',
+								width : 100,
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}]
 				}];
 		this.callParent(arguments);
 	}

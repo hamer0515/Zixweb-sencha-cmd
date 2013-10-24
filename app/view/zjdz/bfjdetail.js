@@ -30,28 +30,28 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 								 */
 							}
 							data += '<tr bgcolor="#ffffff" align="center">';
-							if (key === '未知长款') {
-								var wzckamt = json.data['未知长款'].ch_j || '0.00';
+							if (key === '未知入款') {
+								var wzckamt = json.data['未知入款'].ch_j || '0.00';
 								data += '<td rowspan="3" width="10%" >'
-										+ '未知长款' + '</td>';
+										+ '未知入款' + '</td>';
 								data += '<tr class="ice_one_td">'
 										+ '<td width="15%">银行存款变化</td>'
 										+ '<td width="15%" class="ice_one_data">';
 
 								data += '<input type="text"  id="j_amt_c_'
-										+ num + '" name="未知长款_j" value="'
+										+ num + '" name="未知入款_j" value="'
 										+ wzckamt + '' + '"/>';
 
 								data += '</td><td width="15%" class="ice_one_data">';
 
 								data += '<input type="text" disabled="true" id="d_amt_c_'
 										+ num++
-										+ '" name="未知长款_d" value="0.00"/>';
+										+ '" name="未知入款_d" value="0.00"/>';
 
 								data += '</td><td rowspan="2" width="20%"  >'
 										+ '<textarea rows="2" id="memo_c_'
 										+ i
-										+ '" name="未知长款_memo" style=" height:100%;">'
+										+ '" name="未知入款_memo" style=" height:100%;">'
 										+ json.data[key].memo
 										+ '</textarea></td>';
 
@@ -59,44 +59,44 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 										+ '<tr class="ice_one_td">'
 										+ '<td width="15%">银行长款</td>'
 										+ '<td width="15%" class="ice_one_data">'
-										+ json.data['未知长款'].lc[0]
+										+ json.data['未知入款'].lc[0]
 										+ '</td><td width="15%" class="ice_one_data">'
-										+ json.data['未知长款'].lc[1]
+										+ json.data['未知入款'].lc[1]
 										+ '</td></tr>';
 								continue;
 							}
-							if (key === '未知短款') {
-								var wzdkamt = json.data['未知短款'].ch_d || '0.00';
+							if (key === '未知出款') {
+								var wzdkamt = json.data['未知出款'].ch_d || '0.00';
 
 								data += '<td rowspan="3" width="10%" class="ice_one_td">'
-										+ '未知短款' + '</td>';
+										+ '未知出款' + '</td>';
 								data += '<tr class="ice_one_td">'
 										+ '<td width="15%">银行存款变化</td>'
 										+ '<td width="15%" class="ice_one_data">';
 
 								data += '<input type="text" disabled="true" id="j_amt_d_'
 										+ num
-										+ '" name="未知短款_j" value="0.00"/>';
+										+ '" name="未知出款_j" value="0.00"/>';
 
 								data += '</td><td width="15%" class="ice_one_data">';
 
 								data += '<input type="text" id="d_amt_d_'
-										+ num++ + '" name="未知短款_d" value="'
+										+ num++ + '" name="未知出款_d" value="'
 										+ wzdkamt + '"/>';
 
 								data += '</td><td rowspan="2" width="20%"  >'
 										+ '<textarea rows="2" id="memo_d_'
 										+ i
-										+ '" name="未知短款_memo" style=" height:100%;">'
+										+ '" name="未知出款_memo" style=" height:100%;">'
 										+ json.data[key].memo + '</textarea>';
 
 								data += '</td></tr>'
 										+ '<tr class="ice_one_td">'
 										+ '<td width="15%">银行短款</td>'
 										+ '<td width="15%" class="ice_one_data">'
-										+ json.data['未知短款'].sc[0]
+										+ json.data['未知出款'].sc[0]
 										+ '</td><td width="15%" class="ice_one_data">'
-										+ json.data['未知短款'].sc[1]
+										+ json.data['未知出款'].sc[1]
 										+ '</td></tr>';
 								continue;
 							}
@@ -230,6 +230,7 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 						data += '<tr bgcolor="white"><td colspan="5">'
 								+ '<input type="submit" id="checkbtn" value="计算长短款"/>'
 								+ '<input type="button" id="checkdonebtn" value="对账完成"  /></td></tr>';
+						/* console.log(data); */
 						return data;
 					}
 				});
@@ -395,6 +396,7 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 										'', 'g'));
 								j = Ext.Number.correctFloat(j);
 								d = Ext.Number.correctFloat(d);
+								console.log('j:' + j + ",d:" + d);
 								if (j != d) {
 									Ext.MessageBox.alert('警告', '请先计算长短款');
 									return;

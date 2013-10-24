@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.zqqr.query', {
 	alias : 'widget.zqqrquery',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -68,6 +66,8 @@ Ext.define('Zixweb.view.zqqr.query', {
 					xtype : 'form',
 					title : '查询',
 					id : 'zqqrqueryform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -102,10 +102,9 @@ Ext.define('Zixweb.view.zqqr.query', {
 								}
 							}]
 				}, {
-					title : '结果',
 					xtype : 'gridpanel',
 					id : 'zqqrquerygrid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

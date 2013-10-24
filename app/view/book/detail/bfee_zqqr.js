@@ -3,15 +3,12 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 	alias : 'widget.book_detail_bfee_zqqr',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
-
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['fp', 'bi', 'tx_date', 'period', 'j',	'd'],
+					fields : ['fp', 'bi', 'tx_date', 'period', 'j', 'd'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -33,8 +30,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 							var form = Ext.getCmp('bfeezqqrdetailform')
 									.getForm();
 							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_bfee_zqqr_grid');
+							var grid = Ext.getCmp('book_detail_bfee_zqqr_grid');
 							grid.down('#fp').hide();
 							grid.down('#bi').hide();
 							grid.down('#tx_date').hide();
@@ -78,11 +74,11 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 							}
 							if (!(values.fir || values.sec || values.thi
 									|| values.fou || values.fiv || values.six)) {
-  							    grid.down('#bi').show();
-  							    grid.down('#fp').show();
+								grid.down('#bi').show();
+								grid.down('#fp').show();
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
-								
+
 								var fir = grid.down('#bi');
 								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
@@ -142,6 +138,8 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 					xtype : 'form',
 					title : '查询',
 					id : 'bfeezqqrdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -231,10 +229,10 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_bfee_zqqr_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

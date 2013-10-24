@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.task.Taskmy', {
 	alias : 'widget.taskmy',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -72,6 +70,8 @@ Ext.define('Zixweb.view.task.Taskmy', {
 					xtype : 'form',
 					title : '我的任务查询',
 					id : 'taskmyform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -128,10 +128,9 @@ Ext.define('Zixweb.view.task.Taskmy', {
 								}
 							}]
 				}, {
-					title : '我的任务列表',
 					xtype : 'gridpanel',
 					id : 'taskmygrid',
-					height : 500,
+					height : 'auto',
 
 					store : store,
 					dockedItems : [{
