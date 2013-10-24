@@ -8,9 +8,13 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 		var tpl = new Ext.XTemplate(
 				'<tpl for=".">',
 				'<table width="98%" id="zjdzbfj_{acct_id}_{zjbd_date}" border="0" cellspacing="1" cellpadding="0" align="center"  bgcolor="#C8DCF0" class="live_1_table">',
+				'<tr align="center" class="ice_one_td" >',
+				'<td width="15%" colspan="1">', '资金变动日期： {zjbd_date}',
+				'<td width="15%" colspan="2">银行账户：', '{b_acct}</td>',
+				'</td><td width="15%" colspan="2"></td></tr>',
 				'<tr align="center" class="live_1_table_tr" >',
-				'<td >资金变动日期： {zjbd_date}</td>', '<td >资金变动类型</td>',
-				'<td >科目</td>', '<td >借方 </td>', '<td >贷方 </td>', '</tr>',
+				'<td width="10%">资金变动类型</td>', '<td >科目</td>', '<td >借方 </td>',
+				'<td >贷方 </td>', '<td width="20%">备注</td>', '</tr>',
 				'{[this.gentrs(values)]}', '</table>', '</tpl>', {
 					gentrs : function(json) {
 						var data = '';
@@ -18,13 +22,89 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 						for (var i = 0; i <= json.l; i++) {
 							var key = json.t_ids[i];
 							var row = json.data[key];
-							data += '<tr bgcolor="#ffffff" align="center">';
+
 							if (i == 0) {
-								data += '<td rowspan="' + json.records
-										+ '" width="20%" >' + json.b_acct
-										+ '</td>';
+								/*
+								 * data += '<td rowspan="' + json.records + '"
+								 * width="20%" >' + json.b_acct + '</td>';
+								 */
 							}
-							data += '<td rowspan="7" width="15%" >' + key
+							data += '<tr bgcolor="#ffffff" align="center">';
+							if (key === '未知长款') {
+								var wzckamt = json.data['未知长款'].ch_j || '0.00';
+								data += '<td rowspan="3" width="10%" >'
+										+ '未知长款' + '</td>';
+								data += '<tr class="ice_one_td">'
+										+ '<td width="15%">银行存款变化</td>'
+										+ '<td width="15%" class="ice_one_data">';
+
+								data += '<input type="text"  id="j_amt_c_'
+										+ num + '" name="未知长款_j" value="'
+										+ wzckamt + '' + '"/>';
+
+								data += '</td><td width="15%" class="ice_one_data">';
+
+								data += '<input type="text" disabled="true" id="d_amt_c_'
+										+ num++
+										+ '" name="未知长款_d" value="0.00"/>';
+
+								data += '</td><td rowspan="2" width="20%"  >'
+										+ '<textarea rows="2" id="memo_c_'
+										+ i
+										+ '" name="未知长款_memo" style=" height:100%;">'
+										+ json.data[key].memo
+										+ '</textarea></td>';
+
+								data += '</tr>'
+										+ '<tr class="ice_one_td">'
+										+ '<td width="15%">银行长款</td>'
+										+ '<td width="15%" class="ice_one_data">'
+										+ json.data['未知长款'].lc[0]
+										+ '</td><td width="15%" class="ice_one_data">'
+										+ json.data['未知长款'].lc[1]
+										+ '</td></tr>';
+								continue;
+							}
+							if (key === '未知短款') {
+								var wzdkamt = json.data['未知短款'].ch_d || '0.00';
+
+								data += '<td rowspan="3" width="10%" class="ice_one_td">'
+										+ '未知短款' + '</td>';
+								data += '<tr class="ice_one_td">'
+										+ '<td width="15%">银行存款变化</td>'
+										+ '<td width="15%" class="ice_one_data">';
+
+								data += '<input type="text" disabled="true" id="j_amt_d_'
+										+ num
+										+ '" name="未知短款_j" value="0.00"/>';
+
+								data += '</td><td width="15%" class="ice_one_data">';
+
+								data += '<input type="text" id="d_amt_d_'
+										+ num++ + '" name="未知短款_d" value="'
+										+ wzdkamt + '"/>';
+
+								data += '</td><td rowspan="2" width="20%"  >'
+										+ '<textarea rows="2" id="memo_d_'
+										+ i
+										+ '" name="未知短款_memo" style=" height:100%;">'
+										+ json.data[key].memo + '</textarea>';
+
+								data += '</td></tr>'
+										+ '<tr class="ice_one_td">'
+										+ '<td width="15%">银行短款</td>'
+										+ '<td width="15%" class="ice_one_data">'
+										+ json.data['未知短款'].sc[0]
+										+ '</td><td width="15%" class="ice_one_data">'
+										+ json.data['未知短款'].sc[1]
+										+ '</td></tr>';
+								continue;
+							}
+
+							if (key === '其它') {
+								continue;
+							}
+							data += '<td rowspan="7" width="10%" >' + key
 									+ '</td>';
 							data += '<td width="15%" >应付银行-已核应付交易款</td>'
 									+ '<td width="15%" class="ice_one_data"><font id="jb_yhyf_amt'
@@ -33,10 +113,21 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 									+ row.txamt_yhyf[0]
 									+ '</font></td>'
 									+ '<td width="15%"class="ice_one_data"><font id="db_yhyf_amt'
-									+ num++
-									+ '">'
-									+ row.txamt_yhyf[1]
-									+ '</font></td></tr>'
+									+ num++ + '">' + row.txamt_yhyf[1]
+									+ '</font></td>';
+							if (key === '总计') {
+								data += '<td rowspan="7" width="15%"  ></td>';
+							} else {
+
+								data += '<td rowspan="7" width="20%"  >'
+										+ '<textarea  rows="8" id="memo_' + i
+										+ '" name="' + key
+										+ '_memo" style=" height:100%;">'
+										+ json.data[key].memo
+										+ '</textarea></td>';
+							}
+
+							data += '</tr>'
 									+ '<tr class="ice_one_td" >'
 									+ '<td width="15%" >应付银行-已核应付银行手续费</td>'
 									+ '<td width="15%" class="ice_one_data"><font id="jf_yhyf_amt'
@@ -74,6 +165,7 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 									+ '<tr class="ice_one_td">'
 									+ '<td width="15%">银行存款变化</td>'
 									+ '<td width="15%" class="ice_one_data">';
+
 							if (i != json.l) {
 								data += '<input type="text" id="j_amt_c_' + num
 										+ '" name="' + key + '_j" value="'
@@ -114,12 +206,12 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 
 						for (var i in json.ch_bank) {
 							if (i == 0) {
-								data += '<tr id="row7" class="live_1_table_tr"><td width="15%" colspan="4">'
+								data += '<tr id="row7" class="live_1_table_tr"><td width="15%" colspan="5">'
 										+ json.ch_bank[i] + '</td></tr>';
 								continue;
 							}
 							data += '<tr id="row7" class="ice_one_td">'
-									+ '<td width="15%" >'
+									+ '<td width="15%" colspan="2">'
 									+ json.ch_bank[i]
 									+ '</td>'
 									+ '<td width="15%" colspan="3" class="ice_one_data"><font class="specword">'
@@ -129,7 +221,7 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 						if (json.real_bank_ch == '') {
 							json.real_bank_ch = '0.00'
 						}
-						data += '<tr class="ice_one_td" id="real_bank"><td width="15%" >'
+						data += '<tr class="ice_one_td" id="real_bank"><td width="15%" colspan="2" >'
 								+ json.zjbd_date
 								+ '实际存款余额</td>'
 								+ '<td width="15%" colspan="3" class="ice_one_data"><input type="text" id="real_bank_ch" value="'
@@ -237,6 +329,13 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 								var value = field.value;
 								data[key] = value;
 							}
+							var memos = tbl.select("textarea");
+							for (var i in memos.elements) {
+								var memo = memos.elements[i];
+								var key = memo.getAttribute('name');
+								var value = memo.value;
+								data[key] = value;
+							}
 							data.zjbd_date = records[0].data.zjbd_date;
 							data.acct_id = records[0].data.acct_id;
 							// if (bfjdetail.checkjd(data)) {
@@ -314,6 +413,15 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 												var value = field.value;
 												data[key] = value;
 											}
+											var memos = tbl.select("textarea");
+											for (var i in memos.elements) {
+												var memo = memos.elements[i];
+												var key = memo
+														.getAttribute('name');
+												var value = memo.value;
+												data[key] = value;
+											}
+
 											data.zjbd_date = records[0].data.zjbd_date;
 											data.acct_id = records[0].data.acct_id;
 											data.type = 1;

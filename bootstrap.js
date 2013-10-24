@@ -121,6 +121,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0005": [],
   "Zixweb.view.yspz.yspzq.y0006": [],
   "Zixweb.view.yspz.yspzq.y0007": [],
+  "Zixweb.view.pzlr.i0101": [],
   "Ext.ux.TabCloseMenu": [],
   "Zixweb.view.yspz.yspzq.y0008": [],
   "Zixweb.view.yspz.yspzq.y0009": [],
@@ -156,9 +157,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0012": [],
   "Zixweb.view.book.hist.fee_jrjg": [],
   "Zixweb.view.yspz.yspzq.y0011": [],
+  "Zixweb.view.yspz.yspzq.y0120": [],
   "Zixweb.view.yspz.yspzq.y0014": [],
   "Zixweb.view.yspz.yspzq.y0013": [],
   "Zixweb.view.book.hist.wlzj_yfzy": [],
+  "Zixweb.view.yspz.yspzq.y0121": [],
   "Zixweb.store.component.JStatus": [],
   "Zixweb.view.yspz.yspzq.y0010": [],
   "Zixweb.store.component.Status": [],
@@ -169,15 +172,24 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.ux.Multiselect"
   ],
   "Zixweb.view.Center": [],
+  "Zixweb.view.yspz.yspzq.y0117": [],
+  "Zixweb.view.yspz.yspzq.y0116": [],
+  "Zixweb.view.yspz.yspzq.y0115": [],
+  "Zixweb.view.yspz.yspzq.y0114": [],
   "Zixweb.view.user.Add": [],
   "Zixweb.view.yspz.yspzq.y0029": [],
   "Zixweb.view.yspz.yspzq.y0028": [],
+  "Zixweb.view.yspz.yspzq.y0119": [],
+  "Zixweb.view.yspz.yspzq.y0118": [],
   "Zixweb.view.component.SHType": [],
   "overrides.toolbar.Paging": [],
   "Zixweb.view.yspz.yspzq.y0113": [],
   "Zixweb.view.pzlr.mission": [],
+  "Zixweb.view.yspz.yspzq.y0112": [],
   "Ext.ux.event.RecorderManager": [],
   "Zixweb.view.book.detail.cost_in": [],
+  "Zixweb.view.yspz.yspzq.y0111": [],
+  "Zixweb.view.yspz.yspzq.y0110": [],
   "Ext.ux.ProgressBarPager": [],
   "Zixweb.view.component.ZjbdType": [],
   "Zixweb.view.book.detail.bfj_cust": [],
@@ -190,13 +202,18 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.book.detail.bfee_rb": [],
   "overrides.resizer.Splitter": [],
   "Zixweb.view.book.hist.bsc": [],
+  "Zixweb.view.yspz.yspzq.y0108": [],
   "Zixweb.view.yspz.yspzq.y0038": [],
+  "Zixweb.view.yspz.yspzq.y0107": [],
   "Zixweb.view.yspz.yspzq.y0037": [],
+  "Zixweb.view.yspz.yspzq.y0109": [],
   "Zixweb.view.yspz.yspzq.y0039": [],
   "Zixweb.view.yspz.yspzq.y0104": [],
   "overrides.Component": [],
   "overrides.TabCloseMenu": [],
   "Zixweb.view.yspz.yspzq.y0103": [],
+  "Zixweb.view.yspz.yspzq.y0106": [],
+  "Zixweb.view.yspz.yspzq.y0105": [],
   "Zixweb.view.yspz.yspzq.y0100": [],
   "Zixweb.view.yspz.yspzq.y0030": [],
   "Zixweb.view.book.hist.bamt_yhyf": [],
@@ -590,6 +607,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0007": [
     "widget.y0007"
   ],
+  "Zixweb.view.pzlr.i0101": [
+    "widget.i0101"
+  ],
   "Ext.ux.TabCloseMenu": [
     "plugin.tabclosemenu"
   ],
@@ -670,6 +690,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0011": [
     "widget.y0011"
   ],
+  "Zixweb.view.yspz.yspzq.y0120": [
+    "widget.y0120"
+  ],
   "Zixweb.view.yspz.yspzq.y0014": [
     "widget.y0014"
   ],
@@ -678,6 +701,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.book.hist.wlzj_yfzy": [
     "widget.book_hist_wlzj_yfzy"
+  ],
+  "Zixweb.view.yspz.yspzq.y0121": [
+    "widget.y0121"
   ],
   "Zixweb.store.component.JStatus": [],
   "Zixweb.view.yspz.yspzq.y0010": [
@@ -696,6 +722,18 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.Center": [
     "widget.center"
   ],
+  "Zixweb.view.yspz.yspzq.y0117": [
+    "widget.y0117"
+  ],
+  "Zixweb.view.yspz.yspzq.y0116": [
+    "widget.y0116"
+  ],
+  "Zixweb.view.yspz.yspzq.y0115": [
+    "widget.y0115"
+  ],
+  "Zixweb.view.yspz.yspzq.y0114": [
+    "widget.y0114"
+  ],
   "Zixweb.view.user.Add": [
     "widget.useradd"
   ],
@@ -704,6 +742,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.yspz.yspzq.y0028": [
     "widget.y0028"
+  ],
+  "Zixweb.view.yspz.yspzq.y0119": [
+    "widget.y0119"
+  ],
+  "Zixweb.view.yspz.yspzq.y0118": [
+    "widget.y0118"
   ],
   "Zixweb.view.component.SHType": [
     "widget.shtype"
@@ -715,11 +759,20 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.pzlr.mission": [
     "widget.pzlrmission"
   ],
+  "Zixweb.view.yspz.yspzq.y0112": [
+    "widget.y0112"
+  ],
   "Ext.ux.event.RecorderManager": [
     "widget.eventrecordermanager"
   ],
   "Zixweb.view.book.detail.cost_in": [
     "widget.book_detail_cost_in"
+  ],
+  "Zixweb.view.yspz.yspzq.y0111": [
+    "widget.y0111"
+  ],
+  "Zixweb.view.yspz.yspzq.y0110": [
+    "widget.y0110"
   ],
   "Ext.ux.ProgressBarPager": [],
   "Zixweb.view.component.ZjbdType": [
@@ -749,11 +802,20 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.book.hist.bsc": [
     "widget.book_hist_bsc"
   ],
+  "Zixweb.view.yspz.yspzq.y0108": [
+    "widget.y0108"
+  ],
   "Zixweb.view.yspz.yspzq.y0038": [
     "widget.y0038"
   ],
+  "Zixweb.view.yspz.yspzq.y0107": [
+    "widget.y0107"
+  ],
   "Zixweb.view.yspz.yspzq.y0037": [
     "widget.y0037"
+  ],
+  "Zixweb.view.yspz.yspzq.y0109": [
+    "widget.y0109"
   ],
   "Zixweb.view.yspz.yspzq.y0039": [
     "widget.y0039"
@@ -765,6 +827,12 @@ Ext.ClassManager.addNameAliasMappings({
   "overrides.TabCloseMenu": [],
   "Zixweb.view.yspz.yspzq.y0103": [
     "widget.y0103"
+  ],
+  "Zixweb.view.yspz.yspzq.y0106": [
+    "widget.y0106"
+  ],
+  "Zixweb.view.yspz.yspzq.y0105": [
+    "widget.y0105"
   ],
   "Zixweb.view.yspz.yspzq.y0100": [
     "widget.y0100"
