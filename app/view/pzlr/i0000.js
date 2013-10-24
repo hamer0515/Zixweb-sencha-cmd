@@ -135,7 +135,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		'13' : "{source : {p : '',amt : ''},book_name : '成本-垫付损失'}",
 		'14' : "{source : {bfj_acct : '',amt : ''},'book_name' : '银行存款-备付金存款'}",
 		'15' : "{source : {zyzj_acct : '',amt : ''},'book_name' : '银行存款-自有资金存款'}",
-		'16' : "{source : {acct : '',amt : '},book_name: '财务费用-金融机构手续费'}",
+		'16' : "{source : {acct : '',amt : ''},book_name: '财务费用-金融机构手续费'}",
 		'17' : "{source : {c : '',p : '',amt : ''},book_name : '收入-客户手续费收入'}",
 		'18' : "{source : {acct : '',amt : ''},book_name : '财务费用-账户利息收入'}",
 		'19' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '应收银行-待勾兑应收交易款'}",
