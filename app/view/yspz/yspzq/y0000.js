@@ -75,9 +75,15 @@ Ext.define('Zixweb.view.yspz.yspzq.y0000', {
 								items : [{
 											xtype : 'textfield',
 											fieldLabel : 'ID',
+											margin : '0 10 0 0',
 											width : 516,
 											name : 'id',
 											vtype : "id"
+										}, {
+											xtype : 'textfield',
+											fieldLabel : '录入员',
+											width : 516,
+											name : 'crt_user'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -121,7 +127,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0000', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width : 516
+											width : 320
 										}]
 							}, {
 								xtype : 'button',
