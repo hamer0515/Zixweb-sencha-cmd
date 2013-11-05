@@ -31,42 +31,39 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 						beforeload : function(store, operation, eOpts) {
 							var form = Ext.getCmp('depositbfjdetailform')
 									.getForm();
-							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_deposit_bfj_grid');
-							grid.down('#bfj_acct').hide();
-							grid.down('#period').hide();
-							var columns = grid.columns;
-							if (values.fir) {
-								var fir = grid.down('#' + values.fir);
-								fir.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							if (values.sec) {
-								var sec = grid.down('#' + values.sec);
-								sec.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(sec);
-								if (oldindex != 1) {
-									grid.headerCt.move(oldindex, 1);
-								}
-							}
-							if (!(values.fir || values.sec)) {
-								grid.down('#bfj_acct').show();
-								grid.down('#period').show();
-								var fir = grid.down('#bfj_acct');
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							grid.getView().refresh();
 							if (form.isValid()) {
+								var values = form.getValues();
+								var grid = Ext
+										.getCmp('book_detail_deposit_bfj_grid');
+								grid.down('#bfj_acct').hide();
+								grid.down('#period').hide();
+								var hsxes = [];
+								if (values.fir) {
+									hsxes.push(values.fir);
+								}
+								if (values.sec) {
+									hsxes.push(values.sec);
+								}
+								if (hsxes.length == 0) {
+									grid.down('#bfj_acct').show();
+									grid.down('#period').show();
+									var fir = grid.down('#bfj_acct');
+									var firindex = grid.headerCt
+											.getHeaderIndex(fir);
+									grid.headerCt.move(firindex, 0);
+								} else {
+									for (var i = 0; i < hsxes.length; i++) {
+										var item = grid.down('#' + hsxes[i]);
+										item.show();
+									}
+									for (var i = 0; i < hsxes.length; i++) {
+										var item = grid.down('#' + hsxes[i]);
+										var pos = grid.headerCt
+												.getHeaderIndex(item);
+										grid.headerCt.move(pos, i);
+									}
+								}
+								grid.getView().refresh();
 								store.proxy.extraParams = values;
 							} else {
 								return false;
@@ -101,7 +98,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 					id : 'depositbfjdetailform',
 
 					fieldDefaults : {
-						labelWidth : 90
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -117,7 +114,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 												id : 'book_detail_deposit_bfj_to'
 											},
 											vtype : 'dateinterval',
-											width : 192
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_detail_deposit_bfj_to',
@@ -125,12 +122,11 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
-											width : 192
+											width : 180
 										}, {
 											xtype : 'bfjacct',
 											name : 'bfj_acct',
-											margin : '0 10 0 0',
-											fieldLabel : '备付金帐号'
+											fieldLabel : '银行账户号及开户行'
 										}]
 							}, {
 								xtype : 'hsx',

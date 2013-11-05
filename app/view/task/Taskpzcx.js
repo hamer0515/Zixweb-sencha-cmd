@@ -74,7 +74,7 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 					id : 'taskpzcxform',
 
 					fieldDefaults : {
-						labelWidth : 90
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -85,12 +85,17 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 											format : 'Y-m-d',
 											name : 'from',
 											margin : '0 10 0 0',
-											width : 193
+											width : 180
 										}, {
 											xtype : 'datefield',
 											format : 'Y-m-d',
 											name : 'to',
-											width : 193
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'shstatus',
+											name : 'status',
+											fieldLabel : '审核状态'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -99,20 +104,14 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 											xtype : 'textfield',
 											name : 'id',
 											margin : '0 10 0 0',
-											width : 288,
+											width : 516,
 											vtype : 'id',
 											fieldLabel : '任务编号'
 										}, {
 											xtype : 'textfield',
-											margin : '0 10 0 0',
 											fieldLabel : '创建用户',
-											width : 288,
+											width : 516,
 											name : 'c_user'
-										}, {
-											xtype : 'shstatus',
-											name : 'status',
-											margin : '0 10 0 0',
-											fieldLabel : '审核状态'
 										}]
 
 							}, {
@@ -220,8 +219,7 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 														+ rec.data.ys_id,
 												title : '凭证' + rec.data.ys_type
 														+ '撤销审核编号'
-														+ rec.data.id
-														+ '详细信息-'
+														+ rec.data.id + '详细信息-'
 											}).show();
 										}
 										viewport.doLayout();
@@ -311,7 +309,7 @@ Ext.define('Zixweb.view.task.Taskpzcx', {
 															async : false,
 															url : 'taskpzcx/deny',
 															params : {
-																id : rec.data.deny
+																id : rec.data.id
 															},
 															success : function(
 																	response) {

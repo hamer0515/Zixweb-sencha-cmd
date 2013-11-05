@@ -1,8 +1,7 @@
 {
-    "name": "Zixweb",
+	"name" : "Zixweb",
 
-    "requires": [
-    ],
+	"requires" : [],
 
-    "id": "60129788-ab23-4afd-9ce0-57e63eb8f5cc"
+	"id" : "60129788-ab23-4afd-9ce0-57e63eb8f5cc"
 }

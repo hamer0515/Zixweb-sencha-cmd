@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.component.SHType', {
 			extend : 'Ext.form.ComboBox',
 			alias : 'widget.shtype',
-			width : 288,
+			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {

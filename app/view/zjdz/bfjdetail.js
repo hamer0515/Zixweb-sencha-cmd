@@ -126,6 +126,9 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 									+ json.data[json.ch_bank[i]]
 									+ '</font></td></tr>';
 						}
+						if (json.real_bank_ch == '') {
+							json.real_bank_ch = '0.00'
+						}
 						data += '<tr class="ice_one_td" id="real_bank"><td width="15%" >'
 								+ json.zjbd_date
 								+ '实际存款余额</td>'
@@ -209,8 +212,8 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 									}
 								});
 						field.on('blur', function(e, t, eOpts) {
-									var value = t.value.replace(',', '', 'g');
-									value = value.trim();
+									var value = t.value.replace(',', '', 'g')
+											.trim();
 									if (!/^(-)?(([1-9]{1}\d*)|([0]{1}))(\.\d+)?$/
 											.exec(value)) {
 										value = 0;
@@ -249,7 +252,7 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 						checkdonebtn.on('click', function(e, btn, eOpts) {
 							var real_ch_bank = Ext.get('real_bank_ch')
 									.getValue().replace(',', '', 'g');
-							var ch_bank_pre = records[0].data.data[records[0].data.ch_bank[2]]
+							var ch_bank_pre = records[0].data.data[records[0].data.ch_bank[3]]
 									.replace(',', '', 'g');
 							if (parseFloat(real_ch_bank) != parseFloat(ch_bank_pre)) {
 								Ext.MessageBox.alert('警告', '实际银行存款变化与预期不一致');
@@ -266,8 +269,10 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 								var t_id = data.t_ids[i];
 								var v = data.data[t_id];
 								var j = 0, d = 0;
-								var keys = ['txamt_yhys', 'sc', 'txamt_yhyf',
-										'lc', 'bfee_yhyf', 'bfee_yhys'];
+								// 判断长短款公式
+								// txamt_yhys[0]+txamt_yhyf[0]+bfee_yhyf[0]+bfee_yhys[0]+sc[1]+lc[1]+ch_d
+								var keys = ['txamt_yhys', 'txamt_yhyf',
+										'bfee_yhyf', 'bfee_yhys'];
 								for (var i in keys) {
 									var key = keys[i];
 									j += parseFloat(v[key][0].replace(',', '',
@@ -275,12 +280,22 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 									d += parseFloat(v[key][1].replace(',', '',
 											'g'));
 								}
+								var ls = ['lc', 'sc'];
+								for (var i in ls) {
+									var key = ls[i];
+									j += parseFloat(v[key][1].replace(',', '',
+											'g'));
+									d += parseFloat(v[key][0].replace(',', '',
+											'g'));
+								}
 								j += parseFloat(tbl.select("input[name=" + t_id
-										+ "_j]").elements[0].value.replace(',',
-										'', 'g'));
-								d += parseFloat(tbl.select("input[name=" + t_id
 										+ "_d]").elements[0].value.replace(',',
 										'', 'g'));
+								d += parseFloat(tbl.select("input[name=" + t_id
+										+ "_j]").elements[0].value.replace(',',
+										'', 'g'));
+								j = Ext.Number.correctFloat(j);
+								d = Ext.Number.correctFloat(d);
 								if (j != d) {
 									Ext.MessageBox.alert('警告', '请先计算长短款');
 									return;
@@ -304,7 +319,7 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 											data.type = 1;
 											Ext.Ajax.request({
 												async : false,
-												url : 'zjdz/checkdone',
+												url : 'zjdz/bfjcheckdone',
 												params : data,
 												success : function(response) {
 													valiStatus = Ext

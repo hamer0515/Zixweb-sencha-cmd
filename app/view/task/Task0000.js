@@ -73,7 +73,7 @@ Ext.define('Zixweb.view.task.Task0000', {
 					id : 'task0000form',
 
 					fieldDefaults : {
-						labelWidth : 90
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -84,12 +84,17 @@ Ext.define('Zixweb.view.task.Task0000', {
 											format : 'Y-m-d',
 											name : 'from',
 											margin : '0 10 0 0',
-											width : 193
+											width : 180
 										}, {
 											xtype : 'datefield',
 											format : 'Y-m-d',
 											name : 'to',
-											width : 193
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'shstatus',
+											name : 'status',
+											fieldLabel : '审核状态'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -98,20 +103,14 @@ Ext.define('Zixweb.view.task.Task0000', {
 											xtype : 'textfield',
 											name : 'id',
 											margin : '0 10 0 0',
-											width : 288,
+											width : 516,
 											vtype : 'id',
 											fieldLabel : '任务编号'
 										}, {
 											xtype : 'textfield',
-											margin : '0 10 0 0',
 											fieldLabel : '创建用户',
-											width : 288,
+											width : 516,
 											name : 'c_user'
-										}, {
-											xtype : 'shstatus',
-											name : 'status',
-											margin : '0 10 0 0',
-											fieldLabel : '审核状态'
 										}]
 
 							}, {
@@ -165,7 +164,7 @@ Ext.define('Zixweb.view.task.Task0000', {
 								sortable : false,
 								flex : 1,
 								renderer : function(value) {
-									var text = ['待审核', '审核通过', '审核未通过']
+									var text = ['待审核', '审核通过', '审核未通过'];
 									return text[value];
 								}
 							}, {
@@ -213,7 +212,8 @@ Ext.define('Zixweb.view.task.Task0000', {
 												items : task0000detail,
 												id : 'center_task0000_detail_'
 														+ rec.data.id,
-												title : '0000录入审核编号' +rec.data.id+ '详细信息'
+												title : '0000录入审核编号'
+														+ rec.data.id + '详细信息'
 											}).show();
 										}
 										viewport.doLayout();
@@ -303,7 +303,7 @@ Ext.define('Zixweb.view.task.Task0000', {
 															async : false,
 															url : 'task0000/deny',
 															params : {
-																id : rec.data.deny
+																id : rec.data.id
 															},
 															success : function(
 																	response) {

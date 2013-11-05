@@ -67,7 +67,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 					id : 'zjdzbfjform',
 
 					fieldDefaults : {
-						labelWidth : 120
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -78,12 +78,12 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 											format : 'Y-m-d',
 											name : 'from',
 											margin : '0 10 0 0',
-											width : 193
+											width : 180
 										}, {
 											xtype : 'datefield',
 											format : 'Y-m-d',
 											name : 'to',
-											width : 193
+											width : 180
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -91,7 +91,6 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 								items : [{
 											xtype : 'bfjacct',
 											name : 'b_acct',
-											margin : '0 10 0 0',
 											fieldLabel : '备付金账号'
 										}]
 
@@ -167,6 +166,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 											.createByAlias('widget.zjdzbfjdetail');
 									zjdzbfjdetail.store.load({
 												params : {
+													tag : 1,
 													zjbd_date : rec.data.zjdz_date,
 													acct_id : rec.data.b_acct
 												}

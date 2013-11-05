@@ -4,7 +4,7 @@ Ext.define('Zixweb.view.zqqr.submit', {
 
 	border : false,
 	fieldDefaults : {
-		labelWidth : 100
+		labelWidth : 140
 	},
 	layout : {
 		type : 'vbox',
@@ -17,7 +17,7 @@ Ext.define('Zixweb.view.zqqr.submit', {
 					fieldLabel : '确认日期',
 					format : 'Y-m-d',
 					name : 'sm_date',
-					width : 360,
+					width : 516,
 					vtype : 'beforecurrentdate',
 					allowBlank : false
 				}, {

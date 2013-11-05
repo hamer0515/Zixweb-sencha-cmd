@@ -49,14 +49,16 @@ Ext.define('Zixweb.view.book.AllBooks', {
 						flex : 1,
 						dataIndex : 'j',
 						renderer : function(value) {
-							return Ext.util.Format.number(value, '0,0.00');
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
 						text : '轧差贷方余额',
 						flex : 1,
 						dataIndex : 'd',
 						renderer : function(value) {
-							return Ext.util.Format.number(value, '0,0.00');
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
 						xtype : 'actioncolumn',
@@ -64,7 +66,7 @@ Ext.define('Zixweb.view.book.AllBooks', {
 						width : 80,
 						align : 'center',
 						items : [{
-							tooltip : '详细',
+							tooltip : '汇总',
 							getClass : function(v, meta, rec) {
 								if (rec.data.url) {
 									return 'detail';
@@ -92,15 +94,17 @@ Ext.define('Zixweb.view.book.AllBooks', {
 													+ rec.data.url
 										},
 										id : 'book_detail_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目详细'
+										title : rec.data.text
+												.substr(rec.data.text
+																.indexOf("-")
+																+ 1)
+												+ '科目汇总'
 									}).show();
 									viewport.doLayout();
 								}
 							}
 						}, {
-							tooltip : '历史信息',
+							tooltip : '明细查询',
 							handler : function(grid, rowIndex, colIndex) {
 								var rec = grid.getStore().getAt(rowIndex);
 								var viewport = grid.up('viewport'), center = viewport
@@ -116,9 +120,11 @@ Ext.define('Zixweb.view.book.AllBooks', {
 											xtype : 'book_hist_' + rec.data.url
 										},
 										id : 'book_hist_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目历史信息'
+										title : rec.data.text
+												.substr(rec.data.text
+																.indexOf("-")
+																+ 1)
+												+ '科目明细查询'
 									}).show();
 									viewport.doLayout();
 								}

@@ -93,6 +93,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		bfj_acct : "Ext.createByAlias('widget.bfjacct', {submitValue : false})",
 		zyzj_acct : "Ext.createByAlias('widget.zyzjacct', {submitValue : false})",
 		zjbd_type : "Ext.createByAlias('widget.zjbdtype', {submitValue : false})",
+		wlzj_type : "Ext.createByAlias('widget.wlzjtype', {submitValue : false})",
 		zjbd_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
 		tx_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
 		e_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
@@ -108,6 +109,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		bfj_acct : '备付金银行账号',
 		zyzj_acct : '自有资金银行账号',
 		zjbd_type : '资金变动类型',
+		wlzj_type : '往来类型',
 		zjbd_date : '银行出入账日期',
 		tx_date : '交易日期',
 		e_date : '差错日期',
@@ -133,7 +135,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		'13' : "{source : {p : '',amt : ''},book_name : '成本-垫付损失'}",
 		'14' : "{source : {bfj_acct : '',amt : ''},'book_name' : '银行存款-备付金存款'}",
 		'15' : "{source : {zyzj_acct : '',amt : ''},'book_name' : '银行存款-自有资金存款'}",
-		'16' : "{source : {acct : '',amt : '},book_name: '财务费用-金融机构手续费'}",
+		'16' : "{source : {acct : '',amt : ''},book_name: '财务费用-金融机构手续费'}",
 		'17' : "{source : {c : '',p : '',amt : ''},book_name : '收入-客户手续费收入'}",
 		'18' : "{source : {acct : '',amt : ''},book_name : '财务费用-账户利息收入'}",
 		'19' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '应收银行-待勾兑应收交易款'}",
@@ -141,8 +143,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		'21' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应付银行-已核应付交易款'}",
 		'22' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应收银行-已核应收交易款'}",
 		'23' : "{source : {amt : ''},book_name : '往来-应付备付'}",
-		'24' : "{source : {amt : ''},book_name : '往来-应付自有'}",
-		'25' : "{source : {amt : ''},book_name : '往来-应收备付'}",
+		'24' : "{source : {amt : '', wlzj_type:''},book_name : '往来-应付自有'}",
+		'25' : "{source : {amt : '', wlzj_type:''},book_name : '往来-应收备付'}",
 		'26' : "{source : {amt : ''},book_name : '往来-应收自有'}",
 		'27' : "{source : {c : '',cust_proto : '',tx_date : '',amt : ''},book_name : '应收账款-客户-分润方承担品牌费'}",
 		'28' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '其他应收款-待确认交易款'}",
@@ -182,11 +184,13 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 					items : [{
 								xtype : 'books',
 								margin : '0 10 0 0',
+								width : 490,
 								id : 'pzlritztzjbook',
 								submitValue : false,
 								fieldLabel : '借方科目'
 							}, {
 								xtype : 'books',
+								width : 490,
 								submitValue : false,
 								fieldLabel : '贷方科目',
 								id : 'pzlritztzdbook'
@@ -262,7 +266,6 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 										success : function(response) {
 											var v = Ext
 													.decode(response.responseText).success;
-											console.log('before result:' + v);
 											result = v;
 										}
 									});
@@ -442,8 +445,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 						return false;
 					}
 					if (f === 'amt') {
-						data[fl]["j_book"][f] = parseInt(parseFloat(jbook[f])
-								* 100);
+						data[fl]["j_book"]['j'] = Ext.Number
+								.correctFloat(parseFloat(jbook[f]) * 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {
 						// 借方日期对象转换为日期字符串
@@ -461,8 +464,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 						return false;
 					}
 					if (f === 'amt') {
-						data[fl]["d_book"][f] = parseInt(parseFloat(dbook[f])
-								* 100);
+						data[fl]["d_book"]['d'] = Ext.Number
+								.correctFloat(parseFloat(dbook[f]) * 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {
 						// 贷方日期对象转换为日期字符串
