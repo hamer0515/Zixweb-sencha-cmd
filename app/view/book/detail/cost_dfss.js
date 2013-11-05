@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.cost_dfss', {
 	alias : 'widget.book_detail_cost_dfss',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -61,10 +59,10 @@ Ext.define('Zixweb.view.book.detail.cost_dfss', {
 								var sec = grid.down('#period');
 								var firindex = grid.headerCt
 										.getHeaderIndex(fir);
-									grid.headerCt.move(firindex, 0);
-								var	secindex = grid.headerCt
+								grid.headerCt.move(firindex, 0);
+								var secindex = grid.headerCt
 										.getHeaderIndex(sec);
-									grid.headerCt.move(secindex, 1);
+								grid.headerCt.move(secindex, 1);
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -100,6 +98,8 @@ Ext.define('Zixweb.view.book.detail.cost_dfss', {
 					xtype : 'form',
 					title : '查询',
 					id : 'costdfssdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -157,10 +157,10 @@ Ext.define('Zixweb.view.book.detail.cost_dfss', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_cost_dfss_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

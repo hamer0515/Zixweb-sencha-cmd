@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.hist.income_in', {
 	alias : 'widget.book_hist_income_in',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -69,6 +67,8 @@ Ext.define('Zixweb.view.book.hist.income_in', {
 					xtype : 'form',
 					title : '查询',
 					id : 'depositbfjhistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -187,10 +187,10 @@ Ext.define('Zixweb.view.book.hist.income_in', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_income_in_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

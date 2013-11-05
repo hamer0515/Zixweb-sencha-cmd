@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 	alias : 'widget.book_hist_bamt_yhys',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -68,6 +66,8 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 					xtype : 'form',
 					title : '查询',
 					id : 'bamtyhyshistform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -204,10 +204,10 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_hist_bamt_yhys_grid',
-					height : 500,
+					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.wlzj_ysbf', {
 	alias : 'widget.book_detail_wlzj_ysbf',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -32,8 +30,7 @@ Ext.define('Zixweb.view.book.detail.wlzj_ysbf', {
 							var form = Ext.getCmp('wlzjysbfdetailform')
 									.getForm();
 							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_wlzj_ysbf_grid');
+							var grid = Ext.getCmp('book_detail_wlzj_ysbf_grid');
 							grid.down('#wlzj_type').hide();
 							grid.down('#period').hide();
 							var columns = grid.columns;
@@ -99,6 +96,8 @@ Ext.define('Zixweb.view.book.detail.wlzj_ysbf', {
 					xtype : 'form',
 					title : '查询',
 					id : 'wlzjysbfdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -156,10 +155,10 @@ Ext.define('Zixweb.view.book.detail.wlzj_ysbf', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_wlzj_ysbf_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

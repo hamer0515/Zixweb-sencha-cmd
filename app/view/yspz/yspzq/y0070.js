@@ -172,7 +172,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0070', {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
 								}
-							},{
+							}, {
 								xtype : 'actioncolumn',
 								text : '操作',
 								width : 100,

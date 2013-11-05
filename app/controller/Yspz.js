@@ -98,7 +98,16 @@ Ext.define('Zixweb.controller.Yspz', {
 					'Zixweb.view.yspz.yspzq.y0102',
 					'Zixweb.view.yspz.yspzq.y0103',
 					'Zixweb.view.yspz.yspzq.y0104',
-					'Zixweb.view.yspz.yspzq.y0113'],
+					'Zixweb.view.yspz.yspzq.y0113',
+					'Zixweb.view.yspz.yspzq.y0105',
+					'Zixweb.view.yspz.yspzq.y0106',
+					'Zixweb.view.yspz.yspzq.y0107',
+					'Zixweb.view.yspz.yspzq.y0108',
+					'Zixweb.view.yspz.yspzq.y0113',
+					'Zixweb.view.yspz.yspzq.y0114',
+					'Zixweb.view.yspz.yspzq.y0115',
+					'Zixweb.view.yspz.yspzq.y0116',
+					'Zixweb.view.yspz.yspzq.y0117'],
 
 			init : function() {
 				this.control({

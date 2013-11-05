@@ -206,27 +206,27 @@ Ext.define('Zixweb.view.yspz.yspzq.y0031', {
 								dataIndex : 'id',
 								sortable : false,
 								flex : 1
-						    }, {
-                                text : "备付金内扣银行账号",
-                                itemId : 'bfj_acct',
-                                dataIndex : 'bfj_acct',
-                                sortable : false,
-                                renderer : function(value, p, record) {
-                                    var bfjacct = Ext.data.StoreManager
-                                            .lookup('Zixweb.store.component.BfjAcct');
-                                    var index = bfjacct.findExact('id', value);
-                                    return bfjacct.getAt(index).data.name;
-                                },
-                                flex : 2
-                            }, {
+							}, {
+								text : "备付金内扣银行账号",
+								itemId : 'bfj_acct',
+								dataIndex : 'bfj_acct',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var bfjacct = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.BfjAcct');
+									var index = bfjacct.findExact('id', value);
+									return bfjacct.getAt(index).data.name;
+								},
+								flex : 2
+							}, {
 								text : " 周期确认备付金内扣银行手续费金额",
 								itemId : 'cc_bfee',
 								dataIndex : 'cc_bfee',
 								sortable : false,
 								flex : 2,
 								renderer : function(value) {
-										return Ext.util.Format.number(
-										parseInt(value) / 100, '0,0.00');
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
 								}
 							}, {
 								text : "期间日期",
@@ -245,7 +245,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0031', {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
 								}
-							},{
+							}, {
 								xtype : 'actioncolumn',
 								text : '操作',
 								width : 100,

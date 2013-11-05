@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.bfj_cust', {
 			alias : 'widget.book_detail_bfj_cust',
 
 			defaults : {
-				bodyPadding : 5,
-				collapsible : true,
 				border : false
 			},
 
@@ -62,10 +60,10 @@ Ext.define('Zixweb.view.book.detail.bfj_cust', {
 										var sec = grid.down('#period');
 										var firindex = grid.headerCt
 												.getHeaderIndex(fir);
-											grid.headerCt.move(firindex, 0);
-										var	secindex = grid.headerCt
+										grid.headerCt.move(firindex, 0);
+										var secindex = grid.headerCt
 												.getHeaderIndex(sec);
-											grid.headerCt.move(secindex, 1);
+										grid.headerCt.move(secindex, 1);
 									}
 									grid.getView().refresh();
 									if (form.isValid()) {
@@ -102,6 +100,8 @@ Ext.define('Zixweb.view.book.detail.bfj_cust', {
 							xtype : 'form',
 							title : '查询',
 							id : 'bfjcustdetailform',
+							bodyPadding : 5,
+							collapsible : true,
 
 							fieldDefaults : {
 								labelWidth : 140
@@ -133,7 +133,6 @@ Ext.define('Zixweb.view.book.detail.bfj_cust', {
 													xtype : 'textfield',
 													name : 'c',
 													width : 516,
-													// margin : '0 10 0 0',
 													fieldLabel : '客户编号'
 												}]
 									}, {
@@ -161,10 +160,10 @@ Ext.define('Zixweb.view.book.detail.bfj_cust', {
 										}
 									}]
 						}, {
-							title : '结果',
+
 							xtype : 'gridpanel',
 							id : 'book_detail_bfj_cust_grid',
-							height : 500,
+							height : 'auto',
 							store : this.store,
 							dockedItems : [{
 										xtype : 'pagingtoolbar',

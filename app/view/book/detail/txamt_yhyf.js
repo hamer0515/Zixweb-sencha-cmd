@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.txamt_yhyf', {
 	alias : 'widget.book_detail_txamt_yhyf',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -80,19 +78,19 @@ Ext.define('Zixweb.view.book.detail.txamt_yhyf', {
 						var thi = grid.down('#zjbd_date');
 						var fou = grid.down('#zjbd_type');
 						var firindex = grid.headerCt.getHeaderIndex(fir);
-						if (firindex != 0 ){
+						if (firindex != 0) {
 							grid.headerCt.move(firindex, 0);
 						}
-						var	secindex = grid.headerCt.getHeaderIndex(sec);
-						if (secindex != 1 ){
+						var secindex = grid.headerCt.getHeaderIndex(sec);
+						if (secindex != 1) {
 							grid.headerCt.move(secindex, 1);
 						}
-						var	thiindex = grid.headerCt.getHeaderIndex(thi);
-						if (secindex != 2 ) {
+						var thiindex = grid.headerCt.getHeaderIndex(thi);
+						if (secindex != 2) {
 							grid.headerCt.move(thiindex, 2);
 						}
-						var	fouindex = grid.headerCt.getHeaderIndex(fou);
-						if (secindex != 3 ) {
+						var fouindex = grid.headerCt.getHeaderIndex(fou);
+						if (secindex != 3) {
 							grid.headerCt.move(fouindex, 3);
 						}
 					}
@@ -130,6 +128,8 @@ Ext.define('Zixweb.view.book.detail.txamt_yhyf', {
 					xtype : 'form',
 					title : '查询',
 					id : 'txamtyhyfdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -220,10 +220,10 @@ Ext.define('Zixweb.view.book.detail.txamt_yhyf', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_txamt_yhyf_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
@@ -257,7 +257,7 @@ Ext.define('Zixweb.view.book.detail.txamt_yhyf', {
 						sortable : false,
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, { 
+					}, {
 						text : "资金变动类型",
 						itemId : 'zjbd_type',
 						dataIndex : 'zjbd_type',
@@ -269,7 +269,7 @@ Ext.define('Zixweb.view.book.detail.txamt_yhyf', {
 							return zjbdtype.getAt(index).data.name;
 						},
 						flex : 1
-					},  {
+					}, {
 						text : "借方金额",
 						dataIndex : 'j',
 						sortable : false,

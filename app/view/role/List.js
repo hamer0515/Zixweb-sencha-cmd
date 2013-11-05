@@ -4,7 +4,7 @@ Ext.define('Zixweb.view.role.List', {
 	disableSelection : true,
 	columnLines : true,
 	loadMask : true,
-	height : 540,
+	height : 'auto',
 
 	initComponent : function() {
 		var store = new Ext.data.Store({

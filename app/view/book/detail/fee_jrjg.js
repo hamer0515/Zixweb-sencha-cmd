@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.book.detail.fee_jrjg', {
 			alias : 'widget.book_detail_fee_jrjg',
 
 			defaults : {
-				bodyPadding : 5,
-				collapsible : true,
 				border : false
 			},
 
@@ -62,10 +60,10 @@ Ext.define('Zixweb.view.book.detail.fee_jrjg', {
 										var sec = grid.down('#period');
 										var firindex = grid.headerCt
 												.getHeaderIndex(fir);
-											grid.headerCt.move(firindex, 0);
-										var	secindex = grid.headerCt
+										grid.headerCt.move(firindex, 0);
+										var secindex = grid.headerCt
 												.getHeaderIndex(sec);
-											grid.headerCt.move(secindex, 1);
+										grid.headerCt.move(secindex, 1);
 									}
 									grid.getView().refresh();
 									if (form.isValid()) {
@@ -102,6 +100,8 @@ Ext.define('Zixweb.view.book.detail.fee_jrjg', {
 							xtype : 'form',
 							title : '查询',
 							id : 'feejrjgdetailform',
+							bodyPadding : 5,
+							collapsible : true,
 
 							fieldDefaults : {
 								labelWidth : 140
@@ -160,10 +160,10 @@ Ext.define('Zixweb.view.book.detail.fee_jrjg', {
 										}
 									}]
 						}, {
-							title : '结果',
+
 							xtype : 'gridpanel',
 							id : 'book_detail_fee_jrjg_grid',
-							height : 500,
+							height : 'auto',
 							store : this.store,
 							dockedItems : [{
 										xtype : 'pagingtoolbar',

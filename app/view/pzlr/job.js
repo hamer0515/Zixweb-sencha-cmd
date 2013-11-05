@@ -3,8 +3,6 @@ Ext.define('Zixweb.view.pzlr.job', {
 	alias : 'widget.pzlrjob',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
@@ -52,7 +50,7 @@ Ext.define('Zixweb.view.pzlr.job', {
 		this.store = store;
 		this.items = [{
 			xtype : 'gridpanel',
-			height : 500,
+			height : 'auto',
 			viewConfig : {
 				getRowClass : function(record) {
 					var color;

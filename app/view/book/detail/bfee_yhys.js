@@ -3,9 +3,6 @@ Ext.define('Zixweb.view.book.detail.bfee_yhys', {
 	alias : 'widget.book_detail_bfee_yhys',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
-
 		border : false
 	},
 
@@ -131,6 +128,8 @@ Ext.define('Zixweb.view.book.detail.bfee_yhys', {
 					xtype : 'form',
 					title : '查询',
 					id : 'bfeeyhysdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -219,10 +218,10 @@ Ext.define('Zixweb.view.book.detail.bfee_yhys', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_bfee_yhys_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

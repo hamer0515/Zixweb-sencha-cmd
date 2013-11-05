@@ -10,7 +10,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period','bfj_acct_in','bfj_acct_out'],
+					fields : ['id', 'flag', 'period', 'bfj_acct_in',
+							'bfj_acct_out'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -135,7 +136,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width :516 
+											width : 516
 										}]
 							}, {
 								xtype : 'button',
@@ -177,7 +178,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 								renderer : function(value, p, record) {
 									var bfjacctin = Ext.data.StoreManager
 											.lookup('Zixweb.store.component.BfjAcct');
-									var index = bfjacctin.findExact('id', value);
+									var index = bfjacctin
+											.findExact('id', value);
 									return bfjacctin.getAt(index).data.name;
 								},
 								flex : 2
@@ -189,7 +191,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 								renderer : function(value, p, record) {
 									var bfjacctout = Ext.data.StoreManager
 											.lookup('Zixweb.store.component.BfjAcct');
-									var index = bfjacctout.findExact('id', value);
+									var index = bfjacctout.findExact('id',
+											value);
 									return bfjacctout.getAt(index).data.name;
 								},
 								flex : 2
@@ -210,7 +213,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
 								}
-							},{
+							}, {
 								xtype : 'actioncolumn',
 								text : '操作',
 								width : 100,

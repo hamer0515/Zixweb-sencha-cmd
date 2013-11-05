@@ -8,19 +8,7 @@ Ext.define('Zixweb.view.Viewport', {
 					'Ext.grid.property.Grid', 'overrides.Date',
 					'overrides.Format', 'overrides.Table',
 					'overrides.TabCloseMenu', 'overrides.VType',
-					'overrides.RowExpander', 'overrides.BasicForm'
-			// ext-theme-neptune
-			// 'overrides.container.ButtonGroup',
-			// 'overrides.form.field.HtmlEditor',
-			// 'overrides.grid.column.RowNumberer',
-			// 'overrides.grid.RowEditor',
-			// 'overrides.layout.component.Dock', 'overrides.menu.Menu',
-			// 'overrides.menu.Separator', 'overrides.panel.Panel',
-			// 'overrides.panel.Table', 'overrides.panel.Tool',
-			// 'overrides.picker.Month', 'overrides.resizer.Splitter',
-			// 'overrides.tab.Tab', 'overrides.Component',
-			// 'overrides.toolbar.Paging', 'overrides.toolbar.Toolbar'
-			],
+					'overrides.RowExpander', 'overrides.BasicForm'],
 
 			layout : {
 				type : 'border'

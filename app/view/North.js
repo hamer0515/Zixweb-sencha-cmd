@@ -85,6 +85,7 @@ Ext.define('Zixweb.view.North', {
 					height : 16,
 					width : 16,
 					src : 'resources/images/door_in.png',
+					apck : 'end',
 					margin : "0 0 0 800"
 				}, {
 					xtype : 'displayfield',

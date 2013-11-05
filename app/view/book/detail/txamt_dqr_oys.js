@@ -3,14 +3,12 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 	alias : 'widget.book_detail_txamt_dqr_oys',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['bi','tx_date', 'period', 'j', 'd'],
+					fields : ['bi', 'tx_date', 'period', 'j', 'd'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -56,15 +54,15 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 									grid.headerCt.move(oldindex, 1);
 								}
 							}
-                            if (values.thir) {
-                                var thir = grid.down('#' + values.thir);
-                                thir.show();
-                                var oldindex = grid.headerCt
-                                        .getHeaderIndex(thir);
-                                if (oldindex != 2) {
-                                    grid.headerCt.move(oldindex, 2);
-                                }
-                            }
+							if (values.thir) {
+								var thir = grid.down('#' + values.thir);
+								thir.show();
+								var oldindex = grid.headerCt
+										.getHeaderIndex(thir);
+								if (oldindex != 2) {
+									grid.headerCt.move(oldindex, 2);
+								}
+							}
 							if (!(values.fir || values.sec || values.thir)) {
 								grid.down('#bi').show();
 								grid.down('#tx_date').show();
@@ -110,9 +108,11 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 					xtype : 'form',
 					title : '查询',
 					id : 'txamtdqroysdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
-						labelWidth : 140 
+						labelWidth : 140
 					},
 					items : [{
 								xtype : 'fieldcontainer',
@@ -128,41 +128,41 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 												id : 'book_detail_txamt_dqr_oys_to_1'
 											},
 											vtype : 'dateinterval',
-											width : 180 
+											width : 180
 										}, {
 											xtype : 'datefield',
 											id : 'book_detail_txamt_dqr_oys_to_1',
 											format : 'Y-m-d',
 											name : 'period_to',
 											allowBlank : false,
-											width : 180 
+											width : 180
 										}]
-                            }, {    
-                                xtype : 'fieldcontainer',
-                                fieldLabel : '交易日期范围',
-                                layout : 'hbox',
-                                items : [{
-                                          xtype : 'datefield',
-                                          format : 'Y-m-d',
-                                          name : 'tx_date_from',
-                                          margin : '0 10 0 0',
-                                          verify : {
-                                                    id : 'book_detail_txamt_dqr_oys_to_2'
-                                                   },
-                                          vtype : 'dateinterval',
-                                          width : 180
-                                      }, {
-                                          xtype : 'datefield',
-                                          id : 'book_detail_txamt_dqr_oys_to_2',
-                                          format : 'Y-m-d',
-                                          name : 'tx_date_to',
-                                          margin : '0 10 0 0',
-                                          width : 180	
-                                      }, {
-                                          xtype : 'bi',
-                                          name : 'bi',
-                                          fieldLabel : '银行接口编号'
-                                        }]
+							}, {
+								xtype : 'fieldcontainer',
+								fieldLabel : '交易日期范围',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'tx_date_from',
+											margin : '0 10 0 0',
+											verify : {
+												id : 'book_detail_txamt_dqr_oys_to_2'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : 'book_detail_txamt_dqr_oys_to_2',
+											format : 'Y-m-d',
+											name : 'tx_date_to',
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'bi',
+											name : 'bi',
+											fieldLabel : '银行接口编号'
+										}]
 							}, {
 								xtype : 'hsx',
 								data : [{
@@ -190,10 +190,10 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_txamt_dqr_oys_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',

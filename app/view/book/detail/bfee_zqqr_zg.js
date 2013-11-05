@@ -3,9 +3,6 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 	alias : 'widget.book_detail_bfee_zqqr_zg',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
-
 		border : false
 	},
 
@@ -105,7 +102,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 								grid.down('#bi').show();
 								grid.down('#tx_date').show();
 								grid.down('#period').show();
-								
+
 								var fir = grid.down('#c');
 								var oldindex = grid.headerCt
 										.getHeaderIndex(fir);
@@ -142,7 +139,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 								if (oldindex != 5) {
 									grid.headerCt.move(oldindex, 5);
 								}
-								
+
 							}
 							grid.getView().refresh();
 							if (form.isValid()) {
@@ -178,6 +175,8 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 					xtype : 'form',
 					title : '查询',
 					id : 'bfeezqqrzgdetailform',
+					bodyPadding : 5,
+					collapsible : true,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -230,7 +229,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 											name : 'tx_date_to',
 											margin : '0 10 0 0',
 											width : 180
-										},{
+										}, {
 											xtype : 'textfield',
 											name : 'c',
 											fieldLabel : '客户id',
@@ -239,7 +238,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
-								items : [ {
+								items : [{
 											xtype : 'textfield',
 											name : 'fp',
 											margin : '0 10 0 0',
@@ -287,10 +286,10 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 								}
 							}]
 				}, {
-					title : '结果',
+
 					xtype : 'gridpanel',
 					id : 'book_detail_bfee_zqqr_zg_grid',
-					height : 500,
+					height : 'auto',
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
