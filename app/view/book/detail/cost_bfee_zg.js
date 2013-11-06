@@ -250,7 +250,6 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 										}, {
 											xtype : 'bi',
 											name : 'bi',
-											marigin : '0 10 0 0',
 											fieldLabel : '银行接口编号'
 										}]
 							}, {
