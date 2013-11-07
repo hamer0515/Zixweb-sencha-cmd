@@ -44,5 +44,7 @@ Ext.define('Zixweb.controller.Books', {
                     'book.hist.yp_acct_fhyd',   'book.detail.yufamt_ch_fhyd',
                     'book.hist.yufamt_ch_fhyd', 'book.detail.nctxamt_dqr_oys_fhyd',
                     'book.hist.nctxamt_dqr_oys_fhyd','book.detail.tctxamt_dqr_oys_fhyd',
-                    'book.hist.tctxamt_dqr_oys_fhyd']
+                    'book.hist.tctxamt_dqr_oys_fhyd','book.detail.cost_fee_fhyd',
+                    'book.hist.cost_fee_fhyd',   'book.detail.cost_ncss_fhyd',
+                    'book.hist.cost_ncss_fhyd']
 		});
