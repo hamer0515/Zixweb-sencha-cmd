@@ -37,5 +37,7 @@ Ext.define('Zixweb.controller.Books', {
 					'book.hist.wlzj_ysbf', 'book.detail.wlzj_yszy',
 					'book.hist.wlzj_yszy', 'book.detail.wlzj_yfbf',
 					'book.hist.wlzj_yfbf', 'book.detail.wlzj_yfzy',
-					'book.hist.wlzj_yfzy']
+					'book.hist.wlzj_yfzy', 'fhydbook.detail.camt_fhyd',
+					'fhydbook.detail.income_main_fhyd','fhydbook.hist.income_main_fhyd',
+					'fhydbook.detail.income_add_fhyd','fhydbook.hist.income_add_fhyd']
 		});
