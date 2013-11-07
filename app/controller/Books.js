@@ -26,8 +26,6 @@ Ext.define('Zixweb.controller.Books', {
 					'book.detail.bfee_zqqr_zg', 'book.hist.bfee_zqqr_zg',
 					'book.detail.bfee_zqqr', 'book.hist.bfee_zqqr',
 					'book.detail.txamt_dqr_oyf', 'book.hist.txamt_dqr_oyf',
-					'book.detail.deposit_bfj', 'book.hist.deposit_bfj',
-					'book.detail.deposit_bfj', 'book.hist.deposit_bfj',
 					'book.detail.cfee_dqhf', 'book.hist.cfee_dqhf',
 					'book.detail.lfee_psp', 'book.hist.lfee_psp',
 					'book.detail.bsc', 'book.hist.bsc', 'book.detail.bsc_zyzj',
@@ -37,5 +35,17 @@ Ext.define('Zixweb.controller.Books', {
 					'book.hist.wlzj_ysbf', 'book.detail.wlzj_yszy',
 					'book.hist.wlzj_yszy', 'book.detail.wlzj_yfbf',
 					'book.hist.wlzj_yfbf', 'book.detail.wlzj_yfzy',
-					'book.hist.wlzj_yfzy']
+					'book.hist.wlzj_yfzy', 'book.detail.deposit_fhyd',
+					'book.hist.deposit_fhyd', 'book.detail.camt_fhyd',
+					'book.hist.camt_fhyd', 'book.detail.ypsc_fhyd',
+					'book.hist.ypsc_fhyd', 'book.detail.camt_dgd_fhyd',
+					'book.hist.camt_dgd_fhyd', 'book.detail.yp_acct_fhyd',
+					'book.hist.yp_acct_fhyd', 'book.detail.yufamt_ch_fhyd',
+					'book.hist.yufamt_ch_fhyd',
+					'book.detail.nctxamt_dqr_oys_fhyd',
+					'book.hist.nctxamt_dqr_oys_fhyd',
+					'book.detail.tctxamt_dqr_oys_fhyd',
+					'book.hist.tctxamt_dqr_oys_fhyd',
+					'book.detail.cost_fee_fhyd', 'book.hist.cost_fee_fhyd',
+					'book.detail.cost_ncss_fhyd', 'book.hist.cost_ncss_fhyd']
 		});
