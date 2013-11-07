@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
+Ext.define('Zixweb.view.fhydbook.hist.yusamt_c_fhyd', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_hist_camt_fhyd',
+	alias : 'widget.book_hist_yusamt_c_fhyd',
 
 	defaults : {
 		border : false
@@ -8,7 +8,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'fyw_type', 'fc', 'ftx_date', 'period', 'j', 'd',
+					fields : ['id', 'fyw_type',  'fhw_type', 'period','fc','j', 'd',
 							'ys_id', 'ys_type'],
 
 					pageSize : 50,
@@ -17,7 +17,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 					proxy : {
 						type : 'ajax',
 						api : {
-							read : 'book/hist/camt_fhyd'
+							read : 'book/hist/yusamt_c_fhyd'
 						},
 						reader : {
 							type : 'json',
@@ -28,10 +28,10 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('camtfhydform')
+							var form = Ext.getCmp('yusamtcfhydform')
 									.getForm();
 							var values = form.getValues();
-							var grid = Ext.getCmp('book_hist_camt_fhyd_grid');
+							var grid = Ext.getCmp('book_hist_yusamt_c_fhyd_grid');
 							if (form.isValid()) {
 								store.proxy.extraParams = values;
 							} else {
@@ -43,7 +43,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 								if (!successful) {
 									Ext.MessageBox.show({
 												title : '警告',
-												msg : '应收账款-客户款科目历史数据加载失败,请联系管理员',
+												msg : '预收账款-客户科目历史数据加载失败,请联系管理员',
 												buttons : Ext.Msg.YES,
 												icon : Ext.Msg.ERROR
 											});
@@ -53,7 +53,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 								if (jsonData && jsonData === 'forbidden') {
 									Ext.MessageBox.show({
 												title : '警告',
-												msg : '抱歉，没有应收账款-客户款科目历史数据访问权限',
+												msg : '抱歉，没有预收账款-客户科目历史数据访问权限',
 												buttons : Ext.Msg.YES,
 												icon : Ext.Msg.ERROR
 											});
@@ -66,7 +66,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
-					id : 'camtfhydform',
+					id : 'yusamtcfhydform',
 					bodyPadding : 5,
 					collapsible : true,
 
@@ -84,18 +84,19 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : 'book_hist_camt_fhyd_to'
+												id : 'book_hist_yusamt_c_fhyd_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_hist_camt_fhyd_to',
+											id : 'book_hist_yusamt_c_fhyd_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											allowBlank : false,
+											margin : '0 10 0 0',
 											width : 180
-										}]
+                                        }]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -129,31 +130,18 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 										}]
 							}, {
 								xtype : 'fieldcontainer',
-                                fieldLabel : '交易日期',
 								layout : 'hbox',
 								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'ftx_date_from',
+											xtype : 'fhwtype',
+											name : 'fhw_type',
 											margin : '0 10 0 0',
-											verify : {
-												id : 'book_hist_ftx_date_to'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_hist_ftx_date_to',
-											format : 'Y-m-d',
-											name : 'ftx_date_to',
-											margin : '0 10 0 0',
-											width : 180
+											fieldLabel : '货物类型'
                                         }, {
-											xtype : 'textfield',
-											name : 'fc',
+										    xtype : 'textfield',
+                                            name  : 'fc',
 											width : 516,
-											fieldLabel : '客户编号'
-										}
+                                            fieldLabel : '客户编号'
+                                        }
 										]
 							}, {
 								xtype : 'fieldcontainer',
@@ -210,7 +198,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 				}, {
 
 					xtype : 'gridpanel',
-					id : 'book_hist_camt_fhyd_grid',
+					id : 'book_hist_yusamt_c_fhyd_grid',
 					height : 'auto',
 
 					store : this.store,
@@ -226,6 +214,24 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 								dataIndex : 'id',
 								sortable : false,
 								width : 80
+							}, {        
+                                text : "客户编号",
+                                itemId : 'fc',
+                                dataIndex : 'fc',
+                                sortable : false,
+                                flex : 1
+                            }, {
+								text : "货物类型",
+								itemId : 'fhwtype',
+								dataIndex : 'fhw_type',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var fhwtype = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.FhwType');
+									var index = fhwtype.findExact('id', value);
+									return fhwtype.getAt(index).data.name;
+								},
+								flex : 1
 							}, {
 								text : "业务类型",
 								itemId : 'fywtype',
@@ -238,20 +244,6 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 									return fywtype.getAt(index).data.name;
 								},
 								flex : 1
-							}, {
-								text : "客户编号",
-								itemId : 'fc',
-								dataIndex : 'fc',
-								sortable : false,
-								flex : 1
-							}, {
-								text : '交易日期',
-								itemId : 'ftxdate',
-								dataIndex : 'ftx_date',
-								sortable : false,
-								flex : 1,
-								renderer : Ext.util.Format
-										.dateRenderer('Y年m月d日')
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',

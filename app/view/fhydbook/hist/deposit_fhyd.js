@@ -1,4 +1,4 @@
-Ext.define('Zixweb.view.book.hist.deposit_fhyd', {
+Ext.define('Zixweb.view.fhydbook.hist.deposit_fhyd', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.book_hist_deposit_fhyd',
 

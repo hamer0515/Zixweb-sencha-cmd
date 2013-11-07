@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
+Ext.define('Zixweb.view.fhydbook.detail.tctxamt_dqr_oys_fhyd', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_detail_camt_fhyd',
+	alias : 'widget.book_detail_tctxamt_dqr_oys_fhyd',
 
 	defaults : {
 		border : false
@@ -8,8 +8,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-//			fields : ['bi', 'c', 'p', 'period', 'j', 'd'],
-			fields : ['fyw_type', 'fc',  'ftx_date', 'period', 'j', 'd'],
+			fields : ['fhw_type', 'fc',  'ftx_date', 'period', 'fch_ssn','f_rate','j', 'd'],
 
 			pageSize : 50,
 			remoteSort : true,
@@ -17,7 +16,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 			proxy : {
 				type : 'ajax',
 				api : {
-					read : 'book/detail/camt_fhyd'
+					read : 'book/detail/tctxamt_dqr_oys_fhyd'
 				},
 				reader : {
 					type : 'json',
@@ -28,13 +27,15 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 			},
 			listeners : {
 				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('camtfhyddetailform').getForm();
+					var form = Ext.getCmp('tctxamtdqroysfhyddetailform').getForm();
 					var values = form.getValues();
-					var grid = Ext.getCmp('book_detail_camt_fhyd_grid');
-					grid.down('#fyw_type').hide();
+					var grid = Ext.getCmp('book_detail_tctxamt_dqr_oys_fhyd_grid');
+					grid.down('#fhw_type').hide();
 					grid.down('#fc').hide();
 					grid.down('#ftx_date').hide();
 					grid.down('#period').hide();
+					grid.down('#fch_ssn').hide();
+					grid.down('#f_rate').hide();
 					var columns = grid.columns;
 					if (values.fir) {
 						var fir = grid.down('#' + values.fir);
@@ -68,16 +69,36 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 							grid.headerCt.move(oldindex, 3);
 						}
 					}
+					if (values.fiv) {
+						var fiv = grid.down('#' + values.fiv);
+						fiv.show();
+						var oldindex = grid.headerCt.getHeaderIndex(fiv);
+						if (oldindex != 4) {
+							grid.headerCt.move(oldindex, 4);
+						}
+					}
+					if (values.six) {
+						var six = grid.down('#' + values.six);
+						six.show();
+						var oldindex = grid.headerCt.getHeaderIndex(six);
+						if (oldindex != 5) {
+							grid.headerCt.move(oldindex, 5);
+						}
+					}
 
-					if (!(values.fir || values.sec || values.thi || values.fou)) {
-						grid.down('#fyw_type').show();
+					if (!(values.fir || values.sec || values.thi || values.fou || values.fiv || values.six)) {
+						grid.down('#fhw_type').show();
 						grid.down('#fc').show();
 						grid.down('#ftx_date').show();
 						grid.down('#period').show();
-						var fir = grid.down('#fyw_type');
+						grid.down('#fch_ssn').show();
+						grid.down('#f_rate').show();
+						var fir = grid.down('#fhw_type');
 						var sec = grid.down('#fc');
 						var thi = grid.down('#ftx_date');
 						var fou = grid.down('#period');
+						var fiv = grid.down('#fch_ssn');
+						var six = grid.down('#f_rate');
 						var firindex = grid.headerCt.getHeaderIndex(fir);
 						if (firindex != 0) {
 							grid.headerCt.move(firindex, 0);
@@ -94,6 +115,14 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 						if (fouindex != 3) {
 							grid.headerCt.move(fouindex, 3);
 						}
+						var fivindex = grid.headerCt.getHeaderIndex(fiv);
+						if (fivindex != 4) {
+							grid.headerCt.move(fivindex, 4);
+						}
+						var sixindex = grid.headerCt.getHeaderIndex(six);
+						if (sixindex != 5) {
+							grid.headerCt.move(sixindex, 5);
+						}
 					}
 					grid.getView().refresh();
 					if (form.isValid()) {
@@ -106,7 +135,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '应收账款-客户款科目详细数据加载失败,请联系管理员',
+									msg : '其他应收款-待确认交易款-电话卡充值业务科目详细数据加载失败,请联系管理员',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -116,7 +145,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '抱歉，没有应收账款-客户款科目详细数据访问权限',
+									msg : '抱歉，没有其他应收款-待确认交易款-电话卡充值业务科目详细数据访问权限',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -128,7 +157,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
-					id : 'camtfhyddetailform',
+					id : 'tctxamtdqroysfhyddetailform',
 					bodyPadding : 5,
 					collapsible : true,
 
@@ -146,23 +175,23 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : 'book_detail_camt_fhyd_to'
+												id : 'book_detail_tctxamt_dqr_oys_fhyd_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_detail_camt_fhyd_to',
+											id : 'book_detail_tctxamt_dqr_oys_fhyd_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
 										}, {
-											xtype : 'fywtype',
-											name : 'fyw_type',
+											xtype : 'fhwtype',
+											name : 'fhw_type',
 											width : 516,
-											fieldLabel : '业务类型'
+											fieldLabel : '货物类型'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -193,11 +222,26 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 											fieldLabel : '客户编号'
 										} 
 									    ]
-							}, {
+							}, { xtype : 'fieldcontainer',
+                                 layout: 'hbox',
+                                 items : [{
+                                           xtype : 'textfield',
+                                           name : 'fch_ssn',
+                                           width : 516,
+                                           margin : '0 10 0 0', 
+                                           fieldLabel: '渠道方销卡编号'
+                                         }, {
+                                           xtype : 'textfield',
+                                           name : 'f_rate',
+                                           width : 516,
+                                           margin : '0 10 0 0', 
+                                           fieldLabel: '结算折扣率'
+                                         }] 
+                            }, {
 								xtype : 'hsx',
 								data : [{
-											'value' : "fyw_type",
-											'name' : "业务类型"
+											'value' : "fhw_type",
+											'name' : "货物类型"
 										}, {
 											'value' : "fc",
 											'name' : "客户编号"
@@ -207,8 +251,14 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 										}, {
 											'value' : "period",
 											'name' : "期间日期"
-										}]
-							}, {
+										},{
+											'value' : "fch_ssn",
+											'name' : "渠道方销卡编号"
+                                        },{
+											'value' : "f_rate",
+											'name' : "结算折扣率"
+                                        } ]
+                            }, {
 								xtype : 'button',
 								text : '查询',
 								margin : '0 20 0 0',
@@ -225,7 +275,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 				}, {
 
 					xtype : 'gridpanel',
-					id : 'book_detail_camt_fhyd_grid',
+					id : 'book_detail_tctxamt_dqr_oys_fhyd_grid',
 					height : 'auto',
 					store : this.store,
 					dockedItems : [{
@@ -235,15 +285,15 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 								displayInfo : true
 							}],
 					columns : [{
-						text : "业务类型",
-						itemId : 'fyw_type',
-						dataIndex : 'fyw_type',
+						text : "货物类型",
+						itemId : 'fhw_type',
+						dataIndex : 'fhw_type',
 						sortable : false,
 						renderer : function(value, p, record) {
-							var fywtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.FywType');
-							var index = fywtype.findExact('id', value);
-							return fywtype.getAt(index).data.name;
+							var fhwtype = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.FhwType');
+							var index = fhwtype.findExact('id', value);
+							return fhwtype.getAt(index).data.name;
 						},
 						flex : 1
 					}, {
@@ -267,6 +317,18 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
+                        text : "渠道方销卡编号",
+                        dataIndex : 'fch_ssn',
+                        itemId    : 'fch_ssn',
+                        sortable  : false,
+                        flex      : 1
+                    }, {
+                        text : "结算折扣率",
+                        dataIndex : 'f_rate',
+                        itemId    : 'f_rate',
+                        sortable  : false,
+                        flex      : 1
+                    }, {
 						text : "借方金额",
 						dataIndex : 'j',
 						sortable : false,

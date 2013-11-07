@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
+Ext.define('Zixweb.view.fhydbook.hist.tctxamt_dqr_oyf_fhyd', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_hist_camt_fhyd',
+	alias : 'widget.book_hist_tctxamt_dqr_oyf_fhyd',
 
 	defaults : {
 		border : false
@@ -8,7 +8,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'fyw_type', 'fc', 'ftx_date', 'period', 'j', 'd',
+					fields : ['id', 'fc', 'ftx_date', 'period','fhw_type','f_ssn','f_rate','j', 'd',
 							'ys_id', 'ys_type'],
 
 					pageSize : 50,
@@ -17,7 +17,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 					proxy : {
 						type : 'ajax',
 						api : {
-							read : 'book/hist/camt_fhyd'
+							read : 'book/hist/tctxamt_dqr_oyf_fhyd'
 						},
 						reader : {
 							type : 'json',
@@ -28,10 +28,10 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('camtfhydform')
+							var form = Ext.getCmp('tctxamtdqroyffhydform')
 									.getForm();
 							var values = form.getValues();
-							var grid = Ext.getCmp('book_hist_camt_fhyd_grid');
+							var grid = Ext.getCmp('book_hist_tctxamt_dqr_oyf_fhyd_grid');
 							if (form.isValid()) {
 								store.proxy.extraParams = values;
 							} else {
@@ -43,7 +43,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 								if (!successful) {
 									Ext.MessageBox.show({
 												title : '警告',
-												msg : '应收账款-客户款科目历史数据加载失败,请联系管理员',
+												msg : '其他应付款-待确认交易款-电话卡充值业务科目历史数据加载失败,请联系管理员',
 												buttons : Ext.Msg.YES,
 												icon : Ext.Msg.ERROR
 											});
@@ -53,7 +53,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 								if (jsonData && jsonData === 'forbidden') {
 									Ext.MessageBox.show({
 												title : '警告',
-												msg : '抱歉，没有应收账款-客户款科目历史数据访问权限',
+												msg : '抱歉，没有其他应付款-待确认交易款-电话卡充值业务科目历史数据访问权限',
 												buttons : Ext.Msg.YES,
 												icon : Ext.Msg.ERROR
 											});
@@ -66,7 +66,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
-					id : 'camtfhydform',
+					id : 'tctxamtdqroyffhydform',
 					bodyPadding : 5,
 					collapsible : true,
 
@@ -84,18 +84,19 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : 'book_hist_camt_fhyd_to'
+												id : 'book_hist_tctxamt_dqr_oyf_fhyd_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_hist_camt_fhyd_to',
+											id : 'book_hist_tctxamt_dqr_oyf_fhyd_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											allowBlank : false,
+											margin : '0 10 0 0',
 											width : 180
-										}]
+                                        }]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -115,13 +116,28 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 										}]
 
 							}, {
+                                xtype : 'fieldcontainer',
+                                layout : 'hbox',
+                                items : [{
+                                            xtype : 'textfield',                                        
+                                            name : 'f_ssn',
+                                            margin : '0 10 0 0',
+                                            width : 516,
+                                            fieldLabel : '唯一销卡编号'
+                                        }, {
+                                            xtype : 'textfield',
+                                            name  : 'f_rate',
+                                            width : 516,
+                                            fieldLabel: '结算折扣率'
+                                        }]
+                            }, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
-											xtype : 'fywtype',
-											name : 'fyw_type',
+											xtype : 'fhwtype',
+											name : 'fhw_type',
 											margin : '0 10 0 0',
-											fieldLabel : '业务类型'
+											fieldLabel : '货物类型'
 										}, {
 											xtype : 'ystype',
 											name : 'ys_type',
@@ -210,7 +226,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 				}, {
 
 					xtype : 'gridpanel',
-					id : 'book_hist_camt_fhyd_grid',
+					id : 'book_hist_tctxamt_dqr_oyf_fhyd_grid',
 					height : 'auto',
 
 					store : this.store,
@@ -227,15 +243,15 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 								sortable : false,
 								width : 80
 							}, {
-								text : "业务类型",
-								itemId : 'fywtype',
-								dataIndex : 'fyw_type',
+								text : "货物类型",
+								itemId : 'fhwtype',
+								dataIndex : 'fhw_type',
 								sortable : false,
 								renderer : function(value, p, record) {
-									var fywtype = Ext.data.StoreManager
-											.lookup('Zixweb.store.component.FywType');
-									var index = fywtype.findExact('id', value);
-									return fywtype.getAt(index).data.name;
+									var fhwtype = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.FhwType');
+									var index = fhwtype.findExact('id', value);
+									return fhwtype.getAt(index).data.name;
 								},
 								flex : 1
 							}, {
@@ -261,6 +277,18 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_fhyd', {
 								renderer : Ext.util.Format
 										.dateRenderer('Y年m月d日')
 							}, {
+								text : "唯一销卡编号",
+								itemId : 'f_ssn',
+								dataIndex : 'f_ssn',
+								sortable : false,
+								flex : 1
+                            }, {
+								text : "结算折扣率",
+								itemId : 'f_rate',
+								dataIndex : 'f_rate',
+								sortable : false,
+								flex : 1
+                            }, {
 								text : "借方金额",
 								dataIndex : 'j',
 								sortable : false,
