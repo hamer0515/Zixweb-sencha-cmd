@@ -37,5 +37,16 @@ Ext.define('Zixweb.controller.Books', {
 					'book.hist.wlzj_ysbf', 'book.detail.wlzj_yszy',
 					'book.hist.wlzj_yszy', 'book.detail.wlzj_yfbf',
 					'book.hist.wlzj_yfbf', 'book.detail.wlzj_yfzy',
-					'book.hist.wlzj_yfzy']
+					'book.hist.wlzj_yfzy', 
+                    'book.detail.ckrsp_fhyd', 'book.hist.ckrsp_fhyd',
+                    'book.detail.yplc_fhyd', 'book.hist.yplc_fhyd',
+                    'book.detail.yfamt_m_fhyd', 'book.hist.yfamt_m_fhyd',
+                    'book.detail.chamt_dgd_fhyd', 'book.hist.chamt_dgd_fhyd',
+                    'book.detail.yfamt_ch_fhyd', 'book.hist.yfamt_ch_fhyd',
+                    'book.detail.yfamt_dcch_fhyd', 'book.hist.yfamt_dcch_fhyd',
+                    'book.detail.yusamt_c_fhyd', 'book.hist.yusamt_c_fhyd',
+                    'book.detail.nctxamt_dqr_oyf_fhyd', 'book.hist.nctxamt_dqr_oyf_fhyd',
+                    'book.detail.tctxamt_dqr_oyf_fhyd', 'book.hist.tctxamt_dqr_oyf_fhyd',
+                    'book.detail.cost_tcss_fhyd', 'book.hist.cost_tcss_fhyd',
+                    'book.detail.cost_dcch_fhyd', 'book.hist.cost_dcch_fhyd']
 		});
