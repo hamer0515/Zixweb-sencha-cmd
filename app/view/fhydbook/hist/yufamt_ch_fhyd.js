@@ -8,7 +8,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yufamt_ch_fhyd', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'fyw_type', 'fc', 'fio_date', 'period', 'j', 'd',
+					fields : ['id', 'fyw_type', 'fc', 'period', 'j', 'd',
 							'ys_id', 'ys_type'],
 
 					pageSize : 50,
@@ -94,8 +94,14 @@ Ext.define('Zixweb.view.fhydbook.hist.yufamt_ch_fhyd', {
 											format : 'Y-m-d',
 											name : 'period_to',
 											allowBlank : false,
+											margin : '0 10 0 0',
 											width : 180
-										}]
+										}, {
+											xtype : 'textfield',
+											name : 'fc',
+											width : 516,
+											fieldLabel : '客户编号'
+										} ]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -127,34 +133,6 @@ Ext.define('Zixweb.view.fhydbook.hist.yufamt_ch_fhyd', {
 											name : 'ys_type',
 											fieldLabel : '原始凭证类型'
 										}]
-							}, {
-								xtype : 'fieldcontainer',
-                                fieldLabel : '易宝出入账日期',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'fio_date_from',
-											margin : '0 10 0 0',
-											verify : {
-												id : 'book_hist_fio_date_to'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_hist_fio_date_to',
-											format : 'Y-m-d',
-											name : 'fio_date_to',
-											margin : '0 10 0 0',
-											width : 180
-                                        }, {
-											xtype : 'textfield',
-											name : 'fc',
-											width : 516,
-											fieldLabel : '客户编号'
-										}
-										]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -244,14 +222,6 @@ Ext.define('Zixweb.view.fhydbook.hist.yufamt_ch_fhyd', {
 								dataIndex : 'fc',
 								sortable : false,
 								flex : 1
-							}, {
-								text : '易宝出入账日期',
-								itemId : 'ftxdate',
-								dataIndex : 'fio_date',
-								sortable : false,
-								flex : 1,
-								renderer : Ext.util.Format
-										.dateRenderer('Y年m月d日')
 							}, {
 								text : "期间日期",
 								dataIndex : 'period',

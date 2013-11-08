@@ -110,6 +110,8 @@ Ext.define('Zixweb.controller.Yspz', {
 					'Zixweb.view.yspz.yspzq.y0117',
 
 
+					'Zixweb.view.yspz.yspzq.y0122',
+					'Zixweb.view.yspz.yspzq.y0123',
 					'Zixweb.view.yspz.yspzq.yF0001',
 					'Zixweb.view.yspz.yspzq.yF0002',
 					'Zixweb.view.yspz.yspzq.yF0003',
