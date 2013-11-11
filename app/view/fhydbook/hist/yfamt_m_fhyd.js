@@ -141,7 +141,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_m_fhyd', {
 											margin : '0 10 0 0',
 											width : 180
                                         }, {
-                                            xtype : 'ystype',
+                                            xtype : 'ystypef',
                                             name : 'ys_type',
                                             fieldLabel : '原始凭证类型'
                                         }

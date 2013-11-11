@@ -8,132 +8,121 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['fc', 'fyw_type', 'ftx_date', 'period',  'j', 'd'],
+			fields : ['fc', 'fyw_type', 'ftx_date', 'period', 'j', 'd'],
 
-					pageSize : 50,
-					remoteSort : true,
+			pageSize : 50,
+			remoteSort : true,
 
-					proxy : {
-						type : 'ajax',
-						api : {
-							read : 'book/detail/yfamt_ch_fhyd'
-						},
-						reader : {
-							type : 'json',
-							root : 'data',
-							totalProperty : 'totalCount',
-							successProperty : 'success'
-						}
-					},
-					listeners : {
-						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('yfamtchfhyddetailform')
-									.getForm();
-							var values = form.getValues();
-							var grid = Ext
-									.getCmp('book_detail_yfamt_ch_fhyd_grid');
-							grid.down('#fc').hide();
-							grid.down('#fyw_type').hide();
-							grid.down('#ftx_date').hide();
-							grid.down('#period').hide();
-							var columns = grid.columns;
-							if (values.fir) {
-								var fir = grid.down('#' + values.fir);
-								fir.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							if (values.sec) {
-								var sec = grid.down('#' + values.sec);
-								sec.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(sec);
-								if (oldindex != 1) {
-									grid.headerCt.move(oldindex, 1);
-								}
-							}
-							if (values.thi) {
-								var thi = grid.down('#' + values.thi);
-								thi.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(thi);
-								if (oldindex != 2) {
-									grid.headerCt.move(oldindex, 2);
-								}
-							}
-							if (values.fou) {
-								var fou = grid.down('#' + values.fou);
-								fou.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fou);
-								if (oldindex != 3) {
-									grid.headerCt.move(oldindex, 3);
-								}
-							}
-							if (!(values.fir || values.sec || values.thi
-									|| values.fou )) {
-								grid.down('#fc').show();
-								grid.down('#fyw_type').show();
-								grid.down('#ftx_date').show();
-								grid.down('#period').show();
-								var fir = grid.down('#fc');
-								var sec = grid.down('#fyw_type');
-								var thi = grid.down('#ftx_date');
-								var fou = grid.down('#period');
-								var firindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (firindex != 0) {
-									grid.headerCt.move(firindex, 0);
-								}
-								var secindex = grid.headerCt
-										.getHeaderIndex(sec);
-								if (secindex != 1) {
-									grid.headerCt.move(secindex, 1);
-								}
-								var thiindex = grid.headerCt
-										.getHeaderIndex(thi);
-								if (thiindex != 2) {
-									grid.headerCt.move(thiindex, 2);
-								}
-								var fouindex = grid.headerCt
-										.getHeaderIndex(fou);
-								if (fouindex != 3) {
-									grid.headerCt.move(fouindex, 3);
-								}
-
-							}
-							grid.getView().refresh();
-							if (form.isValid()) {
-								store.proxy.extraParams = values;
-							} else {
-								return false;
-							}
-						},
-						load : function(thiz, records, successful, eOpts) {
-							if (!successful) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '应付账款-渠道款科目详细数据加载失败,请联系管理员',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-								return;
-							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
-							if (jsonData && jsonData === 'forbidden') {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '抱歉，没有应付账款-渠道款科目详细数据访问权限',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-							}
+			proxy : {
+				type : 'ajax',
+				api : {
+					read : 'book/detail/yfamt_ch_fhyd'
+				},
+				reader : {
+					type : 'json',
+					root : 'data',
+					totalProperty : 'totalCount',
+					successProperty : 'success'
+				}
+			},
+			listeners : {
+				beforeload : function(store, operation, eOpts) {
+					var form = Ext.getCmp('yfamtchfhyddetailform').getForm();
+					var values = form.getValues();
+					var grid = Ext.getCmp('book_detail_yfamt_ch_fhyd_grid');
+					grid.down('#fc').hide();
+					grid.down('#fyw_type').hide();
+					grid.down('#ftx_date').hide();
+					grid.down('#period').hide();
+					var columns = grid.columns;
+					if (values.fir) {
+						var fir = grid.down('#' + values.fir);
+						fir.show();
+						var oldindex = grid.headerCt.getHeaderIndex(fir);
+						if (oldindex != 0) {
+							grid.headerCt.move(oldindex, 0);
 						}
 					}
-				});
+					if (values.sec) {
+						var sec = grid.down('#' + values.sec);
+						sec.show();
+						var oldindex = grid.headerCt.getHeaderIndex(sec);
+						if (oldindex != 1) {
+							grid.headerCt.move(oldindex, 1);
+						}
+					}
+					if (values.thi) {
+						var thi = grid.down('#' + values.thi);
+						thi.show();
+						var oldindex = grid.headerCt.getHeaderIndex(thi);
+						if (oldindex != 2) {
+							grid.headerCt.move(oldindex, 2);
+						}
+					}
+					if (values.fou) {
+						var fou = grid.down('#' + values.fou);
+						fou.show();
+						var oldindex = grid.headerCt.getHeaderIndex(fou);
+						if (oldindex != 3) {
+							grid.headerCt.move(oldindex, 3);
+						}
+					}
+					if (!(values.fir || values.sec || values.thi || values.fou)) {
+						grid.down('#fc').show();
+						grid.down('#fyw_type').show();
+						grid.down('#ftx_date').show();
+						grid.down('#period').show();
+						var fir = grid.down('#fc');
+						var sec = grid.down('#fyw_type');
+						var thi = grid.down('#ftx_date');
+						var fou = grid.down('#period');
+						var firindex = grid.headerCt.getHeaderIndex(fir);
+						if (firindex != 0) {
+							grid.headerCt.move(firindex, 0);
+						}
+						var secindex = grid.headerCt.getHeaderIndex(sec);
+						if (secindex != 1) {
+							grid.headerCt.move(secindex, 1);
+						}
+						var thiindex = grid.headerCt.getHeaderIndex(thi);
+						if (thiindex != 2) {
+							grid.headerCt.move(thiindex, 2);
+						}
+						var fouindex = grid.headerCt.getHeaderIndex(fou);
+						if (fouindex != 3) {
+							grid.headerCt.move(fouindex, 3);
+						}
+
+					}
+					grid.getView().refresh();
+					if (form.isValid()) {
+						store.proxy.extraParams = values;
+					} else {
+						return false;
+					}
+				},
+				load : function(thiz, records, successful, eOpts) {
+					if (!successful) {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '应付账款-渠道款科目详细数据加载失败,请联系管理员',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+						return;
+					}
+					var jsonData = thiz.proxy.reader.jsonData.success;
+					if (jsonData && jsonData === 'forbidden') {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '抱歉，没有应付账款-渠道款科目详细数据访问权限',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+					}
+				}
+			}
+		});
 		this.store = store;
 		this.items = [{
 					xtype : 'form',
@@ -168,11 +157,11 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
-                                        }, {
-                                            fieldLabel : '客户编号',
-                                            xtype : 'textfield',
-                                            name : 'fc',
-                                            width : 516,
+										}, {
+											fieldLabel : '客户编号',
+											xtype : 'textfield',
+											name : 'fc',
+											width : 516
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -206,12 +195,12 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 								data : [{
 											'value' : "fc",
 											'name' : "客户编号"
-                                        }, {
+										}, {
 											'value' : "fyw_type",
 											'name' : "业务类型"
-									    }, {
+										}, {
 											'value' : "ftx_date",
-											'name' : "交易日期"		
+											'name' : "交易日期"
 										}, {
 											'value' : "period",
 											'name' : "期间日期"
@@ -250,7 +239,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 								flex : 1
 							}, {
 								text : "业务类型",
-							  itemId : 'fyw_type',
+								itemId : 'fyw_type',
 								dataIndex : 'fyw_type',
 								sortable : false,
 								renderer : function(value, p, record) {
@@ -258,7 +247,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 											.lookup('Zixweb.store.component.FywType');
 									var index = fywtype.findExact('id', value);
 									return fywtype.getAt(index).data.name;
-									},
+								},
 								flex : 1
 							}, {
 								text : "期间日期",

@@ -125,7 +125,7 @@ Ext.define('Zixweb.view.fhydbook.hist.cost_tcss_fhyd', {
 											width : 516,
 											fieldLabel : '渠道方销卡编号'
 										}, {
-											xtype : 'ystype',
+											xtype : 'ystypef',
 											name : 'ys_type',
 											fieldLabel : '原始凭证类型'
 										}]

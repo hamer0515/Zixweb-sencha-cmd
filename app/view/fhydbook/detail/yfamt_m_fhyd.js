@@ -8,7 +8,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_m_fhyd', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['fm', 'fcg_date', 'period',  'j', 'd'],
+					fields : ['fm', 'fcg_date', 'period', 'j', 'd'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -63,8 +63,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_m_fhyd', {
 									grid.headerCt.move(oldindex, 2);
 								}
 							}
-							if (!(values.fir || values.sec || values.thi
-									)) {
+							if (!(values.fir || values.sec || values.thi)) {
 								grid.down('#fm').show();
 								grid.down('#fcg_date').show();
 								grid.down('#period').show();
@@ -174,19 +173,19 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_m_fhyd', {
 											id : 'book_detail_yfamt_m_fhyd_to_2',
 											width : 180
 										}, {
-									        fieldLabel : '商户编号',
-                                            xtype : 'textfield',
-                                            name : 'fm',
-                                            width : 516,
-                                        }]
+											fieldLabel : '商户编号',
+											xtype : 'textfield',
+											name : 'fm',
+											width : 516
+										}]
 							}, {
 								xtype : 'hsx',
 								data : [{
 											'value' : "fm",
 											'name' : "商户编号"
-                                        }, {
+										}, {
 											'value' : "fcg_date",
-											'name' : "商品采购日期"		
+											'name' : "商品采购日期"
 										}, {
 											'value' : "period",
 											'name' : "期间日期"

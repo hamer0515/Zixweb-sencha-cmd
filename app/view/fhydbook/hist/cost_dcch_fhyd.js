@@ -125,7 +125,7 @@ Ext.define('Zixweb.view.fhydbook.hist.cost_dcch_fhyd', {
 											margin : '0 10 0 0',
 											fieldLabel : '代充通道编号'
 										}, {
-											xtype : 'ystype',
+											xtype : 'ystypef',
 											name : 'ys_type',
 											fieldLabel : '原始凭证类型'
 										}]

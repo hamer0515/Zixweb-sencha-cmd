@@ -124,7 +124,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yplc_fhyd', {
 											margin : '0 10 0 0',
 											fieldLabel : '业务类型'
 										}, {
-											xtype : 'ystype',
+											xtype : 'ystypef',
 											name : 'ys_type',
 											fieldLabel : '原始凭证类型'
 										}]

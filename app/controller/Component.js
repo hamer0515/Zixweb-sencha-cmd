@@ -19,6 +19,7 @@ Ext.define('Zixweb.controller.Component', {
 			'Zixweb.view.component.YsType', 'Zixweb.view.component.ZQQRStatus',
 			'Zixweb.view.component.HSX', 'Zixweb.view.component.WlzjType',
 			'Zixweb.view.component.FhwType', 'Zixweb.view.component.FypAcct',
-			'Zixweb.view.component.FhydAcct', 'Zixweb.view.component.FywType']
+			'Zixweb.view.component.FhydAcct', 'Zixweb.view.component.FywType',
+			'Zixweb.view.component.YsTypeF']
 
 });

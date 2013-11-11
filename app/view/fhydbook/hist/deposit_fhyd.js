@@ -119,7 +119,7 @@ Ext.define('Zixweb.view.fhydbook.hist.deposit_fhyd', {
 											margin : '0 10 0 0',
 											fieldLabel : '富汇易达帐号'
 										}, {
-											xtype : 'ystype',
+											xtype : 'ystypef',
 											name : 'ys_type',
 											fieldLabel : '原始凭证类型'
 										}]

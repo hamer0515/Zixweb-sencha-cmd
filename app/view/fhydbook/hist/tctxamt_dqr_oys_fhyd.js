@@ -123,7 +123,7 @@ Ext.define('Zixweb.view.fhydbook.hist.tctxamt_dqr_oys_fhyd', {
 											margin : '0 10 0 0',
 											fieldLabel : '货物类型'
 										}, {
-											xtype : 'ystype',
+											xtype : 'ystypef',
 											name : 'ys_type',
 											fieldLabel : '原始凭证类型'
 										}]
