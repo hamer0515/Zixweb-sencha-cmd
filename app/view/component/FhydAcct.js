@@ -1,10 +1,23 @@
-Ext.define('Zixweb.view.component.YsType', {
+Ext.define('Zixweb.view.component.FhydAcct', {
 			extend : 'Ext.form.ComboBox',
-			alias : 'widget.ystype',
+			alias : 'widget.fhydacct',
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
-
+			listeners : {
+				blur : function(self, The, eOpts) {
+					var value = self.getValue();
+					var result = self.getStore().queryBy(function(record) {
+								if (record.data.id == value) {
+									return true;
+								}
+								return false;
+							});
+					if (result.length == 0) {
+						self.setValue('');
+					}
+				}
+			},
 			initComponent : function() {
 				this.store = new Ext.data.Store({
 							fields : ['id', 'name'],
@@ -12,19 +25,15 @@ Ext.define('Zixweb.view.component.YsType', {
 
 							proxy : {
 								type : 'ajax',
-								url : 'base/ystype',
-								extraParams : {
-									entity : 1
-								}
+								url : 'base/fhydacct'
 							},
-
 							listeners : {
 								load : function(thiz, records, successful,
 										eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '凭证状态字典数据加载失败,请联系管理员',
+													msg : '富汇易达帐号字典数据加载失败,请联系管理员',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
@@ -34,7 +43,7 @@ Ext.define('Zixweb.view.component.YsType', {
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '抱歉，没有凭证状态字典数据访问权限',
+													msg : '抱歉，富汇易达帐号字典数据访问权限',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});

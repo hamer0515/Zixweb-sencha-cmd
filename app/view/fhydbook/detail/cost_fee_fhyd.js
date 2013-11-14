@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.book.detail.cost_bfee', {
+Ext.define('Zixweb.view.fhydbook.detail.cost_fee_fhyd', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_detail_cost_bfee',
+	alias : 'widget.book_detail_cost_fee_fhyd',
 
 	defaults : {
 		border : false
@@ -8,7 +8,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-			fields : ['bi', 'c', 'p', 'period', 'j', 'd'],
+			fields : ['fyw_type', 'period','fhw_type','j', 'd'],
 
 			pageSize : 50,
 			remoteSort : true,
@@ -16,7 +16,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 			proxy : {
 				type : 'ajax',
 				api : {
-					read : 'book/detail/cost_bfee'
+					read : 'book/detail/cost_fee_fhyd'
 				},
 				reader : {
 					type : 'json',
@@ -27,13 +27,12 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 			},
 			listeners : {
 				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('costbfeedetailform').getForm();
+					var form = Ext.getCmp('costfeefhyddetailform').getForm();
 					var values = form.getValues();
-					var grid = Ext.getCmp('book_detail_cost_bfee_grid');
-					grid.down('#bi').hide();
-					grid.down('#c').hide();
-					grid.down('#p').hide();
+					var grid = Ext.getCmp('book_detail_cost_fee_fhyd_grid');
+					grid.down('#fyw_type').hide();
 					grid.down('#period').hide();
+                    grid.down('#fhw_type').hide();
 					var columns = grid.columns;
 					if (values.fir) {
 						var fir = grid.down('#' + values.fir);
@@ -59,24 +58,14 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 							grid.headerCt.move(oldindex, 2);
 						}
 					}
-					if (values.fou) {
-						var fou = grid.down('#' + values.fou);
-						fou.show();
-						var oldindex = grid.headerCt.getHeaderIndex(fou);
-						if (oldindex != 3) {
-							grid.headerCt.move(oldindex, 3);
-						}
-					}
 
-					if (!(values.fir || values.sec || values.thi || values.fou)) {
-						grid.down('#bi').show();
-						grid.down('#c').show();
-						grid.down('#p').show();
+					if (!(values.fir || values.sec || values.thi )) {
+						grid.down('#fyw_type').show();
 						grid.down('#period').show();
-						var fir = grid.down('#bi');
-						var sec = grid.down('#c');
-						var thi = grid.down('#p');
-						var fou = grid.down('#period');
+						grid.down('#fhw_type').show();
+						var fir = grid.down('#fyw_type');
+						var sec = grid.down('#period');
+                        var thi = grid.down('#fhw_type');
 						var firindex = grid.headerCt.getHeaderIndex(fir);
 						if (firindex != 0) {
 							grid.headerCt.move(firindex, 0);
@@ -88,10 +77,6 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 						var thiindex = grid.headerCt.getHeaderIndex(thi);
 						if (thiindex != 2) {
 							grid.headerCt.move(thiindex, 2);
-						}
-						var fouindex = grid.headerCt.getHeaderIndex(fou);
-						if (fouindex != 3) {
-							grid.headerCt.move(fouindex, 3);
 						}
 					}
 					grid.getView().refresh();
@@ -105,7 +90,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '银行手续费支出科目详细数据加载失败,请联系管理员',
+									msg : '成本-手续费支出科目详细数据加载失败,请联系管理员',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -115,7 +100,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '抱歉，没有银行手续费支出科目详细数据访问权限',
+									msg : '抱歉，没有成本-手续费支出科目详细数据访问权限',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -127,7 +112,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
-					id : 'costbfeedetailform',
+					id : 'costfeefhyddetailform',
 					bodyPadding : 5,
 					collapsible : true,
 
@@ -145,54 +130,44 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : 'book_detail_cost_bfee_to'
+												id : 'book_detail_cost_fee_fhyd_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_detail_cost_bfee_to',
+											id : 'book_detail_cost_fee_fhyd_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
-										}, {
-											xtype : 'product',
-											name : 'p',
-											// margin : '0 10 0 0',
-											fieldLabel : '产品类型'
-										}]
+										} ]
 							}, {
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											xtype : 'textfield',
-											name : 'c',
+                                xtype : 'fieldcontainer',
+                                layout : 'hbox',
+                                items: [{   xtype : 'fywtype',
+											name : 'fyw_type',
 											width : 516,
 											margin : '0 10 0 0',
-											fieldLabel : '客户编号'
-										}, {
-											xtype : 'bi',
-											name : 'bi',
+											fieldLabel : '业务类型'
+                                       },{  xtype : 'fhwtype',
+											name : 'fhw_type',
 											width : 516,
-											fieldLabel : '银行接口编号'
-										}]
+											fieldLabel : ' 货物类型'
+                                       }]
 							}, {
 								xtype : 'hsx',
 								data : [{
-											'value' : "bi",
-											'name' : "银行接口编号"
-										}, {
-											'value' : "c",
-											'name' : "客户编号"
-										}, {
-											'value' : "p",
-											'name' : "产品类型"
+											'value' : "fyw_type",
+											'name' : "业务类型"
 										}, {
 											'value' : "period",
 											'name' : "期间日期"
-										}]
+										}, { 
+											'value' : "fhw_type",
+											'name' : " 货物类型"
+                                        } ]
 							}, {
 								xtype : 'button',
 								text : '查询',
@@ -210,7 +185,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 				}, {
 
 					xtype : 'gridpanel',
-					id : 'book_detail_cost_bfee_grid',
+					id : 'book_detail_cost_fee_fhyd_grid',
 					height : 'auto',
 					store : this.store,
 					dockedItems : [{
@@ -220,33 +195,15 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 								displayInfo : true
 							}],
 					columns : [{
-						text : "银行接口编号",
-						itemId : 'bi',
-						dataIndex : 'bi',
+						text : "业务类型",
+						itemId : 'fyw_type',
+						dataIndex : 'fyw_type',
 						sortable : false,
 						renderer : function(value, p, record) {
-							var bi = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Bi');
-							var index = bi.findExact('id', value);
-							return bi.getAt(index).data.name;
-						},
-						flex : 1
-					}, {
-						text : "客户编号",
-						dataIndex : 'c',
-						itemId : 'c',
-						sortable : false,
-						flex : 1
-					}, {
-						text : "产品类型",
-						itemId : 'p',
-						dataIndex : 'p',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var product = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Product');
-							var index = product.findExact('id', value);
-							return product.getAt(index).data.name;
+							var fywtype = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.FywType');
+							var index = fywtype.findExact('id', value);
+							return fywtype.getAt(index).data.name;
 						},
 						flex : 1
 					}, {
@@ -256,7 +213,19 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 						sortable : false,
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
+					}, { 
+						text : "货物类型",
+						itemId : 'fhw_type',
+						dataIndex : 'fhw_type',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var fhwtype = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.FhwType');
+							var index = fhwtype.findExact('id', value);
+							return fhwtype.getAt(index).data.name;
+						},
+						flex : 1
+                    }, {
 						text : "借方金额",
 						dataIndex : 'j',
 						sortable : false,

@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.component.YsType', {
+Ext.define('Zixweb.view.component.YsTypeF', {
 			extend : 'Ext.form.ComboBox',
-			alias : 'widget.ystype',
+			alias : 'widget.ystypef',
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
@@ -14,7 +14,7 @@ Ext.define('Zixweb.view.component.YsType', {
 								type : 'ajax',
 								url : 'base/ystype',
 								extraParams : {
-									entity : 1
+									entity : 2
 								}
 							},
 

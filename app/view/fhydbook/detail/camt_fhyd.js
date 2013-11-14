@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.book.detail.cost_bfee', {
+Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_detail_cost_bfee',
+	alias : 'widget.book_detail_camt_fhyd',
 
 	defaults : {
 		border : false
@@ -8,7 +8,8 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-			fields : ['bi', 'c', 'p', 'period', 'j', 'd'],
+//			fields : ['bi', 'c', 'p', 'period', 'j', 'd'],
+			fields : ['fyw_type', 'fc',  'ftx_date', 'period', 'j', 'd'],
 
 			pageSize : 50,
 			remoteSort : true,
@@ -16,7 +17,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 			proxy : {
 				type : 'ajax',
 				api : {
-					read : 'book/detail/cost_bfee'
+					read : 'book/detail/camt_fhyd'
 				},
 				reader : {
 					type : 'json',
@@ -27,12 +28,12 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 			},
 			listeners : {
 				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('costbfeedetailform').getForm();
+					var form = Ext.getCmp('camtfhyddetailform').getForm();
 					var values = form.getValues();
-					var grid = Ext.getCmp('book_detail_cost_bfee_grid');
-					grid.down('#bi').hide();
-					grid.down('#c').hide();
-					grid.down('#p').hide();
+					var grid = Ext.getCmp('book_detail_camt_fhyd_grid');
+					grid.down('#fyw_type').hide();
+					grid.down('#fc').hide();
+					grid.down('#ftx_date').hide();
 					grid.down('#period').hide();
 					var columns = grid.columns;
 					if (values.fir) {
@@ -69,13 +70,13 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 					}
 
 					if (!(values.fir || values.sec || values.thi || values.fou)) {
-						grid.down('#bi').show();
-						grid.down('#c').show();
-						grid.down('#p').show();
+						grid.down('#fyw_type').show();
+						grid.down('#fc').show();
+						grid.down('#ftx_date').show();
 						grid.down('#period').show();
-						var fir = grid.down('#bi');
-						var sec = grid.down('#c');
-						var thi = grid.down('#p');
+						var fir = grid.down('#fyw_type');
+						var sec = grid.down('#fc');
+						var thi = grid.down('#ftx_date');
 						var fou = grid.down('#period');
 						var firindex = grid.headerCt.getHeaderIndex(fir);
 						if (firindex != 0) {
@@ -105,7 +106,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '银行手续费支出科目详细数据加载失败,请联系管理员',
+									msg : '应收账款-客户款科目详细数据加载失败,请联系管理员',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -115,7 +116,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '抱歉，没有银行手续费支出科目详细数据访问权限',
+									msg : '抱歉，没有应收账款-客户款科目详细数据访问权限',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -127,7 +128,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
-					id : 'costbfeedetailform',
+					id : 'camtfhyddetailform',
 					bodyPadding : 5,
 					collapsible : true,
 
@@ -145,50 +146,64 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : 'book_detail_cost_bfee_to'
+												id : 'book_detail_camt_fhyd_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_detail_cost_bfee_to',
+											id : 'book_detail_camt_fhyd_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
 										}, {
-											xtype : 'product',
-											name : 'p',
-											// margin : '0 10 0 0',
-											fieldLabel : '产品类型'
+											xtype : 'fywtype',
+											name : 'fyw_type',
+											width : 516,
+											fieldLabel : '业务类型'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
+                                fieldLabel : '交易日期',
 								layout : 'hbox',
 								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'ftx_date_from',
+											margin : '0 10 0 0',
+											verify : {
+												id : 'book_detail_ftx_date_to'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : 'book_detail_ftx_date_to',
+											format : 'Y-m-d',
+											name : 'ftx_date_to',
+											margin : '0 10 0 0',
+											width : 180
+                                        }, {
 											xtype : 'textfield',
-											name : 'c',
+											name : 'fc',
 											width : 516,
 											margin : '0 10 0 0',
 											fieldLabel : '客户编号'
-										}, {
-											xtype : 'bi',
-											name : 'bi',
-											width : 516,
-											fieldLabel : '银行接口编号'
-										}]
+										} 
+									    ]
 							}, {
 								xtype : 'hsx',
 								data : [{
-											'value' : "bi",
-											'name' : "银行接口编号"
+											'value' : "fyw_type",
+											'name' : "业务类型"
 										}, {
-											'value' : "c",
+											'value' : "fc",
 											'name' : "客户编号"
 										}, {
-											'value' : "p",
-											'name' : "产品类型"
+											'value' : "ftx_date",
+											'name' : "交易日期"
 										}, {
 											'value' : "period",
 											'name' : "期间日期"
@@ -210,7 +225,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 				}, {
 
 					xtype : 'gridpanel',
-					id : 'book_detail_cost_bfee_grid',
+					id : 'book_detail_camt_fhyd_grid',
 					height : 'auto',
 					store : this.store,
 					dockedItems : [{
@@ -220,35 +235,30 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 								displayInfo : true
 							}],
 					columns : [{
-						text : "银行接口编号",
-						itemId : 'bi',
-						dataIndex : 'bi',
+						text : "业务类型",
+						itemId : 'fyw_type',
+						dataIndex : 'fyw_type',
 						sortable : false,
 						renderer : function(value, p, record) {
-							var bi = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Bi');
-							var index = bi.findExact('id', value);
-							return bi.getAt(index).data.name;
+							var fywtype = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.FywType');
+							var index = fywtype.findExact('id', value);
+							return fywtype.getAt(index).data.name;
 						},
 						flex : 1
 					}, {
 						text : "客户编号",
-						dataIndex : 'c',
-						itemId : 'c',
+						dataIndex : 'fc',
+						itemId : 'fc',
 						sortable : false,
 						flex : 1
 					}, {
-						text : "产品类型",
-						itemId : 'p',
-						dataIndex : 'p',
+						text : "交易日期",
+						itemId : 'ftx_date',
+						dataIndex : 'ftx_date',
 						sortable : false,
-						renderer : function(value, p, record) {
-							var product = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Product');
-							var index = product.findExact('id', value);
-							return product.getAt(index).data.name;
-						},
-						flex : 1
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "期间日期",
 						dataIndex : 'period',
