@@ -8,8 +8,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-//			fields : ['bi', 'c', 'p', 'period', 'j', 'd'],
-			fields : ['fyw_type', 'fc',  'fio_date', 'period', 'j', 'd'],
+			fields : ['fyw_type', 'fc', 'period', 'j', 'd'],
 
 			pageSize : 50,
 			remoteSort : true,
@@ -33,7 +32,6 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 					var grid = Ext.getCmp('book_detail_yufamt_ch_fhyd_grid');
 					grid.down('#fyw_type').hide();
 					grid.down('#fc').hide();
-					grid.down('#fio_date').hide();
 					grid.down('#period').hide();
 					var columns = grid.columns;
 					if (values.fir) {
@@ -69,15 +67,13 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 						}
 					}
 
-					if (!(values.fir || values.sec || values.thi || values.fou)) {
+					if (!(values.fir || values.sec || values.thi )) {
 						grid.down('#fyw_type').show();
 						grid.down('#fc').show();
-						grid.down('#fio_date').show();
 						grid.down('#period').show();
 						var fir = grid.down('#fyw_type');
 						var sec = grid.down('#fc');
-						var thi = grid.down('#fio_date');
-						var fou = grid.down('#period');
+						var thi = grid.down('#period');
 						var firindex = grid.headerCt.getHeaderIndex(fir);
 						if (firindex != 0) {
 							grid.headerCt.move(firindex, 0);
@@ -158,40 +154,22 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
-										}, {
-											xtype : 'fywtype',
-											name : 'fyw_type',
-											width : 516,
-											fieldLabel : '业务类型'
-										}]
+										} ]
 							}, {
 								xtype : 'fieldcontainer',
-                                fieldLabel : '易宝出入账日期',
 								layout : 'hbox',
 								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'fio_date_from',
-											margin : '0 10 0 0',
-											verify : {
-												id : 'book_detail_fio_date_to'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_detail_fio_date_to',
-											format : 'Y-m-d',
-											name : 'fio_date_to',
-											margin : '0 10 0 0',
-											width : 180
-                                        }, {
 											xtype : 'textfield',
 											name : 'fc',
 											width : 516,
 											margin : '0 10 0 0',
 											fieldLabel : '客户编号'
-										} 
+										}, {
+											xtype : 'fywtype',
+											name : 'fyw_type',
+											width : 516,
+											fieldLabel : '业务类型'
+										}
 									    ]
 							}, {
 								xtype : 'hsx',
@@ -201,9 +179,6 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 										}, {
 											'value' : "fc",
 											'name' : "客户编号"
-										}, {
-											'value' : "fio_date",
-											'name' : "易宝出入账日期"
 										}, {
 											'value' : "period",
 											'name' : "期间日期"
@@ -252,13 +227,6 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 						itemId : 'fc',
 						sortable : false,
 						flex : 1
-					}, {
-						text : "易宝出入账日期",
-						itemId : 'fio_date',
-						dataIndex : 'fio_date',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "期间日期",
 						dataIndex : 'period',
