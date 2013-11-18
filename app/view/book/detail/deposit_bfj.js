@@ -7,6 +7,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 	},
 
 	initComponent : function() {
+		var panel = this;
 		var store = new Ext.data.Store({
 					fields : ['bfj_acct', 'period', 'j', 'd'],
 
@@ -63,6 +64,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 								}
 								grid.getView().refresh();
 								store.proxy.extraParams = values;
+								panel.values = values;
 							} else {
 								return false;
 							}
@@ -85,11 +87,123 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
+								return;
+							}
+							if (records.length > 0) {
+								Ext
+										.getCmp('book_detail_deposit_bfj_exporterbutton')
+										.setDisabled(false);
+							} else {
+								Ext
+										.getCmp('book_detail_deposit_bfj_exporterbutton')
+										.setDisabled(true);
 							}
 						}
 					}
 				});
 		this.store = store;
+		var grid = new Ext.grid.Panel({
+			id : 'book_detail_deposit_bfj_grid',
+			height : 'auto',
+			store : store,
+			border : false,
+			dockedItems : [{
+						xtype : 'pagingtoolbar',
+						store : store,
+						dock : 'bottom',
+						displayInfo : true
+					}, {
+						xtype : 'toolbar',
+						dock : 'top',
+						items : [Ext.create('Ext.ux.exporter.Button', {
+									component : grid,
+									id : 'book_detail_deposit_bfj_exporterbutton',
+									text : "导出 Excel",
+									disabled : true
+								})
+						// iconCls : 'refresh',
+						// text : '下载excel',
+						// tooltip : '下载excel'
+						// handler : function() {
+						// var count = store.getCount();
+						// // if (count == 0) {
+						// // return;
+						// // } else
+						// if (count > 10000) {
+						// Ext.MessageBox.show({
+						// title : '警告',
+						// msg : '数据量超过上限10000条',
+						// buttons : Ext.Msg.YES,
+						// icon : Ext.Msg.WARNING
+						// });
+						// return;
+						// }
+						// Ext.Ajax.request({
+						// async : false,
+						// url :
+						// 'book/detail/deposit_bfj_excel',
+						// params : panel.values,
+						// success : function(response, opts) {
+						// var res = Ext
+						// .decode(response.responseText);
+						// Ext
+						// .downloadURL('base/csv?file='
+						// + res.file);
+						// },
+						// failure : function(response, opts) {
+						// Ext.MessageBox.show({
+						// title : '警告',
+						// msg : '服务器端出错，错误码:'
+						// + response.status,
+						// buttons : Ext.Msg.YES,
+						// icon : Ext.Msg.ERROR
+						// });
+						// }
+						// });
+						// }
+						]
+					}],
+			columns : [{
+				text : "备付金帐号",
+				itemId : 'bfj_acct',
+				dataIndex : 'bfj_acct',
+				sortable : false,
+				renderer : function(value, p, record) {
+					var bfjacct = Ext.data.StoreManager
+							.lookup('Zixweb.store.component.BfjAcct');
+					var index = bfjacct.findExact('id', value);
+					return bfjacct.getAt(index).data.name;
+				},
+				flex : 2
+			}, {
+				text : "期间日期",
+				dataIndex : 'period',
+				itemId : 'period',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			}, {
+				text : "借方金额",
+				dataIndex : 'j',
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
+				}
+			}, {
+				text : "贷方金额",
+				dataIndex : 'd',
+				width : 100,
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
+				}
+			}]
+		})
+
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
@@ -147,61 +261,12 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 							}, {
 								xtype : 'button',
 								text : '重置',
+								margin : '0 20 0 0',
 								handler : function(button) {
 									button.up('panel').getForm().reset();
 								}
 							}]
-				}, {
-					xtype : 'gridpanel',
-					id : 'book_detail_deposit_bfj_grid',
-					height : 'auto',
-					store : this.store,
-					dockedItems : [{
-								xtype : 'pagingtoolbar',
-								store : this.store,
-								dock : 'bottom',
-								displayInfo : true
-							}],
-					columns : [{
-						text : "备付金帐号",
-						itemId : 'bfj_acct',
-						dataIndex : 'bfj_acct',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var bfjacct = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.BfjAcct');
-							var index = bfjacct.findExact('id', value);
-							return bfjacct.getAt(index).data.name;
-						},
-						flex : 2
-					}, {
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "借方金额",
-						dataIndex : 'j',
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}, {
-						text : "贷方金额",
-						dataIndex : 'd',
-						width : 100,
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}]
-				}];
+				}, grid];
 		this.callParent(arguments);
 	}
 });

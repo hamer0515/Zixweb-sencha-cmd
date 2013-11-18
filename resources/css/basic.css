@@ -27,6 +27,11 @@ a {
 	background-image: url('images/role_delete.png');
 }
 
+.downloadexcel {
+	background-image: url('images/download_excel.png');
+	margin-right: 5px;
+}
+
 .downloadfile {
 	background-image: url('images/download_file.png');
 	margin-right: 5px;

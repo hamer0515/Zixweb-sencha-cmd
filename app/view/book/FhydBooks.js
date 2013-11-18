@@ -49,14 +49,16 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 						flex : 1,
 						dataIndex : 'j',
 						renderer : function(value) {
-							return Ext.util.Format.number(value /100, '0,0.00');
+							return Ext.util.Format
+									.number(value / 100, '0,0.00');
 						}
 					}, {
 						text : '轧差贷方余额',
 						flex : 1,
 						dataIndex : 'd',
 						renderer : function(value) {
-							return Ext.util.Format.number(value /100, '0,0.00');
+							return Ext.util.Format
+									.number(value / 100, '0,0.00');
 						}
 					}, {
 						xtype : 'actioncolumn',
@@ -72,10 +74,10 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 									return 'hide';
 								}
 							},
-							isDisabled : function(view, rowIdx, colIdx, item,
-									record) {
-								return !record.data.leaf;
-							},
+							// isDisabled : function(view, rowIdx, colIdx, item,
+							// record) {
+							// return !record.data.leaf;
+							// },
 							handler : function(grid, rowIndex, colIndex) {
 								var rec = grid.getStore().getAt(rowIndex);
 								var viewport = grid.up('viewport'), center = viewport
@@ -129,11 +131,12 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 								} else {
 									return 'hide';
 								}
-							},
-							isDisabled : function(view, rowIdx, colIdx, item,
-									record) {
-								return !record.data.url;
 							}
+								// isDisabled : function(view, rowIdx, colIdx,
+								// item,
+								// record) {
+								// return !record.data.url;
+								// }
 						}]
 					}]
 		});

@@ -10,8 +10,6 @@ Ext.define('Zixweb.view.login.PasswordReset', {
 				align : 'left'
 			},
 
-			// autoShow : true,
-
 			initComponent : function() {
 				this.url = '/login/passwordreset';
 				this.fieldDefaults = {

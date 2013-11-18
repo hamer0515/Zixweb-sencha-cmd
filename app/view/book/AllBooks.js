@@ -75,10 +75,10 @@ Ext.define('Zixweb.view.book.AllBooks', {
 									return 'hide';
 								}
 							},
-							isDisabled : function(view, rowIdx, colIdx, item,
-									record) {
-								return !record.data.leaf;
-							},
+							// isDisabled : function(view, rowIdx, colIdx, item,
+							// record) {
+							// return !record.data.leaf;
+							// },
 							handler : function(grid, rowIndex, colIndex) {
 								var rec = grid.getStore().getAt(rowIndex);
 								var viewport = grid.up('viewport'), center = viewport
@@ -136,11 +136,12 @@ Ext.define('Zixweb.view.book.AllBooks', {
 								} else {
 									return 'hide';
 								}
-							},
-							isDisabled : function(view, rowIdx, colIdx, item,
-									record) {
-								return !record.data.url;
 							}
+								// isDisabled : function(view, rowIdx, colIdx,
+								// item,
+								// record) {
+								// return !record.data.url;
+								// }
 						}]
 					}]
 		});

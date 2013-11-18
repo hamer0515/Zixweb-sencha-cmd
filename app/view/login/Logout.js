@@ -50,13 +50,6 @@ Ext.define('Zixweb.view.login.Logout', {
 									});
 						}
 					});
-					// window.location.href = "login/logout";
-					// Ext.MessageBox.show({
-					// title : '再见',
-					// msg : '跳转中...',
-					// floating : true,
-					// closable : false
-					// });
 				}
 			},
 			icon : Ext.window.MessageBox.WARNING
