@@ -7,7 +7,8 @@ Ext.define('overrides.VType', {
 			idText : '不是有效的数字',
 
 			money : function(val, field) {
-				return /^(-)?(([1-9]{1}\d*)|([0]{1}))(\.(\d){1,2})?$/.exec(val);
+				return /^(-)?(([1-9]{1}\d*)|([0]{1}))(\.(\d){1,2})?$/.exec(val
+						.replace(/\,/g, ''));
 			},
 			moneyText : '不是有效的金额',
 

@@ -33,7 +33,7 @@ Ext.define('Zixweb.controller.Roles', {
 										if (response == 'forbidden') {
 											Ext.MessageBox.show({
 														title : '警告',
-														msg : '抱歉，没有角色添加操作权限',
+														msg : '抱歉，没有增加角色操作权限',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});

@@ -54,20 +54,18 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 					xtype : 'fieldcontainer',
 					layout : 'hbox',
 					items : [{
-								xtype : 'textfield',
+								xtype : 'money',
 								name : 'zjhb_amt',
 								width : 516,
 								margin : '0 10 0 0',
 								fieldLabel : '资金划拨金额',
-								allowBlank : false,
-								vtype : 'money'
+								allowBlank : false
 							}, {
-								xtype : 'textfield',
+								xtype : 'money',
 								name : 'bfj_bfee',
 								width : 516,
 								fieldLabel : '银行手续费金额',
-								allowBlank : false,
-								vtype : 'money'
+								allowBlank : false
 							}]
 
 				}, {

@@ -40,12 +40,11 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 					},
 					width : 1042,
 					items : [{
-								xtype : 'textfield',
+								xtype : 'money',
 								name : 'zhlx_amt',
 								width : 516,
 								fieldLabel : '利息收入金额',
-								allowBlank : false,
-								vtype : 'money'
+								allowBlank : false
 							}]
 
 				}, {

@@ -4,7 +4,7 @@ Ext.define('Zixweb.controller.Component', {
 			'Zixweb.store.component.Bi', 'Zixweb.store.component.ZyzjAcct',
 			'Zixweb.store.component.Status', 'Zixweb.store.component.MStatus',
 			'Zixweb.store.component.JStatus',
-			'Zixweb.store.component.ZjbdType', 'Zixweb.store.component.Books',
+			'Zixweb.store.component.ZjbdType',
 			'Zixweb.store.component.Product', 'Zixweb.store.component.YsType',
 			'Zixweb.store.component.ZQQRStatus',
 			'Zixweb.store.component.WlzjType',
@@ -21,6 +21,7 @@ Ext.define('Zixweb.controller.Component', {
 			'Zixweb.view.component.FhwType', 'Zixweb.view.component.FypAcct',
 			'Zixweb.view.component.FhydAcct', 'Zixweb.view.component.FywType',
 			'Zixweb.view.component.YsTypeF',
-			'Zixweb.view.component.plugins.PageComboResizer']
+			'Zixweb.view.component.plugins.PageComboResizer',
+			'Zixweb.view.component.Money']
 
 });

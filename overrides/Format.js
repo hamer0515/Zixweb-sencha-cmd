@@ -11,9 +11,9 @@ Ext.define('overrides.Format', {
 			 */
 			dateRenderer : function(format) {
 				return function(v) {
-					return Ext.util.Format.date(new Date(Date.parse(v.replace(
-									/-/g, "/"))), format);
+					var val = v.split('-')
+					return Ext.util.Format.date(
+							new Date(val[0], val[1], val[2]), format);
 				};
 			}
-
 		});

@@ -69,9 +69,7 @@ Ext.define('Zixweb.view.role.List', {
 							}]
 				}, {
 					xtype : 'pagingtoolbar',
-					store : store,
-					dock : 'bottom',
-					displayInfo : true
+					store : store
 				}];
 		this.columns = [{
 					text : "编号",
@@ -132,6 +130,17 @@ Ext.define('Zixweb.view.role.List', {
 															var text = Ext
 																	.decode(response.responseText);
 															if (text.success) {
+																if (text.success == 'forbidden') {
+																	Ext.MessageBox
+																			.show(
+																					{
+																						title : '警告',
+																						msg : '抱歉，没有删除角色操作权限',
+																						buttons : Ext.Msg.YES,
+																						icon : Ext.Msg.ERROR
+																					});
+																	return;
+																}
 																Ext.MessageBox
 																		.alert(
 																				'提醒',

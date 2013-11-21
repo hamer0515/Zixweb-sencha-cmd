@@ -135,9 +135,7 @@ Ext.define('Zixweb.view.task.Task0000', {
 					store : store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
-								store : store,
-								dock : 'bottom',
-								displayInfo : true
+								store : store
 							}],
 					columns : [{
 								text : "任务编号",

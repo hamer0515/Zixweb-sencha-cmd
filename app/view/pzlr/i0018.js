@@ -43,12 +43,11 @@ Ext.define('Zixweb.view.pzlr.i0018', {
 								fieldLabel : '客户编号',
 								allowBlank : false
 							}, {
-								xtype : 'textfield',
+								xtype : 'money',
 								name : 'tx_amt',
 								width : 516,
 								fieldLabel : '入账金额',
-								allowBlank : false,
-								vtype : 'money'
+								allowBlank : false
 							}]
 
 				}, {

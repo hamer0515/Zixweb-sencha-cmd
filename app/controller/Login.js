@@ -37,6 +37,19 @@ Ext.define('Zixweb.controller.Login', {
 													});
 											return;
 										}
+										// 加载数据集数据
+										var stores = ['BfjAcct', 'Acct', 'Bi',
+												'FhwType', 'FhydAcct',
+												'FypAcct', 'FywType',
+												'Product', 'WlzjType',
+												'YsType', 'ZjbdType',
+												'ZyzjAcct'];
+										for (var i in stores) {
+											Ext.data.StoreManager
+													.lookup('Zixweb.store.component.'
+															+ stores[i]).load();
+										}
+										// 添加主页面板
 										var viewport = panel.up('viewport');
 										viewport.removeAll();
 										viewport.add([{

@@ -137,7 +137,7 @@ Ext.define('Zixweb.view.book.detail.wlzj_yszy', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期范围',
+						fieldLabel : '会计期间',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',
@@ -197,11 +197,24 @@ Ext.define('Zixweb.view.book.detail.wlzj_yszy', {
 										});
 								return;
 							}
+							var params = panel.values;
+							var columns = grid.headerCt.gridDataColumns;
+							var h = {
+								headers : []
+							};
+							for (var i in columns) {
+								var c = columns[i];
+								if (!c.dataIndex) {
+									continue;
+								}
+								h[c.dataIndex] = c.text;
+								h.headers.push(c.dataIndex);
+							}
+							params.header = Ext.encode(h);
 							Ext.Ajax.request({
 								async : false,
 								url : 'book/detail/wlzj_yfbf_excel',
-								params : Ext.getCmp(panel.prefix + '_form')
-										.getForm().getValues(),
+								params : params,
 								success : function(response, opts) {
 									var res = Ext.decode(response.responseText);
 									Ext.downloadURL('base/excel?file='

@@ -22,22 +22,20 @@ Ext.define('Zixweb.view.login.LoginForm', {
 					msgTarget : 'qtip',
 					width : 180
 				};
-				this.items = {
-					items : [{
-								xtype : 'textfield',
-								fieldLabel : '用户名',
-								name : 'username'
-							}, {
-								xtype : 'textfield',
-								fieldLabel : '密码',
-								inputType : 'password',
-								name : 'password',
-								maxLength : 20,
-								maxLengthText : '允许最大长度为20',
-								minLength : 6,
-								minLengthText : '允许最小长度为6'
-							}]
-				};
+				this.items = [{
+							xtype : 'textfield',
+							fieldLabel : '用户名',
+							name : 'username'
+						}, {
+							xtype : 'textfield',
+							fieldLabel : '密码',
+							inputType : 'password',
+							name : 'password',
+							maxLength : 20,
+							maxLengthText : '允许最大长度为20',
+							minLength : 6,
+							minLengthText : '允许最小长度为6'
+						}];
 
 				this.buttons = [{
 							text : '登录',

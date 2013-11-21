@@ -3,11 +3,11 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 	alias : 'widget.bookfhyd',
 	useArrows : true,
 	rootVisible : false,
-	height : 540,
+	height : 'auto',
 	disableSelection : true,
+	border : false,
 
 	initComponent : function() {
-
 		Ext.apply(this, {
 			store : new Ext.data.TreeStore({
 						fields : ['text', 'j', 'd', 'url', 'success'],
@@ -74,10 +74,6 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 									return 'hide';
 								}
 							},
-							// isDisabled : function(view, rowIdx, colIdx, item,
-							// record) {
-							// return !record.data.leaf;
-							// },
 							handler : function(grid, rowIndex, colIndex) {
 								var rec = grid.getStore().getAt(rowIndex);
 								var viewport = grid.up('viewport'), center = viewport
@@ -94,9 +90,11 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 													+ rec.data.url
 										},
 										id : 'book_detail_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目详细'
+										title : rec.data.text
+												.substr(rec.data.text
+														.indexOf("-")
+														+ 1)
+												+ '科目汇总'
 									}).show();
 									viewport.doLayout();
 								}
@@ -118,9 +116,11 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 											xtype : 'book_hist_' + rec.data.url
 										},
 										id : 'book_hist_' + rec.data.url,
-										title : rec.data.text.substr(0,
-												rec.data.text.indexOf("-"))
-												+ '科目历史信息'
+										title : rec.data.text
+												.substr(rec.data.text
+														.indexOf("-")
+														+ 1)
+												+ '科目明细查询'
 									}).show();
 									viewport.doLayout();
 								}

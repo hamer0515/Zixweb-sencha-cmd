@@ -41,6 +41,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.fhydbook.hist.chamt_dgd_fhyd": [],
   "overrides.Gridpanel": [],
   "Zixweb.view.fhydbook.hist.camt_dgd_fhyd": [],
+  "Zixweb.view.component.Money": [],
   "Zixweb.view.book.hist.income_in": [],
   "Zixweb.view.book.detail.blc": [],
   "Zixweb.view.fhydbook.hist.camt_fhyd": [],
@@ -229,7 +230,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0063": [],
   "Zixweb.view.book.detail.txamt_yhyf": [],
   "Zixweb.store.component.FhwType": [],
-  "Zixweb.store.component.Books": [],
   "overrides.container.ButtonGroup": [],
   "overrides.panel.Tool": [],
   "overrides.Table": [],
@@ -526,6 +526,9 @@ Ext.ClassManager.addNameAliasMappings({
   "overrides.Gridpanel": [],
   "Zixweb.view.fhydbook.hist.camt_dgd_fhyd": [
     "widget.book_hist_camt_dgd_fhyd"
+  ],
+  "Zixweb.view.component.Money": [
+    "widget.money"
   ],
   "Zixweb.view.book.hist.income_in": [
     "widget.book_hist_income_in"
@@ -1018,7 +1021,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.book_detail_txamt_yhyf"
   ],
   "Zixweb.store.component.FhwType": [],
-  "Zixweb.store.component.Books": [],
   "overrides.container.ButtonGroup": [],
   "overrides.panel.Tool": [],
   "overrides.Table": [],

@@ -86,6 +86,66 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 			}
 			return v;
 		}
+		// fcg_date : function(v) {
+		// if (v) {
+		// return Ext.Date.format(v, 'Y-m-d');
+		// }
+		// return v;
+		// },
+		// fe_date : function(v) {
+		// if (v) {
+		// return Ext.Date.format(v, 'Y-m-d');
+		// }
+		// return v;
+		// },
+		// fhw_type : function(v) {
+		// if (v) {
+		// var store = Ext.data.StoreManager
+		// .lookup('Zixweb.store.component.FhwType');
+		// var index = store.findExact('id', v);
+		// return store.getAt(index).data.name;
+		// }
+		// return v;
+		// },
+		// fhyd_acct : function(v) {
+		// if (v) {
+		// var store = Ext.data.StoreManager
+		// .lookup('Zixweb.store.component.FhydAcct');
+		// var index = store.findExact('id', v);
+		// return store.getAt(index).data.name;
+		// }
+		// return v;
+		// },
+		// fio_date : function(v) {
+		// if (v) {
+		// return Ext.Date.format(v, 'Y-m-d');
+		// }
+		// return v;
+		// },
+		// ftx_date : function(v) {
+		// if (v) {
+		// return Ext.Date.format(v, 'Y-m-d');
+		// }
+		// return v;
+		// },
+		// fyp_acct : function(v) {
+		// if (v) {
+		// var store = Ext.data.StoreManager
+		// .lookup('Zixweb.store.component.FypAcct');
+		// var index = store.findExact('id', v);
+		// return store.getAt(index).data.name;
+		// }
+		// return v;
+		// },
+		// fyw_type : function(v) {
+		// if (v) {
+		// var store = Ext.data.StoreManager
+		// .lookup('Zixweb.store.component.FywType');
+		// var index = store.findExact('id', v);
+		// return store.getAt(index).data.name;
+		// }
+		// return v;
+		// }
 	},
 	editors : {
 		cust_proto : "Ext.createByAlias('widget.textfield', {submitValue : false})",
@@ -97,68 +157,77 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		zjbd_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
 		tx_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
 		e_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
+		period : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
 		fp : "Ext.createByAlias('widget.textfield', {submitValue : false})",
 		c : "Ext.createByAlias('widget.textfield', {submitValue : false})",
 		p : "Ext.createByAlias('widget.product', {submitValue : false})",
 		bi : "Ext.createByAlias('widget.bi', {submitValue : false})",
-		amt : "Ext.createByAlias('widget.textfield', {submitValue : false, vtype : 'money'})"
-	},
-	names : {
-		cust_proto : '客户协议编号',
-		acct : '银行账户号及开户行',
-		bfj_acct : '备付金银行账号',
-		zyzj_acct : '自有资金银行账号',
-		zjbd_type : '资金变动类型',
-		wlzj_type : '往来类型',
-		zjbd_date : '银行出入账日期',
-		tx_date : '交易日期',
-		e_date : '差错日期',
-		fp : '周期确认规则',
-		c : '客户编号',
-		p : '产品类型',
-		bi : '银行接口编号',
-		amt : '金额'
-	},
-	hearders : {
-		'1' : "{source : {zyzj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应付银行-已核应付银行款'}",
-		'2' : "{source : {zyzj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应收银行-已核应收银行款'}",
-		'3' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应付银行-已核应付银行手续费'}",
-		'4' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应收银行-已核应收银行手续费'}",
-		'5' : "{source : {c : '',amt : ''},book_name : '客户备付金-备付金'}",
-		'6' : "{source : {bfj_acct : '',zjbd_type : '',e_date : '',amt : ''},book_name : '应付账款-银行-备份金银行长款'}",
-		'7' : "{source : {zyzj_acct : '',e_date : '',amt : ''},book_name : '应付账款-银行-自有资金银行长款'}",
-		'8' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '应付账款-银行-财务外付银行手续费'}",
-		'9' : "{source : {bfj_acct : '',zjbd_type : '',e_date : '',amt : ''},'book_name' : '应收账款-银行-备付金银行短款'}",
-		'10' : "{source : {zyzj_acct : '',e_date : '',amt : ''},book_name : '应收账款-银行-自有资金银行短款'}",
-		'11' : "{source : {c : '',cust_proto : '',tx_date : '',amt : ''},book_name : '应收账款-客户-定期划付客户手续费'}",
-		'12' : "{source : {c : '',bi : '',p : '',amt : ''},book_name : '成本-银行手续费支出'}",
-		'13' : "{source : {p : '',amt : ''},book_name : '成本-垫付损失'}",
-		'14' : "{source : {bfj_acct : '',amt : ''},'book_name' : '银行存款-备付金存款'}",
-		'15' : "{source : {zyzj_acct : '',amt : ''},'book_name' : '银行存款-自有资金存款'}",
-		'16' : "{source : {acct : '',amt : ''},book_name: '财务费用-金融机构手续费'}",
-		'17' : "{source : {c : '',p : '',amt : ''},book_name : '收入-客户手续费收入'}",
-		'18' : "{source : {acct : '',amt : ''},book_name : '财务费用-账户利息收入'}",
-		'19' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '应收银行-待勾兑应收交易款'}",
-		'20' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '其他应付款-待确认交易款'}",
-		'21' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应付银行-已核应付交易款'}",
-		'22' : "{source : {bfj_acct : '',zjbd_type : '',zjbd_date : '',amt : ''},book_name : '应收银行-已核应收交易款'}",
-		'23' : "{source : {amt : ''},book_name : '往来-应付备付'}",
-		'24' : "{source : {amt : '', wlzj_type:''},book_name : '往来-应付自有'}",
-		'25' : "{source : {amt : '', wlzj_type:''},book_name : '往来-应收备付'}",
-		'26' : "{source : {amt : ''},book_name : '往来-应收自有'}",
-		'27' : "{source : {c : '',cust_proto : '',tx_date : '',amt : ''},book_name : '应收账款-客户-分润方承担品牌费'}",
-		'28' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '其他应收款-待确认交易款'}",
-		'29' : "{source : {bi : '',tx_date : '',amt : ''},book_name : '应付银行-待确认应付交易款'}",
-		'30' : "{source : {c : '',p : '',bi : '',fp : '',tx_date : '',amt : ''},book_name : '应付账款-银行-暂估周期确认银行手续费'}",
-		'31' : "{source : {bi : '',fp : '',tx_date : '',amt : ''},book_name : '应付账款-银行-周期确认银行手续费'}",
-		'32' : "{source : {c : '',p : '',bi : '',fp : '',tx_date : '',amt : ''},book_name : '成本-暂估银行手续费'}",
-		'33' : "{source : {c : '',p : '',amt : ''},book_name : '内部收入'}",
-		'34' : "{source : {c : '',p : '',amt : ''},book_name : '内部成本'}"
+		// f_dcn : "Ext.createByAlias('widget.textfield', {submitValue :
+		// false})",
+		// f_rate : "Ext.createByAlias('widget.textfield', {submitValue :
+		// false})",
+		// f_ssn : "Ext.createByAlias('widget.textfield', {submitValue :
+		// false})",
+		// fc : "Ext.createByAlias('widget.textfield', {submitValue : false})",
+		// fcg_date : "Ext.createByAlias('widget.datefield', {submitValue :
+		// false, format : 'Y-m-d'})",
+		// fch_rate : "Ext.createByAlias('widget.textfield', {submitValue :
+		// false})",
+		// fch_ssn : "Ext.createByAlias('widget.textfield', {submitValue :
+		// false})",
+		// fe_date : "Ext.createByAlias('widget.datefield', {submitValue :
+		// false, format : 'Y-m-d'})",
+		// fhw_type : "Ext.createByAlias('widget.fhwtype', {submitValue :
+		// false})",
+		// fhyd_acct : "Ext.createByAlias('widget.fhydacct', {submitValue :
+		// false})",
+		// fio_date : "Ext.createByAlias('widget.datefield', {submitValue :
+		// false, format : 'Y-m-d'})",
+		// fm : "Ext.createByAlias('widget.textfield', {submitValue : false})",
+		// fs_rate : "Ext.createByAlias('widget.textfield', {submitValue :
+		// false})",
+		// ftx_date : "Ext.createByAlias('widget.datefield', {submitValue :
+		// false, format : 'Y-m-d'})",
+		// fyp_acct : "Ext.createByAlias('widget.fypacct', {submitValue :
+		// false})",
+		// fyw_type : "Ext.createByAlias('widget.fywtype', {submitValue :
+		// false})",
+		amt : "Ext.createByAlias('widget.money', {submitValue : false})"
 	},
 	initComponent : function() {
 		var form = this;
 		this.fields = [];
 		this.deleted = [];
+		Ext.Ajax.request({
+					async : false,
+					url : 'base/book_headers',
+					success : function(response) {
+						form.headers = Ext.decode(response.responseText).success;
+					},
+					failure : function(response, opts) {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '加载科目信息出错，错误码:' + response.status,
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+					}
+				});
+		Ext.Ajax.request({
+					async : false,
+					url : 'base/book_dim',
+					success : function(response) {
+						form.names = Ext.decode(response.responseText).success;
+					},
+					failure : function(response, opts) {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '加载科目核算项信息出错，错误码:' + response.status,
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+					}
+				});
 		this.items = [{
 					xtype : 'textarea',
 					name : 'cause',
@@ -187,11 +256,13 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 								width : 490,
 								id : 'pzlritztzjbook',
 								submitValue : false,
+								set : [0, 1],
 								fieldLabel : '借方科目'
 							}, {
 								xtype : 'books',
 								width : 490,
 								submitValue : false,
+								set : [0, 1],
 								fieldLabel : '贷方科目',
 								id : 'pzlritztzdbook'
 							}]
@@ -204,13 +275,31 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 						text : '添加',
 						margin : '0 20 0 0',
 						handler : function(button) {
-							var j = Ext.getCmp('pzlritztzjbook').getValue();
-							var d = Ext.getCmp('pzlritztzdbook').getValue();
+							var j_comp = Ext.getCmp('pzlritztzjbook');
+							var d_comp = Ext.getCmp('pzlritztzdbook');
+							var j = j_comp.getValue();
+							var d = d_comp.getValue();
+							// 没有选择借方科目或者贷方科目，不进行下面的操作
 							if (!j || !d) {
 								return;
 							}
-							var j_options = Ext.decode(form.hearders[j]);
-							var d_options = Ext.decode(form.hearders[d]);
+							// 借贷方科目不属于同一个帐套，不进行下面的操作
+							var j_set = j_comp.store.getAt(j_comp.store
+									.findExact('id', j)).data.set;
+							var d_set = d_comp.store.getAt(d_comp.store
+									.findExact('id', d)).data.set;
+							if (j_set != d_set) {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '所选科目不属于同一帐套',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.WARNING
+										});
+								return;
+							}
+
+							var j_options = Ext.decode(form.headers[j]);
+							var d_options = Ext.decode(form.headers[d]);
 							var j_sourceConfig = {};
 							var d_sourceConfig = {};
 							for (var property in j_options.source) {
@@ -234,7 +323,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 										margin : '0 10 0 0',
 										sourceConfig : j_sourceConfig,
 										source : j_options.source,
-										clicksToEdit : 2,
+										clicksToEdit : 1,
 										disableSelection : true
 									});
 							// 禁用排序
@@ -246,7 +335,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 										width : 490,
 										sourceConfig : d_sourceConfig,
 										source : d_options.source,
-										clicksToEdit : 2,
+										clicksToEdit : 1,
 										disableSelection : true
 									});
 							// 禁用排序
@@ -432,7 +521,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 					empty = false;
 				}
 				data[fl] = {};
-				if (parseFloat(jbook.amt) != parseFloat(dbook.amt)) {
+				if (parseFloat(jbook.amt.replace(/\,/g, '')) != parseFloat(dbook.amt
+						.replace(/\,/g, ''))) {
 					Ext.MessageBox.alert('警告', '[分录' + fl + ']借贷方金额不一致');
 					return false;
 				}
@@ -446,7 +536,9 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 					}
 					if (f === 'amt') {
 						data[fl]["j_book"]['j'] = Ext.Number
-								.correctFloat(parseFloat(jbook[f]) * 100);
+								.correctFloat(parseFloat(jbook[f].replace(
+										/\,/g, ''))
+										* 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {
 						// 借方日期对象转换为日期字符串
@@ -465,7 +557,9 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 					}
 					if (f === 'amt') {
 						data[fl]["d_book"]['d'] = Ext.Number
-								.correctFloat(parseFloat(dbook[f]) * 100);
+								.correctFloat(parseFloat(dbook[f].replace(
+										/\,/g, ''))
+										* 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
 							|| f == 'tx_date') {
 						// 贷方日期对象转换为日期字符串

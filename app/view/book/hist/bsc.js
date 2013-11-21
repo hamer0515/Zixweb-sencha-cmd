@@ -74,7 +74,7 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 					},
 					items : [{
 								xtype : 'fieldcontainer',
-								fieldLabel : '期间日期范围',
+								fieldLabel : '会计期间',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',
@@ -94,7 +94,29 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 											name : 'period_to',
 											allowBlank : false,
 											width : 180
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'textfield',
+											name : 'id',
+											margin : '0 10 0 0',
+											width : 516,
+											vtype : 'id',
+											fieldLabel : 'ID'
 										}, {
+											xtype : 'textfield',
+											fieldLabel : '原始凭证ID',
+											width : 516,
+											name : 'ys_id',
+											margin : '0 10 0 0',
+											vtype : "money"
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
 											xtype : 'fieldcontainer',
 											fieldLabel : '差错日期范围',
 											layout : 'hbox',
@@ -115,29 +137,11 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 														name : 'e_date_to',
 														margin : '0 10 0 0',
 														width : 180
+													}, {
+														xtype : 'ystype',
+														name : 'ys_type',
+														fieldLabel : '原始凭证类型'
 													}]
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											xtype : 'textfield',
-											name : 'id',
-											margin : '0 10 0 0',
-											width : 288,
-											vtype : 'id',
-											fieldLabel : 'ID'
-										}, {
-											xtype : 'textfield',
-											fieldLabel : '原始凭证ID',
-											width : 516,
-											name : 'ys_id',
-											margin : '0 10 0 0',
-											vtype : "money"
-										}, {
-											xtype : 'ystype',
-											name : 'ys_type',
-											fieldLabel : '原始凭证类型'
 										}]
 							}, {
 								xtype : 'fieldcontainer',

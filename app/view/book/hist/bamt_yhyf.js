@@ -75,7 +75,7 @@ Ext.define('Zixweb.view.book.hist.bamt_yhyf', {
 					},
 					items : [{
 								xtype : 'fieldcontainer',
-								fieldLabel : '期间日期范围',
+								fieldLabel : '会计期间',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',
@@ -138,7 +138,6 @@ Ext.define('Zixweb.view.book.hist.bamt_yhyf', {
 										}, {
 											xtype : 'zjbdtype',
 											name : 'zjbd_type',
-											// margin : '0 10 0 0',
 											fieldLabel : '资金变动类型'
 										}]
 							}, {
@@ -163,34 +162,29 @@ Ext.define('Zixweb.view.book.hist.bamt_yhyf', {
 											layout : 'hbox',
 											fieldLabel : '借方金额',
 											items : [{
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'j_from',
 														margin : '0 10 0 0',
-														width : 180,
-														vtype : "money"
+														width : 180
 													}, {
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'j_to',
 														width : 180,
-														margin : '0 10 0 0',
-														vtype : "money"
+														margin : '0 10 0 0'
 													}]
 										}, {
 											xtype : 'fieldcontainer',
 											layout : 'hbox',
 											fieldLabel : '贷方金额',
 											items : [{
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'd_from',
 														margin : '0 10 0 0',
-														width : 180,
-														vtype : "money"
+														width : 180
 													}, {
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'd_to',
-														width : 180,
-														// margin : '0 10 0 0',
-														vtype : "money"
+														width : 180
 													}]
 										}]
 							}, {

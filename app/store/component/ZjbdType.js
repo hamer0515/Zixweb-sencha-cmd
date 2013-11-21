@@ -1,13 +1,15 @@
 Ext.define('Zixweb.store.component.ZjbdType', {
 			extend : 'Ext.data.Store',
 			fields : ['id', 'name'],
-			autoLoad : true,
 
 			proxy : {
 				type : 'ajax',
 				url : 'base/zjbdtype'
 			},
 			listeners : {
+				beforeload : function(store, operation, eOpts) {
+					store.removeAll();
+				},
 				load : function(thiz, records, successful, eOpts) {
 					if (!successful) {
 						Ext.MessageBox.show({

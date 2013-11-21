@@ -116,9 +116,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 					store : this.store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
-								store : this.store,
-								dock : 'bottom',
-								displayInfo : true
+								store : this.store
 							}],
 					columns : [{
 						text : "银行账户",

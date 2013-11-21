@@ -1,13 +1,15 @@
 Ext.define('Zixweb.store.component.FypAcct', {
 			extend : 'Ext.data.Store',
 			fields : ['id', 'name'],
-			autoLoad : true,
 
 			proxy : {
 				type : 'ajax',
 				url : 'base/fypacct'
 			},
 			listeners : {
+				beforeload : function(store, operation, eOpts) {
+					store.removeAll();
+				},
 				load : function(thiz, records, successful, eOpts) {
 					if (!successful) {
 						Ext.MessageBox.show({

@@ -121,7 +121,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yp_acct_fhyd', {
 					},
 					items : [{
 								xtype : 'fieldcontainer',
-								fieldLabel : '期间日期范围',
+								fieldLabel : '会计期间',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',

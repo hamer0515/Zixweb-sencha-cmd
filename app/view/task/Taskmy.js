@@ -135,14 +135,12 @@ Ext.define('Zixweb.view.task.Taskmy', {
 					store : store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
-								store : store,
-								dock : 'bottom',
-								displayInfo : true
+								store : store
 							}],
 					columns : [{
-								text : "任务编号",
-								itemId : 'id',
-								dataIndex : 'id',
+								text : "凭证编号",
+								itemId : 'ys_id',
+								dataIndex : 'ys_id',
 								sortable : false,
 								width : 80
 							}, {

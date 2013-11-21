@@ -19,8 +19,9 @@ Ext.define('Zixweb.view.component.Books', {
 				}
 			},
 			initComponent : function() {
+				var combo = this;
 				this.store = new Ext.data.Store({
-							fields : ['id', 'name'],
+							fields : ['id', 'name', 'set'],
 							autoLoad : true,
 
 							proxy : {
@@ -28,6 +29,11 @@ Ext.define('Zixweb.view.component.Books', {
 								url : 'base/books'
 							},
 							listeners : {
+								beforeload : function(store, operation, eOpts) {
+									store.proxy.extraParams = {
+										set : Ext.encode(combo.set)
+									};
+								},
 								load : function(thiz, records, successful,
 										eOpts) {
 									if (!successful) {

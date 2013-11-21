@@ -24,12 +24,11 @@ Ext.define('Zixweb.view.pzlr.i0101', {
 								fieldLabel : '银行账号',
 								allowBlank : false
 							}, {
-								xtype : 'textfield',
+								xtype : 'money',
 								name : 'tx_amt',
 								width : 516,
 								fieldLabel : '出账金额',
-								allowBlank : false,
-								vtype : 'money'
+								allowBlank : false
 							}]
 
 				}, {

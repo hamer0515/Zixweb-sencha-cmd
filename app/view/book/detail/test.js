@@ -1,0 +1,1 @@
+bfj_acct, columns.period, columns.zjbd_date, columns.zjbd_type, columns.j, columns.d

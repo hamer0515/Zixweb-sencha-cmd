@@ -29,7 +29,7 @@ Ext.define('Zixweb.controller.Users', {
 										if (response == 'forbidden') {
 											Ext.MessageBox.show({
 														title : '警告',
-														msg : '抱歉，没有用户添加操作权限',
+														msg : '抱歉，没有增加用户操作权限',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});
@@ -108,7 +108,7 @@ Ext.define('Zixweb.controller.Users', {
 										if (response == 'forbidden') {
 											Ext.MessageBox.show({
 														title : '警告',
-														msg : '抱歉，没有用户更新操作权限',
+														msg : '抱歉，没有更新用户操作权限',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});

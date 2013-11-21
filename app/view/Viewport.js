@@ -1,6 +1,7 @@
 Ext.define('Zixweb.view.Viewport', {
 			extend : 'Ext.container.Viewport',
 			requires : ['Ext.data.TreeStore', 'Ext.layout.container.Border',
+					'Ext.Date', 'Ext.layout.container.Table',
 					'Ext.toolbar.Paging', 'Ext.grid.plugin.RowExpander',
 					'Ext.grid.column.Action', 'Ext.form.field.Date',
 					'Ext.form.field.Hidden', 'Ext.grid.property.Grid',

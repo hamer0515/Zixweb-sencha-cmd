@@ -2,6 +2,8 @@ Ext.define('Zixweb.view.user.List', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.userlist',
 	disableSelection : true,
+	columnLines : true,
+	loadMask : true,
 	height : 'auto',
 
 	initComponent : function() {
@@ -69,9 +71,7 @@ Ext.define('Zixweb.view.user.List', {
 							}]
 				}, {
 					xtype : 'pagingtoolbar',
-					store : store,
-					dock : 'bottom',
-					displayInfo : true
+					store : store
 				}];
 		this.columns = [{
 					text : "编号",
@@ -88,7 +88,7 @@ Ext.define('Zixweb.view.user.List', {
 					text : "密码修改日期",
 					dataIndex : 'pwd_chg_date',
 					sortable : false,
-					flex : 4,
+					flex : 2,
 					renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 				}, {
 					text : "状态",
