@@ -96,7 +96,7 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 														+ 1)
 												+ '科目汇总'
 									}).show();
-									viewport.doLayout();
+									// viewport.doLayout();
 								}
 							}
 						}, {
@@ -122,7 +122,7 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 														+ 1)
 												+ '科目明细查询'
 									}).show();
-									viewport.doLayout();
+									// viewport.doLayout();
 								}
 							},
 							getClass : function(v, meta, rec) {

@@ -228,3 +228,12 @@ a {
 .yellow .x-grid-cell {
 	background-color: yellow !important;
 }
+
+.blcdetail {
+	background-image: url('images/blc.png');
+	margin-right: 5px;
+}
+
+.bscdetail {
+	background-image: url('images/bsc.png');
+}

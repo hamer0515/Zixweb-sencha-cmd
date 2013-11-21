@@ -1,152 +1,56 @@
 Ext.define('Zixweb.view.zjdz.bfjgzcx', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.zjdzbfjgzcx',
-	border : false,
-	initComponent : function() {
-		var mformat = function(value) {
-			return Ext.util.Format.number(parseInt(value) / 100, '0,0.00');
-		}
-		var tpl = new Ext.XTemplate(
-				'<tpl for=".">',
-				'<table width="98%" border="0" cellspacing="1" cellpadding="0" align="center"  bgcolor="#C8DCF0" class="live_1_table">',
-				'{[this.gentrs(values)]}', '</table>', '</tpl>', {
-					gentrs : function(json) {
-						var data = '';
-						var bfjacct = Ext.data.StoreManager
-								.lookup('Zixweb.store.component.BfjAcct');
-						var zjbdtype = Ext.data.StoreManager
-								.lookup('Zixweb.store.component.ZjbdType');
-						data += '<tr bgcolor="#ffffff"   align="center" class="live_1_table_tr">'
-								+ '<td  width="9%">银行账户</td>'
-								+ '<td  width="11%">资金变动类型</td>'
-								+ '<td  width="8%">科目</td>'
-						for (var i in json.dates) {
-							data += '<td  width="8%">' + json.dates[i]
-									+ '</td>';
-						}
-						data += '<td  width="10%">7日前合计</td>'
-								+ '<td  width="8%">总累计</td>' + '</tr>';
-						for (var i in json.accts) {
-							var acct = json.accts[i];
-							var index = bfjacct.findExact('id', acct);
-							var acct_name = bfjacct.getAt(index).data.name;
-							data += '<tr class="ice_one_td">' + '<td rowspan="'
-									+ json.acct_rowspan[acct] + '" ><BR>'
-									+ acct_name + '</td>';
-							for (var j in json.acct_zjbd_types[acct]) {
-								var zjbd_type = json.acct_zjbd_types[acct][j];
-								var zindex = zjbdtype
-										.findExact('id', zjbd_type);
-								var zjbd_type_name = zjbdtype.getAt(zindex).data.name;
-								if (j > 0) {
-									data += '<tr  id="row1"  class="ice_one_td">';
-								}
-								// 银行端款
-								data += '<td rowspan="2" >' + zjbd_type_name
-										+ '</td>' + '<td width="8%">短款</td>';
-								for (var x in json.dates) {
-									var date = json.dates[x];
-									data += '<td class="ice_one_data"> '
-											+ mformat(json.data[acct][zjbd_type][date].sc)
-											+ '</td>';
-								}
-								data += '<td class="ice_one_data">'
-										+ mformat(json.sum_week[acct][zjbd_type].sc)
-										+ '</td>';
-								data += '<td class="ice_one_data">'
-										+ mformat(json.sum_total[acct][zjbd_type].sc)
-										+ '</td></tr>';
-								// 长款
-								data += '<tr class="ice_one_td">'
-										+ '<td >长款</td>';
-								for (var x in json.dates) {
-									var date = json.dates[x];
-									data += '<td class="ice_one_data"> '
-											+ mformat(json.data[acct][zjbd_type][date].lc)
-											+ '</td>';
-								}
-								data += '<td class="ice_one_data">'
-										+ mformat(json.sum_week[acct][zjbd_type].lc)
-										+ '</td>';
-								data += '<td class="ice_one_data">'
-										+ mformat(json.sum_total[acct][zjbd_type].lc)
-										+ '</td></tr>';
-							}
-							// 合计
-							data += '<tr class="ice_one_td">'
-									+ '<td rowspan="2">合计</td>'
-									+ '<td >短款</td>';
-							for (var x in json.dates) {
-								var date = json.dates[x];
-								data += '<td class="ice_one_data"> '
-										+ mformat(json.heji[acct][date].sc)
-										+ '</td>';
-							}
-							data += '<td class="ice_one_data">'
-									+ mformat(json.sum_week[acct]['heji'].sc)
-									+ '</td>' + '<td class="ice_one_data">'
-									+ mformat(json.sum_total[acct]['heji'].sc)
-									+ '</td></tr>';
-							data += '<tr class="ice_one_td">'
-									+ '<td width="8%">长款</td>';
-							for (var x in json.dates) {
-								var date = json.dates[x];
-								data += '<td class="ice_one_data"> '
-										+ mformat(json.heji[acct][date].lc)
-										+ '</td>';
-							}
-							data += '<td class="ice_one_data">'
-									+ mformat(json.sum_week[acct]['heji'].lc)
-									+ '</td>' + '<td class="ice_one_data">'
-									+ mformat(json.sum_total[acct]['heji'].lc)
-									+ '</td></tr>';
-						}
-						// 总和计
-						data += '<tr class="ice_one_td">'
-								+ '<td rowspan="2" colspan="2">总合计</td>'
-								+ '<td >短款</td>';
-						for (var x in json.dates) {
-							var date = json.dates[x];
-							data += '<td class="ice_one_data"> '
-									+ mformat(json.total_sum[date].sc)
-									+ '</td>';
-						}
-						data += '<td class="ice_one_data">'
-								+ mformat(json.total_sum.week.sc) + '</td>'
-								+ '<td class="ice_one_data">'
-								+ mformat(json.total_sum.total.sc)
-								+ '</td></tr>';
-						data += '<tr class="ice_one_td">' + '<td >长款</td>';
-						for (var x in json.dates) {
-							var date = json.dates[x];
-							data += '<td class="ice_one_data"> '
-									+ mformat(json.total_sum[date].lc)
-									+ '</td>';
-						}
-						data += '<td class="ice_one_data">'
-								+ mformat(json.total_sum.week.lc) + '</td>'
-								+ '<td class="ice_one_data">'
-								+ mformat(json.total_sum.total.lc);
-						+'</td></tr>';
-						return data;
-					}
-				});
-		var store = new Ext.data.Store({
-					fields : ['acct_zjbd_types', 'sum_total', 'total_sum',
-							'accts', 'dates', 'data', 'heji', 'sum_week',
-							'acct_rowspan'],
 
+	defaults : {
+		border : false
+	},
+
+	initComponent : function() {
+		var store = new Ext.data.Store({
+					fields : ['e_date', 'bfj_acct', 'blc', 'bsc'],
+
+					pageSize : 50,
 					autoLoad : true,
+
 					proxy : {
 						type : 'ajax',
-						url : 'zjdz/bfjgzcx'
+						api : {
+							read : 'zjdz/bfjgzcx'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
+						}
 					},
 					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp('zjdzbfjform').getForm();
+							var values = form.getValues();
+							console.log(values);
+							if (form.isValid()) {
+								store.proxy.extraParams = values;
+							} else {
+								return false;
+							}
+						},
 						load : function(thiz, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '数据加载失败,请联系管理员',
+											msg : '对账列表数据加载失败,请联系管理员',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							var jsonData = thiz.proxy.reader.jsonData.success;
+							if (jsonData && jsonData === 'forbidden') {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '抱歉，没有对账列表数据访问权限',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
@@ -155,12 +59,196 @@ Ext.define('Zixweb.view.zjdz.bfjgzcx', {
 					}
 				});
 		this.store = store;
-		var view = Ext.create('Ext.view.View', {
-					store : store,
-					tpl : tpl,
-					itemSelector : 'table'
-				});
-		this.items = view;
+		this.items = [{
+					xtype : 'form',
+					title : '查询',
+					id : 'zjdzbfjform',
+					bodyPadding : 5,
+					collapsible : true,
+
+					fieldDefaults : {
+						labelWidth : 140
+					},
+					items : [{
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'bfjacct',
+											name : 'bfj_acct',
+											fieldLabel : '备付金银行账号'
+										}]
+
+							}, {
+								xtype : 'fieldcontainer',
+								fieldLabel : '差错日期',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'from',
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'to',
+											width : 180
+										}]
+							}, {
+								xtype : 'button',
+								text : '查询',
+								margin : '0 20 0 0',
+								handler : function() {
+									store.loadPage(1);
+								}
+							}, {
+								xtype : 'button',
+								text : '重置',
+								handler : function(button) {
+									button.up('panel').getForm().reset();
+								}
+							}]
+				}, {
+					xtype : 'gridpanel',
+					id : 'zjdzbfjgrid',
+					height : 'auto',
+
+					store : this.store,
+					dockedItems : [{
+								xtype : 'pagingtoolbar',
+								store : this.store,
+								dock : 'bottom',
+								displayInfo : true
+							}],
+					columns : [{
+								text : "差错日期",
+								dataIndex : 'e_date',
+								sortable : false,
+								flex : 1,
+								renderer : Ext.util.Format
+										.dateRenderer('Y-m-d')
+							}, {
+								text : "备付金银行账户",
+								itemId : 'bfj_acct',
+								dataIndex : 'bfj_acct',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var bfjacct = Ext.data.StoreManager
+											.lookup('Zixweb.store.component.BfjAcct');
+									var index = bfjacct.findExact('id', value);
+									return bfjacct.getAt(index).data.name;
+								},
+								flex : 3
+							}, {
+								text : "长款余额",
+								dataIndex : 'blc',
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									if (!value) {
+										value = 0;
+									}
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}, {
+								text : "短款余额",
+								dataIndex : 'bsc',
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									if (!value) {
+										value = 0;
+									}
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
+							}, {
+								xtype : 'actioncolumn',
+								text : '明细',
+								width : 80,
+								align : 'center',
+								items : [{
+									tooltip : '长款余额',
+									getClass : function(v, meta, rec) {
+										return 'blcdetail';
+									},
+									handler : function(grid, rowIndex, colIndex) {
+										var rec = grid.getStore()
+												.getAt(rowIndex);
+										var viewport = grid.up('viewport'), center = viewport
+												.down('center'), id = 'book_hist_blc', cmp = Ext
+												.getCmp(id), panel;
+										if (!cmp) {
+											cmp = Ext.widget('book_hist_blc');
+											panel = center.add({
+														closable : true,
+														xtype : 'panel',
+														items : cmp,
+														id : 'book_hist_blc',
+														title : '备份金银行长款科目明细查询'
+													});
+										}
+										cmp.down('form').getForm().reset();
+										cmp
+												.down("datefield[name='e_date_from']")
+												.setValue(rec.data.e_date);
+										cmp.down("datefield[name='e_date_to']")
+												.setValue(rec.data.e_date);
+										cmp.down("bfjacct[name='bfj_acct']")
+												.setValue(rec.data.bfj_acct);
+										cmp.down("gridpanel").store.loadPage(1);
+										if (panel) {
+											panel.show();
+										} else {
+											center.setActiveTab(cmp);
+										}
+									}
+
+								}, {
+									tooltip : '短款余额',
+									getClass : function(v, meta, rec) {
+										return 'bscdetail';
+									},
+									handler : function(grid, rowIndex, colIndex) {
+										var rec = grid.getStore()
+												.getAt(rowIndex);
+										var viewport = grid.up('viewport'), center = viewport
+												.down('center'), id = 'book_hist_bsc', cmp = Ext
+												.getCmp(id), panel;
+										if (!cmp) {
+											cmp = Ext.widget('book_hist_bsc');
+											panel = center.add({
+														closable : true,
+														xtype : 'panel',
+														items : cmp,
+														id : 'book_hist_bsc',
+														title : '备份金银行短款科目明细查询'
+													});
+										}
+										if (cmp) {
+											center.setActiveTab(cmp);
+										}
+										cmp.down('form').getForm().reset();
+										cmp
+												.down("datefield[name='e_date_from']")
+												.setValue(rec.data.e_date);
+										cmp.down("datefield[name='e_date_to']")
+												.setValue(rec.data.e_date);
+										cmp.down("bfjacct[name='bfj_acct']")
+												.setValue(rec.data.bfj_acct);
+										cmp.down("gridpanel").store.loadPage(1);
+										if (panel) {
+											panel.show();
+										} else {
+											center.setActiveTab(cmp);
+										}
+									}
+								}
+
+								]
+							}]
+				}];
 		this.callParent(arguments);
 	}
 });

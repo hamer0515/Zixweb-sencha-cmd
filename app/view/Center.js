@@ -27,13 +27,13 @@ Ext.define('Zixweb.view.Center', {
 						closable : false
 					}],
 			autoShow : true,
-			listeners : {
-				tabchange : function(tabPanel, newCard, oldCard, eOpts) {
-					if (/^(center_task|center_zjdzbfj)/.test(newCard.id)) {
-						newCard.items.items[0].store.reload();
-					}
-				}
-			},
+			// listeners : {
+			// tabchange : function(tabPanel, newCard, oldCard, eOpts) {
+			// if (/^(center_task)/.test(newCard.id)) {
+			// newCard.items.items[0].store.reload();
+			// }
+			// }
+			// },
 			initComponent : function() {
 				this.callParent(arguments);
 			}

@@ -81,7 +81,7 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 											format : 'Y-m-d',
 											name : 'period_from',
 											margin : '0 10 0 0',
-											allowBlank : false,
+											// allowBlank : false,
 											verify : {
 												id : 'book_hist_bsc_to_3'
 											},
@@ -92,7 +92,7 @@ Ext.define('Zixweb.view.book.hist.bsc', {
 											id : 'book_hist_bsc_to_3',
 											format : 'Y-m-d',
 											name : 'period_to',
-											allowBlank : false,
+											// allowBlank : false,
 											width : 180
 										}]
 							}, {

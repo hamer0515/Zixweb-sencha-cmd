@@ -26,7 +26,7 @@ Ext.define('Zixweb.controller.Index', {
 									id : 'center_' + rec.data.url,
 									title : rec.data.text
 								}).show();
-						viewport.doLayout();
+						// viewport.doLayout();
 					}
 				}
 			}
