@@ -372,6 +372,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.pzlr.i0000": [],
   "Zixweb.view.component.Routes": [],
   "Zixweb.controller.Index": [],
+  "Zixweb.view.component.Fields": [],
   "Zixweb.view.fhydbook.hist.tctxamt_dqr_oyf_fhyd": [],
   "Zixweb.controller.Task": [],
   "Zixweb.view.book.hist.fee_jrjg": [],
@@ -1380,6 +1381,9 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.routes"
   ],
   "Zixweb.controller.Index": [],
+  "Zixweb.view.component.Fields": [
+    "widget.tablefields"
+  ],
   "Zixweb.view.fhydbook.hist.tctxamt_dqr_oyf_fhyd": [
     "widget.book_hist_tctxamt_dqr_oyf_fhyd"
   ],

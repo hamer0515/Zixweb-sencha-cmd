@@ -1,5 +1,4 @@
 Ext.define('Zixweb.Application', {
-			name : 'Zixweb',
 			minHeight : 768,
 			minWidth : 1024,
 			extend : 'Ext.app.Application',

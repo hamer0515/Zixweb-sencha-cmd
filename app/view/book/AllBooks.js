@@ -11,7 +11,7 @@ Ext.define('Zixweb.view.book.AllBooks', {
 
 		Ext.apply(this, {
 			store : new Ext.data.TreeStore({
-						fields : ['text', 'j', 'd', 'url', 'success'],
+						fields : ['text', 'j', 'd', 'url', 'success', 'bid'],
 						autoload : true,
 						proxy : {
 							type : 'ajax',
@@ -114,7 +114,8 @@ Ext.define('Zixweb.view.book.AllBooks', {
 										closable : true,
 										xtype : 'panel',
 										items : {
-											xtype : 'book_hist_' + rec.data.url
+											xtype : 'book_hist_' + rec.data.url,
+											bid : rec.data.bid
 										},
 										id : 'book_hist_' + rec.data.url,
 										title : rec.data.text

@@ -181,197 +181,171 @@ Ext.define('Zixweb.view.book.hist.txamt_yhys', {
 					}]
 		});
 		this.items = [{
-			xtype : 'form',
-			title : '查询',
-			id : panel.prefix + '_form',
-			bodyPadding : 5,
-			collapsible : true,
+					xtype : 'form',
+					title : '查询',
+					id : panel.prefix + '_form',
+					bodyPadding : 5,
+					collapsible : true,
 
-			fieldDefaults : {
-				labelWidth : 140
-			},
-			items : [{
-						xtype : 'fieldcontainer',
-						fieldLabel : '会计期间',
-						layout : 'hbox',
-						items : [{
-									xtype : 'datefield',
-									format : 'Y-m-d',
-									name : 'period_from',
-									margin : '0 10 0 0',
-									allowBlank : false,
-									verify : {
-										id : panel.prefix + '_to'
-									},
-									vtype : 'dateinterval',
-									width : 180
-								}, {
-									xtype : 'datefield',
-									id : panel.prefix + '_to',
-									format : 'Y-m-d',
-									name : 'period_to',
-									allowBlank : false,
-									width : 180
-								}]
-					}, {
-						xtype : 'fieldcontainer',
-						layout : 'hbox',
-						items : [{
-									xtype : 'textfield',
-									name : 'id',
-									margin : '0 10 0 0',
-									width : 516,
-									fieldLabel : 'ID'
-								}, {
-									xtype : 'textfield',
-									fieldLabel : '原始凭证ID',
-									width : 516,
-									name : 'ys_id'
-								}]
+					fieldDefaults : {
+						labelWidth : 140
+					},
+					items : [{
+								xtype : 'fieldcontainer',
+								fieldLabel : '会计期间',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'period_from',
+											margin : '0 10 0 0',
+											allowBlank : false,
+											verify : {
+												id : panel.prefix + '_to'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : panel.prefix + '_to',
+											format : 'Y-m-d',
+											name : 'period_to',
+											allowBlank : false,
+											width : 180
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'textfield',
+											name : 'id',
+											margin : '0 10 0 0',
+											width : 516,
+											fieldLabel : 'ID'
+										}, {
+											xtype : 'textfield',
+											fieldLabel : '原始凭证ID',
+											width : 516,
+											name : 'ys_id'
+										}]
 
-					}, {
-						xtype : 'fieldcontainer',
-						fieldLabel : '资金变动日期范围',
-						layout : 'hbox',
-						items : [{
-									xtype : 'datefield',
-									format : 'Y-m-d',
-									name : 'zjbd_date_from',
-									margin : '0 10 0 0',
-									verify : {
-										id : panel.prefix + '_to_2'
-									},
-									vtype : 'dateinterval',
-									width : 180
-								}, {
-									xtype : 'datefield',
-									id : panel.prefix + '_to_2',
-									format : 'Y-m-d',
-									name : 'zjbd_date_to',
-									margin : '0 10 0 0',
-									width : 180
-								}, {
-									xtype : 'zjbdtype',
-									name : 'zjbd_type',
-									margin : '0 10 0 0',
-									fieldLabel : '资金变动类型'
-								}]
-					}, {
-						xtype : 'fieldcontainer',
-						layout : 'hbox',
-						items : [{
-									xtype : 'bfjacct',
-									name : 'bfj_acct',
-									margin : '0 10 0 0',
-									fieldLabel : '自有资金账号'
-								}, {
-									xtype : 'ystype',
-									name : 'ys_type',
-									fieldLabel : '原始凭证类型'
-								}]
+							}, {
+								xtype : 'fieldcontainer',
+								fieldLabel : '资金变动日期范围',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'zjbd_date_from',
+											margin : '0 10 0 0',
+											verify : {
+												id : panel.prefix + '_to_2'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : panel.prefix + '_to_2',
+											format : 'Y-m-d',
+											name : 'zjbd_date_to',
+											margin : '0 10 0 0',
+											width : 180
+										}, {
+											xtype : 'zjbdtype',
+											name : 'zjbd_type',
+											margin : '0 10 0 0',
+											fieldLabel : '资金变动类型'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'bfjacct',
+											name : 'bfj_acct',
+											margin : '0 10 0 0',
+											fieldLabel : '自有资金账号'
+										}, {
+											xtype : 'ystype',
+											name : 'ys_type',
+											fieldLabel : '原始凭证类型'
+										}]
 
-					}, {
-						xtype : 'fieldcontainer',
-						layout : 'hbox',
-						items : [{
-									xtype : 'fieldcontainer',
-									layout : 'hbox',
-									fieldLabel : '借方金额',
-									items : [{
-												xtype : 'money',
-												name : 'j_from',
-												margin : '0 10 0 0',
-												width : 180
-											}, {
-												xtype : 'money',
-												name : 'j_to',
-												width : 180,
-												margin : '0 10 0 0'
-											}]
-								}, {
-									xtype : 'fieldcontainer',
-									layout : 'hbox',
-									fieldLabel : '贷方金额',
-									items : [{
-												xtype : 'money',
-												name : 'd_from',
-												margin : '0 10 0 0',
-												width : 180
-											}, {
-												xtype : 'money',
-												name : 'd_to',
-												width : 180,
-												margin : '0 10 0 0'
-											}]
-								}]
-					}, {
-						xtype : 'button',
-						text : '查询',
-						margin : '0 20 0 0',
-						handler : function() {
-							store.loadPage(1);
-						}
-					}, {
-						xtype : 'button',
-						text : '重置',
-						margin : '0 20 0 0',
-						handler : function(button) {
-							button.up('panel').getForm().reset();
-						}
-					}, {
-						xtype : 'button',
-						id : panel.prefix + '_exporterbutton',
-						text : '导出Excel',
-						disabled : true,
-						handler : function() {
-							var count = store.getTotalCount();
-							if (count == 0) {
-								return;
-							} else if (count > 20000) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '数据量超过上限10000条',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.WARNING
-										});
-								return;
-							}
-							var params = panel.values;
-							var columns = grid.headerCt.gridDataColumns;
-							var h = {
-								headers : []
-							};
-							for (var i in columns) {
-								var c = columns[i];
-								if (!c.dataIndex) {
-									continue;
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'fieldcontainer',
+											layout : 'hbox',
+											fieldLabel : '借方金额',
+											items : [{
+														xtype : 'money',
+														name : 'j_from',
+														margin : '0 10 0 0',
+														width : 180
+													}, {
+														xtype : 'money',
+														name : 'j_to',
+														width : 180,
+														margin : '0 10 0 0'
+													}]
+										}, {
+											xtype : 'fieldcontainer',
+											layout : 'hbox',
+											fieldLabel : '贷方金额',
+											items : [{
+														xtype : 'money',
+														name : 'd_from',
+														margin : '0 10 0 0',
+														width : 180
+													}, {
+														xtype : 'money',
+														name : 'd_to',
+														width : 180,
+														margin : '0 10 0 0'
+													}]
+										}]
+							}, {
+								xtype : 'button',
+								text : '查询',
+								margin : '0 20 0 0',
+								handler : function() {
+									store.loadPage(1);
 								}
-								h[c.dataIndex] = c.text;
-								h.headers.push(c.dataIndex);
-							}
-							params.header = Ext.encode(h);
-							Ext.Ajax.request({
-								async : false,
-								url : 'book/hist/txamt_yhys_excel',
-								params : params,
-								success : function(response, opts) {
-									var res = Ext.decode(response.responseText);
-									Ext.downloadURL('base/excel?file='
-											+ res.file);
-								},
-								failure : function(response, opts) {
-									Ext.MessageBox.show({
-												title : '警告',
-												msg : '服务器端出错，错误码:'
-														+ response.status,
-												buttons : Ext.Msg.YES,
-												icon : Ext.Msg.ERROR
+							}, {
+								xtype : 'button',
+								text : '重置',
+								margin : '0 20 0 0',
+								handler : function(button) {
+									button.up('panel').getForm().reset();
+								}
+							}, {
+								xtype : 'button',
+								id : panel.prefix + '_exporterbutton',
+								text : '导出Excel',
+								disabled : true,
+								handler : function() {
+									var count = store.getTotalCount();
+									if (count == 0) {
+										return;
+									} else if (count > 10000) {
+										Ext.MessageBox.show({
+													title : '警告',
+													msg : '数据量超过上限10000条',
+													buttons : Ext.Msg.YES,
+													icon : Ext.Msg.WARNING
+												});
+										return;
+									}
+									Ext.widget('tablefields', {
+												bid : panel.bid,
+												modal : true,
+												params : panel.values,
+												url : 'book/hist/txamt_yhys_excel',
+												resizable : false
 											});
 								}
-							});
-						}
-					}]
-		}, grid];
+							}]
+				}, grid];
 		this.callParent(arguments);
 	}
 });

@@ -106,6 +106,8 @@ Ext.define('Zixweb.view.book.detail.wlzj_yfbf', {
 										});
 								return;
 							}
+							panel.values = Ext.getCmp(panel.prefix + '_form')
+									.getForm().getValues();
 							if (records.length > 0) {
 								Ext.getCmp(panel.prefix + '_exporterbutton')
 										.setDisabled(false);

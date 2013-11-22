@@ -1,9 +1,8 @@
 Ext.define('Zixweb.view.book.detail.lfee_psp', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.book_detail_lfee_psp',
-
 	prefix : 'book_detail_lfee_psp',
-	
+
 	defaults : {
 		border : false
 	},
@@ -11,60 +10,58 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 	initComponent : function() {
 		var panel = this;
 		var columns = {
-				c:{
-					text : "客户编号",
-					itemId : 'c',
-					dataIndex : 'c',
-					sortable : false,
-					flex : 1
-				}, 
-				cust_proto:{
-					text : "客户协议编号",
-					itemId : 'cust_proto',
-					dataIndex : 'cust_proto',
-					sortable : false,
-					flex : 1
-				}, 
-				tx_date:{
-					text : "交易日期",
-					dataIndex : 'tx_date',
-					itemId : 'tx_date',
-					sortable : false,
-					flex : 1,
-					renderer : Ext.util.Format
-							.dateRenderer('Y年m月d日')
-				},
-				period:{
-					text : "期间日期",
-					dataIndex : 'period',
-					itemId : 'period',
-					sortable : false,
-					flex : 1,
-					renderer : Ext.util.Format
-							.dateRenderer('Y年m月d日')
-				},
-				j: {
-					text : "借方金额",
-					dataIndex : 'j',
-					sortable : false,
-					flex : 1,
-					renderer : function(value) {
-						return Ext.util.Format.number(
-								parseInt(value) / 100, '0,0.00');
-					}
-				}, 
-				d:{
-					text : "贷方金额",
-					dataIndex : 'd',
-					width : 100,
-					sortable : false,
-					flex : 1,
-					renderer : function(value) {
-						return Ext.util.Format.number(
-								parseInt(value) / 100, '0,0.00');
-					}
+			c : {
+				text : "客户编号",
+				itemId : 'c',
+				dataIndex : 'c',
+				sortable : false,
+				flex : 1
+			},
+			cust_proto : {
+				text : "客户协议编号",
+				itemId : 'cust_proto',
+				dataIndex : 'cust_proto',
+				sortable : false,
+				flex : 1
+			},
+			tx_date : {
+				text : "交易日期",
+				dataIndex : 'tx_date',
+				itemId : 'tx_date',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			},
+			period : {
+				text : "期间日期",
+				dataIndex : 'period',
+				itemId : 'period',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			},
+			j : {
+				text : "借方金额",
+				dataIndex : 'j',
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
 				}
-		};		
+			},
+			d : {
+				text : "贷方金额",
+				dataIndex : 'd',
+				width : 100,
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
+				}
+			}
+		};
 		var store = new Ext.data.Store({
 			fields : ['c', 'cust_proto', 'tx_date', 'period', 'j', 'd'],
 
@@ -85,9 +82,9 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 			},
 			listeners : {
 				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp('lfeepspdetailform').getForm();
+					var form = Ext.getCmp(panel.prefix + '_form').getForm();
 					var values = form.getValues();
-					var grid = Ext.getCmp('book_detail_lfee_psp_grid');
+					var grid = Ext.getCmp(panel.prefix + '_grid');
 					grid.down('#c').hide();
 					grid.down('#cust_proto').hide();
 					grid.down('#tx_date').hide();
@@ -182,157 +179,158 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 								xtype : 'pagingtoolbar',
 								store : store
 							}],
-					columns : [columns.c, columns.cust_proto, columns.tx_date, columns.period, columns.j, columns.d]
+					columns : [columns.c, columns.cust_proto, columns.tx_date,
+							columns.period, columns.j, columns.d]
 				});
 		this.items = [{
-					xtype : 'form',
-					title : '查询',
-					id : panel.prefix + '_form',
-					bodyPadding : 5,
-					collapsible : true,
+			xtype : 'form',
+			title : '查询',
+			id : panel.prefix + '_form',
+			bodyPadding : 5,
+			collapsible : true,
 
-					fieldDefaults : {
-						labelWidth : 140
-					},
-					items : [{
-								xtype : 'fieldcontainer',
-								fieldLabel : '会计期间',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'period_from',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											verify : {
-												id : 'book_detail_lfee_psp_to_1'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_detail_lfee_psp_to_1',
-											format : 'Y-m-d',
-											name : 'period_to',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											width : 180
-										}, {
-											xtype : 'textfield',
-											name : 'c',
-											width : 516,
-											fieldLabel : '客户编号'
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								fieldLabel : '交易日期范围',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'tx_date_from',
-											margin : '0 10 0 0',
-											verify : {
-												id : 'book_detail_lfee_psp_to_2'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_detail_lfee_psp_to_2',
-											format : 'Y-m-d',
-											name : 'tx_date_to',
-											margin : '0 10 0 0',
-											width : 180
-										}, {
-											xtype : 'textfield',
-											name : 'cust_proto',
-											width : 516,
-											fieldLabel : '客户协议编号'
-										}]
-							}, {
-								xtype : 'hsx',
-								data : [{
-											'value' : "c",
-											'name' : "客户编号"
-										}, {
-											'value' : "cust_proto",
-											'name' : "客户协议编号"
-										}, {
-											'value' : "tx_date",
-											'name' : "交易日期"
-										}, {
-											'value' : "period",
-											'name' : "期间日期"
-										}]
-							}, {
-								xtype : 'button',
-								text : '查询',
-								margin : '0 20 0 0',
-								handler : function() {
-									store.loadPage(1);
+			fieldDefaults : {
+				labelWidth : 140
+			},
+			items : [{
+						xtype : 'fieldcontainer',
+						fieldLabel : '会计期间',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'period_from',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									verify : {
+										id : panel.prefix + '_to_1'
+									},
+									vtype : 'dateinterval',
+									width : 180
+								}, {
+									xtype : 'datefield',
+									id : panel.prefix + '_to_1',
+									format : 'Y-m-d',
+									name : 'period_to',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									width : 180
+								}, {
+									xtype : 'textfield',
+									name : 'c',
+									width : 516,
+									fieldLabel : '客户编号'
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						fieldLabel : '交易日期范围',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'tx_date_from',
+									margin : '0 10 0 0',
+									verify : {
+										id : panel.prefix + '_to_2'
+									},
+									vtype : 'dateinterval',
+									width : 180
+								}, {
+									xtype : 'datefield',
+									id : panel.prefix + '_to_2',
+									format : 'Y-m-d',
+									name : 'tx_date_to',
+									margin : '0 10 0 0',
+									width : 180
+								}, {
+									xtype : 'textfield',
+									name : 'cust_proto',
+									width : 516,
+									fieldLabel : '客户协议编号'
+								}]
+					}, {
+						xtype : 'hsx',
+						data : [{
+									'value' : "c",
+									'name' : "客户编号"
+								}, {
+									'value' : "cust_proto",
+									'name' : "客户协议编号"
+								}, {
+									'value' : "tx_date",
+									'name' : "交易日期"
+								}, {
+									'value' : "period",
+									'name' : "期间日期"
+								}]
+					}, {
+						xtype : 'button',
+						text : '查询',
+						margin : '0 20 0 0',
+						handler : function() {
+							store.loadPage(1);
+						}
+					}, {
+						xtype : 'button',
+						text : '重置',
+						margin : '0 20 0 0',
+						handler : function(button) {
+							button.up('panel').getForm().reset();
+						}
+					}, {
+						xtype : 'button',
+						id : panel.prefix + '_exporterbutton',
+						text : '导出Excel',
+						disabled : true,
+						handler : function() {
+							var count = store.getTotalCount();
+							if (count == 0) {
+								return;
+							} else if (count > 10000) {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '数据量超过上限10000条',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.WARNING
+										});
+								return;
+							}
+							var params = panel.values;
+							var columns = grid.headerCt.gridDataColumns;
+							var h = {
+								headers : []
+							};
+							for (var i in columns) {
+								var c = columns[i];
+								if (!c.dataIndex) {
+									continue;
 								}
-							}, {
-								xtype : 'button',
-								text : '重置',
-								margin : '0 20 0 0',
-								handler : function(button) {
-									button.up('panel').getForm().reset();
+								h[c.dataIndex] = c.text;
+								h.headers.push(c.dataIndex);
+							}
+							params.header = Ext.encode(h);
+							Ext.Ajax.request({
+								async : false,
+								url : 'book/detail/lfee_psp_excel',
+								params : params,
+								success : function(response, opts) {
+									var res = Ext.decode(response.responseText);
+									Ext.downloadURL('base/excel?file='
+											+ res.file);
+								},
+								failure : function(response, opts) {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '服务器端出错，错误码:'
+														+ response.status,
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
 								}
-							}, {
-								xtype : 'button',
-								id : panel.prefix + '_exporterbutton',
-								text : '导出Excel',
-								disabled : true,
-								handler : function() {
-									var count = store.getTotalCount();
-									if (count == 0) {
-										return;
-									} else if (count > 10000) {
-										Ext.MessageBox.show({
-													title : '警告',
-													msg : '数据量超过上限10000条',
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.WARNING
-												});
-										return;
-									}
-									var params = panel.values;
-									var columns = grid.headerCt.gridDataColumns;
-									var h = {
-										headers : []
-									};
-									for (var i in columns) {
-										var c = columns[i];
-										if (!c.dataIndex) {
-											continue;
-										}
-										h[c.dataIndex] = c.text;
-										h.headers.push(c.dataIndex);
-									}
-									params.header = Ext.encode(h);
-									Ext.Ajax.request({
-										async : false,
-										url : 'book/detail/lfee_psp_excel',
-										params : params,
-										success : function(response, opts) {
-											var res = Ext.decode(response.responseText);
-											Ext.downloadURL('base/excel?file='
-													+ res.file);
-										},
-										failure : function(response, opts) {
-											Ext.MessageBox.show({
-														title : '警告',
-														msg : '服务器端出错，错误码:'
-																+ response.status,
-														buttons : Ext.Msg.YES,
-														icon : Ext.Msg.ERROR
-													});
-										}
-									});
-								}
-							}]
-				}, grid];
+							});
+						}
+					}]
+		}, grid];
 		this.callParent(arguments);
 	}
 });
