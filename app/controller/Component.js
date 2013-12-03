@@ -22,6 +22,7 @@ Ext.define('Zixweb.controller.Component', {
 			'Zixweb.view.component.FhydAcct', 'Zixweb.view.component.FywType',
 			'Zixweb.view.component.YsTypeF',
 			'Zixweb.view.component.plugins.PageComboResizer',
-			'Zixweb.view.component.Money', 'Zixweb.view.component.Fields']
+			'Zixweb.view.component.Money', 'Zixweb.view.component.Fields',
+			'Zixweb.view.component.AcctStatus']
 
 });

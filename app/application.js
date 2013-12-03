@@ -4,6 +4,7 @@ Ext.define('Zixweb.Application', {
 			extend : 'Ext.app.Application',
 
 			controllers : ['Login', 'Index', 'Component', 'Roles', 'Users',
-					'Routes', 'Books', 'Pzlr', 'Task', 'Yspz', 'Zjdz', 'Zqqr']
+					'Routes', 'Books', 'Pzlr', 'Task', 'Yspz', 'Zjdz', 'Zqqr',
+					'Jcsjwh']
 
 		});

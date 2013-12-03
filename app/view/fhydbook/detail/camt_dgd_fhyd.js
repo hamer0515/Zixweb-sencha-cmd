@@ -215,7 +215,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_dgd_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '会计期间',
+						fieldLabel : '期间日期范围',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',

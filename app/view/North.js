@@ -65,6 +65,8 @@ Ext.define('Zixweb.view.North', {
 		}
 	},
 	initComponent : function() {
+		var panel = this;
+		var swidth = screen.width;
 		this.items = [{
 					xtype : 'image',
 					border : false,
@@ -86,7 +88,7 @@ Ext.define('Zixweb.view.North', {
 					width : 16,
 					src : 'resources/images/door_in.png',
 					apck : 'end',
-					margin : "0 0 0 800"
+					margin : "0 0 0 " + parseInt(swidth) / 2
 				}, {
 					xtype : 'displayfield',
 					value : "<a href='javascript:void(0)' id='north_logout_button'>安全退出</a>",
