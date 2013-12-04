@@ -83,6 +83,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.FieldReplicator": [],
   "overrides.grid.column.RowNumberer": [],
   "Ext.locale.zh_CN.form.field.Base": [],
+  "Zixweb.view.task.TaskF0000": [],
   "Zixweb.view.fhydbook.detail.income_add_fhyd": [],
   "Zixweb.view.fhydbook.detail.yfamt_ch_fhyd": [],
   "Ext.ux.dd.PanelFieldDragZone": [],
@@ -128,6 +129,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "overrides.grid.RowEditor": [],
   "Zixweb.view.Viewport": [],
   "Ext.ux.grid.TransformGrid": [],
+  "Zixweb.view.jcsjwh.bfjacct.Add": [],
   "Zixweb.view.component.ZyzjAcct": [],
   "Zixweb.view.component.Bi": [],
   "Zixweb.view.yspz.yspzq.y0016": [],
@@ -190,12 +192,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0103": [],
   "Zixweb.view.yspz.yspzq.y0106": [],
   "Zixweb.view.yspz.yspzq.y0105": [],
-  "Zixweb.view.yspz.yspzq.y0030": [],
   "Zixweb.view.yspz.yspzq.y0100": [],
-  "Zixweb.view.yspz.yspzq.y0032": [],
+  "Zixweb.view.yspz.yspzq.y0030": [],
+  "Zixweb.view.pzlr.f0000": [],
   "Zixweb.view.yspz.yspzq.y0102": [],
-  "Zixweb.view.yspz.yspzq.y0031": [],
+  "Zixweb.view.yspz.yspzq.y0032": [],
   "Zixweb.view.yspz.yspzq.y0101": [],
+  "Zixweb.view.yspz.yspzq.y0031": [],
   "Zixweb.view.yspz.yspzq.y0034": [],
   "Zixweb.view.yspz.yspzq.y0033": [],
   "Zixweb.view.yspz.yspzq.y0036": [],
@@ -329,6 +332,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.component.YsTypeF": [],
   "Zixweb.view.fhydbook.detail.yufamt_ch_fhyd": [],
   "Zixweb.view.yspz.yspzq.yF0006": [],
+  "Zixweb.view.jcsjwh.bfjacct.Edit": [],
   "Zixweb.view.yspz.yspzq.yF0007": [],
   "Zixweb.view.yspz.yspzq.yF0008": [],
   "Zixweb.view.yspz.yspzq.yF0009": [],
@@ -340,6 +344,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.yF0015": [],
   "Zixweb.view.component.HSX": [],
   "Zixweb.view.yspz.yspzq.yF0016": [],
+  "Zixweb.view.component.AcctStatus": [],
   "Zixweb.view.yspz.yspzq.yF0013": [],
   "Zixweb.view.yspz.yspzq.yF0014": [],
   "Zixweb.view.yspz.yspzq.yF0011": [],
@@ -350,6 +355,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.book.detail.income_in": [],
   "Ext.ux.form.SearchField": [],
   "Zixweb.view.fhydbook.detail.camt_dgd_fhyd": [],
+  "Zixweb.view.task.TaskFpzcx": [],
   "Zixweb.view.yspz.yspzq.yF0017": [],
   "Zixweb.view.book.hist.txamt_dqr_byf": [],
   "Ext.ux.dd.CellFieldDropZone": [],
@@ -363,6 +369,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.book.hist.blc": [],
   "Zixweb.view.fhydbook.hist.ypsc_fhyd": [],
   "Zixweb.view.login.LoginForm": [],
+  "Zixweb.view.task.TaskF0000detail": [],
   "Ext.ux.GMapPanel": [],
   "Zixweb.view.fhydbook.hist.deposit_fhyd": [],
   "Zixweb.view.zjdz.bfj": [],
@@ -385,6 +392,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.fhydbook.detail.ckrsp_fhyd": [],
   "Ext.ux.DataView.Draggable": [],
   "Zixweb.view.book.hist.txamt_yhys": [],
+  "Zixweb.view.jcsjwh.bfjacct.List": [],
   "Ext.ux.form.ItemSelector": [
     "Ext.ux.ItemSelector"
   ],
@@ -395,6 +403,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.store.component.WlzjType": [],
   "Ext.locale.zh_CN.toolbar.Paging": [],
   "Zixweb.view.component.Product": [],
+  "Zixweb.view.task.TaskFmy": [],
   "Ext.ux.ajax.DataSimlet": [],
   "Zixweb.view.fhydbook.hist.income_main_fhyd": [],
   "Zixweb.view.fhydbook.hist.yfamt_ch_fhyd": [],
@@ -443,6 +452,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.GroupTabRenderer": [],
   "overrides.form.field.HtmlEditor": [],
   "Zixweb.view.fhydbook.detail.nctxamt_dqr_oys_fhyd": [],
+  "Zixweb.view.task.TaskFpzcxdetail": [],
   "Zixweb.view.fhydbook.hist.income_add_fhyd": [],
   "Zixweb.view.West": [],
   "Zixweb.view.component.SHStatus": [],
@@ -466,6 +476,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.task.Task0000": [],
   "Ext.ux.DataView.LabelEditor": [],
   "Zixweb.view.yspz.yspzq.yF0039": [],
+  "Zixweb.controller.Jcsjwh": [],
   "Zixweb.view.yspz.yspzq.yF0032": [],
   "Zixweb.view.yspz.yspzq.yF0031": [],
   "Zixweb.view.yspz.yspzq.yF0034": [],
@@ -486,8 +497,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0092": [],
   "Ext.ux.RowExpander": [],
   "Zixweb.view.yspz.yspzq.y0091": [],
-  "Zixweb.view.fhydbook.detail.income_main_fhyd": [],
   "Zixweb.view.yspz.yspzq.y0097": [],
+  "Zixweb.view.fhydbook.detail.income_main_fhyd": [],
   "Zixweb.view.yspz.yspzq.y0098": [],
   "Zixweb.view.yspz.yspzq.y0095": [],
   "Zixweb.view.yspz.yspzq.y0096": [],
@@ -618,6 +629,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.FieldReplicator": [],
   "overrides.grid.column.RowNumberer": [],
   "Ext.locale.zh_CN.form.field.Base": [],
+  "Zixweb.view.task.TaskF0000": [
+    "widget.taskf0000"
+  ],
   "Zixweb.view.fhydbook.detail.income_add_fhyd": [
     "widget.book_detail_income_add_fhyd"
   ],
@@ -723,6 +737,9 @@ Ext.ClassManager.addNameAliasMappings({
   "overrides.grid.RowEditor": [],
   "Zixweb.view.Viewport": [],
   "Ext.ux.grid.TransformGrid": [],
+  "Zixweb.view.jcsjwh.bfjacct.Add": [
+    "widget.bfjacctadd"
+  ],
   "Zixweb.view.component.ZyzjAcct": [
     "widget.zyzjacct"
   ],
@@ -888,23 +905,26 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0105": [
     "widget.y0105"
   ],
-  "Zixweb.view.yspz.yspzq.y0030": [
-    "widget.y0030"
-  ],
   "Zixweb.view.yspz.yspzq.y0100": [
     "widget.y0100"
   ],
-  "Zixweb.view.yspz.yspzq.y0032": [
-    "widget.y0032"
+  "Zixweb.view.yspz.yspzq.y0030": [
+    "widget.y0030"
+  ],
+  "Zixweb.view.pzlr.f0000": [
+    "widget.f0000"
   ],
   "Zixweb.view.yspz.yspzq.y0102": [
     "widget.y0102"
   ],
-  "Zixweb.view.yspz.yspzq.y0031": [
-    "widget.y0031"
+  "Zixweb.view.yspz.yspzq.y0032": [
+    "widget.y0032"
   ],
   "Zixweb.view.yspz.yspzq.y0101": [
     "widget.y0101"
+  ],
+  "Zixweb.view.yspz.yspzq.y0031": [
+    "widget.y0031"
   ],
   "Zixweb.view.yspz.yspzq.y0034": [
     "widget.y0034"
@@ -1247,6 +1267,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.yF0006": [
     "widget.yF0006"
   ],
+  "Zixweb.view.jcsjwh.bfjacct.Edit": [
+    "widget.bfjacctedit"
+  ],
   "Zixweb.view.yspz.yspzq.yF0007": [
     "widget.yF0007"
   ],
@@ -1278,6 +1301,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.yF0016": [
     "widget.yF0016"
   ],
+  "Zixweb.view.component.AcctStatus": [
+    "widget.acctStatus"
+  ],
   "Zixweb.view.yspz.yspzq.yF0013": [
     "widget.yF0013"
   ],
@@ -1307,6 +1333,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.fhydbook.detail.camt_dgd_fhyd": [
     "widget.book_detail_camt_dgd_fhyd"
+  ],
+  "Zixweb.view.task.TaskFpzcx": [
+    "widget.taskfpzcx"
   ],
   "Zixweb.view.yspz.yspzq.yF0017": [
     "widget.yF0017"
@@ -1344,6 +1373,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.login.LoginForm": [
     "widget.loginform"
+  ],
+  "Zixweb.view.task.TaskF0000detail": [
+    "widget.taskf0000detail"
   ],
   "Ext.ux.GMapPanel": [
     "widget.gmappanel"
@@ -1395,6 +1427,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.book.hist.txamt_yhys": [
     "widget.book_hist_txamt_yhys"
   ],
+  "Zixweb.view.jcsjwh.bfjacct.List": [
+    "widget.bfjacctlist"
+  ],
   "Ext.ux.form.ItemSelector": [
     "widget.itemselector",
     "widget.itemselectorfield"
@@ -1413,6 +1448,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.locale.zh_CN.toolbar.Paging": [],
   "Zixweb.view.component.Product": [
     "widget.product"
+  ],
+  "Zixweb.view.task.TaskFmy": [
+    "widget.taskfmy"
   ],
   "Ext.ux.ajax.DataSimlet": [],
   "Zixweb.view.fhydbook.hist.income_main_fhyd": [
@@ -1518,6 +1556,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.fhydbook.detail.nctxamt_dqr_oys_fhyd": [
     "widget.book_detail_nctxamt_dqr_oys_fhyd"
   ],
+  "Zixweb.view.task.TaskFpzcxdetail": [
+    "widget.taskfpzcxdetail"
+  ],
   "Zixweb.view.fhydbook.hist.income_add_fhyd": [
     "widget.book_hist_income_add_fhyd"
   ],
@@ -1585,6 +1626,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.yF0039": [
     "widget.yF0039"
   ],
+  "Zixweb.controller.Jcsjwh": [],
   "Zixweb.view.yspz.yspzq.yF0032": [
     "widget.yF0032"
   ],
@@ -1639,11 +1681,11 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0091": [
     "widget.y0091"
   ],
-  "Zixweb.view.fhydbook.detail.income_main_fhyd": [
-    "widget.book_detail_income_main_fhyd"
-  ],
   "Zixweb.view.yspz.yspzq.y0097": [
     "widget.y0097"
+  ],
+  "Zixweb.view.fhydbook.detail.income_main_fhyd": [
+    "widget.book_detail_income_main_fhyd"
   ],
   "Zixweb.view.yspz.yspzq.y0098": [
     "widget.y0098"

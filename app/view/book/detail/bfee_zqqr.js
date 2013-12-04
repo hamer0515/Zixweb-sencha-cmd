@@ -295,7 +295,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 							params.header = Ext.encode(h);
 							Ext.Ajax.request({
 								async : false,
-								url : 'book/detail/txamt_yhys_excel',
+								url : 'book/detail/bfee_zqqr_excel',
 								params : params,
 								success : function(response, opts) {
 									var res = Ext.decode(response.responseText);

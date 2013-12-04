@@ -86,66 +86,6 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 			}
 			return v;
 		}
-		// fcg_date : function(v) {
-		// if (v) {
-		// return Ext.Date.format(v, 'Y-m-d');
-		// }
-		// return v;
-		// },
-		// fe_date : function(v) {
-		// if (v) {
-		// return Ext.Date.format(v, 'Y-m-d');
-		// }
-		// return v;
-		// },
-		// fhw_type : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.FhwType');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// fhyd_acct : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.FhydAcct');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// fio_date : function(v) {
-		// if (v) {
-		// return Ext.Date.format(v, 'Y-m-d');
-		// }
-		// return v;
-		// },
-		// ftx_date : function(v) {
-		// if (v) {
-		// return Ext.Date.format(v, 'Y-m-d');
-		// }
-		// return v;
-		// },
-		// fyp_acct : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.FypAcct');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// fyw_type : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.FywType');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// }
 	},
 	editors : {
 		cust_proto : "Ext.createByAlias('widget.textfield', {submitValue : false})",
@@ -162,36 +102,6 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		c : "Ext.createByAlias('widget.textfield', {submitValue : false})",
 		p : "Ext.createByAlias('widget.product', {submitValue : false})",
 		bi : "Ext.createByAlias('widget.bi', {submitValue : false})",
-		// f_dcn : "Ext.createByAlias('widget.textfield', {submitValue :
-		// false})",
-		// f_rate : "Ext.createByAlias('widget.textfield', {submitValue :
-		// false})",
-		// f_ssn : "Ext.createByAlias('widget.textfield', {submitValue :
-		// false})",
-		// fc : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		// fcg_date : "Ext.createByAlias('widget.datefield', {submitValue :
-		// false, format : 'Y-m-d'})",
-		// fch_rate : "Ext.createByAlias('widget.textfield', {submitValue :
-		// false})",
-		// fch_ssn : "Ext.createByAlias('widget.textfield', {submitValue :
-		// false})",
-		// fe_date : "Ext.createByAlias('widget.datefield', {submitValue :
-		// false, format : 'Y-m-d'})",
-		// fhw_type : "Ext.createByAlias('widget.fhwtype', {submitValue :
-		// false})",
-		// fhyd_acct : "Ext.createByAlias('widget.fhydacct', {submitValue :
-		// false})",
-		// fio_date : "Ext.createByAlias('widget.datefield', {submitValue :
-		// false, format : 'Y-m-d'})",
-		// fm : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		// fs_rate : "Ext.createByAlias('widget.textfield', {submitValue :
-		// false})",
-		// ftx_date : "Ext.createByAlias('widget.datefield', {submitValue :
-		// false, format : 'Y-m-d'})",
-		// fyp_acct : "Ext.createByAlias('widget.fypacct', {submitValue :
-		// false})",
-		// fyw_type : "Ext.createByAlias('widget.fywtype', {submitValue :
-		// false})",
 		amt : "Ext.createByAlias('widget.money', {submitValue : false})"
 	},
 	initComponent : function() {
@@ -412,6 +322,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 												sendData["jd_books"] = data;
 												sendData["cause"] = value["cause"];
 												sendData["period"] = value["period"];
+												sendData["ys_type"] = '0000';
 												form.getForm()
 														.setValues(sendData);
 												form.getForm().submit({
@@ -573,6 +484,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 				Ext.MessageBox.alert('警告', '没有任何分录');
 				return false;
 			}
+			// 标名原始凭证类型
 			return data;
 		};
 		this.callParent(arguments);

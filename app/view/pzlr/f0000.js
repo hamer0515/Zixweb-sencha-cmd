@@ -14,78 +14,6 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 	bodyPadding : 10,
 	current_fl : 1,
 	renderers : {
-		// acct : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.Acct');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// bfj_acct : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.BfjAcct');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// zyzj_acct : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.ZyzjAcct');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// zjbd_type : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.ZjbdType');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// zjbd_date : function(v) {
-		// if (v) {
-		// return Ext.Date.format(v, 'Y-m-d');
-		// }
-		// return v;
-		// },
-		// tx_date : function(v) {
-		// if (v) {
-		// return Ext.Date.format(v, 'Y-m-d');
-		// }
-		// return v;
-		// },
-		// e_date : function(v) {
-		// if (v) {
-		// return Ext.Date.format(v, 'Y-m-d');
-		// }
-		// return v;
-		// },
-		// p : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.Product');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
-		// bi : function(v) {
-		// if (v) {
-		// var store = Ext.data.StoreManager
-		// .lookup('Zixweb.store.component.Bi');
-		// var index = store.findExact('id', v);
-		// return store.getAt(index).data.name;
-		// }
-		// return v;
-		// },
 		fcg_date : function(v) {
 			if (v) {
 				return Ext.Date.format(v, 'Y-m-d');
@@ -148,31 +76,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		}
 	},
 	editors : {
-		// cust_proto : "Ext.createByAlias('widget.textfield', {submitValue :
-		// false})",
-		// acct : "Ext.createByAlias('widget.acct', {submitValue : false})",
-		// bfj_acct : "Ext.createByAlias('widget.bfjacct', {submitValue :
-		// false})",
-		// zyzj_acct : "Ext.createByAlias('widget.zyzjacct', {submitValue :
-		// false})",
-		// zjbd_type : "Ext.createByAlias('widget.zjbdtype', {submitValue :
-		// false})",
-		// wlzj_type : "Ext.createByAlias('widget.wlzjtype', {submitValue :
-		// false})",
-		// zjbd_date : "Ext.createByAlias('widget.datefield', {submitValue :
-		// false,
-		// format : 'Y-m-d'})",
-		// tx_date : "Ext.createByAlias('widget.datefield', {submitValue :
-		// false, format
-		// : 'Y-m-d'})",
-		// e_date : "Ext.createByAlias('widget.datefield', {submitValue : false,
-		// format
-		// : 'Y-m-d'})",
 		period : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		// fp : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		// c : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		// p : "Ext.createByAlias('widget.product', {submitValue : false})",
-		// bi : "Ext.createByAlias('widget.bi', {submitValue : false})",
 		f_dcn : "Ext.createByAlias('widget.textfield', {submitValue :false})",
 		f_rate : "Ext.createByAlias('widget.textfield', {submitValue :false})",
 		f_ssn : "Ext.createByAlias('widget.textfield', {submitValue : false})",
@@ -409,6 +313,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 												sendData["jd_books"] = data;
 												sendData["cause"] = value["cause"];
 												sendData["period"] = value["period"];
+												sendData["ys_type"] = 'F0000';
 												form.getForm()
 														.setValues(sendData);
 												form.getForm().submit({

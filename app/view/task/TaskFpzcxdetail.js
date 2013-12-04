@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.task.Taskpzcxdetail', {
+Ext.define('Zixweb.view.task.TaskFpzcxdetail', {
 	extend : 'Ext.grid.Panel',
-	alias : 'widget.taskpzcxdetail',
+	alias : 'widget.taskfpzcxdetail',
 	disableSelection : true,
 	hideHeaders : true,
 	height : 'auto',
@@ -12,7 +12,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 		selectRowOnExpand : true,
 		rowBodyTpl : new Ext.XTemplate(
 				'<tpl if="isverify">',
-				"<table id='taskpzcx_{shid}' width='95%' border='0' cellspacing='1' cellpadding='0' align='center' bgcolor='#C8DCF0' class='live_1_table'>",
+				"<table id='taskfpzcx_{shid}' width='95%' border='0' cellspacing='1' cellpadding='0' align='center' bgcolor='#C8DCF0' class='live_1_table'>",
 				'<tr bgcolor="#B4CFCF" align="center">',
 				'<td class="ice_one" width="25%">审核编号</td>',
 				'<td class="ice_two" width="25%">{shid}</td>',
@@ -47,8 +47,8 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 				'<tpl if="shstatus == 0">',
 				'<tr bgcolor="#B4CFCF" align="center">',
 				'<td class="ice_one-0" width="100%" colspan="4">',
-				'<input type="button" id="taskpzcxdetail_pass_{shid}" value="通过" />',
-				'<input type="button" id="taskpzcxdetail_deny_{shid}" value="拒绝" />',
+				'<input type="button" id="taskfpzcxdetail_pass_{shid}" value="通过" />',
+				'<input type="button" id="taskfpzcxdetail_deny_{shid}" value="拒绝" />',
 				'</td></tr>',
 				'</tpl></tpl>',
 				'</table>',
@@ -168,7 +168,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 					'v_user', 'rdonly'],
 			proxy : {
 				type : 'ajax',
-				url : 'taskpzcx/detail'
+				url : 'taskfpzcx/detail'
 			},
 			listeners : {
 				load : function(thiz, records, successful, eOpts) {
@@ -196,7 +196,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 						expander.toggleRow(i, grid.getStore().getAt(i));
 					}
 					// button注册事件
-					var id = 'taskpzcx_' + records[0].data.shid;
+					var id = 'taskfpzcx_' + records[0].data.shid;
 					var tbl = Ext.get(id);
 					var buttons = tbl.select("input[type=button]");
 					for (var i in buttons.elements) {
@@ -212,7 +212,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 											if (opt === 'yes') {
 												Ext.Ajax.request({
 													async : false,
-													url : 'taskpzcx/pass',
+													url : 'taskfpzcx/pass',
 													params : {
 														id : id
 													},
@@ -261,7 +261,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 											if (opt === 'yes') {
 												Ext.Ajax.request({
 													async : false,
-													url : 'taskpzcx/deny',
+													url : 'taskfpzcx/deny',
 													params : {
 														id : id
 													},

@@ -215,7 +215,7 @@ Ext.define('Zixweb.view.book.detail.wlzj_yszy', {
 							params.header = Ext.encode(h);
 							Ext.Ajax.request({
 								async : false,
-								url : 'book/detail/wlzj_yfbf_excel',
+								url : 'book/detail/wlzj_yszy_excel',
 								params : params,
 								success : function(response, opts) {
 									var res = Ext.decode(response.responseText);

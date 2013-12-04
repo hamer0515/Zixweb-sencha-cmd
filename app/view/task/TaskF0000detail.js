@@ -1,6 +1,6 @@
-Ext.define('Zixweb.view.task.Taskpzcxdetail', {
+Ext.define('Zixweb.view.task.TaskF0000detail', {
 	extend : 'Ext.grid.Panel',
-	alias : 'widget.taskpzcxdetail',
+	alias : 'widget.taskf0000detail',
 	disableSelection : true,
 	hideHeaders : true,
 	height : 'auto',
@@ -11,8 +11,8 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 		expandOnDblClick : false,
 		selectRowOnExpand : true,
 		rowBodyTpl : new Ext.XTemplate(
-				'<tpl if="isverify">',
-				"<table id='taskpzcx_{shid}' width='95%' border='0' cellspacing='1' cellpadding='0' align='center' bgcolor='#C8DCF0' class='live_1_table'>",
+				'<tpl if="isdetail">',
+				"<table id='taskf0000_{shid}' width='95%' border='0' cellspacing='1' cellpadding='0' align='center' bgcolor='#C8DCF0' class='live_1_table'>",
 				'<tr bgcolor="#B4CFCF" align="center">',
 				'<td class="ice_one" width="25%">审核编号</td>',
 				'<td class="ice_two" width="25%">{shid}</td>',
@@ -38,55 +38,19 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 				'<td class="ice_two" width="25%">{v_ts}</td>',
 				'</tr>',
 				'<tr>',
-				'<td class="ice_one">凭证撤销原因</td>',
+				'<td class="ice_one">原始凭证填写原因</td>',
 				'<td class="ice_two" colspan="3">',
-				'<textarea rows="2" class="textarea" disabled="true">{revoke_cause}</textarea>',
+				'<textarea rows="2" class="textarea" disabled="true">{cause}</textarea>',
 				'</td>',
 				'</tr>',
 				'<tpl if="this.isRdonly(rdonly)">',
 				'<tpl if="shstatus == 0">',
 				'<tr bgcolor="#B4CFCF" align="center">',
 				'<td class="ice_one-0" width="100%" colspan="4">',
-				'<input type="button" id="taskpzcxdetail_pass_{shid}" value="通过" />',
-				'<input type="button" id="taskpzcxdetail_deny_{shid}" value="拒绝" />',
+				'<input type="button" id="taskf0000detail_pass_{shid}" value="通过" />',
+				'<input type="button" id="taskf0000detail_deny_{shid}" value="拒绝" />',
 				'</td></tr>',
 				'</tpl></tpl>',
-				'</table>',
-				'</tpl>',
-				'<tpl if="isdetail">',
-				'<input type="hidden" value="{ys_id}" id="ys_id">',
-				'<input type="hidden" value="{ys_type}" id="ys_type">',
-				'<input type="hidden" value="{period}" id="period">',
-				"<table width='95%' border='0' cellspacing='1' cellpadding='0' align='center' bgcolor='#C8DCF0' class='live_1_table'>",
-				'<tpl for="properties">',
-				'<tpl if="xindex%2 == 1"><tr bgcolor="#B4CFCF" align="center"></tpl>',
-				'<td class="ice_one" width="250px">{key}</td><td class="ice_two" width="350px">{value}</td>',
-				'<tpl if="xindex%2 == 1"><tpl if="xindex == xcount"><td class="ice_one" ></td><td class="ice_two"></td></tpl></tpl>',
-				'<tpl if="xindex%2 == 0">',
-				'</tr></tpl>',
-				'</tpl>',
-				"<tpl if='ys_type === \"0000\"'>",
-				'<tr>',
-				'<td class="ice_one">原始凭证填写原因</td>',
-				'<td class="ice_two" colspan="3">',
-				'<textarea rows="2" class="textarea" disabled="true">{cause}</textarea>',
-				'</td>',
-				'</tr>',
-				'</tpl>',
-				"<tpl if='ys_type != \"0000\"'>",
-				'<tr>',
-				'<td class="ice_one">说明</td>',
-				'<td class="ice_two" colspan="3">',
-				'<textarea rows="2" class="textarea" disabled="true">{memo}</textarea>',
-				'</td>',
-				'</tr>',
-				'</tpl>',
-				'<tr>',
-				'<td class="ice_one">撤销原因</td>',
-				'<td class="ice_two" colspan="3">',
-				'<textarea rows="2" class="textarea" disabled="true">{revoke_cause}</textarea>',
-				'</td>',
-				'</tr>',
 				'</table>',
 				'</tpl>',
 				'<tpl if="!isdetail">',
@@ -97,29 +61,29 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 				"<td colspan='3' class='ice_one1'>{key}:{value}</td>",
 				"</tr>",
 				"<tr bgcolor='#e3f1f1' align='center'>",
-				"<td colspan='2' >核算项</td><td  width='100px'>金额</td>",
+				"<td colspan='2' >核算项</td><td width='100px'>金额</td>",
 				"</tr>",
 				'<tpl if="xindex === 1">',
 				'<tpl if="xcount === xindex">',
-				"<tr  bgcolor='#ffffff'  align='center' >",
-				"<td  width='180px'></td>",
-				"<td  width='320px'></td>",
-				"<td  rowspan={[xcount]}>{parent.j_amt}</td>",
+				"<tr bgcolor='#ffffff' align='center' >",
+				"<td width='180px'></td>",
+				"<td width='320px'></td>",
+				"<td rowspan={[xcount]}>{parent.j_amt}</td>",
 				"</tr>",
 				'</tpl>',
 				'</tpl>',
 				'</tpl>',
 				'<tpl if="xindex === 2">',
-				"<tr  bgcolor='#ffffff'  align='center' >",
-				"<td  width='180px'>{key}</td>",
-				"<td  width='320px'>{value}</td>",
-				"<td  rowspan={[xcount]}>{parent.j_amt}</td>",
+				"<tr bgcolor='#ffffff' align='center' >",
+				"<td width='180px'>{key}</td>",
+				"<td width='320px'>{value}</td>",
+				"<td rowspan={[xcount]}>{parent.j_amt}</td>",
 				"</tr>",
 				'</tpl>',
 				'<tpl if="xindex &gt; 2">',
-				"<tr  bgcolor='#ffffff'  align='center' >",
-				"<td  width='180px'>{key}</td>",
-				"<td  width='320px'>{value}</td>",
+				"<tr bgcolor='#ffffff' align='center' >",
+				"<td width='180px'>{key}</td>",
+				"<td width='320px'>{value}</td>",
 				"</tr>",
 				'</tpl>',
 				'</tpl>',
@@ -130,20 +94,20 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 				"<tr bgcolor='#ffffff' align='center' class='live_1_table_tr'>",
 				"<td colspan='3' class='ice_one1'>{key}:{value}</td>", "</tr>",
 				"<tr bgcolor='#e3f1f1' align='center'>",
-				"<td colspan='2' >核算项</td><td  width='100px'>金额</td>", "</tr>",
+				"<td colspan='2' >核算项</td><td width='100px'>金额</td>", "</tr>",
 				'<tpl if="xindex === 1">', '<tpl if="xcount === xindex">',
-				"<tr  bgcolor='#ffffff'  align='center' >",
-				"<td  width='180px'></td>", "<td  width='320px'></td>",
-				"<td  rowspan={[xcount]}>{parent.d_amt}</td>", "</tr>",
+				"<tr bgcolor='#ffffff' align='center' >",
+				"<td width='180px'></td>", "<td width='320px'></td>",
+				"<td rowspan={[xcount]}>{parent.d_amt}</td>", "</tr>",
 				'</tpl>', '</tpl>', '</tpl>', '<tpl if="xindex === 2">',
-				"<tr  bgcolor='#ffffff'  align='center' >",
-				"<td  width='180px'>{key}</td>",
-				"<td  width='320px'>{value}</td>",
-				"<td  rowspan={[xcount]}>{parent.d_amt}</td>", "</tr>",
+				"<tr bgcolor='#ffffff' align='center' >",
+				"<td width='180px'>{key}</td>",
+				"<td width='320px'>{value}</td>",
+				"<td rowspan={[xcount]}>{parent.d_amt}</td>", "</tr>",
 				'</tpl>', '<tpl if="xindex &gt; 2">',
-				"<tr  bgcolor='#ffffff'  align='center' >",
-				"<td  width='180px'>{key}</td>",
-				"<td  width='320px'>{value}</td>", "</tr>", '</tpl>', '</tpl>',
+				"<tr bgcolor='#ffffff' align='center' >",
+				"<td width='180px'>{key}</td>",
+				"<td width='320px'>{value}</td>", "</tr>", '</tpl>', '</tpl>',
 				"</table>", '</tpl>', {
 					isRdonly : function(rdonly) {
 						return rdonly !== 'rdonly';
@@ -161,21 +125,19 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 	initComponent : function() {
 		var grid = this;
 		var store = new Ext.data.Store({
-			fields : ['title', 'ys_type', 'cause', 'memo', 'revoke_flag',
-					'revoke_cause', 'period', 'ys_id', 'properties', 'j_book',
-					'd_book', 'isdetail', 'j_amt', 'd_amt', 'isverify',
-					'c_user', 'shid', 'shstatus', 'shtype', 'ts_c', 'v_ts',
-					'v_user', 'rdonly'],
+			fields : ['title', 'rdonly', 'cause', 'c_user', 'shid', 'shstatus',
+					'period', 'shtype', 'properties', 'j_book', 'd_book',
+					'isdetail', 'j_amt', 'd_amt', 'ts_c', 'v_ts', 'v_user'],
 			proxy : {
 				type : 'ajax',
-				url : 'taskpzcx/detail'
+				url : 'taskf0000/detail'
 			},
 			listeners : {
 				load : function(thiz, records, successful, eOpts) {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '凭证撤销详细数据加载失败,请联系管理员',
+									msg : '凭证F0000详细数据加载失败,请联系管理员',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -185,7 +147,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '抱歉，没有凭证撤销详细数据访问权限',
+									msg : '抱歉，没有凭证F0000详细数据访问权限',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -196,7 +158,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 						expander.toggleRow(i, grid.getStore().getAt(i));
 					}
 					// button注册事件
-					var id = 'taskpzcx_' + records[0].data.shid;
+					var id = 'taskf0000_' + records[0].data.shid;
 					var tbl = Ext.get(id);
 					var buttons = tbl.select("input[type=button]");
 					for (var i in buttons.elements) {
@@ -212,7 +174,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 											if (opt === 'yes') {
 												Ext.Ajax.request({
 													async : false,
-													url : 'taskpzcx/pass',
+													url : 'taskf0000/pass',
 													params : {
 														id : id
 													},
@@ -261,7 +223,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 											if (opt === 'yes') {
 												Ext.Ajax.request({
 													async : false,
-													url : 'taskpzcx/deny',
+													url : 'taskf0000/deny',
 													params : {
 														id : id
 													},

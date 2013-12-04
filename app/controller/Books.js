@@ -73,5 +73,6 @@ Ext.define('Zixweb.controller.Books', {
 					'book.detail.bamt_yhyf', 'book.detail.bfee_yhyf',
 					'book.detail.txamt_dqr_byf', 'book.detail.bfj_cust',
 					'book.detail.deposit_zyzj', 'book.detail.txamt_dgd',
-					'book.detail.txamt_yhys', 'book.detail.bamt_yhys']
+					'book.detail.txamt_yhys', 'book.detail.bamt_yhys',
+					'book.detail.blc']
 		});
