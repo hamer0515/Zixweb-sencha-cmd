@@ -190,7 +190,7 @@ Ext.define('Zixweb.view.fhydbook.hist.nctxamt_dqr_oys_fhyd', {
 		this.items = [{
 			xtype : 'form',
 			title : '查询',
-			id : prefix + '_form',
+			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
 
@@ -208,13 +208,13 @@ Ext.define('Zixweb.view.fhydbook.hist.nctxamt_dqr_oys_fhyd', {
 									margin : '0 10 0 0',
 									allowBlank : false,
 									verify : {
-										id : prefix + '_to'
+										id : panel.prefix + '_to'
 									},
 									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : prefix + '_to',
+									id : panel.prefix + '_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									allowBlank : false,
@@ -277,13 +277,13 @@ Ext.define('Zixweb.view.fhydbook.hist.nctxamt_dqr_oys_fhyd', {
 									name : 'ftx_date_from',
 									margin : '0 10 0 0',
 									verify : {
-										id : prefix + '_to_2'
+										id : panel.prefix + '_to_2'
 									},
 									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : prefix + '_to_2',
+									id : panel.prefix + '_to_2',
 									format : 'Y-m-d',
 									name : 'ftx_date_to',
 									margin : '0 10 0 0',

@@ -46,9 +46,6 @@ Ext.define('Zixweb.view.component.Fields', {
 					action : 'submit',
 					handler : function() {
 						var header = win.down('form').getValues();
-						console.log(header);
-						console.log(header.length);
-						console.log(Object.keys(header).length);
 						if (Object.keys(header).length == 0) {
 							Ext.MessageBox.show({
 										title : '警告',

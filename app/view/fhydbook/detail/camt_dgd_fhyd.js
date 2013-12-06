@@ -226,7 +226,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_dgd_fhyd', {
 									verify : {
 										id : panel.prefix + '_to'
 									},
-									vtype : 'dateinterval',
+									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',

@@ -9,9 +9,11 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 				'<tpl for=".">',
 				'<table width="98%" id="zjdzbfj_{acct_id}_{zjbd_date}" border="0" cellspacing="1" cellpadding="0" align="center"  bgcolor="#C8DCF0" class="live_1_table">',
 				'<tr align="center" class="ice_one_td" >',
-				'<td width="15%" colspan="1">', '资金变动日期： {zjbd_date}',
-				'<td width="15%" colspan="2">银行账户：', '{b_acct}</td>',
-				'</td><td width="15%" colspan="2"></td></tr>',
+				'<td width="15%" colspan="1">',
+				'资金变动日期： {zjbd_date}',
+				'<td width="15%" colspan="2">银行账户：',
+				'{b_acct}</td>',
+				'</td><td width="15%" colspan="2"><input type="button" id="remarkButton" value="备注信息"  /></td></tr>',
 				'<tr align="center" class="live_1_table_tr" >',
 				'<td width="10%">资金变动类型</td>', '<td >科目</td>', '<td >借方 </td>',
 				'<td >贷方 </td>', '<td width="20%">备注</td>', '</tr>',
@@ -227,7 +229,6 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 						data += '<tr bgcolor="white"><td colspan="5">'
 								+ '<input type="submit" id="checkbtn" value="计算长短款"/>'
 								+ '<input type="button" id="checkdonebtn" value="对账完成"  /></td></tr>';
-						/* console.log(data); */
 						return data;
 					}
 				});
@@ -259,6 +260,36 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 								});
 						return;
 					}
+					// 注册备注信息事件
+					var remarkButton = Ext.get('remarkButton');
+					if (remarkButton) {
+						remarkButton.on('click', function(e, btn, eOpts) {
+							var bfj_id = records[0].data.acct_id;
+							var viewport = bfjdetail.up('viewport'), center = viewport
+									.down('center'), id = 'bfjacctmemo_'
+									+ bfj_id, cmp = Ext.getCmp(id), panel;
+							if (!cmp) {
+								cmp = Ext.widget('bfjacctmemo', {
+											bfj_id : bfj_id
+										});
+								panel = center.add({
+											closable : true,
+											xtype : 'panel',
+											items : cmp,
+											id : id,
+											title : records[0].data.b_acct
+													+ '账户信息显示'
+										});
+
+							}
+							if (panel) {
+								panel.show();
+							} else {
+								center.setActiveTab(cmp);
+							}
+						}, self);
+					}
+
 					// input注册事件
 					var id = 'zjdzbfj_' + records[0].data.acct_id + '_'
 							+ records[0].data.zjbd_date;
@@ -393,7 +424,6 @@ Ext.define('Zixweb.view.zjdz.bfjdetail', {
 										'', 'g'));
 								j = Ext.Number.correctFloat(j);
 								d = Ext.Number.correctFloat(d);
-								console.log('j:' + j + ",d:" + d);
 								if (j != d) {
 									Ext.MessageBox.alert('警告', '请先计算长短款');
 									return;

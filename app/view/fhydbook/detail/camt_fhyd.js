@@ -66,7 +66,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 							'0,0.00');
 				}
 			}
-		}
+		};
 		var store = new Ext.data.Store({
 					//			fields : ['bi', 'c', 'p', 'period', 'j', 'd'],
 					fields : ['fyw_type', 'fc', 'ftx_date', 'period', 'j', 'd'],
@@ -169,7 +169,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 		this.items = [{
 			xtype : 'form',
 			title : '查询',
-			id : panel.prefix + 'form',
+			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
 
@@ -189,7 +189,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 									verify : {
 										id : panel.prefix + '_to'
 									},
-									vtype : 'dateinterval',
+									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',

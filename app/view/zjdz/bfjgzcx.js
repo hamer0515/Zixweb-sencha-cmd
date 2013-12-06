@@ -29,7 +29,6 @@ Ext.define('Zixweb.view.zjdz.bfjgzcx', {
 						beforeload : function(store, operation, eOpts) {
 							var form = Ext.getCmp('zjdzbfjform').getForm();
 							var values = form.getValues();
-							console.log(values);
 							if (form.isValid()) {
 								store.proxy.extraParams = values;
 							} else {

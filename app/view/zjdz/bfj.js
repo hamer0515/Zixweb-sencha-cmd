@@ -60,129 +60,194 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 				});
 		this.store = store;
 		this.items = [{
-					xtype : 'form',
-					title : '查询',
-					id : 'zjdzbfjform',
-					bodyPadding : 5,
-					collapsible : true,
+			xtype : 'form',
+			title : '查询',
+			id : 'zjdzbfjform',
+			bodyPadding : 5,
+			collapsible : true,
 
-					fieldDefaults : {
-						labelWidth : 140
+			fieldDefaults : {
+				labelWidth : 140
+			},
+			items : [{
+						xtype : 'fieldcontainer',
+						fieldLabel : '资金对账日期范围',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'from',
+									margin : '0 10 0 0',
+									width : 180
+								}, {
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'to',
+									width : 180
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						layout : 'hbox',
+						items : [{
+									xtype : 'bfjacct',
+									name : 'b_acct',
+									fieldLabel : '备付金账号'
+								}]
+
+					}, {
+						xtype : 'button',
+						text : '查询',
+						margin : '0 20 0 0',
+						handler : function() {
+							store.loadPage(1);
+						}
+					}, {
+						xtype : 'button',
+						text : '重置',
+						margin : '0 20 0 0',
+						handler : function(button) {
+							button.up('panel').getForm().reset();
+						}
+					}, {
+						xtype : 'button',
+						text : '刷新',
+						handler : function() {
+							var panel = Ext.getCmp('zjdzbfjform');
+							var form = panel.getForm();
+							form.submit({
+								url : 'zjdz/bfjrefresh_mqt',
+								success : function(form, action) {
+									var response = action.result.success;
+									if (response) {
+										if (response == 'forbidden') {
+											Ext.MessageBox.show({
+														title : '警告',
+														msg : '抱歉，没有增加资金对账管理刷新操作权限',
+														buttons : Ext.Msg.YES,
+														icon : Ext.Msg.ERROR
+													});
+											return;
+										}
+
+										Ext.MessageBox.show({
+													title : '提示',
+													msg : '刷新成功',
+													closable : false,
+													buttons : Ext.Msg.YES,
+													icon : Ext.Msg.INFO,
+													scope : panel.up('window'),
+													fn : function() {
+														this.close();
+													}
+												});
+									} else {
+										Ext.MessageBox.show({
+													title : '失败',
+													msg : action.result.msg,
+													buttons : Ext.Msg.YES,
+													icon : Ext.Msg.ERROR
+												});
+									}
+								},
+								failure : function(form, action) {
+									switch (action.failureType) {
+										case Ext.form.action.Action.CONNECT_FAILURE :
+											Ext.MessageBox.show({
+														title : '失败',
+														msg : '网络链接出错',
+														buttons : Ext.Msg.YES,
+														icon : Ext.Msg.ERROR
+													});
+											break;
+										case Ext.form.action.Action.SERVER_INVALID :
+											Ext.MessageBox.show({
+														title : '失败',
+														msg : action.result.msg,
+														buttons : Ext.Msg.YES,
+														icon : Ext.Msg.ERROR
+													});
+									}
+								},
+								waitMsg : '刷新中...',
+								waitTitle : '请稍等'
+							});
+						}
+					}]
+		}, {
+			xtype : 'gridpanel',
+			id : 'zjdzbfjgrid',
+			height : 'auto',
+
+			store : this.store,
+			dockedItems : [{
+						xtype : 'pagingtoolbar',
+						store : this.store
+					}],
+			columns : [{
+				text : "银行账户",
+				itemId : 'b_acct',
+				dataIndex : 'b_acct',
+				sortable : false,
+				renderer : function(value, p, record) {
+					var bfjacct = Ext.data.StoreManager
+							.lookup('Zixweb.store.component.BfjAcct');
+					var index = bfjacct.findExact('id', value);
+					return bfjacct.getAt(index).data.name;
+				},
+				flex : 3
+			}, {
+				text : "资金对账日期",
+				dataIndex : 'zjdz_date',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			}, {
+				xtype : 'actioncolumn',
+				text : '操作',
+				width : 80,
+				align : 'center',
+				items : [{
+					tooltip : '对账',
+					getClass : function(v, meta, rec) {
+						return 'reconciliation';
 					},
-					items : [{
-								xtype : 'fieldcontainer',
-								fieldLabel : '资金对账日期范围',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'from',
-											margin : '0 10 0 0',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'to',
-											width : 180
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											xtype : 'bfjacct',
-											name : 'b_acct',
-											fieldLabel : '备付金账号'
-										}]
-
-							}, {
-								xtype : 'button',
-								text : '查询',
-								margin : '0 20 0 0',
-								handler : function() {
-									store.loadPage(1);
-								}
-							}, {
-								xtype : 'button',
-								text : '重置',
-								handler : function(button) {
-									button.up('panel').getForm().reset();
-								}
-							}]
-				}, {
-					xtype : 'gridpanel',
-					id : 'zjdzbfjgrid',
-					height : 'auto',
-
-					store : this.store,
-					dockedItems : [{
-								xtype : 'pagingtoolbar',
-								store : this.store
-							}],
-					columns : [{
-						text : "银行账户",
-						itemId : 'b_acct',
-						dataIndex : 'b_acct',
-						sortable : false,
-						renderer : function(value, p, record) {
+					handler : function(grid, rowIndex, colIndex) {
+						var rec = grid.getStore().getAt(rowIndex);
+						var viewport = grid.up('viewport'), center = viewport
+								.down('center'), id = 'zjdz_bfj_detail', cmp = Ext
+								.getCmp(id);
+						if (cmp) {
+							center.setActiveTab(cmp);
+						} else {
 							var bfjacct = Ext.data.StoreManager
 									.lookup('Zixweb.store.component.BfjAcct');
-							var index = bfjacct.findExact('id', value);
-							return bfjacct.getAt(index).data.name;
-						},
-						flex : 3
-					}, {
-						text : "资金对账日期",
-						dataIndex : 'zjdz_date',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						xtype : 'actioncolumn',
-						text : '操作',
-						width : 80,
-						align : 'center',
-						items : [{
-							tooltip : '对账',
-							getClass : function(v, meta, rec) {
-								return 'reconciliation';
-							},
-							handler : function(grid, rowIndex, colIndex) {
-								var rec = grid.getStore().getAt(rowIndex);
-								var viewport = grid.up('viewport'), center = viewport
-										.down('center'), id = 'zjdz_bfj_detail', cmp = Ext
-										.getCmp(id);
-								if (cmp) {
-									center.setActiveTab(cmp);
-								} else {
-									var bfjacct = Ext.data.StoreManager
-											.lookup('Zixweb.store.component.BfjAcct');
-									var index = bfjacct.findExact('id',
-											rec.data.b_acct);
-									var acct = bfjacct.getAt(index).data.name;
-									var zjdzbfjdetail = Ext
-											.createByAlias('widget.zjdzbfjdetail');
-									zjdzbfjdetail.store.load({
-												params : {
-													tag : 1,
-													zjbd_date : rec.data.zjdz_date,
-													acct_id : rec.data.b_acct
-												}
-											});
-									center.add({
-										closable : true,
-										xtype : 'panel',
-										items : zjdzbfjdetail,
-										id : 'zjdz_bfj_detail',
-										title : acct + '帐号'
-												+ rec.data.zjdz_date + '日资金对账'
-									}).show();
-								}
-								viewport.doLayout();
-							}
-						}]
-					}]
+							var index = bfjacct
+									.findExact('id', rec.data.b_acct);
+							var acct = bfjacct.getAt(index).data.name;
+							var zjdzbfjdetail = Ext
+									.createByAlias('widget.zjdzbfjdetail');
+							zjdzbfjdetail.store.load({
+										params : {
+											tag : 1,
+											zjbd_date : rec.data.zjdz_date,
+											acct_id : rec.data.b_acct
+										}
+									});
+							center.add({
+								closable : true,
+								xtype : 'panel',
+								items : zjdzbfjdetail,
+								id : 'zjdz_bfj_detail',
+								title : acct + '帐号' + rec.data.zjdz_date
+										+ '日资金对账'
+							}).show();
+						}
+						viewport.doLayout();
+					}
+				}]
+			}]
 
-				}];
+		}];
 		this.callParent(arguments);
 	}
 });

@@ -167,7 +167,7 @@ Ext.define('Zixweb.view.fhydbook.detail.cost_ncss_fhyd', {
 		this.items = [{
 			xtype : 'form',
 			title : '查询',
-			id : 'costncssfhyddetailform',
+			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
 
@@ -187,7 +187,7 @@ Ext.define('Zixweb.view.fhydbook.detail.cost_ncss_fhyd', {
 									verify : {
 										id : panel.prefix + '_to'
 									},
-									vtype : 'dateinterval',
+									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',

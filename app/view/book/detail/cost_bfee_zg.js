@@ -1,9 +1,8 @@
 Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.book_detail_cost_bfee_zg',
-
 	prefix : 'book_detail_cost_bfee_zg',
-	
+
 	defaults : {
 		border : false
 	},
@@ -11,86 +10,84 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 	initComponent : function() {
 		var panel = this;
 		var columns = {
-				c:{
-					text : "客户编号",
-					dataIndex : 'c',
-					itemId : 'c',
-					sortable : false,
-					flex : 1
-				}, 
-				p:{
-					text : "产品类型",
-					itemId : 'p',
-					dataIndex : 'p',
-					sortable : false,
-					renderer : function(value, p, record) {
-						var product = Ext.data.StoreManager
-								.lookup('Zixweb.store.component.Product');
-						var index = product.findExact('id', value);
-						return product.getAt(index).data.name;
-					},
-					flex : 1
-				}, 
-				bi:{
-					text : "银行接口编号",
-					itemId : 'bi',
-					dataIndex : 'bi',
-					sortable : false,
-					renderer : function(value, p, record) {
-						var bi = Ext.data.StoreManager
-								.lookup('Zixweb.store.component.Bi');
-						var index = bi.findExact('id', value);
-						return bi.getAt(index).data.name;
-					},
-					flex : 1
+			c : {
+				text : "客户编号",
+				dataIndex : 'c',
+				itemId : 'c',
+				sortable : false,
+				flex : 1
+			},
+			p : {
+				text : "产品类型",
+				itemId : 'p',
+				dataIndex : 'p',
+				sortable : false,
+				renderer : function(value, p, record) {
+					var product = Ext.data.StoreManager
+							.lookup('Zixweb.store.component.Product');
+					var index = product.findExact('id', value);
+					return product.getAt(index).data.name;
 				},
-				fp:{
-					text : "周期确认规则",
-					dataIndex : 'fp',
-					itemId : 'fp',
-					sortable : false,
-					flex : 1
-				}, 
-				period:{
-					text : "期间日期",
-					dataIndex : 'period',
-					itemId : 'period',
-					sortable : false,
-					flex : 1,
-					renderer : Ext.util.Format
-							.dateRenderer('Y年m月d日')
-				}, 
-				tx_date:{
-					text : "交易日期",
-					dataIndex : 'tx_date',
-					itemId : 'tx_date',
-					sortable : false,
-					flex : 1,
-					renderer : Ext.util.Format
-							.dateRenderer('Y年m月d日')
-				}, 
-				j:{
-					text : "借方金额",
-					dataIndex : 'j',
-					sortable : false,
-					flex : 1,
-					renderer : function(value) {
-						return Ext.util.Format.number(
-								parseInt(value) / 100, '0,0.00');
-					}
-				}, 
-				d:{
-					text : "贷方金额",
-					dataIndex : 'd',
-					width : 100,
-					sortable : false,
-					flex : 1,
-					renderer : function(value) {
-						return Ext.util.Format.number(
-								parseInt(value) / 100, '0,0.00');
-					}
+				flex : 1
+			},
+			bi : {
+				text : "银行接口编号",
+				itemId : 'bi',
+				dataIndex : 'bi',
+				sortable : false,
+				renderer : function(value, p, record) {
+					var bi = Ext.data.StoreManager
+							.lookup('Zixweb.store.component.Bi');
+					var index = bi.findExact('id', value);
+					return bi.getAt(index).data.name;
+				},
+				flex : 1
+			},
+			fp : {
+				text : "周期确认规则",
+				dataIndex : 'fp',
+				itemId : 'fp',
+				sortable : false,
+				flex : 1
+			},
+			period : {
+				text : "期间日期",
+				dataIndex : 'period',
+				itemId : 'period',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			},
+			tx_date : {
+				text : "交易日期",
+				dataIndex : 'tx_date',
+				itemId : 'tx_date',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			},
+			j : {
+				text : "借方金额",
+				dataIndex : 'j',
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
 				}
-		};		
+			},
+			d : {
+				text : "贷方金额",
+				dataIndex : 'd',
+				width : 100,
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
+				}
+			}
+		};
 		var store = new Ext.data.Store({
 					fields : ['bi', 'c', 'p', 'fp', 'tx_date', 'period', 'j',
 							'd'],
@@ -112,7 +109,8 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp(panel.prefix + '_form').getForm();
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
 							if (form.isValid()) {
 								var values = form.getValues();
 								var cols = [];
@@ -173,8 +171,8 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 										});
 								return;
 							}
-							panel.values = Ext.getCmp(panel.prefix + '_form').getForm()
-									.getValues();
+							panel.values = Ext.getCmp(panel.prefix + '_form')
+									.getForm().getValues();
 							if (records.length > 0) {
 								Ext.getCmp(panel.prefix + '_exporterbutton')
 										.setDisabled(false);
@@ -185,187 +183,174 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 						}
 					}
 				});
-				var grid = new Ext.grid.Panel({
-							id : panel.prefix + '_grid',
-							store : store,
-							dockedItems : [{
-										xtype : 'pagingtoolbar',
-										store : store
-									}],
-							columns : [columns.bi, columns.c, columns.p, columns.fp, 
-							           columns.tx_date, columns.period, columns.j]
-						});
+		var grid = new Ext.grid.Panel({
+					id : panel.prefix + '_grid',
+					store : store,
+					dockedItems : [{
+								xtype : 'pagingtoolbar',
+								store : store
+							}],
+					columns : [columns.bi, columns.c, columns.p, columns.fp,
+							columns.tx_date, columns.period, columns.j]
+				});
 		this.items = [{
-					xtype : 'form',
-					title : '查询',
-					id : panel.prefix + '_form',
-					bodyPadding : 5,
-					collapsible : true,
-
-					fieldDefaults : {
-						labelWidth : 140
-					},
-					items : [{
-								xtype : 'fieldcontainer',
-								fieldLabel : '会计期间',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'period_from',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											verify : {
-												id : 'book_detail_cost_bfee_zg_to'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_detail_cost_bfee_zg_to',
-											format : 'Y-m-d',
-											name : 'period_to',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											width : 180
-										}, {
-											xtype : 'product',
-											name : 'p',
-											width : 516,
-											// margin : '0 10 0 0',
-											fieldLabel : '产品类型'
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								fieldLabel : '交易日期范围',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'tx_date_from',
-											margin : '0 10 0 0',
-											verify : {
-												id : 'book_detail_cost_bfee_zg_to_2'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'tx_date_to',
-											margin : '0 10 0 0',
-											id : 'book_detail_cost_bfee_zg_to_2',
-											width : 180
-										}, {
-											xtype : 'textfield',
-											name : 'fp',
-											width : 516,
-											// margin : '0 10 0 0',
-											fieldLabel : '周期确认规则'
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											fieldLabel : '客户编号',
-											xtype : 'textfield',
-											name : 'c',
-											width : 516,
-											margin : '0 10 0 0'
-										}, {
-											xtype : 'bi',
-											name : 'bi',
-											fieldLabel : '银行接口编号'
-										}]
-							}, {
-								xtype : 'hsx',
-								data : [{
-											'value' : "c",
-											'name' : "客户编号"
-										}, {
-											'value' : "p",
-											'name' : "产品类型"
-										}, {
-											'value' : "bi",
-											'name' : "银行接口编号"
-										}, {
-											'value' : "fp",
-											'name' : "周期确认规则"
-										}, {
-											'value' : "period",
-											'name' : "期间日期"
-										}, {
-											'value' : "tx_date",
-											'name' : "交易日期"
-										}]
-							}, {
-								xtype : 'button',
-								text : '查询',
-								margin : '0 20 0 0',
-								handler : function() {
-									store.loadPage(1);
+			xtype : 'form',
+			title : '查询',
+			id : panel.prefix + '_form',
+			bodyPadding : 5,
+			collapsible : true,
+			fieldDefaults : {
+				labelWidth : 140
+			},
+			items : [{
+						xtype : 'fieldcontainer',
+						fieldLabel : '会计期间',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'period_from',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									width : 180
+								}, {
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'period_to',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									width : 180
+								}, {
+									xtype : 'product',
+									name : 'p',
+									width : 516,
+									fieldLabel : '产品类型'
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						fieldLabel : '交易日期范围',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'tx_date_from',
+									margin : '0 10 0 0',
+									width : 180
+								}, {
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'tx_date_to',
+									margin : '0 10 0 0',
+									width : 180
+								}, {
+									xtype : 'textfield',
+									name : 'fp',
+									width : 516,
+									fieldLabel : '周期确认规则'
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						layout : 'hbox',
+						items : [{
+									fieldLabel : '客户编号',
+									xtype : 'textfield',
+									name : 'c',
+									width : 516,
+									margin : '0 10 0 0'
+								}, {
+									xtype : 'bi',
+									name : 'bi',
+									fieldLabel : '银行接口编号'
+								}]
+					}, {
+						xtype : 'hsx',
+						data : [{
+									'value' : "c",
+									'name' : "客户编号"
+								}, {
+									'value' : "p",
+									'name' : "产品类型"
+								}, {
+									'value' : "bi",
+									'name' : "银行接口编号"
+								}, {
+									'value' : "fp",
+									'name' : "周期确认规则"
+								}, {
+									'value' : "period",
+									'name' : "期间日期"
+								}, {
+									'value' : "tx_date",
+									'name' : "交易日期"
+								}]
+					}, {
+						xtype : 'button',
+						text : '查询',
+						margin : '0 20 0 0',
+						handler : function() {
+							store.loadPage(1);
+						}
+					}, {
+						xtype : 'button',
+						text : '重置',
+						margin : '0 20 0 0',
+						handler : function(button) {
+							button.up('panel').getForm().reset();
+						}
+					}, {
+						xtype : 'button',
+						id : panel.prefix + '_exporterbutton',
+						text : '导出Excel',
+						disabled : true,
+						handler : function() {
+							var count = store.getTotalCount();
+							if (count == 0) {
+								return;
+							} else if (count > 10000) {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '数据量超过上限10000条',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.WARNING
+										});
+								return;
+							}
+							var params = panel.values;
+							var columns = grid.headerCt.gridDataColumns;
+							var h = {
+								headers : []
+							};
+							for (var i in columns) {
+								var c = columns[i];
+								if (!c.dataIndex) {
+									continue;
 								}
-							}, {
-								xtype : 'button',
-								text : '重置',
-								margin : '0 20 0 0',
-								handler : function(button) {
-									button.up('panel').getForm().reset();
+								h[c.dataIndex] = c.text;
+								h.headers.push(c.dataIndex);
+							}
+							params.header = Ext.encode(h);
+							Ext.Ajax.request({
+								async : false,
+								url : 'book/detail/cost_bfee_zg_excel',
+								params : params,
+								success : function(response, opts) {
+									var res = Ext.decode(response.responseText);
+									Ext.downloadURL('base/excel?file='
+											+ res.file);
+								},
+								failure : function(response, opts) {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '服务器端出错，错误码:'
+														+ response.status,
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
 								}
-							}, {
-								xtype : 'button',
-								id : panel.prefix + '_exporterbutton',
-								text : '导出Excel',
-								disabled : true,
-								handler : function() {
-									var count = store.getTotalCount();
-									if (count == 0) {
-										return;
-									} else if (count > 10000) {
-										Ext.MessageBox.show({
-													title : '警告',
-													msg : '数据量超过上限10000条',
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.WARNING
-												});
-										return;
-									}
-									var params = panel.values;
-									var columns = grid.headerCt.gridDataColumns;
-									var h = {
-										headers : []
-									};
-									for (var i in columns) {
-										var c = columns[i];
-										if (!c.dataIndex) {
-											continue;
-										}
-										h[c.dataIndex] = c.text;
-										h.headers.push(c.dataIndex);
-									}
-									params.header = Ext.encode(h);
-									Ext.Ajax.request({
-										async : false,
-										url : 'book/detail/cost_bfee_zg_excel',
-										params : params,
-										success : function(response, opts) {
-											var res = Ext.decode(response.responseText);
-											Ext.downloadURL('base/excel?file='
-													+ res.file);
-										},
-										failure : function(response, opts) {
-											Ext.MessageBox.show({
-														title : '警告',
-														msg : '服务器端出错，错误码:'
-																+ response.status,
-														buttons : Ext.Msg.YES,
-														icon : Ext.Msg.ERROR
-													});
-										}
-									});
-								}
-							}]
-				}, grid];
+							});
+						}
+					}]
+		}, grid];
 		this.callParent(arguments);
 	}
 });

@@ -175,14 +175,9 @@ Ext.define('Zixweb.view.book.detail.txamt_dgd', {
 											name : 'period_from',
 											margin : '0 10 0 0',
 											allowBlank : false,
-											verify : {
-												id : 'book_detail_txamt_dgd_to_1'
-											},
-											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_detail_txamt_dgd_to_1',
 											format : 'Y-m-d',
 											name : 'period_to',
 											margin : '0 10 0 0',
@@ -198,14 +193,9 @@ Ext.define('Zixweb.view.book.detail.txamt_dgd', {
 											format : 'Y-m-d',
 											name : 'tx_date_from',
 											margin : '0 10 0 0',
-											verify : {
-												id : 'book_detail_txamt_dgd_to_2'
-											},
-											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_detail_txamt_dgd_to_2',
 											format : 'Y-m-d',
 											name : 'tx_date_to',
 											margin : '0 10 0 0',

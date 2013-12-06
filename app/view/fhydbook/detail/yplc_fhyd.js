@@ -94,8 +94,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp(panel.prefix + '_form')
-									.getForm();
+							var form = Ext.getCmp(panel.prefix + '_form').getForm();
 							if (form.isValid()) {
 								var values = form.getValues();
 								var cols = [];
@@ -176,7 +175,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 		this.items = [{
 			xtype : 'form',
 			title : '查询',
-			id : panel.prefix + 'form',
+			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
 
@@ -196,7 +195,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 									verify : {
 										id : panel.prefix + '_to'
 									},
-									vtype : 'dateinterval',
+									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',

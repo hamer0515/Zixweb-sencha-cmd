@@ -180,7 +180,6 @@ Ext.define('Zixweb.view.book.detail.blc', {
 			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
-
 			fieldDefaults : {
 				labelWidth : 140
 			},
@@ -194,14 +193,9 @@ Ext.define('Zixweb.view.book.detail.blc', {
 									name : 'period_from',
 									margin : '0 10 0 0',
 									allowBlank : false,
-									verify : {
-										id : 'book_detail_blc_to'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_blc_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
@@ -221,14 +215,9 @@ Ext.define('Zixweb.view.book.detail.blc', {
 									format : 'Y-m-d',
 									name : 'e_date_from',
 									margin : '0 10 0 0',
-									verify : {
-										id : 'book_detail_blc_to_2'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_blc_to_2',
 									format : 'Y-m-d',
 									name : 'e_date_to',
 									margin : '0 10 0 0',

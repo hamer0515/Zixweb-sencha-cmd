@@ -150,7 +150,6 @@ Ext.define('Zixweb.view.book.detail.fee_jrjg', {
 			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
-
 			fieldDefaults : {
 				labelWidth : 140
 			},
@@ -164,14 +163,9 @@ Ext.define('Zixweb.view.book.detail.fee_jrjg', {
 									name : 'period_from',
 									margin : '0 10 0 0',
 									allowBlank : false,
-									verify : {
-										id : 'book_detail_fee_jrjg_to'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_fee_jrjg_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
@@ -180,7 +174,6 @@ Ext.define('Zixweb.view.book.detail.fee_jrjg', {
 								}, {
 									xtype : 'acct',
 									name : 'acct',
-									// margin : '0 10 0 0',
 									fieldLabel : '银行账户号及开户行'
 								}]
 					}, {

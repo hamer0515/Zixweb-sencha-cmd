@@ -51,7 +51,7 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 							'0,0.00');
 				}
 			}
-		}
+		};
 		var store = new Ext.data.Store({
 					fields : ['fhyd_acct', 'period', 'j', 'd'],
 
@@ -134,11 +134,20 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 						}
 					}
 				});
-		this.store = store;
+		var grid = new Ext.grid.Panel({
+					id : panel.prefix + '_grid',
+					store : store,
+					dockedItems : [{
+								xtype : 'pagingtoolbar',
+								store : store
+							}],
+					columns : [columns.fhyd_acct, columns.period, columns.j,
+							columns.d]
+				});
 		this.items = [{
 			xtype : 'form',
 			title : '查询',
-			id : panel.prefix + 'form',
+			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
 
@@ -158,7 +167,7 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 									verify : {
 										id : panel.prefix + '_to'
 									},
-									vtype : 'dateinterval',
+									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
@@ -192,6 +201,7 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 					}, {
 						xtype : 'button',
 						text : '重置',
+						margin : '0 20 0 0',
 						handler : function(button) {
 							button.up('panel').getForm().reset();
 						}

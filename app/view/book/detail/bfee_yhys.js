@@ -10,69 +10,69 @@ Ext.define('Zixweb.view.book.detail.bfee_yhys', {
 	initComponent : function() {
 		var panel = this;
 		var columns = {
-					   bfj_acct:{
-						text : "备付金帐号",
-						itemId : 'bfj_acct',
-						dataIndex : 'bfj_acct',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var bfjacct = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.BfjAcct');
-							var index = bfjacct.findExact('id', value);
-							return bfjacct.getAt(index).data.name;
-						},
-						flex : 1
-					}, 
-					zjbd_type:{
-						text : "资金变动类型",
-						itemId : 'zjbd_type',
-						dataIndex : 'zjbd_type',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var zjbdtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.ZjbdType');
-							var index = zjbdtype.findExact('id', value);
-							return zjbdtype.getAt(index).data.name;
-						},
-						flex : 1
-					}, 
-					zjbd_date:{
-						text : "资金变动日期",
-						dataIndex : 'zjbd_date',
-						itemId : 'zjbd_date',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, 
-					period:{
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, 
-					j:{
-						text : "借方金额",
-						dataIndex : 'j',
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}, 
-					d:{
-						text : "贷方金额",
-						dataIndex : 'd',
-						width : 100,
-						sortable : false,
-						flex : 1,
-						renderer : function(value) {
-							return Ext.util.Format.number(
-									parseInt(value) / 100, '0,0.00');
-						}
-					}
+			bfj_acct : {
+				text : "备付金帐号",
+				itemId : 'bfj_acct',
+				dataIndex : 'bfj_acct',
+				sortable : false,
+				renderer : function(value, p, record) {
+					var bfjacct = Ext.data.StoreManager
+							.lookup('Zixweb.store.component.BfjAcct');
+					var index = bfjacct.findExact('id', value);
+					return bfjacct.getAt(index).data.name;
+				},
+				flex : 1
+			},
+			zjbd_type : {
+				text : "资金变动类型",
+				itemId : 'zjbd_type',
+				dataIndex : 'zjbd_type',
+				sortable : false,
+				renderer : function(value, p, record) {
+					var zjbdtype = Ext.data.StoreManager
+							.lookup('Zixweb.store.component.ZjbdType');
+					var index = zjbdtype.findExact('id', value);
+					return zjbdtype.getAt(index).data.name;
+				},
+				flex : 1
+			},
+			zjbd_date : {
+				text : "资金变动日期",
+				dataIndex : 'zjbd_date',
+				itemId : 'zjbd_date',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			},
+			period : {
+				text : "期间日期",
+				dataIndex : 'period',
+				itemId : 'period',
+				sortable : false,
+				flex : 1,
+				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+			},
+			j : {
+				text : "借方金额",
+				dataIndex : 'j',
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
+				}
+			},
+			d : {
+				text : "贷方金额",
+				dataIndex : 'd',
+				width : 100,
+				sortable : false,
+				flex : 1,
+				renderer : function(value) {
+					return Ext.util.Format.number(parseInt(value) / 100,
+							'0,0.00');
+				}
+			}
 		};
 		var store = new Ext.data.Store({
 			fields : ['bfj_acct', 'zjbd_type', 'zjbd_date', 'period', 'j', 'd'],
@@ -168,104 +168,93 @@ Ext.define('Zixweb.view.book.detail.bfee_yhys', {
 								xtype : 'pagingtoolbar',
 								store : store
 							}],
-					columns : [columns.bfj_acct, columns.zjbd_type, columns.zjbd_date, 
-								columns.period, columns.j, columns.d]
+					columns : [columns.bfj_acct, columns.zjbd_type,
+							columns.zjbd_date, columns.period, columns.j,
+							columns.d]
 				});
 		this.items = [{
-					xtype : 'form',
-					title : '查询',
-					id : panel.prefix + '_form',
-					bodyPadding : 5,
-					collapsible : true,
-
-					fieldprefix : 'book_detail_txamt_yhys',
-					fieldDefaults : {
-						labelWidth : 140
-					},
-					items : [{
-								xtype : 'fieldcontainer',
-								fieldLabel : '会计期间',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'period_from',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											verify : {
-												id : 'book_detail_bfee_yhys_to'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_detail_bfee_yhys_to',
-											format : 'Y-m-d',
-											name : 'period_to',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											width : 180
-										}, {
-											xtype : 'bfjacct',
-											name : 'bfj_acct',
-											fieldLabel : '备付金帐号'
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								fieldLabel : '资金变动日期范围',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'zjbd_date_from',
-											margin : '0 10 0 0',
-											verify : {
-												id : 'book_detail_bfee_yhys_to_2'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'book_detail_bfee_yhys_to_2',
-											format : 'Y-m-d',
-											name : 'zjbd_date_to',
-											margin : '0 10 0 0',
-											width : 180
-										}, {
-											xtype : 'zjbdtype',
-											name : 'zjbd_type',
-											fieldLabel : '资金变动类型'
-										}]
-							}, {
-								xtype : 'hsx',
-								data : [{
-											'value' : "bfj_acct",
-											'name' : "备付金帐号"
-										}, {
-											'value' : "zjbd_type",
-											'name' : "资金变动类型"
-										}, {
-											'value' : "zjbd_date",
-											'name' : "资金变动日期"
-										}, {
-											'value' : "period",
-											'name' : "期间日期"
-										}]
-							}, {
-								xtype : 'button',
-								text : '查询',
-								margin : '0 20 0 0',
-								handler : function() {
-									store.loadPage(1);
-								}
-							}, {
-								xtype : 'button',
-								text : '重置',
-								margin : '0 20 0 0',
-								handler : function(button) {
-									button.up('panel').getForm().reset();
-								}
-							}, {
+			xtype : 'form',
+			title : '查询',
+			id : panel.prefix + '_form',
+			bodyPadding : 5,
+			collapsible : true,
+			fieldDefaults : {
+				labelWidth : 140
+			},
+			items : [{
+						xtype : 'fieldcontainer',
+						fieldLabel : '会计期间',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'period_from',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									width : 180
+								}, {
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'period_to',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									width : 180
+								}, {
+									xtype : 'bfjacct',
+									name : 'bfj_acct',
+									fieldLabel : '备付金帐号'
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						fieldLabel : '资金变动日期范围',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'zjbd_date_from',
+									margin : '0 10 0 0',
+									width : 180
+								}, {
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'zjbd_date_to',
+									margin : '0 10 0 0',
+									width : 180
+								}, {
+									xtype : 'zjbdtype',
+									name : 'zjbd_type',
+									fieldLabel : '资金变动类型'
+								}]
+					}, {
+						xtype : 'hsx',
+						data : [{
+									'value' : "bfj_acct",
+									'name' : "备付金帐号"
+								}, {
+									'value' : "zjbd_type",
+									'name' : "资金变动类型"
+								}, {
+									'value' : "zjbd_date",
+									'name' : "资金变动日期"
+								}, {
+									'value' : "period",
+									'name' : "期间日期"
+								}]
+					}, {
+						xtype : 'button',
+						text : '查询',
+						margin : '0 20 0 0',
+						handler : function() {
+							store.loadPage(1);
+						}
+					}, {
+						xtype : 'button',
+						text : '重置',
+						margin : '0 20 0 0',
+						handler : function(button) {
+							button.up('panel').getForm().reset();
+						}
+					}, {
 						xtype : 'button',
 						id : panel.prefix + '_exporterbutton',
 						text : '导出Excel',
@@ -318,8 +307,8 @@ Ext.define('Zixweb.view.book.detail.bfee_yhys', {
 							});
 						}
 					}]
-				}, grid],
-					
+		}, grid],
+
 		this.callParent(arguments);
 	}
 });

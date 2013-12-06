@@ -187,7 +187,6 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
-
 			fieldDefaults : {
 				labelWidth : 140
 			},
@@ -201,14 +200,9 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 									name : 'period_from',
 									margin : '0 10 0 0',
 									allowBlank : false,
-									verify : {
-										id : panel.prefix + '_to'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
@@ -217,7 +211,6 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 								}, {
 									xtype : 'product',
 									name : 'p',
-									// margin : '0 10 0 0',
 									fieldLabel : '产品类型'
 								}]
 					}, {

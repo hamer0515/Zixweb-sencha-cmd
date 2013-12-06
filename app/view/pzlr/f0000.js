@@ -313,12 +313,11 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 												sendData["jd_books"] = data;
 												sendData["cause"] = value["cause"];
 												sendData["period"] = value["period"];
-												sendData["ys_type"] = 'F0000';
 												form.getForm()
 														.setValues(sendData);
 												form.getForm().submit({
 													clientValidation : true,
-													url : '/pzlr/i0000',
+													url : '/pzlr/f0000',
 													params : {
 														data : Ext.JSON
 																.encode(sendData)
@@ -346,7 +345,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 																		icon : Ext.Msg.INFO,
 																		fn : function() {
 																			Ext
-																					.getCmp('center_i0000')
+																					.getCmp('center_f0000')
 																					.close();
 																		}
 																	});

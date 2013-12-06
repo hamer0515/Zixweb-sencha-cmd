@@ -7,7 +7,7 @@ Ext.define('Zixweb.view.fhydbook.hist.ypsc_fhyd', {
 	},
 
 	initComponent : function() {
-		var panle = this;
+		var panel = this;
 		var store = new Ext.data.Store({
 					fields : ['id', 'fyw_type', 'fyp_acct', 'fe_date',
 							'period', 'j', 'd', 'ys_id', 'ys_type'],
@@ -73,6 +73,10 @@ Ext.define('Zixweb.view.fhydbook.hist.ypsc_fhyd', {
 			id : panel.prefix + '_grid',
 			store : store,
 			dockedItems : [{
+						xtype : 'pagingtoolbar',
+						store : store
+					}],
+			columns : [{
 						text : "ID",
 						itemId : 'id',
 						dataIndex : 'id',

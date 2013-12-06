@@ -150,7 +150,6 @@ Ext.define('Zixweb.view.book.detail.deposit_zyzj', {
 					id : panel.prefix + '_form',
 					bodyPadding : 5,
 					collapsible : true,
-
 					fieldDefaults : {
 						labelWidth : 140
 					},
@@ -164,14 +163,9 @@ Ext.define('Zixweb.view.book.detail.deposit_zyzj', {
 											name : 'period_from',
 											margin : '0 10 0 0',
 											allowBlank : false,
-											verify : {
-												id : 'book_detail_deposit_zyzj_to'
-											},
-											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'book_detail_deposit_zyzj_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											margin : '0 10 0 0',

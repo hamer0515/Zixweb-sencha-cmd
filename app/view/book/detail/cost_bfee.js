@@ -192,14 +192,9 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 									name : 'period_from',
 									margin : '0 10 0 0',
 									allowBlank : false,
-									verify : {
-										id : 'book_detail_cost_bfee_to'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_cost_bfee_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
@@ -208,7 +203,6 @@ Ext.define('Zixweb.view.book.detail.cost_bfee', {
 								}, {
 									xtype : 'product',
 									name : 'p',
-									// margin : '0 10 0 0',
 									fieldLabel : '产品类型'
 								}]
 					}, {

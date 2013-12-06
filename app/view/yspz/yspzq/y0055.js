@@ -10,8 +10,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0055', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period', 'bfj_acct_bj', 'p',
-							'tx_amt'],
+					fields : ['id', 'flag', 'clear_date', 'period',
+							'bfj_acct_bj', 'p', 'tx_amt'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -78,7 +78,32 @@ Ext.define('Zixweb.view.yspz.yspzq.y0055', {
 									fieldLabel : 'ID',
 									width : 516,
 									name : 'id',
+									margin : '0 10 0 0',
 									vtype : "id"
+								}, {
+									xtype : 'fieldcontainer',
+									fieldLabel : '银行清算日期',
+									layout : 'hbox',
+									items : [{
+												xtype : 'datefield',
+												format : 'Y-m-d',
+												name : 'clear_date_from',
+												margin : '0 10 0 0',
+												allowBlank : true,
+												verify : {
+													id : 'yspzq_y0055_clear_date_to'
+												},
+												// vtype : 'dateinterval',
+												width : 180
+											}, {
+												xtype : 'datefield',
+												id : 'yspzq_y0055_clear_date_to',
+												format : 'Y-m-d',
+												name : 'clear_date_to',
+												// margin : '0 10 0 0',
+												allowBlank : true,
+												width : 180
+											}]
 								}]
 					}, {
 						xtype : 'fieldcontainer',
@@ -243,6 +268,13 @@ Ext.define('Zixweb.view.yspz.yspzq.y0055', {
 						text : "期间日期",
 						dataIndex : 'period',
 						itemId : 'period',
+						sortable : false,
+						flex : 2,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "银行清算日期",
+						dataIndex : 'clear_date',
+						itemId : 'clear_date',
 						sortable : false,
 						flex : 2,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')

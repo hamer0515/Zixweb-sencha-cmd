@@ -215,14 +215,9 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 									name : 'period_from',
 									margin : '0 10 0 0',
 									allowBlank : false,
-									verify : {
-										id : 'book_detail_bsc_to'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_bsc_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
@@ -242,14 +237,9 @@ Ext.define('Zixweb.view.book.detail.bsc', {
 									format : 'Y-m-d',
 									name : 'e_date_from',
 									margin : '0 10 0 0',
-									verify : {
-										id : panel.prefix + '_to_1'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to_1',
 									format : 'Y-m-d',
 									name : 'e_date_to',
 									margin : '0 10 0 0',

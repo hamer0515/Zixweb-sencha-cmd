@@ -322,7 +322,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 												sendData["jd_books"] = data;
 												sendData["cause"] = value["cause"];
 												sendData["period"] = value["period"];
-												sendData["ys_type"] = '0000';
+												// sendData["ys_type"] = '0000';
 												form.getForm()
 														.setValues(sendData);
 												form.getForm().submit({

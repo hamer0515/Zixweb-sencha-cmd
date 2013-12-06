@@ -172,8 +172,6 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
-
-			fieldprefix : 'book_detail_txamt_yhys',
 			fieldDefaults : {
 				labelWidth : 140
 			},
@@ -187,14 +185,9 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 									name : 'period_from',
 									margin : '0 10 0 0',
 									allowBlank : false,
-									verify : {
-										id : 'book_detail_bfee_zqqr_to'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_bfee_zqqr_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
@@ -214,14 +207,9 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr', {
 									format : 'Y-m-d',
 									name : 'tx_date_from',
 									margin : '0 10 0 0',
-									verify : {
-										id : 'book_detail_bfee_zqqr_to_2'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_bfee_zqqr_to_2',
 									format : 'Y-m-d',
 									name : 'tx_date_to',
 									margin : '0 10 0 0',

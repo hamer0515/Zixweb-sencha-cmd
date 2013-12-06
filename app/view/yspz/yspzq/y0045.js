@@ -10,7 +10,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 
 	initComponent : function() {
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'flag', 'clear_date', 'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -62,178 +62,205 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 				});
 		this.store = store;
 		this.items = [{
-					xtype : 'form',
-					title : '查询',
-					id : 'yspzqy0045form',
+			xtype : 'form',
+			title : '查询',
+			id : 'yspzqy0045form',
 
-					fieldDefaults : {
-						labelWidth : 140
-					},
-					items : [{
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											xtype : 'textfield',
-											fieldLabel : 'ID',
-											width : 516,
-											name : 'id',
-											vtype : "id"
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											xtype : 'rstatus',
-											fieldLabel : '撤销状态',
-											margin : '0 10 0 0',
-											name : 'flag'
-										}, {
-											xtype : 'textfield',
-											fieldLabel : '撤销者',
-											width : 516,
-											name : 'revoke_user'
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								fieldLabel : '会计期间',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'period_from',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											verify : {
-												id : 'yspzq_y0045_period_to'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : 'yspzq_y0045_period_to',
-											format : 'Y-m-d',
-											name : 'period_to',
-											margin : '0 10 0 0',
-											allowBlank : false,
-											width : 180
-										}, {
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'ts_revoke',
-											fieldLabel : '撤销时间',
-											width : 320
-										}]
-							}, {
-								xtype : 'button',
-								text : '查询',
-								margin : '0 20 0 0',
-								handler : function() {
-									store.loadPage(1);
-								}
-							}, {
-								xtype : 'button',
-								text : '重置',
-								handler : function(button) {
-									button.up('panel').getForm().reset();
-								}
-							}]
-				}, {
-					title : '结果',
-					xtype : 'gridpanel',
-					id : 'yspzq_y0045_grid',
-					height : 500,
-					store : this.store,
-					dockedItems : [{
-								xtype : 'pagingtoolbar',
-								store : this.store,
-								dock : 'bottom',
-								displayInfo : true
-							}],
-					columns : [{
-								text : "ID",
-								itemId : 'id',
-								dataIndex : 'id',
-								sortable : false,
-								flex : 1
-							}, {
-								text : "期间日期",
-								dataIndex : 'period',
-								itemId : 'period',
-								sortable : false,
-								flex : 2,
-								renderer : Ext.util.Format
-										.dateRenderer('Y年m月d日')
-							}, {
-								text : "撤销状态",
-								dataIndex : 'flag',
-								sortable : false,
-								flex : 2,
-								renderer : function(value) {
-									var text = ['未撤销', '已撤销', '撤销申请中'];
-									return text[value];
-								}
-							}, {
-								xtype : 'actioncolumn',
-								text : '操作',
-								width : 100,
-								align : 'center',
-								items : [{
-									tooltip : '详细',
-									getClass : function(v, meta, rec) {
-										return 'detail';
-									},
-									handler : function(grid, rowIndex, colIndex) {
-										var rec = grid.getStore()
-												.getAt(rowIndex);
-										var viewport = grid.up('viewport'), center = viewport
-												.down('center'), id = 'yspzq_detail_0045'
-												+ rec.data.id, cmp = Ext
-												.getCmp(id);
-										var yspzqdetail = Ext
-												.createByAlias('widget.yspzqdetail');
-										yspzqdetail.store.load({
-													params : {
-														ys_type : '0045',
-														ys_id : rec.data.id
-													}
-												});
-										if (cmp) {
-											center.setActiveTab(cmp);
-										} else {
-											center.add({
-												closable : true,
-												xtype : 'panel',
-												items : yspzqdetail,
-												id : 'yspzq_detail_0045'
-														+ rec.data.id,
-												title : '凭证0045' + '编号'
-														+ rec.data.id + '详细信息'
-											}).show();
-										}
-										viewport.doLayout();
-									}
+			fieldDefaults : {
+				labelWidth : 140
+			},
+			items : [{
+						xtype : 'fieldcontainer',
+						layout : 'hbox',
+						items : [{
+									xtype : 'textfield',
+									fieldLabel : 'ID',
+									margin : '0 10 0 0',
+									width : 516,
+									name : 'id',
+									vtype : "id"
 								}, {
-									tooltip : '撤销',
-									getClass : function(v, meta, rec) {
-										if (rec.data.flag == 0) {
-											return 'revoke';
-										}
-										return 'none';
-									},
-									handler : function(grid, rowIndex, colIndex) {
-										var rec = grid.getStore()
-												.getAt(rowIndex);
-										Ext.widget('yspzrevoke_cause', {
-													modal : true,
-													resizable : false,
-													ys_type : '0045',
-													ys_id : rec.data.id,
-													period : rec.data.period
-												})
-									}
+									xtype : 'fieldcontainer',
+									fieldLabel : '银行清算日期',
+									layout : 'hbox',
+									items : [{
+												xtype : 'datefield',
+												format : 'Y-m-d',
+												name : 'clear_date_from',
+												margin : '0 10 0 0',
+												allowBlank : true,
+												verify : {
+													id : 'yspzq_y0045_clear_date_to'
+												},
+												//vtype : 'dateinterval',
+												width : 180
+											}, {
+												xtype : 'datefield',
+												id : 'yspzq_y0045_clear_date_to',
+												format : 'Y-m-d',
+												name : 'clear_date_to',
+												// margin : '0 10 0 0',
+												allowBlank : true,
+												width : 180
+											}]
 								}]
-							}]
-				}];
+					}, {
+						xtype : 'fieldcontainer',
+						layout : 'hbox',
+						items : [{
+									xtype : 'rstatus',
+									fieldLabel : '撤销状态',
+									margin : '0 10 0 0',
+									name : 'flag'
+								}, {
+									xtype : 'textfield',
+									fieldLabel : '撤销者',
+									width : 516,
+									name : 'revoke_user'
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						fieldLabel : '会计期间',
+						layout : 'hbox',
+						items : [{
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'period_from',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									verify : {
+										id : 'yspzq_y0045_period_to'
+									},
+									vtype : 'dateinterval',
+									width : 180
+								}, {
+									xtype : 'datefield',
+									id : 'yspzq_y0045_period_to',
+									format : 'Y-m-d',
+									name : 'period_to',
+									margin : '0 10 0 0',
+									allowBlank : false,
+									width : 180
+								}, {
+									xtype : 'datefield',
+									format : 'Y-m-d',
+									name : 'ts_revoke',
+									fieldLabel : '撤销时间',
+									width : 320
+								}]
+					}, {
+						xtype : 'button',
+						text : '查询',
+						margin : '0 20 0 0',
+						handler : function() {
+							store.loadPage(1);
+						}
+					}, {
+						xtype : 'button',
+						text : '重置',
+						handler : function(button) {
+							button.up('panel').getForm().reset();
+						}
+					}]
+		}, {
+			title : '结果',
+			xtype : 'gridpanel',
+			id : 'yspzq_y0045_grid',
+			height : 500,
+			store : this.store,
+			dockedItems : [{
+						xtype : 'pagingtoolbar',
+						store : this.store,
+						dock : 'bottom',
+						displayInfo : true
+					}],
+			columns : [{
+						text : "ID",
+						itemId : 'id',
+						dataIndex : 'id',
+						sortable : false,
+						flex : 1
+					}, {
+						text : "期间日期",
+						dataIndex : 'period',
+						itemId : 'period',
+						sortable : false,
+						flex : 2,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "银行清算日期",
+						dataIndex : 'clear_date',
+						itemId : 'clear_date',
+						sortable : false,
+						flex : 2,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "撤销状态",
+						dataIndex : 'flag',
+						sortable : false,
+						flex : 2,
+						renderer : function(value) {
+							var text = ['未撤销', '已撤销', '撤销申请中'];
+							return text[value];
+						}
+					}, {
+						xtype : 'actioncolumn',
+						text : '操作',
+						width : 100,
+						align : 'center',
+						items : [{
+							tooltip : '详细',
+							getClass : function(v, meta, rec) {
+								return 'detail';
+							},
+							handler : function(grid, rowIndex, colIndex) {
+								var rec = grid.getStore().getAt(rowIndex);
+								var viewport = grid.up('viewport'), center = viewport
+										.down('center'), id = 'yspzq_detail_0045'
+										+ rec.data.id, cmp = Ext.getCmp(id);
+								var yspzqdetail = Ext
+										.createByAlias('widget.yspzqdetail');
+								yspzqdetail.store.load({
+											params : {
+												ys_type : '0045',
+												ys_id : rec.data.id
+											}
+										});
+								if (cmp) {
+									center.setActiveTab(cmp);
+								} else {
+									center.add({
+										closable : true,
+										xtype : 'panel',
+										items : yspzqdetail,
+										id : 'yspzq_detail_0045' + rec.data.id,
+										title : '凭证0045' + '编号' + rec.data.id
+												+ '详细信息'
+									}).show();
+								}
+								viewport.doLayout();
+							}
+						}, {
+							tooltip : '撤销',
+							getClass : function(v, meta, rec) {
+								if (rec.data.flag == 0) {
+									return 'revoke';
+								}
+								return 'none';
+							},
+							handler : function(grid, rowIndex, colIndex) {
+								var rec = grid.getStore().getAt(rowIndex);
+								Ext.widget('yspzrevoke_cause', {
+											modal : true,
+											resizable : false,
+											ys_type : '0045',
+											ys_id : rec.data.id,
+											period : rec.data.period
+										})
+							}
+						}]
+					}]
+		}];
 		this.callParent(arguments);
 	}
 });

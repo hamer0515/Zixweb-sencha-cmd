@@ -202,14 +202,9 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 									name : 'period_from',
 									margin : '0 10 0 0',
 									allowBlank : false,
-									verify : {
-										id : panel.prefix + '_to_1'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to_1',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
@@ -230,14 +225,9 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 									format : 'Y-m-d',
 									name : 'tx_date_from',
 									margin : '0 10 0 0',
-									verify : {
-										id : panel.prefix + '_to_2'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to_2',
 									format : 'Y-m-d',
 									name : 'tx_date_to',
 									margin : '0 10 0 0',

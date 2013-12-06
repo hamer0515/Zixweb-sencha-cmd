@@ -275,6 +275,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.book.detail.txamt_dqr_oys": [],
   "Zixweb.view.task.Taskpzcx": [],
   "Zixweb.view.fhydbook.detail.yplc_fhyd": [],
+  "Zixweb.view.zjdz.bfjacctmemo": [],
   "overrides.layout.component.Dock": [],
   "Zixweb.view.book.detail.bsc_zyzj": [],
   "Zixweb.view.book.detail.txamt_dgd": [],
@@ -1151,6 +1152,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.fhydbook.detail.yplc_fhyd": [
     "widget.book_detail_yplc_fhyd"
+  ],
+  "Zixweb.view.zjdz.bfjacctmemo": [
+    "widget.bfjacctmemo"
   ],
   "overrides.layout.component.Dock": [],
   "Zixweb.view.book.detail.bsc_zyzj": [
