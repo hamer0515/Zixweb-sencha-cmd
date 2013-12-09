@@ -1,7 +1,7 @@
-Ext.define('Zixweb.view.book.hist.wlzj_yfzy', {
+Ext.define('Zixweb.view.book.hist.adjust_qc', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_hist_wlzj_yfzy',
-	prefix : 'book_hist_wlzj_yfzy',
+	alias : 'widget.book_hist_adjust_qc',
+	prefix : 'book_hist_adjust_qc',
 
 	defaults : {
 		border : false
@@ -10,64 +10,65 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfzy', {
 	initComponent : function() {
 		var panel = this;
 		var store = new Ext.data.Store({
-			fields : ['id', 'wlzj_type', 'period', 'j', 'd', 'ys_id', 'ys_type'],
+					fields : ['id', 'period', 'j', 'd', 'ys_id', 'ys_type'],
 
-			pageSize : 50,
-			remoteSort : true,
+					pageSize : 50,
+					remoteSort : true,
 
-			proxy : {
-				type : 'ajax',
-				api : {
-					read : 'book/hist/wlzj_yfzy'
-				},
-				reader : {
-					type : 'json',
-					root : 'data',
-					totalProperty : 'totalCount',
-					successProperty : 'success'
-				}
-			},
-			listeners : {
-				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp(panel.prefix + '_form').getForm();
-					if (form.isValid()) {
-						store.proxy.extraParams = form.getValues();
-					} else {
-						return false;
+					proxy : {
+						type : 'ajax',
+						api : {
+							read : 'book/hist/adjust_qc'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
+						}
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
+							if (form.isValid()) {
+								store.proxy.extraParams = form.getValues();
+							} else {
+								return false;
+							}
+						},
+						load : function(thiz, records, successful, eOpts) {
+							if (!successful) {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '期初调整科目历史数据加载失败,请联系管理员',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							var jsonData = thiz.proxy.reader.jsonData.success;
+							if (jsonData && jsonData === 'forbidden') {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '抱歉，没有期初调整科目历史数据访问权限',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							panel.values = Ext.getCmp(panel.prefix + '_form')
+									.getForm().getValues();
+							if (records.length > 0) {
+								Ext.getCmp(panel.prefix + '_exporterbutton')
+										.setDisabled(false);
+							} else {
+								Ext.getCmp(panel.prefix + '_exporterbutton')
+										.setDisabled(true);
+							}
+						}
 					}
-				},
-				load : function(thiz, records, successful, eOpts) {
-					if (!successful) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '应付自有科目历史数据加载失败,请联系管理员',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					var jsonData = thiz.proxy.reader.jsonData.success;
-					if (jsonData && jsonData === 'forbidden') {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '抱歉，没有应付自有科目历史数据访问权限',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					panel.values = Ext.getCmp(panel.prefix + '_form').getForm()
-							.getValues();
-					if (records.length > 0) {
-						Ext.getCmp(panel.prefix + '_exporterbutton')
-								.setDisabled(false);
-					} else {
-						Ext.getCmp(panel.prefix + '_exporterbutton')
-								.setDisabled(true);
-					}
-				}
-			}
-		});
+				});
 		var grid = new Ext.grid.Panel({
 			id : panel.prefix + '_grid',
 			store : store,
@@ -81,18 +82,6 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfzy', {
 						dataIndex : 'id',
 						sortable : false,
 						width : 80
-					}, {
-						text : "往来类型",
-						itemId : 'wlzj_type',
-						dataIndex : 'wlzj_type',
-						sortable : false,
-						renderer : function(value, p, record) {
-							var wlzjtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.WlzjType');
-							var index = wlzjtype.findExact('id', value);
-							return wlzjtype.getAt(index).data.name;
-						},
-						flex : 2
 					}, {
 						text : "期间日期",
 						dataIndex : 'period',
@@ -182,17 +171,22 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfzy', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : panel.prefix + '_to'
+												id : 'book_hist_adjust_qc_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : panel.prefix + '_to',
+											id : 'book_hist_adjust_qc_to',
 											format : 'Y-m-d',
 											name : 'period_to',
+											margin : '0 10 0 0',
 											allowBlank : false,
 											width : 180
+										}, {
+											xtype : 'ystype',
+											name : 'ys_type',
+											fieldLabel : '原始凭证类型'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -210,20 +204,6 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfzy', {
 											width : 516,
 											name : 'ys_id',
 											vtype : "money"
-										}]
-
-							}, {
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											xtype : 'wlzjtype',
-											name : 'wlzj_type',
-											margin : '0 10 0 0',
-											fieldLabel : '往来类型'
-										}, {
-											xtype : 'ystype',
-											name : 'ys_type',
-											fieldLabel : '原始凭证类型'
 										}]
 
 							}, {
@@ -300,7 +280,7 @@ Ext.define('Zixweb.view.book.hist.wlzj_yfzy', {
 												bid : panel.bid,
 												modal : true,
 												params : panel.values,
-												url : 'book/hist/wlzj_yfzy_excel',
+												url : 'book/hist/adjust_qc_excel',
 												resizable : false
 											});
 								}

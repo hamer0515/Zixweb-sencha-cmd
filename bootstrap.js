@@ -133,8 +133,8 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Zixweb.view.Center": [],
   "Zixweb.view.yspz.yspzq.y0117": [],
-  "Zixweb.view.fhydbook.detail.yfamt_m_fhyd": [],
   "Zixweb.view.yspz.yspzq.y0116": [],
+  "Zixweb.view.fhydbook.detail.yfamt_m_fhyd": [],
   "Zixweb.view.yspz.yspzq.y0115": [],
   "Zixweb.view.yspz.yspzq.y0114": [],
   "Zixweb.view.yspz.yspzq.y0029": [],
@@ -189,6 +189,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.grid.filter.DateFilter": [],
   "Zixweb.view.yspz.yspzq.y0049": [],
   "Zixweb.view.yspz.yspzq.y0048": [],
+  "Zixweb.view.book.detail.adjust_qc": [],
   "Zixweb.view.yspz.yspzq.y0043": [],
   "Zixweb.view.yspz.yspzq.y0042": [],
   "Zixweb.view.yspz.yspzq.y0041": [],
@@ -289,6 +290,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.controller.Pzlr": [],
   "Zixweb.view.book.hist.bfee_cwwf": [],
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [],
+  "Zixweb.view.book.hist.adjust_qc": [],
   "Zixweb.view.South": [],
   "Zixweb.view.book.detail.wlzj_yfzy": [],
   "Ext.ux.PreviewPlugin": [],
@@ -765,11 +767,11 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0117": [
     "widget.y0117"
   ],
-  "Zixweb.view.fhydbook.detail.yfamt_m_fhyd": [
-    "widget.book_detail_yfamt_m_fhyd"
-  ],
   "Zixweb.view.yspz.yspzq.y0116": [
     "widget.y0116"
+  ],
+  "Zixweb.view.fhydbook.detail.yfamt_m_fhyd": [
+    "widget.book_detail_yfamt_m_fhyd"
   ],
   "Zixweb.view.yspz.yspzq.y0115": [
     "widget.y0115"
@@ -920,6 +922,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.yspz.yspzq.y0048": [
     "widget.y0048"
+  ],
+  "Zixweb.view.book.detail.adjust_qc": [
+    "widget.book_detail_adjust_qc"
   ],
   "Zixweb.view.yspz.yspzq.y0043": [
     "widget.y0043"
@@ -1180,6 +1185,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [
     "widget.book_detail_yfamt_dcch_fhyd"
+  ],
+  "Zixweb.view.book.hist.adjust_qc": [
+    "widget.book_hist_adjust_qc"
   ],
   "Zixweb.view.South": [
     "widget.south"

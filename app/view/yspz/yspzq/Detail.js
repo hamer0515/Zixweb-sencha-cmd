@@ -17,11 +17,7 @@ Ext.define('Zixweb.view.yspz.yspzq.Detail', {
 				'<input type="hidden" value="{period}" id="period">',
 				"<table width='95%' border='0' cellspacing='1' cellpadding='0' align='center' bgcolor='#C8DCF0' class='live_1_table'>",
 				'<tpl for="properties">',
-				'<tpl if="xindex%2 == 1"><tr bgcolor="#B4CFCF" align="center"></tpl>',
-				'<td class="ice_one" width="250px">{key}</td><td class="ice_two" width="350px">{value}</td>',
-				'<tpl if="xindex%2 == 1"><tpl if="xindex == xcount"><td class="ice_one" ></td><td class="ice_two"></td></tpl></tpl>',
-				'<tpl if="xindex%2 == 0">',
-				'</tr></tpl>',
+				'{[this.gentrs(values)]}',
 				'</tpl>',
 				"<tpl if='ys_type === \"0000\"'>",
 				'<tr>',
@@ -110,7 +106,33 @@ Ext.define('Zixweb.view.yspz.yspzq.Detail', {
 				"<tr  bgcolor='#ffffff'  align='center' >",
 				"<td  width='180px'>{key}</td>",
 				"<td  width='320px'>{value}</td>", "</tr>", '</tpl>', '</tpl>',
-				"</table>", '</tpl>')
+				"</table>", '</tpl>', {
+					gentrs : function(json) {
+						var data = "";
+						var xcount = json.length;
+						for (var i = 0; i < xcount; i++) {
+							if (json[i].value == null) {
+								json[i].value = '';
+							}
+							var xindex = i + 1;
+							if (xindex % 2 == 1) {
+								data += "<tr bgcolor=\"#B4CFCF\" align=\"center\">";
+							}
+							data += "<td class=\"ice_one\" width=\"250px\">"
+									+ json[i].key
+									+ "</td><td class=\"ice_two\" width=\"350px\">"
+									+ json[i].value + "</td>";
+							if (xindex == xcount && xindex % 2 == 1) {
+								data += "<td class=\"ice_one\" ></td><td class=\"ice_two\"></td>";
+								xindex++;
+							}
+							if (xindex % 2 == 0) {
+								data += "</tr>";
+							}
+						}
+						return data;
+					}
+				})
 	}],
 	initComponent : function() {
 		var grid = this;

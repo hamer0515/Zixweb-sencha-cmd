@@ -1,7 +1,0 @@
-#!/bin/bash
-for ((i=1;i<=9;i++));
-do sed 's/F0029/F000'$i'/g' yF0029.js > yF000$i.js;
-done
-for ((i=10;i<=21;i++));
-do sed 's/F0029/F00'$i'/g' yF0029.js > yF00$i.js;
-done
