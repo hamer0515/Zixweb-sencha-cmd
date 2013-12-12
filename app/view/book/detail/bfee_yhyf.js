@@ -193,14 +193,14 @@ Ext.define('Zixweb.view.book.detail.bfee_yhyf', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'bfjacct',

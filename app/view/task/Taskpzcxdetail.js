@@ -3,7 +3,7 @@ Ext.define('Zixweb.view.task.Taskpzcxdetail', {
 	alias : 'widget.taskpzcxdetail',
 	disableSelection : true,
 	hideHeaders : true,
-	height : 'auto',
+
 	plugins : [{
 		ptype : 'rowexpander',
 		pluginId : 'rowexpander',

@@ -194,19 +194,12 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
-									verify : {
-										id : panel.prefix + '_to'
-									},
-									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
 									width : 180
 								}]
 					}, {
@@ -218,23 +211,17 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd', {
 									format : 'Y-m-d',
 									name : 'ftx_date_from',
 									margin : '0 10 0 0',
-									verify : {
-										id : panel.prefix + '_to_2'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'ftx_date_to',
 									margin : '0 10 0 0',
-									id : panel.prefix + '_to_2',
 									width : 180
 								}, {
 									xtype : 'textfield',
 									name : 'f_dcn',
 									width : 516,
-									// margin : '0 10 0 0',
 									fieldLabel : '代充通道编号'
 								}]
 					}, {

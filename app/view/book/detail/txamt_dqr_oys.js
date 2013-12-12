@@ -3,7 +3,6 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 	alias : 'widget.book_detail_txamt_dqr_oys',
 
 	prefix : 'book_detail_txamt_dqr_oys',
-
 	defaults : {
 		border : false
 	},
@@ -177,13 +176,13 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
-									allowBlank : false,
+									
 									width : 180
 								}]
 					}, {

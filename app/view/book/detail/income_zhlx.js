@@ -1,7 +1,6 @@
 Ext.define('Zixweb.view.book.detail.income_zhlx', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.book_detail_income_zhlx',
-
 	prefix : 'book_detail_income_zhlx',
 
 	defaults : {
@@ -165,14 +164,14 @@ Ext.define('Zixweb.view.book.detail.income_zhlx', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'acct',

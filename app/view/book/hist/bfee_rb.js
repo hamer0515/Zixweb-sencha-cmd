@@ -171,171 +171,161 @@ Ext.define('Zixweb.view.book.hist.bfee_rb', {
 					}]
 		});
 		this.items = [{
-			xtype : 'form',
-			title : '查询',
-			id : panel.prefix + '_form',
-			bodyPadding : 5,
-			collapsible : true,
+					xtype : 'form',
+					title : '查询',
+					id : panel.prefix + '_form',
+					bodyPadding : 5,
+					collapsible : true,
+					fieldDefaults : {
+						labelWidth : 140
+					},
+					items : [{
+								xtype : 'fieldcontainer',
+								fieldLabel : '会计期间',
+								layout : 'hbox',
+								items : [{
+											xtype : 'datefield',
+											format : 'Y-m-d',
+											name : 'period_from',
+											margin : '0 10 0 0',
+											allowBlank : false,
+											verify : {
+												id : panel.prefix + '_to_3'
+											},
+											vtype : 'dateinterval',
+											width : 180
+										}, {
+											xtype : 'datefield',
+											id : panel.prefix + '_to_3',
+											format : 'Y-m-d',
+											name : 'period_to',
+											margin : '0 10 0 0',
+											allowBlank : false,
+											width : 180
+										}, {
+											xtype : 'fieldcontainer',
+											fieldLabel : '交易日期范围',
+											layout : 'hbox',
+											items : [{
+														xtype : 'datefield',
+														format : 'Y-m-d',
+														name : 'tx_date_from',
+														margin : '0 10 0 0',
+														width : 180
+													}, {
+														xtype : 'datefield',
+														format : 'Y-m-d',
+														name : 'tx_date_to',
+														width : 180
+													}]
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'textfield',
+											name : 'id',
+											margin : '0 10 0 0',
+											width : 516,
+											vtype : 'id',
+											fieldLabel : 'ID'
+										}, {
+											xtype : 'textfield',
+											fieldLabel : '原始凭证ID',
+											width : 516,
+											name : 'ys_id',
+											vtype : 'id'
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'bi',
+											name : 'bi',
+											margin : '0 10 0 0',
+											fieldLabel : '银行接口编号'
+										}, {
+											xtype : 'ystype',
+											name : 'ys_type',
+											fieldLabel : '原始凭证类型'
+										}]
 
-			fieldDefaults : {
-				labelWidth : 140
-			},
-			items : [{
-						xtype : 'fieldcontainer',
-						fieldLabel : '会计期间',
-						layout : 'hbox',
-						items : [{
-									xtype : 'datefield',
-									format : 'Y-m-d',
-									name : 'period_from',
-									margin : '0 10 0 0',
-									allowBlank : false,
-									verify : {
-										id : panel.prefix + '_to_3'
-									},
-									vtype : 'dateinterval',
-									width : 180
-								}, {
-									xtype : 'datefield',
-									id : panel.prefix + '_to_3',
-									format : 'Y-m-d',
-									name : 'period_to',
-									margin : '0 10 0 0',
-									allowBlank : false,
-									width : 180
-								}, {
-									xtype : 'fieldcontainer',
-									fieldLabel : '交易日期范围',
-									layout : 'hbox',
-									items : [{
-												xtype : 'datefield',
-												format : 'Y-m-d',
-												name : 'tx_date_from',
-												margin : '0 10 0 0',
-												verify : {
-													id : 'book_detail_bfee_rb_to_4'
-												},
-												vtype : 'dateinterval',
-												width : 180
-											}, {
-												xtype : 'datefield',
-												id : 'book_detail_bfee_rb_to_4',
-												format : 'Y-m-d',
-												name : 'tx_date_to',
-												width : 180
-											}]
-								}]
-					}, {
-						xtype : 'fieldcontainer',
-						layout : 'hbox',
-						items : [{
-									xtype : 'textfield',
-									name : 'id',
-									margin : '0 10 0 0',
-									width : 516,
-									vtype : 'id',
-									fieldLabel : 'ID'
-								}, {
-									xtype : 'textfield',
-									fieldLabel : '原始凭证ID',
-									width : 516,
-									name : 'ys_id',
-									vtype : "money"
-								}]
-					}, {
-						xtype : 'fieldcontainer',
-						layout : 'hbox',
-						items : [{
-									xtype : 'bi',
-									name : 'bi',
-									margin : '0 10 0 0',
-									fieldLabel : '银行接口编号'
-								}, {
-									xtype : 'ystype',
-									name : 'ys_type',
-									fieldLabel : '原始凭证类型'
-								}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'fieldcontainer',
+											layout : 'hbox',
+											fieldLabel : '借方金额',
+											items : [{
+														xtype : 'money',
+														name : 'j_from',
+														margin : '0 10 0 0',
+														width : 180
+													}, {
+														xtype : 'money',
+														name : 'j_to',
+														width : 180,
+														margin : '0 10 0 0'
+													}]
+										}, {
+											xtype : 'fieldcontainer',
+											layout : 'hbox',
+											fieldLabel : '贷方金额',
+											items : [{
+														xtype : 'money',
+														name : 'd_from',
+														margin : '0 10 0 0',
+														width : 180
 
-					}, {
-						xtype : 'fieldcontainer',
-						layout : 'hbox',
-						items : [{
-									xtype : 'fieldcontainer',
-									layout : 'hbox',
-									fieldLabel : '借方金额',
-									items : [{
-												xtype : 'textfield',
-												name : 'j_from',
-												margin : '0 10 0 0',
-												width : 180,
-												vtype : "money"
-											}, {
-												xtype : 'textfield',
-												name : 'j_to',
-												width : 180,
-												margin : '0 10 0 0',
-												vtype : "money"
-											}]
-								}, {
-									xtype : 'fieldcontainer',
-									layout : 'hbox',
-									fieldLabel : '贷方金额',
-									items : [{
-												xtype : 'textfield',
-												name : 'd_from',
-												margin : '0 10 0 0',
-												width : 180,
-												vtype : "money"
-											}, {
-												xtype : 'textfield',
-												name : 'd_to',
-												width : 180,
-												margin : '0 10 0 0',
-												vtype : "money"
-											}]
-								}]
-					}, {
-						xtype : 'button',
-						text : '查询',
-						margin : '0 20 0 0',
-						handler : function() {
-							store.loadPage(1);
-						}
-					}, {
-						xtype : 'button',
-						text : '重置',
-						margin : '0 20 0 0',
-						handler : function(button) {
-							button.up('panel').getForm().reset();
-						}
-					}, {
-						xtype : 'button',
-						id : panel.prefix + '_exporterbutton',
-						text : '导出Excel',
-						disabled : true,
-						handler : function() {
-							var count = store.getTotalCount();
-							if (count == 0) {
-								return;
-							} else if (count > 10000) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '数据量超过上限10000条',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.WARNING
-										});
-								return;
-							}
-							Ext.widget('tablefields', {
-										bid : panel.bid,
-										modal : true,
-										params : panel.values,
-										url : 'book/hist/bfee_rb_excel',
-										resizable : false
-									});
-						}
-					}]
-		}, grid];
+													}, {
+														xtype : 'money',
+														name : 'd_to',
+														width : 180
+													}]
+										}]
+							}, {
+								xtype : 'button',
+								text : '查询',
+								margin : '0 20 0 0',
+								handler : function() {
+									store.loadPage(1);
+								}
+							}, {
+								xtype : 'button',
+								text : '重置',
+								margin : '0 20 0 0',
+								handler : function(button) {
+									button.up('panel').getForm().reset();
+								}
+							}, {
+								xtype : 'button',
+								id : panel.prefix + '_exporterbutton',
+								text : '导出Excel',
+								disabled : true,
+								handler : function() {
+									var count = store.getTotalCount();
+									if (count == 0) {
+										return;
+									} else if (count > 10000) {
+										Ext.MessageBox.show({
+													title : '警告',
+													msg : '数据量超过上限10000条',
+													buttons : Ext.Msg.YES,
+													icon : Ext.Msg.WARNING
+												});
+										return;
+									}
+									Ext.widget('tablefields', {
+												bid : panel.bid,
+												modal : true,
+												params : panel.values,
+												url : 'book/hist/bfee_rb_excel',
+												resizable : false
+											});
+								}
+							}]
+				}, grid];
 		this.callParent(arguments);
 	}
 });

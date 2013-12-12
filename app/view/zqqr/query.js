@@ -104,7 +104,6 @@ Ext.define('Zixweb.view.zqqr.query', {
 				}, {
 					xtype : 'gridpanel',
 					id : 'zqqrquerygrid',
-					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

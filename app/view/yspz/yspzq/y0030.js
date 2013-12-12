@@ -1,14 +1,16 @@
 Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.y0030',
+	prefix : 'yspzq_y0030',
+	url : 'y0030',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
+		var panel = this;
+
 		var store = new Ext.data.Store({
 					fields : ['id', 'bfj_acct_bj', 'tx_amt', 'flag', 'period'],
 
@@ -18,7 +20,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 					proxy : {
 						type : 'ajax',
 						api : {
-							read : 'yspzq/y0030'
+							read : 'yspzq/' + panel.url
 						},
 						reader : {
 							type : 'json',
@@ -29,11 +31,11 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('yspzqy0030form').getForm();
-							var values = form.getValues();
-							var grid = Ext.getCmp('yspzq_y0030_grid');
+
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
 							if (form.isValid()) {
-								store.proxy.extraParams = values;
+								store.proxy.extraParams = form.getValues();
 							} else {
 								return false;
 							}
@@ -60,11 +62,12 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 						}
 					}
 				});
-		this.store = store;
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
-					id : 'yspzqy0030form',
+					id : panel.prefix + '_form',
+					collapsible : true,
+					bodyPadding : 5,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -102,14 +105,9 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 											name : 'zjbd_date_in_from',
 											margin : '0 10 0 0',
 											allowBlank : true,
-											verify : {
-												id : 'yspzq_y0030_zjbd_date_in_to'
-											},
-											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'yspzq_y0030_zjbd_date_in_to',
 											format : 'Y-m-d',
 											name : 'zjbd_date_in_to',
 											margin : '0 10 0 0',
@@ -135,16 +133,14 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 											layout : 'hbox',
 											fieldLabel : '出款退回金额',
 											items : [{
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'tx_amt_from',
 														margin : '0 10 0 0',
-														width : 180,
-														vtype : "money"
+														width : 180
 													}, {
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'tx_amt_to',
-														width : 180,
-														vtype : "money"
+														width : 180
 													}]
 										}]
 							}, {
@@ -172,13 +168,14 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : 'yspzq_y0030_period_to'
+												id : panel.prefix
+														+ '_period_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'yspzq_y0030_period_to',
+											id : panel.prefix + '_period_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											margin : '0 10 0 0',
@@ -206,16 +203,12 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 								}
 							}]
 				}, {
-					title : '结果',
 					xtype : 'gridpanel',
-					id : 'yspzq_y0030_grid',
-					height : 500,
-					store : this.store,
+
+					store : store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
-								store : this.store,
-								dock : 'bottom',
-								displayInfo : true
+								store : store
 							}],
 					columns : [{
 								text : "ID",

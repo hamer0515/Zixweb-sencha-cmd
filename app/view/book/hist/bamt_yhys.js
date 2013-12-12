@@ -37,7 +37,7 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 								return false;
 							}
 						},
-					
+
 						load : function(thiz, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
@@ -68,7 +68,7 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 										.setDisabled(true);
 							}
 						}
-					
+
 					}
 				});
 		var grid = new Ext.grid.Panel({
@@ -78,116 +78,110 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 						xtype : 'pagingtoolbar',
 						store : store
 					}],
-				columns : [{
-					text : "ID",
-					itemId : 'id',
-					dataIndex : 'id',
-					sortable : false,
-					width : 80
-				}, {
-					text : "自有资金帐号",
-					itemId : 'zyzj_acct',
-					dataIndex : 'zyzj_acct',
-					sortable : false,
-					renderer : function(value, p, record) {
-						var zyzjacct = Ext.data.StoreManager
-								.lookup('Zixweb.store.component.ZyzjAcct');
-						var index = zyzjacct.findExact('id', value);
-						return zyzjacct.getAt(index).data.name;
-					},
-					flex : 2
-				}, {
-					text : "资金变动类型",
-					itemId : 'zjbd_type',
-					dataIndex : 'zjbd_type',
-					sortable : false,
-					renderer : function(value, p, record) {
-						var zjbdtype = Ext.data.StoreManager
-								.lookup('Zixweb.store.component.ZjbdType');
-						var index = zjbdtype.findExact('id', value);
-						return zjbdtype.getAt(index).data.name;
-					},
-					flex : 1
-				}, {
-					text : "资金变动日期",
-					dataIndex : 'zjbd_date',
-					itemId : 'zjbd_date',
-					sortable : false,
-					flex : 1,
-					renderer : Ext.util.Format
-							.dateRenderer('Y年m月d日')
-				}, {
-					text : "期间日期",
-					dataIndex : 'period',
-					itemId : 'period',
-					sortable : false,
-					flex : 1,
-					renderer : Ext.util.Format
-							.dateRenderer('Y年m月d日')
-				}, {
-					text : "借方金额",
-					dataIndex : 'j',
-					sortable : false,
-					flex : 1,
-					renderer : function(value) {
-						return Ext.util.Format.number(
-								parseInt(value) / 100, '0,0.00');
-					}
-				}, {
-					text : "贷方金额",
-					dataIndex : 'd',
-					flex : 1,
-					sortable : false,
-					renderer : function(value) {
-						return Ext.util.Format.number(
-								parseInt(value) / 100, '0,0.00');
-					}
-				}, {
-					xtype : 'actioncolumn',
-					text : '操作',
-					width : 80,
-					align : 'center',
-					items : [{
-						tooltip : '详细',
-						action : 'yspzqdetail',
-						getClass : function(v, meta, rec) {
-							return 'detail';
+			columns : [{
+						text : "ID",
+						itemId : 'id',
+						dataIndex : 'id',
+						sortable : false,
+						width : 80
+					}, {
+						text : "自有资金帐号",
+						itemId : 'zyzj_acct',
+						dataIndex : 'zyzj_acct',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var zyzjacct = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.ZyzjAcct');
+							var index = zyzjacct.findExact('id', value);
+							return zyzjacct.getAt(index).data.name;
 						},
-						handler : function(grid, rowIndex, colIndex) {
-							var rec = grid.getStore()
-									.getAt(rowIndex);
-							var viewport = grid.up('viewport'), center = viewport
-									.down('center'), id = 'yspzq_detail_'
-									+ rec.data.ys_type
-									+ rec.data.ys_id, cmp = Ext
-									.getCmp(id);
-							var yspzqdetail = Ext
-									.createByAlias('widget.yspzqdetail');
-							yspzqdetail.store.load({
-										params : {
-											ys_type : rec.data.ys_type,
-											ys_id : rec.data.ys_id
-										}
-									});
-							if (cmp) {
-								center.setActiveTab(cmp);
-							} else {
-								center.add({
-									closable : true,
-									xtype : 'panel',
-									items : yspzqdetail,
-									id : 'yspzq_detail_'
-											+ rec.data.ys_type
-											+ rec.data.ys_id,
-									title : '凭证' + rec.data.ys_type
-											+ '详细信息-'
-											+ rec.data.ys_id
-								}).show();
-							}
-							viewport.doLayout();
+						flex : 2
+					}, {
+						text : "资金变动类型",
+						itemId : 'zjbd_type',
+						dataIndex : 'zjbd_type',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var zjbdtype = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.ZjbdType');
+							var index = zjbdtype.findExact('id', value);
+							return zjbdtype.getAt(index).data.name;
+						},
+						flex : 1
+					}, {
+						text : "资金变动日期",
+						dataIndex : 'zjbd_date',
+						itemId : 'zjbd_date',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "期间日期",
+						dataIndex : 'period',
+						itemId : 'period',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "借方金额",
+						dataIndex : 'j',
+						sortable : false,
+						flex : 1,
+						renderer : function(value) {
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
 						}
+					}, {
+						text : "贷方金额",
+						dataIndex : 'd',
+						flex : 1,
+						sortable : false,
+						renderer : function(value) {
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
+						}
+					}, {
+						xtype : 'actioncolumn',
+						text : '操作',
+						width : 80,
+						align : 'center',
+						items : [{
+							tooltip : '详细',
+							action : 'yspzqdetail',
+							getClass : function(v, meta, rec) {
+								return 'detail';
+							},
+							handler : function(grid, rowIndex, colIndex) {
+								var rec = grid.getStore().getAt(rowIndex);
+								var viewport = grid.up('viewport'), center = viewport
+										.down('center'), id = 'yspzq_detail_'
+										+ rec.data.ys_type + rec.data.ys_id, cmp = Ext
+										.getCmp(id);
+								var yspzqdetail = Ext
+										.createByAlias('widget.yspzqdetail');
+								yspzqdetail.store.load({
+											params : {
+												ys_type : rec.data.ys_type,
+												ys_id : rec.data.ys_id
+											}
+										});
+								if (cmp) {
+									center.setActiveTab(cmp);
+								} else {
+									center.add({
+										closable : true,
+										xtype : 'panel',
+										items : yspzqdetail,
+										id : 'yspzq_detail_' + rec.data.ys_type
+												+ rec.data.ys_id,
+										title : '凭证' + rec.data.ys_type
+												+ '详细信息-' + rec.data.ys_id
+									}).show();
+								}
+								viewport.doLayout();
+							}
+						}]
 					}]
-				}]
 		});
 		this.items = [{
 					xtype : 'form',
@@ -230,12 +224,14 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 											name : 'id',
 											margin : '0 10 0 0',
 											width : 516,
-											fieldLabel : 'ID'
+											fieldLabel : 'ID',
+											vtype : 'id'
 										}, {
 											xtype : 'textfield',
 											fieldLabel : '原始凭证ID',
 											width : 516,
-											name : 'ys_id'
+											name : 'ys_id',
+											vtype : 'id'
 										}]
 
 							}, {
@@ -247,14 +243,9 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 											format : 'Y-m-d',
 											name : 'zjbd_date_from',
 											margin : '0 10 0 0',
-											verify : {
-												id : panel.prefix + '_to_2'
-											},
-											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : panel.prefix + '_to_2',
 											format : 'Y-m-d',
 											name : 'zjbd_date_to',
 											margin : '0 10 0 0',
@@ -286,34 +277,30 @@ Ext.define('Zixweb.view.book.hist.bamt_yhys', {
 											layout : 'hbox',
 											fieldLabel : '借方金额',
 											items : [{
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'j_from',
 														margin : '0 10 0 0',
-														width : 180,
-														vtype : "money"
+														width : 180
 													}, {
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'j_to',
 														width : 180,
-														margin : '0 10 0 0',
-														vtype : "money"
+														margin : '0 10 0 0'
 													}]
 										}, {
 											xtype : 'fieldcontainer',
 											layout : 'hbox',
 											fieldLabel : '贷方金额',
 											items : [{
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'd_from',
 														margin : '0 10 0 0',
-														width : 180,
-														vtype : "money"
+														width : 180
+
 													}, {
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'd_to',
-														width : 180,
-														margin : '0 10 0 0',
-														vtype : "money"
+														width : 180
 													}]
 										}]
 							}, {

@@ -82,58 +82,32 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 						beforeload : function(store, operation, eOpts) {
 							var form = Ext.getCmp(panel.prefix + '_form')
 									.getForm();
-							var values = form.getValues();
-							var grid = Ext.getCmp(panel.prefix + '_grid');
-							grid.down('#c').hide();
-							grid.down('#p').hide();
-							grid.down('#period').hide();
-							var columns = grid.columns;
-							if (values.fir) {
-								var fir = grid.down('#' + values.fir);
-								fir.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								if (oldindex != 0) {
-									grid.headerCt.move(oldindex, 0);
-								}
-							}
-							if (values.sec) {
-								var sec = grid.down('#' + values.sec);
-								sec.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(sec);
-								if (oldindex != 1) {
-									grid.headerCt.move(oldindex, 1);
-								}
-							}
-							if (values.thi) {
-								var thi = grid.down('#' + values.thi);
-								thi.show();
-								var oldindex = grid.headerCt
-										.getHeaderIndex(thi);
-								if (oldindex != 2) {
-									grid.headerCt.move(oldindex, 2);
-								}
-							}
-							if (!(values.fir || values.sec || values.thi)) {
-								grid.down('#c').show();
-								grid.down('#p').show();
-								grid.down('#period').show();
-								var fir = grid.down('#c');
-								var sec = grid.down('#p');
-								var thi = grid.down('#period');
-								var oldindex = grid.headerCt
-										.getHeaderIndex(fir);
-								grid.headerCt.move(oldindex, 0);
-								var secindex = grid.headerCt
-										.getHeaderIndex(sec);
-								grid.headerCt.move(secindex, 1);
-								var thiindex = grid.headerCt
-										.getHeaderIndex(thi);
-								grid.headerCt.move(thiindex, 2);
-							}
-							grid.getView().refresh();
 							if (form.isValid()) {
+								var values = form.getValues();
+								var cols = [];
+								var grid = Ext.getCmp(panel.prefix + '_grid');
+								var hsxes = [];
+								if (values.fir) {
+									hsxes.push(values.fir);
+								}
+								if (values.sec) {
+									hsxes.push(values.sec);
+								}
+								if (values.thi) {
+									hsxes.push(values.thi);
+								}
+								if (hsxes.length == 0) {
+									for (var key in columns) {
+										cols.push(columns[key]);
+									}
+								} else {
+									for (var i = 0; i < hsxes.length; i++) {
+										cols.push(columns[hsxes[i]]);
+									}
+									cols.push(columns.j);
+									cols.push(columns.d);
+								}
+								grid.reconfigure(store, cols);
 								store.proxy.extraParams = values;
 							} else {
 								return false;
@@ -199,14 +173,14 @@ Ext.define('Zixweb.view.book.detail.cost_in', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'product',

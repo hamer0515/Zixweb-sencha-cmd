@@ -97,7 +97,6 @@ Ext.define('Zixweb.view.book.AllBooks', {
 														+ 1)
 												+ '科目汇总'
 									}).show();
-									// viewport.doLayout();
 								}
 							}
 						}, {
@@ -124,7 +123,6 @@ Ext.define('Zixweb.view.book.AllBooks', {
 														+ 1)
 												+ '科目明细查询'
 									}).show();
-									// viewport.doLayout();
 								}
 							},
 							getClass : function(v, meta, rec) {

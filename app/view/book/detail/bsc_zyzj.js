@@ -1,7 +1,6 @@
 Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.book_detail_bsc_zyzj',
-
 	prefix : 'book_detail_bsc_zyzj',
 
 	defaults : {
@@ -164,7 +163,6 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
-
 			fieldDefaults : {
 				labelWidth : 140
 			},
@@ -177,14 +175,14 @@ Ext.define('Zixweb.view.book.detail.bsc_zyzj', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}]
 					}, {

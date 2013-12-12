@@ -64,7 +64,6 @@ Ext.define('Zixweb.view.book.detail.adjust_qc', {
 							if (form.isValid()) {
 								var values = form.getValues();
 								var cols = [];
-								var grid = Ext.getCmp(panel.prefix + '_grid');
 								var hsxes = [];
 								if (values.fir) {
 									hsxes.push(values.fir);
@@ -80,7 +79,8 @@ Ext.define('Zixweb.view.book.detail.adjust_qc', {
 									cols.push(columns.j);
 									cols.push(columns.d);
 								}
-								grid.reconfigure(store, cols);
+								Ext.getCmp(panel.prefix + '_grid').reconfigure(
+										store, cols);
 								store.proxy.extraParams = values;
 							} else {
 								return false;
@@ -146,14 +146,12 @@ Ext.define('Zixweb.view.book.detail.adjust_qc', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
 									width : 180
 								}, {
 									xtype : 'hsx',

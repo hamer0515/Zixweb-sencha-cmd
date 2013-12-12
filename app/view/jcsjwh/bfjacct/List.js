@@ -29,9 +29,8 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
 							var form = Ext.getCmp('bfjacctlist').getForm();
-							var values = form.getValues();
 							if (form.isValid()) {
-								store.proxy.extraParams = values;
+								store.proxy.extraParams = form.getValues();
 							} else {
 								return false;
 							}
@@ -40,7 +39,7 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '对账列表数据加载失败,请联系管理员',
+											msg : '备付金帐号列表数据加载失败,请联系管理员',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
@@ -50,7 +49,7 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '抱歉，没有对账列表数据访问权限',
+											msg : '抱歉，没有备付金帐号列表数据访问权限',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
@@ -127,15 +126,10 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 					}]
 		}, {
 			xtype : 'gridpanel',
-			id : 'bfjacctlistgrid',
-			height : 'auto',
-
 			store : this.store,
 			dockedItems : [{
 						xtype : 'pagingtoolbar',
-						store : this.store,
-						dock : 'bottom',
-						displayInfo : true
+						store : this.store
 					}],
 			columns : [{
 						text : "id",
@@ -158,14 +152,14 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 						itemId : 'b_name',
 						dataIndex : 'b_name',
 						sortable : false,
-						flex : 1
+						flex : 2
 
 					}, {
 						text : "备付金银行账户",
 						itemId : 'bfj_acct',
 						dataIndex : 'bfj_acct',
 						sortable : false,
-						flex : 3
+						flex : 2
 					}, {
 						text : "开户信息",
 						itemId : 'acct_name',

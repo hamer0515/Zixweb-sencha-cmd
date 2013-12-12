@@ -133,7 +133,6 @@ Ext.define('Zixweb.view.task.TaskFmy', {
 				}, {
 					xtype : 'gridpanel',
 					id : panel.prefix + 'grid',
-					height : 'auto',
 
 					store : store,
 					dockedItems : [{

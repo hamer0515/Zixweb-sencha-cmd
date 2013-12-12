@@ -63,115 +63,93 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 			}
 		};
 		var store = new Ext.data.Store({
-			fields : ['c', 'cust_proto', 'tx_date', 'period', 'j', 'd'],
+					fields : ['c', 'cust_proto', 'tx_date', 'period', 'j', 'd'],
 
-			pageSize : 50,
-			remoteSort : true,
+					pageSize : 50,
+					remoteSort : true,
 
-			proxy : {
-				type : 'ajax',
-				api : {
-					read : 'book/detail/lfee_psp'
-				},
-				reader : {
-					type : 'json',
-					root : 'data',
-					totalProperty : 'totalCount',
-					successProperty : 'success'
-				}
-			},
-			listeners : {
-				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp(panel.prefix + '_form').getForm();
-					var values = form.getValues();
-					var grid = Ext.getCmp(panel.prefix + '_grid');
-					grid.down('#c').hide();
-					grid.down('#cust_proto').hide();
-					grid.down('#tx_date').hide();
-					grid.down('#period').hide();
-					var columns = grid.columns;
-					if (values.fir) {
-						var fir = grid.down('#' + values.fir);
-						fir.show();
-						var oldindex = grid.headerCt.getHeaderIndex(fir);
-						if (oldindex != 0) {
-							grid.headerCt.move(oldindex, 0);
+					proxy : {
+						type : 'ajax',
+						api : {
+							read : 'book/detail/lfee_psp'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
+						}
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
+							if (form.isValid()) {
+								var values = form.getValues();
+								var cols = [];
+								var grid = Ext.getCmp(panel.prefix + '_grid');
+								var hsxes = [];
+								if (values.fir) {
+									hsxes.push(values.fir);
+								}
+								if (values.sec) {
+									hsxes.push(values.sec);
+								}
+								if (values.thi) {
+									hsxes.push(values.thi);
+								}
+								if (values.fou) {
+									hsxes.push(values.fou);
+								}
+								if (hsxes.length == 0) {
+									for (var key in columns) {
+										cols.push(columns[key]);
+									}
+								} else {
+									for (var i = 0; i < hsxes.length; i++) {
+										cols.push(columns[hsxes[i]]);
+									}
+									cols.push(columns.j);
+									cols.push(columns.d);
+								}
+								grid.reconfigure(store, cols);
+								store.proxy.extraParams = values;
+							} else {
+								return false;
+							}
+						},
+						load : function(thiz, records, successful, eOpts) {
+							if (!successful) {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '分润方承担品牌费科目详细数据加载失败,请联系管理员',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							var jsonData = thiz.proxy.reader.jsonData.success;
+							if (jsonData && jsonData === 'forbidden') {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '抱歉，没有分润方承担品牌费科目详细数据访问权限',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							panel.values = Ext.getCmp(panel.prefix + '_form')
+									.getForm().getValues();
+							if (records.length > 0) {
+								Ext.getCmp(panel.prefix + '_exporterbutton')
+										.setDisabled(false);
+							} else {
+								Ext.getCmp(panel.prefix + '_exporterbutton')
+										.setDisabled(true);
+							}
 						}
 					}
-					if (values.sec) {
-						var sec = grid.down('#' + values.sec);
-						sec.show();
-						var oldindex = grid.headerCt.getHeaderIndex(sec);
-						if (oldindex != 1) {
-							grid.headerCt.move(oldindex, 1);
-						}
-					}
-					if (values.thir) {
-						var thir = grid.down('#' + values.thir);
-						thir.show();
-						var oldindex = grid.headerCt.getHeaderIndex(thir);
-						if (oldindex != 2) {
-							grid.headerCt.move(oldindex, 2);
-						}
-					}
-					if (values.fou) {
-						var fou = grid.down('#' + values.fou);
-						fou.show();
-						var oldindex = grid.headerCt.getHeaderIndex(fou);
-						if (oldindex != 3) {
-							grid.headerCt.move(oldindex, 3);
-						}
-					}
-					if (!(values.fir || values.sec || values.thir || values.fou)) {
-						grid.down('#c').show();
-						grid.down('#cust_proto').show();
-						grid.down('#tx_date').show();
-						grid.down('#period').show();
-						var fir = grid.down('#c');
-						var oldindex = grid.headerCt.getHeaderIndex(fir);
-						if (oldindex != 0) {
-							grid.headerCt.move(oldindex, 0);
-						}
-					}
-					grid.getView().refresh();
-					if (form.isValid()) {
-						store.proxy.extraParams = values;
-					} else {
-						return false;
-					}
-				},
-				load : function(thiz, records, successful, eOpts) {
-					if (!successful) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '分润方承担品牌费科目详细数据加载失败,请联系管理员',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					var jsonData = thiz.proxy.reader.jsonData.success;
-					if (jsonData && jsonData === 'forbidden') {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '抱歉，没有分润方承担品牌费科目详细数据访问权限',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					panel.values = Ext.getCmp(panel.prefix + '_form').getForm()
-							.getValues();
-					if (records.length > 0) {
-						Ext.getCmp(panel.prefix + '_exporterbutton')
-								.setDisabled(false);
-					} else {
-						Ext.getCmp(panel.prefix + '_exporterbutton')
-								.setDisabled(true);
-					}
-				}
-			}
-		});
+				});
 		var grid = new Ext.grid.Panel({
 					id : panel.prefix + '_grid',
 					store : store,
@@ -201,14 +179,14 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'textfield',

@@ -253,7 +253,7 @@ Ext.define('Zixweb.view.fhydbook.hist.chamt_dgd_fhyd', {
 											fieldLabel : '原始凭证ID',
 											width : 516,
 											name : 'ys_id',
-											vtype : "money"
+											vtype : 'id'
 										}]
 
 							}, {
@@ -319,34 +319,30 @@ Ext.define('Zixweb.view.fhydbook.hist.chamt_dgd_fhyd', {
 											layout : 'hbox',
 											fieldLabel : '借方金额',
 											items : [{
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'j_from',
 														margin : '0 10 0 0',
-														width : 180,
-														vtype : "money"
+														width : 180
 													}, {
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'j_to',
 														width : 180,
-														margin : '0 10 0 0',
-														vtype : "money"
+														margin : '0 10 0 0'
 													}]
 										}, {
 											xtype : 'fieldcontainer',
 											layout : 'hbox',
 											fieldLabel : '贷方金额',
 											items : [{
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'd_from',
 														margin : '0 10 0 0',
-														width : 180,
-														vtype : "money"
+														width : 180
 													}, {
-														xtype : 'textfield',
+														xtype : 'money',
 														name : 'd_to',
 														width : 180,
-														margin : '0 10 0 0',
-														vtype : "money"
+														margin : '0 10 0 0'
 													}]
 										}]
 							}, {

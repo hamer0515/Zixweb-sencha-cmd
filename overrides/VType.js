@@ -50,7 +50,9 @@ Ext.define('overrides.VType', {
 								id : id
 							},
 							success : function(response) {
-								valiStatus = Ext.decode(response.responseText).success;
+								if (Ext.decode(response.responseText).success == true) {
+									valiStatus = true;
+								}
 							},
 							failure : function(response, opts) {
 								Ext.MessageBox.show({

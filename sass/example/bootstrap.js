@@ -213,6 +213,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.grid.filter.DateFilter": [],
   "Zixweb.view.yspz.yspzq.y0049": [],
   "Zixweb.view.yspz.yspzq.y0048": [],
+  "Zixweb.view.book.detail.adjust_qc": [],
   "Zixweb.view.yspz.yspzq.y0043": [],
   "Zixweb.view.yspz.yspzq.y0042": [],
   "Zixweb.view.yspz.yspzq.y0041": [],
@@ -316,6 +317,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.controller.Pzlr": [],
   "Zixweb.view.book.hist.bfee_cwwf": [],
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [],
+  "Zixweb.view.book.hist.adjust_qc": [],
   "Zixweb.view.South": [],
   "Zixweb.view.book.detail.wlzj_yfzy": [],
   "Ext.ux.PreviewPlugin": [],
@@ -492,8 +494,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.yF0040": [],
   "Zixweb.view.yspz.yspzq.yF0041": [],
   "Zixweb.view.yspz.yspzq.y0090": [],
-  "Zixweb.view.book.hist.cost_bfee_zg": [],
   "Zixweb.view.yspz.yspzq.y0094": [],
+  "Zixweb.view.book.hist.cost_bfee_zg": [],
   "Zixweb.view.yspz.yspzq.y0093": [],
   "Zixweb.view.yspz.yspzq.y0092": [],
   "Ext.ux.RowExpander": [],
@@ -963,6 +965,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0048": [
     "widget.y0048"
   ],
+  "Zixweb.view.book.detail.adjust_qc": [
+    "widget.book_detail_adjust_qc"
+  ],
   "Zixweb.view.yspz.yspzq.y0043": [
     "widget.y0043"
   ],
@@ -1225,6 +1230,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [
     "widget.book_detail_yfamt_dcch_fhyd"
+  ],
+  "Zixweb.view.book.hist.adjust_qc": [
+    "widget.book_hist_adjust_qc"
   ],
   "Zixweb.view.South": [
     "widget.south"
@@ -1669,11 +1677,11 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0090": [
     "widget.y0090"
   ],
-  "Zixweb.view.book.hist.cost_bfee_zg": [
-    "widget.book_hist_cost_bfee_zg"
-  ],
   "Zixweb.view.yspz.yspzq.y0094": [
     "widget.y0094"
+  ],
+  "Zixweb.view.book.hist.cost_bfee_zg": [
+    "widget.book_hist_cost_bfee_zg"
   ],
   "Zixweb.view.yspz.yspzq.y0093": [
     "widget.y0093"

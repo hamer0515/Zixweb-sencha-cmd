@@ -205,25 +205,17 @@ Ext.define('Zixweb.view.fhydbook.detail.nctxamt_dqr_oyf_fhyd', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
-									verify : {
-										id : panel.prefix + '_to'
-									},
-									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
 									width : 180
 								}, {
 									xtype : 'textfield',
 									name : 'fch_ssn',
 									width : 516,
-									// margin : '0 10 0 0',
 									fieldLabel : '渠道方销卡编号'
 								}]
 					}, {
@@ -235,23 +227,17 @@ Ext.define('Zixweb.view.fhydbook.detail.nctxamt_dqr_oyf_fhyd', {
 									format : 'Y-m-d',
 									name : 'ftx_date_from',
 									margin : '0 10 0 0',
-									verify : {
-										id : panel.prefix + '_to_2'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'ftx_date_to',
 									margin : '0 10 0 0',
-									id : panel.prefix + '_to_2',
 									width : 180
 								}, {
 									xtype : 'textfield',
 									name : 'fs_rate',
 									width : 516,
-									// margin : '0 10 0 0',
 									fieldLabel : '销卡结算折扣率'
 								}]
 					}, {

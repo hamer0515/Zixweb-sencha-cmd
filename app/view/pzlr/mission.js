@@ -111,7 +111,6 @@ Ext.define('Zixweb.view.pzlr.mission', {
 				}, {
 					xtype : 'gridpanel',
 					id : 'pzlrmissiongrid',
-					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

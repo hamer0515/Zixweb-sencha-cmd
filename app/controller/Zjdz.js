@@ -1,6 +1,6 @@
 Ext.define('Zixweb.controller.Zjdz', {
 			extend : 'Ext.app.Controller',
-			views : ['Zixweb.view.zjdz.bfj', 'Zixweb.view.zjdz.bfjdetail',
-					'Zixweb.view.zjdz.bfjacctmemo', 'Zixweb.view.zjdz.bfjgzcx']
+			views : ['zjdz.bfj', 'zjdz.bfjdetail', 'zjdz.bfjacctmemo',
+					'zjdz.bfjgzcx']
 
 		});

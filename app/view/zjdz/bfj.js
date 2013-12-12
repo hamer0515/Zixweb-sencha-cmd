@@ -1,12 +1,13 @@
 Ext.define('Zixweb.view.zjdz.bfj', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.zjdzbfj',
-
+	prefix : 'zjdz_bfj',
 	defaults : {
 		border : false
 	},
 
 	initComponent : function() {
+		var panel = this;
 		var store = new Ext.data.Store({
 					fields : ['b_acct', 'zjdz_date', 'type'],
 
@@ -27,11 +28,10 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('zjdzbfjform').getForm();
-							var values = form.getValues();
-							var grid = Ext.getCmp('zjdzbfjgrid');
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
 							if (form.isValid()) {
-								store.proxy.extraParams = values;
+								store.proxy.extraParams = form.getValues();
 							} else {
 								return false;
 							}
@@ -58,11 +58,10 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 						}
 					}
 				});
-		this.store = store;
 		this.items = [{
 			xtype : 'form',
 			title : '查询',
-			id : 'zjdzbfjform',
+			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
 
@@ -112,23 +111,23 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 						xtype : 'button',
 						text : '刷新',
 						handler : function() {
-							var panel = Ext.getCmp('zjdzbfjform');
-							var form = panel.getForm();
-							form.submit({
+							Ext.Ajax.request({
+								async : false,
 								url : 'zjdz/bfjrefresh_mqt',
-								success : function(form, action) {
-									var response = action.result.success;
+								success : function(response) {
+									var action = Ext
+											.decode(response.responseText)
+									var response = action.success;
 									if (response) {
 										if (response == 'forbidden') {
 											Ext.MessageBox.show({
 														title : '警告',
-														msg : '抱歉，没有增加资金对账管理刷新操作权限',
+														msg : '抱歉，没有资金对账管理刷新操作权限',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});
 											return;
 										}
-
 										Ext.MessageBox.show({
 													title : '提示',
 													msg : '刷新成功',
@@ -143,45 +142,31 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 									} else {
 										Ext.MessageBox.show({
 													title : '失败',
-													msg : action.result.msg,
+													msg : '服务器端出错，错误码:'
+															+ action.msg,
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
 									}
 								},
-								failure : function(form, action) {
-									switch (action.failureType) {
-										case Ext.form.action.Action.CONNECT_FAILURE :
-											Ext.MessageBox.show({
-														title : '失败',
-														msg : '网络链接出错',
-														buttons : Ext.Msg.YES,
-														icon : Ext.Msg.ERROR
-													});
-											break;
-										case Ext.form.action.Action.SERVER_INVALID :
-											Ext.MessageBox.show({
-														title : '失败',
-														msg : action.result.msg,
-														buttons : Ext.Msg.YES,
-														icon : Ext.Msg.ERROR
-													});
-									}
-								},
-								waitMsg : '刷新中...',
-								waitTitle : '请稍等'
+								failure : function(response, opts) {
+									Ext.MessageBox.show({
+												title : '警告',
+												msg : '服务器端出错，错误码:'
+														+ response.status,
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.ERROR
+											});
+								}
 							});
 						}
 					}]
 		}, {
 			xtype : 'gridpanel',
-			id : 'zjdzbfjgrid',
-			height : 'auto',
-
-			store : this.store,
+			store : store,
 			dockedItems : [{
 						xtype : 'pagingtoolbar',
-						store : this.store
+						store : store
 					}],
 			columns : [{
 				text : "银行账户",

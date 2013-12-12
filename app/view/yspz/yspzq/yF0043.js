@@ -1,14 +1,16 @@
 Ext.define('Zixweb.view.yspz.yspzq.yF0043', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.yF0043',
+	prefix : 'yspzq_yF0043',
+	url : 'yF0043',
 
 	defaults : {
-		bodyPadding : 5,
-		collapsible : true,
 		border : false
 	},
 
 	initComponent : function() {
+		var panel = this;
+
 		var store = new Ext.data.Store({
 					fields : ['id', 'flag', 'period'],
 
@@ -18,7 +20,7 @@ Ext.define('Zixweb.view.yspz.yspzq.yF0043', {
 					proxy : {
 						type : 'ajax',
 						api : {
-							read : 'yspzq/yF0043'
+							read : 'yspzq/' + panel.url
 						},
 						reader : {
 							type : 'json',
@@ -29,11 +31,11 @@ Ext.define('Zixweb.view.yspz.yspzq.yF0043', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('yspzqyF0043form').getForm();
-							var values = form.getValues();
-							var grid = Ext.getCmp('yspzq_yF0043_grid');
+
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
 							if (form.isValid()) {
-								store.proxy.extraParams = values;
+								store.proxy.extraParams = form.getValues();
 							} else {
 								return false;
 							}
@@ -60,11 +62,12 @@ Ext.define('Zixweb.view.yspz.yspzq.yF0043', {
 						}
 					}
 				});
-		this.store = store;
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
-					id : 'yspzqyF0043form',
+					id : panel.prefix + '_form',
+					collapsible : true,
+					bodyPadding : 5,
 
 					fieldDefaults : {
 						labelWidth : 140
@@ -104,13 +107,14 @@ Ext.define('Zixweb.view.yspz.yspzq.yF0043', {
 											margin : '0 10 0 0',
 											allowBlank : false,
 											verify : {
-												id : 'yspzq_yF0043_period_to'
+												id : panel.prefix
+														+ '_period_to'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : 'yspzq_yF0043_period_to',
+											id : panel.prefix + '_period_to',
 											format : 'Y-m-d',
 											name : 'period_to',
 											margin : '0 10 0 0',
@@ -138,16 +142,12 @@ Ext.define('Zixweb.view.yspz.yspzq.yF0043', {
 								}
 							}]
 				}, {
-					title : '结果',
 					xtype : 'gridpanel',
-					id : 'yspzq_yF0043_grid',
-					height : 500,
-					store : this.store,
+
+					store : store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
-								store : this.store,
-								dock : 'bottom',
-								displayInfo : true
+								store : store
 							}],
 					columns : [{
 								text : "ID",

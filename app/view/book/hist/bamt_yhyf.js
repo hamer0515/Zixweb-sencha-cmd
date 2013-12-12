@@ -243,14 +243,9 @@ Ext.define('Zixweb.view.book.hist.bamt_yhyf', {
 											format : 'Y-m-d',
 											name : 'zjbd_date_from',
 											margin : '0 10 0 0',
-											verify : {
-												id : panel.prefix + '_to_2'
-											},
-											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : panel.prefix + '_to_2',
 											format : 'Y-m-d',
 											name : 'zjbd_date_to',
 											margin : '0 10 0 0',

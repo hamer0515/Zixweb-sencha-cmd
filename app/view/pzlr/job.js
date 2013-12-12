@@ -50,7 +50,7 @@ Ext.define('Zixweb.view.pzlr.job', {
 		this.store = store;
 		this.items = [{
 			xtype : 'gridpanel',
-			height : 'auto',
+
 			viewConfig : {
 				getRowClass : function(record) {
 					var color;

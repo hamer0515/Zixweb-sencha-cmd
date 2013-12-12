@@ -179,19 +179,14 @@ Ext.define('Zixweb.view.book.detail.cfee_dqhf', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
-									verify : {
-										id : 'book_detail_cfee_dqhf_to_1'
-									},
-
+									
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : 'book_detail_cfee_dqhf_to_1',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
+									
 									width : 180
 								}, {
 									xtype : 'textfield',

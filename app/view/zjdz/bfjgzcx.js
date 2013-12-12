@@ -110,7 +110,6 @@ Ext.define('Zixweb.view.zjdz.bfjgzcx', {
 				}, {
 					xtype : 'gridpanel',
 					id : 'zjdzbfjgrid',
-					height : 'auto',
 
 					store : this.store,
 					dockedItems : [{

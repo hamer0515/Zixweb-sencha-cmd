@@ -192,19 +192,12 @@ Ext.define('Zixweb.view.fhydbook.detail.ypsc_fhyd', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									allowBlank : false,
-									verify : {
-										id : panel.prefix + '_to'
-									},
-									//vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									allowBlank : false,
 									width : 180
 								}, {
 									xtype : 'fywtype',
@@ -221,14 +214,9 @@ Ext.define('Zixweb.view.fhydbook.detail.ypsc_fhyd', {
 									format : 'Y-m-d',
 									name : 'fe_date_from',
 									margin : '0 10 0 0',
-									verify : {
-										id : panel.prefix + '_to_2'
-									},
-									vtype : 'dateinterval',
 									width : 180
 								}, {
 									xtype : 'datefield',
-									id : panel.prefix + '_to_2',
 									format : 'Y-m-d',
 									name : 'fe_date_to',
 									margin : '0 10 0 0',
