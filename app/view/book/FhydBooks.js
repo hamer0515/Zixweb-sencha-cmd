@@ -6,6 +6,9 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 	height : 'auto',
 	disableSelection : true,
 	border : false,
+	viewConfig : {
+		loadMask : true
+	},
 
 	initComponent : function() {
 		Ext.apply(this, {

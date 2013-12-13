@@ -6,6 +6,9 @@ Ext.define('Zixweb.view.West', {
 			disableSelection : true,
 			rootVisible : false,
 			cls : 'x-unselectable',
+			viewConfig : {
+				loadMask : true
+			},
 
 			initComponent : function() {
 				var panel = this;

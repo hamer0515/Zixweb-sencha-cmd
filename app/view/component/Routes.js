@@ -32,6 +32,9 @@ Ext.define('Zixweb.view.component.Routes', {
 							id : 'routes',
 							store : this.store,
 							width : 400,
+							viewConfig : {
+								loadMask : true
+							},
 							height : 200
 						}],
 

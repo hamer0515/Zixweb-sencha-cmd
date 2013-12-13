@@ -3,9 +3,11 @@ Ext.define('Zixweb.view.book.AllBooks', {
 	alias : 'widget.bookall',
 	useArrows : true,
 	rootVisible : false,
-	height : 'auto',
 	disableSelection : true,
 	border : false,
+	viewConfig : {
+		loadMask : true
+	},
 
 	initComponent : function() {
 

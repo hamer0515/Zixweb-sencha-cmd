@@ -6,6 +6,9 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 	height : 'auto',
 	disableSelection : true,
 	border : false,
+	viewConfig : {
+		loadMask : true
+	},
 
 	initComponent : function() {
 
