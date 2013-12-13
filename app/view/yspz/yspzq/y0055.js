@@ -92,19 +92,11 @@ Ext.define('Zixweb.view.yspz.yspzq.y0055', {
 												format : 'Y-m-d',
 												name : 'clear_date_from',
 												margin : '0 10 0 0',
-												allowBlank : true,
-												verify : {
-													id : 'yspzq_y0055_clear_date_to'
-												},
-												// vtype : 'dateinterval',
 												width : 180
 											}, {
 												xtype : 'datefield',
-												id : 'yspzq_y0055_clear_date_to',
 												format : 'Y-m-d',
 												name : 'clear_date_to',
-												// margin : '0 10 0 0',
-												allowBlank : true,
 												width : 180
 											}]
 								}]
@@ -226,16 +218,13 @@ Ext.define('Zixweb.view.yspz.yspzq.y0055', {
 						}
 					}]
 		}, {
-			title : '结果',
+
 			xtype : 'gridpanel',
 
-			height : 500,
 			store : store,
 			dockedItems : [{
 						xtype : 'pagingtoolbar',
-						store : store,
-						dock : 'bottom',
-						displayInfo : true
+						store : store
 					}],
 			columns : [{
 						text : "ID",

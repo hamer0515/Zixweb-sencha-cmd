@@ -181,16 +181,13 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 						}
 					}]
 		}, {
-			title : '结果',
+
 			xtype : 'gridpanel',
 
-			height : 500,
 			store : store,
 			dockedItems : [{
 						xtype : 'pagingtoolbar',
-						store : store,
-						dock : 'bottom',
-						displayInfo : true
+						store : store
 					}],
 			columns : [{
 						text : "ID",

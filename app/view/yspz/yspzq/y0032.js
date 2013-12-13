@@ -12,7 +12,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0032', {
 		var panel = this;
 
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'clear_date', 'period'],
+					fields : ['id', 'bi', 'tx_amt', 'flag', 'clear_date',
+							'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -79,9 +80,18 @@ Ext.define('Zixweb.view.yspz.yspzq.y0032', {
 									xtype : 'textfield',
 									fieldLabel : 'ID',
 									width : 516,
-									margin : '0 10 0 0',
 									name : 'id',
 									vtype : "id"
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						layout : 'hbox',
+						items : [{
+									xtype : 'bi',
+									fieldLabel : '银行接口编号',
+									width : 516,
+									margin : '0 10 0 0',
+									name : 'bi'
 								}, {
 									xtype : 'fieldcontainer',
 									fieldLabel : '银行清算日期',
@@ -91,19 +101,12 @@ Ext.define('Zixweb.view.yspz.yspzq.y0032', {
 												format : 'Y-m-d',
 												name : 'clear_date_from',
 												margin : '0 10 0 0',
-												allowBlank : true,
-												verify : {
-													id : 'yspzq_y0032_clear_date_to'
-												},
-												// vtype : 'dateinterval',
 												width : 180
 											}, {
 												xtype : 'datefield',
 												id : 'yspzq_y0032_clear_date_to',
 												format : 'Y-m-d',
 												name : 'clear_date_to',
-												// margin : '0 10 0 0',
-												allowBlank : true,
 												width : 180
 											}]
 								}]
@@ -166,16 +169,13 @@ Ext.define('Zixweb.view.yspz.yspzq.y0032', {
 						}
 					}]
 		}, {
-			title : '结果',
+
 			xtype : 'gridpanel',
 
-			height : 500,
 			store : store,
 			dockedItems : [{
 						xtype : 'pagingtoolbar',
-						store : store,
-						dock : 'bottom',
-						displayInfo : true
+						store : store
 					}],
 			columns : [{
 						text : "ID",
@@ -188,20 +188,42 @@ Ext.define('Zixweb.view.yspz.yspzq.y0032', {
 						dataIndex : 'period',
 						itemId : 'period',
 						sortable : false,
-						flex : 2,
+						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "银行清算日期",
 						dataIndex : 'clear_date',
 						itemId : 'clear_date',
 						sortable : false,
-						flex : 2,
+						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "交易金额",
+						dataIndex : 'tx_amt',
+						width : 100,
+						sortable : false,
+						flex : 1,
+						renderer : function(value) {
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
+						}
+					}, {
+						text : "银行接口编号",
+						itemId : 'bi',
+						dataIndex : 'bi',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var bi = Ext.data.StoreManager
+									.lookup('Zixweb.store.component.Bi');
+							var index = bi.findExact('id', value);
+							return bi.getAt(index).data.name;
+						},
+						flex : 1
 					}, {
 						text : "撤销状态",
 						dataIndex : 'flag',
 						sortable : false,
-						flex : 2,
+						flex : 1,
 						renderer : function(value) {
 							var text = ['未撤销', '已撤销', '撤销申请中'];
 							return text[value];
