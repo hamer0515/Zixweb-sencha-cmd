@@ -7,6 +7,7 @@
 Ext.Loader.addClassPathMappings({
   "overrides.BasicForm": "overrides/BasicForm.js",
   "overrides": "../packages/my-custom-theme/overrides",
+  "overrides.Treepanel": "overrides/Treepanel.js",
   "overrides.RowExpander": "overrides/RowExpander.js",
   "Zixweb": "app",
   "overrides.Ext": "overrides/Ext.js",
@@ -105,6 +106,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "overrides.tab.Tab": [],
   "Zixweb.view.fhydbook.detail.ypsc_fhyd": [],
   "overrides.grid.RowEditor": [],
+  "overrides.Treepanel": [],
   "Zixweb.view.Viewport": [],
   "Ext.ux.grid.TransformGrid": [],
   "Zixweb.view.jcsjwh.bfjacct.Add": [],
@@ -698,6 +700,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.book_detail_ypsc_fhyd"
   ],
   "overrides.grid.RowEditor": [],
+  "overrides.Treepanel": [],
   "Zixweb.view.Viewport": [],
   "Ext.ux.grid.TransformGrid": [],
   "Zixweb.view.jcsjwh.bfjacct.Add": [

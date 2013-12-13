@@ -9,6 +9,7 @@ Ext.define('Zixweb.view.West', {
 			viewConfig : {
 				loadMask : true
 			},
+			collapseMode : 'header',
 
 			initComponent : function() {
 				var panel = this;

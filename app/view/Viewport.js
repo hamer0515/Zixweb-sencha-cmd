@@ -10,7 +10,8 @@ Ext.define('Zixweb.view.Viewport', {
 					'overrides.Format', 'overrides.Table',
 					'overrides.TabCloseMenu', 'overrides.VType',
 					'overrides.RowExpander', 'overrides.BasicForm',
-					'overrides.Gridpanel', 'overrides.Ext', 'overrides.Paging'],
+					'overrides.Gridpanel', 'overrides.Ext', 'overrides.Paging',
+					'overrides.Treepanel'],
 
 			layout : {
 				type : 'border'

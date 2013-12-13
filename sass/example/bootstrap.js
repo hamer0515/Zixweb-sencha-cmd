@@ -7,6 +7,7 @@
 Ext.Loader.addClassPathMappings({
   "Ext.locale.zh_CN.view.AbstractView": "../../../ext/locale/ext-lang-zh_CN.js",
   "Ext.locale.zh_CN.toolbar.Paging": "../../../ext/locale/ext-lang-zh_CN.js",
+  "overrides.Treepanel": "../../overrides/Treepanel.js",
   "Ext.locale.zh_CN.Component": "../../../ext/locale/ext-lang-zh_CN.js",
   "Ext.locale.zh_CN.form.field.Date": "../../../ext/locale/ext-lang-zh_CN.js",
   "Zixweb": "../../app",
@@ -127,6 +128,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "overrides.tab.Tab": [],
   "Zixweb.view.fhydbook.detail.ypsc_fhyd": [],
   "overrides.grid.RowEditor": [],
+  "overrides.Treepanel": [],
   "Zixweb.view.Viewport": [],
   "Ext.ux.grid.TransformGrid": [],
   "Zixweb.view.jcsjwh.bfjacct.Add": [],
@@ -738,6 +740,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.book_detail_ypsc_fhyd"
   ],
   "overrides.grid.RowEditor": [],
+  "overrides.Treepanel": [],
   "Zixweb.view.Viewport": [],
   "Ext.ux.grid.TransformGrid": [],
   "Zixweb.view.jcsjwh.bfjacct.Add": [
