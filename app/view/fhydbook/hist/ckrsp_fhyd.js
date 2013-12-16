@@ -90,7 +90,7 @@ Ext.define('Zixweb.view.fhydbook.hist.ckrsp_fhyd', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var fywtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.FywType');
+									.lookup('component.FywType');
 							var index = fywtype.findExact('id', value);
 							return fywtype.getAt(index).data.name;
 						},
@@ -116,7 +116,7 @@ Ext.define('Zixweb.view.fhydbook.hist.ckrsp_fhyd', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var fhwtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.FhwType');
+									.lookup('component.FhwType');
 							var index = fhwtype.findExact('id', value);
 							return fhwtype.getAt(index).data.name;
 						},

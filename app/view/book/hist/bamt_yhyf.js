@@ -91,7 +91,7 @@ Ext.define('Zixweb.view.book.hist.bamt_yhyf', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var zyzjacct = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.ZyzjAcct');
+									.lookup('component.ZyzjAcct');
 							var index = zyzjacct.findExact('id', value);
 							return zyzjacct.getAt(index).data.name;
 						},
@@ -103,7 +103,7 @@ Ext.define('Zixweb.view.book.hist.bamt_yhyf', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var zjbdtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.ZjbdType');
+									.lookup('component.ZjbdType');
 							var index = zjbdtype.findExact('id', value);
 							return zjbdtype.getAt(index).data.name;
 						},

@@ -202,7 +202,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var bfjacct = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.BfjAcct');
+									.lookup('component.BfjAcct');
 							var index = bfjacct.findExact('id', value);
 							return bfjacct.getAt(index).data.name;
 						},
@@ -214,7 +214,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var bi = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Bi');
+									.lookup('component.Bi');
 							var index = bi.findExact('id', value);
 							return bi.getAt(index).data.name;
 						},

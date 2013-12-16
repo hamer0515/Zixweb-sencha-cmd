@@ -121,7 +121,7 @@ Ext.define('Zixweb.view.pzlr.job', {
 								colIndex, store, view) {
 							value = parseInt(value);
 							var jstatus = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.JStatus');
+									.lookup('component.JStatus');
 							var index = jstatus.findExact('id', value);
 							return jstatus.getAt(index).data.name;
 						}

@@ -17,7 +17,7 @@ Ext.define('Zixweb.view.book.detail.bfee_yhyf', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var bfjacct = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.BfjAcct');
+							.lookup('component.BfjAcct');
 					var index = bfjacct.findExact('id', value);
 					return bfjacct.getAt(index).data.name;
 				},
@@ -46,7 +46,7 @@ Ext.define('Zixweb.view.book.detail.bfee_yhyf', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var zjbdtype = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.ZjbdType');
+							.lookup('component.ZjbdType');
 					var index = zjbdtype.findExact('id', value);
 					return zjbdtype.getAt(index).data.name;
 				},

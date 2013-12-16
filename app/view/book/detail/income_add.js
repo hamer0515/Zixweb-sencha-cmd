@@ -1,8 +1,7 @@
-Ext.define('Zixweb.view.book.detail.blc', {
+Ext.define('Zixweb.view.book.detail.income_add', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_detail_blc',
-	prefix : 'book_detail_blc',
-
+	alias : 'widget.book_detail_income_add',
+	prefix : 'book_detail_income_add',
 	defaults : {
 		border : false
 	},
@@ -10,39 +9,18 @@ Ext.define('Zixweb.view.book.detail.blc', {
 	initComponent : function() {
 		var panel = this;
 		var columns = {
-			bfj_acct : {
-				text : "备付金帐号",
-				itemId : 'bfj_acct',
-				dataIndex : 'bfj_acct',
+			p : {
+				text : "产品类型",
+				itemId : 'p',
+				dataIndex : 'p',
 				sortable : false,
 				renderer : function(value, p, record) {
-					var bfjacct = Ext.data.StoreManager
-							.lookup('component.BfjAcct');
-					var index = bfjacct.findExact('id', value);
-					return bfjacct.getAt(index).data.name;
+					var product = Ext.data.StoreManager
+							.lookup('component.Product');
+					var index = product.findExact('id', value);
+					return product.getAt(index).data.name;
 				},
-				flex : 1
-			},
-			zjbd_type : {
-				text : "资金变动类型",
-				itemId : 'zjbd_type',
-				dataIndex : 'zjbd_type',
-				sortable : false,
-				renderer : function(value, p, record) {
-					var zjbdtype = Ext.data.StoreManager
-							.lookup('component.ZjbdType');
-					var index = zjbdtype.findExact('id', value);
-					return zjbdtype.getAt(index).data.name;
-				},
-				flex : 1
-			},
-			e_date : {
-				text : "差错日期",
-				dataIndex : 'e_date',
-				itemId : 'e_date',
-				sortable : false,
-				flex : 1,
-				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+				flex : 2
 			},
 			period : {
 				text : "期间日期",
@@ -75,8 +53,7 @@ Ext.define('Zixweb.view.book.detail.blc', {
 			}
 		};
 		var store = new Ext.data.Store({
-					fields : ['bfj_acct', 'zjbd_type', 'e_date', 'period', 'j',
-							'd'],
+					fields : ['p', 'period', 'j', 'd'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -84,7 +61,7 @@ Ext.define('Zixweb.view.book.detail.blc', {
 					proxy : {
 						type : 'ajax',
 						api : {
-							read : 'book/detail/blc'
+							read : 'book/detail/income_add'
 						},
 						reader : {
 							type : 'json',
@@ -108,12 +85,6 @@ Ext.define('Zixweb.view.book.detail.blc', {
 								if (values.sec) {
 									hsxes.push(values.sec);
 								}
-								if (values.thi) {
-									hsxes.push(values.thi);
-								}
-								if (values.fou) {
-									hsxes.push(values.fou);
-								}
 								if (hsxes.length == 0) {
 									for (var key in columns) {
 										cols.push(columns[key]);
@@ -135,17 +106,17 @@ Ext.define('Zixweb.view.book.detail.blc', {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '备付金银行长款科目详细数据加载失败,请联系管理员',
+											msg : '营业外收入科目详细数据加载失败,请联系管理员',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
 								return;
 							}
 							var jsonData = thiz.proxy.reader.jsonData.success;
-							if (jsonData && jsonData === 'forzjbd_typedden') {
+							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '抱歉，没有备付金银行长款科目详细数据访问权限',
+											msg : '抱歉，没有营业外收入科目详细数据访问权限',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
@@ -170,8 +141,7 @@ Ext.define('Zixweb.view.book.detail.blc', {
 								xtype : 'pagingtoolbar',
 								store : store
 							}],
-					columns : [columns.bfj_acct, columns.zjbd_type,
-							columns.e_date, columns.period, columns.j,
+					columns : [columns.p, columns.period, columns.j,
 							columns.d]
 				});
 		this.items = [{
@@ -192,52 +162,25 @@ Ext.define('Zixweb.view.book.detail.blc', {
 									format : 'Y-m-d',
 									name : 'period_from',
 									margin : '0 10 0 0',
-									
+									allowBlank : true,
 									width : 180
 								}, {
 									xtype : 'datefield',
 									format : 'Y-m-d',
 									name : 'period_to',
 									margin : '0 10 0 0',
-									
+									allowBlank : true,
 									width : 180
 								}, {
-									xtype : 'bfjacct',
-									name : 'bfj_acct',
-									fieldLabel : '备付金帐号'
-								}]
-					}, {
-						xtype : 'fieldcontainer',
-						fieldLabel : '差错日期范围',
-						layout : 'hbox',
-						items : [{
-									xtype : 'datefield',
-									format : 'Y-m-d',
-									name : 'e_date_from',
-									margin : '0 10 0 0',
-									width : 180
-								}, {
-									xtype : 'datefield',
-									format : 'Y-m-d',
-									name : 'e_date_to',
-									margin : '0 10 0 0',
-									width : 180
-								}, {
-									xtype : 'zjbdtype',
-									name : 'zjbd_type',
-									fieldLabel : '资金变动类型'
+									xtype : 'product',
+									name : 'p',
+									fieldLabel : '产品类型'
 								}]
 					}, {
 						xtype : 'hsx',
 						data : [{
-									'value' : "bfj_acct",
-									'name' : "备付金帐号"
-								}, {
-									'value' : "zjbd_type",
-									'name' : "资金变动类型"
-								}, {
-									'value' : "e_date",
-									'name' : "差错日期"
+									'value' : "p",
+									'name' : "产品类型"
 								}, {
 									'value' : "period",
 									'name' : "期间日期"
@@ -290,7 +233,7 @@ Ext.define('Zixweb.view.book.detail.blc', {
 							params.header = Ext.encode(h);
 							Ext.Ajax.request({
 								async : false,
-								url : 'book/detail/blc_excel',
+								url : 'book/detail/income_add_excel',
 								params : params,
 								success : function(response, opts) {
 									var res = Ext.decode(response.responseText);

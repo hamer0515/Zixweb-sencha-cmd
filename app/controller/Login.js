@@ -46,7 +46,7 @@ Ext.define('Zixweb.controller.Login', {
 												'ZyzjAcct'];
 										for (var i in stores) {
 											Ext.data.StoreManager
-													.lookup('Zixweb.store.component.'
+													.lookup('component.'
 															+ stores[i]).load();
 										}
 										// 添加主页面板

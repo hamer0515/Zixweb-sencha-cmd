@@ -95,7 +95,7 @@ Ext.define('Zixweb.view.fhydbook.hist.cost_tcss_fhyd', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var fhwtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.FhwType');
+									.lookup('component.FhwType');
 							var index = fhwtype.findExact('id', value);
 							return fhwtype.getAt(index).data.name;
 						},

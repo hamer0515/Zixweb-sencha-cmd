@@ -17,7 +17,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		acct : function(v) {
 			if (v) {
 				var store = Ext.data.StoreManager
-						.lookup('Zixweb.store.component.Acct');
+						.lookup('component.Acct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -26,7 +26,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		bfj_acct : function(v) {
 			if (v) {
 				var store = Ext.data.StoreManager
-						.lookup('Zixweb.store.component.BfjAcct');
+						.lookup('component.BfjAcct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -35,7 +35,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		zyzj_acct : function(v) {
 			if (v) {
 				var store = Ext.data.StoreManager
-						.lookup('Zixweb.store.component.ZyzjAcct');
+						.lookup('component.ZyzjAcct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -44,7 +44,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		zjbd_type : function(v) {
 			if (v) {
 				var store = Ext.data.StoreManager
-						.lookup('Zixweb.store.component.ZjbdType');
+						.lookup('component.ZjbdType');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -71,7 +71,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		p : function(v) {
 			if (v) {
 				var store = Ext.data.StoreManager
-						.lookup('Zixweb.store.component.Product');
+						.lookup('component.Product');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -80,7 +80,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		bi : function(v) {
 			if (v) {
 				var store = Ext.data.StoreManager
-						.lookup('Zixweb.store.component.Bi');
+						.lookup('component.Bi');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}

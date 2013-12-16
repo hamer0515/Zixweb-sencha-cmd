@@ -1,8 +1,8 @@
-Ext.define('Zixweb.view.yspz.yspzq.y0037', {
+Ext.define('Zixweb.view.yspz.yspzq.y0144', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.y0037',
-	prefix : 'yspzq_y0037',
-	url : 'y0037',
+	alias : 'widget.y0144',
+	prefix : 'yspzq_y0144',
+	url : 'y0144',
 
 	defaults : {
 		border : false
@@ -12,57 +12,55 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 		var panel = this;
 
 		var store = new Ext.data.Store({
-					fields : ['id', 'bi', 'tx_amt', 'flag', 'clear_date',
-							'period'],
+			fields : ['id', 'flag', 'clear_date', 'bi', 'p', 'tx_amt', 'period'],
 
-					pageSize : 50,
-					remoteSort : true,
+			pageSize : 50,
+			remoteSort : true,
 
-					proxy : {
-						type : 'ajax',
-						api : {
-							read : 'yspzq/' + panel.url
-						},
-						reader : {
-							type : 'json',
-							root : 'data',
-							totalProperty : 'totalCount',
-							successProperty : 'success'
-						}
-					},
-					listeners : {
-						beforeload : function(store, operation, eOpts) {
+			proxy : {
+				type : 'ajax',
+				api : {
+					read : 'yspzq/' + panel.url
+				},
+				reader : {
+					type : 'json',
+					root : 'data',
+					totalProperty : 'totalCount',
+					successProperty : 'success'
+				}
+			},
+			listeners : {
+				beforeload : function(store, operation, eOpts) {
 
-							var form = Ext.getCmp(panel.prefix + '_form')
-									.getForm();
-							if (form.isValid()) {
-								store.proxy.extraParams = form.getValues();
-							} else {
-								return false;
-							}
-						},
-						load : function(thiz, records, successful, eOpts) {
-							if (!successful) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '原始凭证0037数据加载失败,请联系管理员',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-								return;
-							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
-							if (jsonData && jsonData === 'forbidden') {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '抱歉，没有原始凭证0037数据访问权限',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-							}
-						}
+					var form = Ext.getCmp(panel.prefix + '_form').getForm();
+					if (form.isValid()) {
+						store.proxy.extraParams = form.getValues();
+					} else {
+						return false;
 					}
-				});
+				},
+				load : function(thiz, records, successful, eOpts) {
+					if (!successful) {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '原始凭证0144数据加载失败,请联系管理员',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+						return;
+					}
+					var jsonData = thiz.proxy.reader.jsonData.success;
+					if (jsonData && jsonData === 'forbidden') {
+						Ext.MessageBox.show({
+									title : '警告',
+									msg : '抱歉，没有原始凭证0144数据访问权限',
+									buttons : Ext.Msg.YES,
+									icon : Ext.Msg.ERROR
+								});
+					}
+				}
+			}
+		});
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
@@ -81,17 +79,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 											fieldLabel : 'ID',
 											width : 516,
 											name : 'id',
-											vtype : "id"
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								layout : 'hbox',
-								items : [{
-											xtype : 'bi',
-											fieldLabel : '银行接口编号',
-											width : 516,
 											margin : '0 10 0 0',
-											name : 'bi'
+											vtype : "id"
 										}, {
 											xtype : 'fieldcontainer',
 											fieldLabel : '银行清算日期',
@@ -108,6 +97,20 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 														name : 'clear_date_to',
 														width : 180
 													}]
+										}]
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'bi',
+											fieldLabel : '银行接口编号',
+											margin : '0 10 0 0',
+											width : 516,
+											name : 'bi'
+										}, {
+											xtype : 'product',
+											fieldLabel : '产品类型',
+											name : 'p'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -152,7 +155,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 											format : 'Y-m-d',
 											name : 'ts_revoke',
 											fieldLabel : '撤销时间',
-											width : 320
+											width : 516
 										}]
 							}, {
 								xtype : 'button',
@@ -169,7 +172,9 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 								}
 							}]
 				}, {
+
 					xtype : 'gridpanel',
+
 					store : store,
 					dockedItems : [{
 								xtype : 'pagingtoolbar',
@@ -186,7 +191,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 								dataIndex : 'period',
 								itemId : 'period',
 								sortable : false,
-								flex : 1,
+								flex : 2,
 								renderer : Ext.util.Format
 										.dateRenderer('Y年m月d日')
 							}, {
@@ -194,19 +199,21 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 								dataIndex : 'clear_date',
 								itemId : 'clear_date',
 								sortable : false,
-								flex : 1,
+								flex : 2,
 								renderer : Ext.util.Format
 										.dateRenderer('Y年m月d日')
 							}, {
-								text : "收款反向交易金额",
-								dataIndex : 'tx_amt',
-								width : 100,
+								text : "产品类型",
+								itemId : 'p',
+								dataIndex : 'p',
 								sortable : false,
-								flex : 1,
-								renderer : function(value) {
-									return Ext.util.Format.number(
-											parseInt(value) / 100, '0,0.00');
-								}
+								renderer : function(value, p, record) {
+									var product = Ext.data.StoreManager
+											.lookup('component.Product');
+									var index = product.findExact('id', value);
+									return product.getAt(index).data.name;
+								},
+								flex : 1
 							}, {
 								text : "银行接口编号",
 								itemId : 'bi',
@@ -218,12 +225,22 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 									var index = bi.findExact('id', value);
 									return bi.getAt(index).data.name;
 								},
-								flex : 1
+								flex : 3
+							}, {
+								text : "交易金额",
+								dataIndex : 'tx_amt',
+								width : 100,
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
 							}, {
 								text : "撤销状态",
 								dataIndex : 'flag',
 								sortable : false,
-								flex : 1,
+								flex : 2,
 								renderer : function(value) {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];
@@ -242,14 +259,14 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 										var rec = grid.getStore()
 												.getAt(rowIndex);
 										var viewport = grid.up('viewport'), center = viewport
-												.down('center'), id = 'yspzq_detail_0037'
+												.down('center'), id = 'yspzq_detail_0144'
 												+ rec.data.id, cmp = Ext
 												.getCmp(id);
 										var yspzqdetail = Ext
 												.createByAlias('widget.yspzqdetail');
 										yspzqdetail.store.load({
 													params : {
-														ys_type : '0037',
+														ys_type : '0144',
 														ys_id : rec.data.id
 													}
 												});
@@ -260,9 +277,9 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 												closable : true,
 												xtype : 'panel',
 												items : yspzqdetail,
-												id : 'yspzq_detail_0037'
+												id : 'yspzq_detail_0144'
 														+ rec.data.id,
-												title : '凭证0037' + '编号'
+												title : '凭证0144' + '编号'
 														+ rec.data.id + '详细信息'
 											}).show();
 										}
@@ -282,7 +299,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0037', {
 										Ext.widget('yspzrevoke_cause', {
 													modal : true,
 													resizable : false,
-													ys_type : '0037',
+													ys_type : '0144',
 													ys_id : rec.data.id,
 													period : rec.data.period
 												})

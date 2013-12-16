@@ -17,7 +17,7 @@ Ext.define('Zixweb.view.book.detail.income_zhlx', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var acct = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.Acct');
+							.lookup('component.Acct');
 					var index = acct.findExact('id', value);
 					return acct.getAt(index).data.name;
 				},

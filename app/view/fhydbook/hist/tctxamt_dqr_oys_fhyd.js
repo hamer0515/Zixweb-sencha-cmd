@@ -88,7 +88,7 @@ Ext.define('Zixweb.view.fhydbook.hist.tctxamt_dqr_oys_fhyd', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var fhwtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.FhwType');
+									.lookup('component.FhwType');
 							var index = fhwtype.findExact('id', value);
 							return fhwtype.getAt(index).data.name;
 						},

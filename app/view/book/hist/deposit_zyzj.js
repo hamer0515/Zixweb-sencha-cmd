@@ -88,7 +88,7 @@ Ext.define('Zixweb.view.book.hist.deposit_zyzj', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var zyzjacct = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.ZyzjAcct');
+									.lookup('component.ZyzjAcct');
 							var index = zyzjacct.findExact('id', value);
 							return zyzjacct.getAt(index).data.name;
 						},

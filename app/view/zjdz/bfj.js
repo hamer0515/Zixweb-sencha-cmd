@@ -175,7 +175,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var bfjacct = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.BfjAcct');
+							.lookup('component.BfjAcct');
 					var index = bfjacct.findExact('id', value);
 					return bfjacct.getAt(index).data.name;
 				},
@@ -205,7 +205,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 							center.setActiveTab(cmp);
 						} else {
 							var bfjacct = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.BfjAcct');
+									.lookup('component.BfjAcct');
 							var index = bfjacct
 									.findExact('id', rec.data.b_acct);
 							var acct = bfjacct.getAt(index).data.name;

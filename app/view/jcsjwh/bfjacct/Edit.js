@@ -1,13 +1,12 @@
 Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.bfjacctedit',
-	title : '备付金账户基础数据修改',
-
+	// title : '备付金账户基础数据修改',
+	border : false,
 	initComponent : function() {
 		this.items = [{
 			xtype : 'form',
 			id : 'bfjacctEditform',
-			url : 'jcsjwh/bfjacct/edit',
 			border : false,
 			bodyPadding : 5,
 			fieldDefaults : {
@@ -15,7 +14,7 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 			},
 			items : [{
 						xtype : 'textfield',
-						name : 'bfj_acct',
+						name : 'b_acct',
 						fieldLabel : '备付金银行帐号',
 						anchor : '50%',
 						allowBlank : false,
@@ -39,26 +38,25 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 						anchor : '50%',
 						maxLength : 100,
 						maxLengthText : '允许最大长度为100',
-						fieldLabel : '开户名'
+						fieldLabel : '开户人名称'
 					}, {
 						xtype : 'displayfield',
-						name : 'bfj_id',
-						value : 'bfj_id',
+						name : 'id',
+						value : 'id',
 						fieldLabel : '编号'
 					}, {
 						xtype : 'radiogroup',
-						fieldLabel : '是否启用',
-						// id : 'statusRadio',
+						fieldLabel : '是否有效',
 						columns : 2,
 						width : 300,
 						vertical : true,
 						items : [{
-									boxLabel : '启用',
-									name : 'status',
+									boxLabel : '有效',
+									name : 'valid',
 									inputValue : '1'
 								}, {
-									boxLabel : '禁用',
-									name : 'status',
+									boxLabel : '无效',
+									name : 'valid',
 									inputValue : '2'
 								}]
 					}, {
@@ -79,16 +77,15 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 							var panel = Ext.getCmp('bfjacctEditform');
 							var form = panel.getForm();
 							var param = form.getRecord();
-
 							if (form.isValid()) {
 								Ext.MessageBox.confirm('确认修改', '是否确认修改账户及信息？',
 										function(optional) {
 											if (optional === 'yes') {
 												form.submit({
 													clientValidation : true,
-													url : panel.url,
+													url : 'jcsjwh/bfjacct/edit',
 													params : {
-														bfj_id : param.data.bfj_id
+														id : param.data.id
 													},
 													success : function(form,
 															action) {
@@ -105,10 +102,12 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 																return;
 															}
 															var list = Ext
-																	.getCmp('bfjacctlistgrid');
-															var items = list.items.items;
-															items[0].getStore()
-																	.reload();
+																	.getCmp('bfjacct_list_grid');
+															if (list) {
+																list
+																		.getStore()
+																		.reload();
+															}
 															Ext.MessageBox
 																	.show({
 																		title : '提示',

@@ -90,7 +90,7 @@ Ext.define('Zixweb.view.book.hist.bfee_rb', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var bi = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.Bi');
+									.lookup('component.Bi');
 							var index = bi.findExact('id', value);
 							return bi.getAt(index).data.name;
 						},

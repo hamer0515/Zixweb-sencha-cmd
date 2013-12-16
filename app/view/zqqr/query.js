@@ -132,7 +132,7 @@ Ext.define('Zixweb.view.zqqr.query', {
 								renderer : function(value) {
 									value = parseInt(value);
 									var zqqrstatus = Ext.data.StoreManager
-											.lookup('Zixweb.store.component.ZQQRStatus');
+											.lookup('component.ZQQRStatus');
 									var index = zqqrstatus.findExact('id',
 											value);
 									return zqqrstatus.getAt(index).data.name;

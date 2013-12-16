@@ -189,7 +189,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0029', {
 								sortable : false,
 								renderer : function(value, p, record) {
 									var bfjacct = Ext.data.StoreManager
-											.lookup('Zixweb.store.component.BfjAcct');
+											.lookup('component.BfjAcct');
 									var index = bfjacct.findExact('id', value);
 									return bfjacct.getAt(index).data.name;
 								},

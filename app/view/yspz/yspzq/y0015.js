@@ -177,7 +177,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 								sortable : false,
 								renderer : function(value, p, record) {
 									var bfjacctin = Ext.data.StoreManager
-											.lookup('Zixweb.store.component.BfjAcct');
+											.lookup('component.BfjAcct');
 									var index = bfjacctin
 											.findExact('id', value);
 									return bfjacctin.getAt(index).data.name;
@@ -190,7 +190,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 								sortable : false,
 								renderer : function(value, p, record) {
 									var bfjacctout = Ext.data.StoreManager
-											.lookup('Zixweb.store.component.BfjAcct');
+											.lookup('component.BfjAcct');
 									var index = bfjacctout.findExact('id',
 											value);
 									return bfjacctout.getAt(index).data.name;

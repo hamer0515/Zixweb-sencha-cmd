@@ -1,8 +1,6 @@
 Ext.define('Zixweb.controller.Pzlr', {
 			extend : 'Ext.app.Controller',
-			views : ['Zixweb.view.pzlr.i0000', 'Zixweb.view.pzlr.mission',
-					'Zixweb.view.pzlr.job', 'Zixweb.view.pzlr.i0014',
-					'Zixweb.view.pzlr.i0015', 'Zixweb.view.pzlr.i0018',
-					'Zixweb.view.pzlr.i0101', 'Zixweb.view.pzlr.f0000']
+			views : ['pzlr.i0000', 'pzlr.mission', 'pzlr.job', 'pzlr.i0014',
+					'pzlr.i0015', 'pzlr.i0018', 'pzlr.i0101', 'pzlr.f0000']
 
 		});

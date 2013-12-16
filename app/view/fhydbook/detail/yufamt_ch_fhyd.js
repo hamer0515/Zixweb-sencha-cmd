@@ -16,7 +16,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var fywtype = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.FywType');
+							.lookup('component.FywType');
 					var index = fywtype.findExact('id', value);
 					return fywtype.getAt(index).data.name;
 				},

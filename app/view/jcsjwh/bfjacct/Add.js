@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.bfjacctadd',
-	title : '备付金账户基础数据添加',
+	border : false,
 	defaults : {
 		border : false
 	},
@@ -9,14 +9,13 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 		this.items = [{
 			xtype : 'form',
 			id : 'bfjacctaddform',
-			url : 'jcsjwh/bfjacct/add',
 			bodyPadding : 5,
 			fieldDefaults : {
 				labelWidth : 100
 			},
 			items : [{
 						xtype : 'textfield',
-						name : 'bfj_acct',
+						name : 'b_acct',
 						fieldLabel : '备付金银行帐号',
 						anchor : '50%',
 						allowBlank : false,
@@ -44,20 +43,20 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 						name : 'acct_name',
 						maxLength : 100,
 						maxLengthText : '允许最大长度为100',
-						fieldLabel : '开户名'
+						fieldLabel : '开户人名称'
 					}, {
 						xtype : 'radiogroup',
-						fieldLabel : '是否启用',
+						fieldLabel : '是否有效',
 						columns : 2,
 						width : 300,
 						items : [{
-									boxLabel : '启用',
-									name : 'status',
+									boxLabel : '有效',
+									name : 'valid',
 									inputValue : '1',
 									checked : true
 								}, {
-									boxLabel : '禁用',
-									name : 'status',
+									boxLabel : '无效',
+									name : 'valid',
 									inputValue : '2'
 								}]
 					}, {
@@ -68,6 +67,7 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 						height : 250,
 						width : 500,
 						maxLength : 3000,
+						maxLengthText : '允许最大长度为3000',
 						anchor : '100%'
 					}, {
 						xtype : 'button',
@@ -82,7 +82,7 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 											if (optional === 'yes') {
 												form.submit({
 													clientValidation : true,
-													url : panel.url,
+													url : 'jcsjwh/bfjacct/add',
 													success : function(form,
 															action) {
 														var response = action.result.success;
@@ -98,10 +98,12 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 																return;
 															}
 															var list = Ext
-																	.getCmp('bfjacctlistgrid');
-															var items = list.items.items;
-															items[0].getStore()
-																	.reload();
+																	.getCmp('bfjacct_list_grid');
+															if (list) {
+																list
+																		.getStore()
+																		.reload();
+															}
 															Ext.MessageBox
 																	.show({
 																		title : '提示',

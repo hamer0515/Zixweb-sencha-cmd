@@ -158,7 +158,7 @@ Ext.define('Zixweb.view.pzlr.mission', {
 								renderer : function(value, metaData) {
 									value = parseInt(value);
 									var mstatus = Ext.data.StoreManager
-											.lookup('Zixweb.store.component.MStatus');
+											.lookup('component.MStatus');
 									var index = mstatus.findExact('id', value);
 									if (value == 1 || value == 3 || value == 5) {
 										metaData.style = 'background-color:yellow';

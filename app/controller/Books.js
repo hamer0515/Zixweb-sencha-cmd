@@ -19,8 +19,9 @@ Ext.define('Zixweb.controller.Books', {
 					'book.hist.txamt_dqr_oys', 'book.hist.wlzj_ysbf',
 					'book.hist.wlzj_yszy', 'book.hist.wlzj_yfbf',
 					'book.hist.wlzj_yfzy', 'book.hist.adjust_qc',
-					'fhydbook.hist.deposit_fhyd', 'fhydbook.hist.camt_fhyd',
-					'fhydbook.hist.ypsc_fhyd', 'fhydbook.hist.camt_dgd_fhyd',
+					'book.hist.income_add', 'fhydbook.hist.deposit_fhyd',
+					'fhydbook.hist.camt_fhyd', 'fhydbook.hist.ypsc_fhyd',
+					'fhydbook.hist.camt_dgd_fhyd',
 					'fhydbook.hist.yp_acct_fhyd',
 					'fhydbook.hist.yufamt_ch_fhyd',
 					'fhydbook.hist.nctxamt_dqr_oys_fhyd',
@@ -74,5 +75,6 @@ Ext.define('Zixweb.controller.Books', {
 					'book.detail.txamt_dqr_byf', 'book.detail.bfj_cust',
 					'book.detail.deposit_zyzj', 'book.detail.txamt_dgd',
 					'book.detail.txamt_yhys', 'book.detail.bamt_yhys',
-					'book.detail.blc', 'book.detail.adjust_qc']
+					'book.detail.blc', 'book.detail.adjust_qc',
+					'book.detail.income_add']
 		});

@@ -88,7 +88,7 @@ Ext.define('Zixweb.view.book.hist.wlzj_ysbf', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var wlzjtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.WlzjType');
+									.lookup('component.WlzjType');
 							var index = wlzjtype.findExact('id', value);
 							return wlzjtype.getAt(index).data.name;
 						},

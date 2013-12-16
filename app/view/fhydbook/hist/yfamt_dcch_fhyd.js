@@ -95,7 +95,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_dcch_fhyd', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var fywtype = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.FywType');
+									.lookup('component.FywType');
 							var index = fywtype.findExact('id', value);
 							return fywtype.getAt(index).data.name;
 						},

@@ -1,7 +1,7 @@
-Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
+Ext.define('Zixweb.view.book.hist.income_add', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_hist_yfamt_ch_fhyd',
-	prefix : 'book_hist_yfamt_ch_fhyd',
+	alias : 'widget.book_hist_income_add',
+	prefix : 'book_hist_income_add',
 	defaults : {
 		border : false
 	},
@@ -9,8 +9,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 	initComponent : function() {
 		var panel = this;
 		var store = new Ext.data.Store({
-					fields : ['id', 'fyw_type', 'ftx_date', 'period', 'fc',
-							'j', 'd', 'ys_id', 'ys_type'],
+					fields : ['id', 'p', 'period', 'j', 'd', 'ys_id', 'ys_type'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -18,7 +17,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 					proxy : {
 						type : 'ajax',
 						api : {
-							read : 'book/hist/yfamt_ch_fhyd'
+							read : 'book/hist/income_add'
 						},
 						reader : {
 							type : 'json',
@@ -41,7 +40,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '应付账款-渠道款科目历史数据加载失败,请联系管理员',
+											msg : '营业外收入科目历史数据加载失败,请联系管理员',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
@@ -51,7 +50,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '抱歉，没有应付账款-渠道款科目历史数据访问权限',
+											msg : '抱歉，没有营业外收入科目历史数据访问权限',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
@@ -83,24 +82,18 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 						sortable : false,
 						width : 80
 					}, {
-						text : "业务类型",
-						itemId : 'fywtype',
-						dataIndex : 'fyw_type',
+						text : '产品类型',
+						itemId : 'p',
+						dataIndex : 'p',
 						sortable : false,
 						renderer : function(value, p, record) {
-							var fywtype = Ext.data.StoreManager
-									.lookup('component.FywType');
-							var index = fywtype.findExact('id', value);
-							return fywtype.getAt(index).data.name;
+							var product = Ext.data.StoreManager
+									.lookup('component.Product');
+							var index = product.findExact('id', value);
+							return product.getAt(index).data.name;
 						},
 						flex : 1
-					}, {
-						text : '交易日期',
-						itemId : 'ftxdate',
-						dataIndex : 'ftx_date',
-						sortable : false,
-						flex : 1,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+
 					}, {
 						text : "期间日期",
 						dataIndex : 'period',
@@ -108,12 +101,6 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 						sortable : false,
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "客户编号",
-						itemId : 'fc',
-						dataIndex : 'fc',
-						sortable : false,
-						flex : 1
 					}, {
 						text : "借方金额",
 						dataIndex : 'j',
@@ -175,7 +162,6 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 						}]
 					}]
 		});
-
 		this.items = [{
 					xtype : 'form',
 					title : '查询',
@@ -188,7 +174,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 					},
 					items : [{
 								xtype : 'fieldcontainer',
-								fieldLabel : '期间日期范围',
+								fieldLabel : '会计期间',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',
@@ -206,8 +192,8 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 											id : panel.prefix + '_to',
 											format : 'Y-m-d',
 											name : 'period_to',
-											allowBlank : false,
 											margin : '0 10 0 0',
+											allowBlank : false,
 											width : 180
 										}]
 							}, {
@@ -225,48 +211,21 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 											fieldLabel : '原始凭证ID',
 											width : 516,
 											name : 'ys_id',
-											vtype : 'id'
+											vtype : "money"
 										}]
 
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
 								items : [{
-											xtype : 'fywtype',
-											name : 'fyw_type',
+											xtype : 'product',
+											name : 'p',
 											margin : '0 10 0 0',
-											fieldLabel : '业务类型'
+											fieldLabel : '产品类型'
 										}, {
-											xtype : 'ystypef',
+											xtype : 'ystype',
 											name : 'ys_type',
 											fieldLabel : '原始凭证类型'
-										}]
-							}, {
-								xtype : 'fieldcontainer',
-								fieldLabel : '交易日期',
-								layout : 'hbox',
-								items : [{
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'ftx_date_from',
-											margin : '0 10 0 0',
-											verify : {
-												id : panel.prefix + '_to_2'
-											},
-											vtype : 'dateinterval',
-											width : 180
-										}, {
-											xtype : 'datefield',
-											id : panel.prefix + '_to_2',
-											format : 'Y-m-d',
-											name : 'ftx_date_to',
-											margin : '0 10 0 0',
-											width : 180
-										}, {
-											xtype : 'textfield',
-											name : 'fc',
-											width : 516,
-											fieldLabel : '客户编号'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -276,30 +235,33 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 											layout : 'hbox',
 											fieldLabel : '借方金额',
 											items : [{
-														xtype : 'money',
+														xtype : 'textfield',
 														name : 'j_from',
 														margin : '0 10 0 0',
-														width : 180
+														width : 180,
+														vtype : "money"
 													}, {
-														xtype : 'money',
+														xtype : 'textfield',
 														name : 'j_to',
 														width : 180,
-														margin : '0 10 0 0'
+														margin : '0 10 0 0',
+														vtype : "money"
 													}]
 										}, {
 											xtype : 'fieldcontainer',
 											layout : 'hbox',
 											fieldLabel : '贷方金额',
 											items : [{
-														xtype : 'money',
+														xtype : 'textfield',
 														name : 'd_from',
 														margin : '0 10 0 0',
-														width : 180
+														width : 180,
+														vtype : "money"
 													}, {
-														xtype : 'money',
+														xtype : 'textfield',
 														name : 'd_to',
 														width : 180,
-														margin : '0 10 0 0'
+														vtype : "money"
 													}]
 										}]
 							}, {
@@ -338,7 +300,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 												bid : panel.bid,
 												modal : true,
 												params : panel.values,
-												url : 'book/hist/yfamt_ch_fhyd_excel',
+												url : 'book/hist/income_add_excel',
 												resizable : false
 											});
 								}

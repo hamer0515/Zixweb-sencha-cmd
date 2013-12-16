@@ -16,7 +16,7 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var fhydacct = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.FhydAcct');
+							.lookup('component.FhydAcct');
 					var index = fhydacct.findExact('id', value);
 					return fhydacct.getAt(index).data.name;
 				},

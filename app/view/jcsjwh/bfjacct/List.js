@@ -1,15 +1,16 @@
 Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.bfjacctlist',
-
+	prefix : 'bfjacct_list',
 	defaults : {
 		border : false
 	},
 
 	initComponent : function() {
+		var panel = this;
 		var store = new Ext.data.Store({
-					fields : ['bfj_id', 'bfj_acct', 'status', 'b_name',
-							'acct_name', 'memo'],
+					fields : ['id', 'b_acct', 'valid', 'b_name', 'acct_name',
+							'memo'],
 
 					pageSize : 50,
 					autoLoad : true,
@@ -28,7 +29,8 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('bfjacctlist').getForm();
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
 							if (form.isValid()) {
 								store.proxy.extraParams = form.getValues();
 							} else {
@@ -57,14 +59,12 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 						}
 					}
 				});
-		this.store = store;
 		this.items = [{
 			xtype : 'form',
 			title : '查询',
-			id : 'bfjacctlist',
+			id : panel.prefix + '_form',
 			bodyPadding : 5,
 			collapsible : true,
-
 			fieldDefaults : {
 				labelWidth : 140
 			},
@@ -73,17 +73,12 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 						layout : 'hbox',
 						items : [{
 									xtype : 'bfjacct',
-									name : 'bfj_acct',
+									name : 'id',
+									margin : '0 10 0 0',
 									fieldLabel : '备付金银行账户'
-								}]
-
-					}, {
-						xtype : 'fieldcontainer',
-						layout : 'hbox',
-						items : [{
+								}, {
 									xtype : 'acctStatus',
-									name : 'status',
-									autoShow : true,
+									name : 'valid',
 									fieldLabel : '使用状态'
 								}]
 
@@ -126,16 +121,16 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 					}]
 		}, {
 			xtype : 'gridpanel',
-			store : this.store,
+			store : store,
+			id : panel.prefix + '_grid',
 			dockedItems : [{
 						xtype : 'pagingtoolbar',
-						store : this.store
+						store : store
 					}],
 			columns : [{
 						text : "id",
-						itemId : 'bfj_id',
-						dataIndex : 'bfj_id',
-						hidden : true,
+						itemId : 'id',
+						dataIndex : 'id',
 						sortable : false,
 						flex : 1
 
@@ -146,7 +141,6 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 						hidden : true,
 						sortable : false,
 						flex : 1
-
 					}, {
 						text : "开户行名称",
 						itemId : 'b_name',
@@ -156,8 +150,8 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 
 					}, {
 						text : "备付金银行账户",
-						itemId : 'bfj_acct',
-						dataIndex : 'bfj_acct',
+						itemId : 'b_acct',
+						dataIndex : 'b_acct',
 						sortable : false,
 						flex : 2
 					}, {
@@ -168,12 +162,10 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 						flex : 1
 					}, {
 						text : "有效性",
-						dataIndex : 'status',
+						dataIndex : 'valid',
 						sortable : false,
 						renderer : function(value, p, record) {
-							var statusArray = new Array();
-							statusArray.push("启用");
-							statusArray.push("禁用");
+							var statusArray = ["启用", "禁用"];
 							return statusArray[value - 1];
 						},
 						flex : 1

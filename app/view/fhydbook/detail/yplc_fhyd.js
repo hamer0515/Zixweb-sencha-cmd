@@ -16,7 +16,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var fypacct = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.FypAcct');
+							.lookup('component.FypAcct');
 					var index = fypacct.findExact('id', value);
 					return fypacct.getAt(index).data.name;
 				},
@@ -45,7 +45,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 				sortable : false,
 				renderer : function(value, p, record) {
 					var fywtype = Ext.data.StoreManager
-							.lookup('Zixweb.store.component.FywType');
+							.lookup('component.FywType');
 					var index = fywtype.findExact('id', value);
 					return fywtype.getAt(index).data.name;
 				},

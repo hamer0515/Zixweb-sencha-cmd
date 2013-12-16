@@ -89,7 +89,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yp_acct_fhyd', {
 						sortable : false,
 						renderer : function(value, p, record) {
 							var fypacct = Ext.data.StoreManager
-									.lookup('Zixweb.store.component.FypAcct');
+									.lookup('component.FypAcct');
 							var index = fypacct.findExact('id', value);
 							return fypacct.getAt(index).data.name;
 						},
