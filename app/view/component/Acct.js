@@ -17,8 +17,8 @@ Ext.define('Zixweb.view.component.Acct', {
 						self.setValue('');
 					}
 				},
-				focus : function(thiz, The, eOpts) {
-					thiz.store.clearFilter();
+				focus : function(me, The, eOpts) {
+					me.store.clearFilter();
 				}
 			},
 			initComponent : function() {
@@ -31,7 +31,7 @@ Ext.define('Zixweb.view.component.Acct', {
 								url : 'base/account'
 							},
 							listeners : {
-								load : function(thiz, records, successful,
+								load : function(me, records, successful,
 										eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
@@ -42,7 +42,7 @@ Ext.define('Zixweb.view.component.Acct', {
 												});
 										return;
 									}
-									var jsonData = thiz.proxy.reader.jsonData.success;
+									var jsonData = me.proxy.reader.jsonData.success;
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',

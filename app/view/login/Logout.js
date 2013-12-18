@@ -1,7 +1,6 @@
 Ext.define('Zixweb.view.login.Logout', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.logout',
-
 	autoShow : true,
 
 	initComponent : function() {

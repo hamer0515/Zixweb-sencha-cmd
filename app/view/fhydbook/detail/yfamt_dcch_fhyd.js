@@ -132,7 +132,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd', {
 						return false;
 					}
 				},
-				load : function(thiz, records, successful, eOpts) {
+				load : function(me, records, successful, eOpts) {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
@@ -142,7 +142,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd', {
 								});
 						return;
 					}
-					var jsonData = thiz.proxy.reader.jsonData.success;
+					var jsonData = me.proxy.reader.jsonData.success;
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
@@ -187,7 +187,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期范围',
+						fieldLabel : '期间日期',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',
@@ -204,7 +204,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd', {
 								}]
 					}, {
 						xtype : 'fieldcontainer',
-						fieldLabel : '交易日期范围',
+						fieldLabel : '交易日期',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',

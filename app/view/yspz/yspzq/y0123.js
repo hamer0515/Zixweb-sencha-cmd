@@ -40,21 +40,21 @@ Ext.define('Zixweb.view.yspz.yspzq.y0123', {
 								return false;
 							}
 						},
-						load : function(thiz, records, successful, eOpts) {
+						load : function(me, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '原始凭证0121数据加载失败,请联系管理员',
+											msg : '原始凭证0123数据加载失败,请联系管理员',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
 								return;
 							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
+							var jsonData = me.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
-											msg : '抱歉，没有原始凭证0121数据访问权限',
+											msg : '抱歉，没有原始凭证0123数据访问权限',
 											buttons : Ext.Msg.YES,
 											icon : Ext.Msg.ERROR
 										});
@@ -186,14 +186,14 @@ Ext.define('Zixweb.view.yspz.yspzq.y0123', {
 										var rec = grid.getStore()
 												.getAt(rowIndex);
 										var viewport = grid.up('viewport'), center = viewport
-												.down('center'), id = 'yspzq_detail_0121'
+												.down('center'), id = 'yspzq_detail_0123'
 												+ rec.data.id, cmp = Ext
 												.getCmp(id);
 										var yspzqdetail = Ext
 												.createByAlias('widget.yspzqdetail');
 										yspzqdetail.store.load({
 													params : {
-														ys_type : '0121',
+														ys_type : '0123',
 														ys_id : rec.data.id
 													}
 												});
@@ -204,9 +204,9 @@ Ext.define('Zixweb.view.yspz.yspzq.y0123', {
 												closable : true,
 												xtype : 'panel',
 												items : yspzqdetail,
-												id : 'yspzq_detail_0121'
+												id : 'yspzq_detail_0123'
 														+ rec.data.id,
-												title : '凭证0121' + '编号'
+												title : '凭证0123' + '编号'
 														+ rec.data.id + '详细信息'
 											}).show();
 										}
@@ -226,7 +226,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0123', {
 										Ext.widget('yspzrevoke_cause', {
 													modal : true,
 													resizable : false,
-													ys_type : '0121',
+													ys_type : '0123',
 													ys_id : rec.data.id,
 													period : rec.data.period
 												})

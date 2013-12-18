@@ -133,7 +133,7 @@ Ext.define('Zixweb.view.task.TaskF0000detail', {
 				url : 'taskf0000/detail'
 			},
 			listeners : {
-				load : function(thiz, records, successful, eOpts) {
+				load : function(me, records, successful, eOpts) {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
@@ -143,7 +143,7 @@ Ext.define('Zixweb.view.task.TaskF0000detail', {
 								});
 						return;
 					}
-					var jsonData = thiz.proxy.reader.jsonData.success;
+					var jsonData = me.proxy.reader.jsonData.success;
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
@@ -164,8 +164,8 @@ Ext.define('Zixweb.view.task.TaskF0000detail', {
 					for (var i in buttons.elements) {
 						var button = Ext.get(buttons.elements[i]
 								.getAttribute('id'));
-						button.on('click', function(e, thiz, eOpts) {
-							var arr = thiz.getAttribute('id').split('_');
+						button.on('click', function(e, me, eOpts) {
+							var arr = me.getAttribute('id').split('_');
 							var id = arr.pop();
 							var type = arr.pop();
 							if (type === 'pass') {

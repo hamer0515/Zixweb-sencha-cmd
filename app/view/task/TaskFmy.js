@@ -46,7 +46,7 @@ Ext.define('Zixweb.view.task.TaskFmy', {
 								return false;
 							}
 						},
-						load : function(thiz, records, successful, eOpts) {
+						load : function(me, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -56,7 +56,7 @@ Ext.define('Zixweb.view.task.TaskFmy', {
 										});
 								return;
 							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
+							var jsonData = me.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -81,7 +81,7 @@ Ext.define('Zixweb.view.task.TaskFmy', {
 					},
 					items : [{
 								xtype : 'fieldcontainer',
-								fieldLabel : '创建日期范围',
+								fieldLabel : '创建日期',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',

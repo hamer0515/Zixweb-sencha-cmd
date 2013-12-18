@@ -36,7 +36,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 								return false;
 							}
 						},
-						load : function(thiz, records, successful, eOpts) {
+						load : function(me, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -46,7 +46,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 										});
 								return;
 							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
+							var jsonData = me.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -70,7 +70,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '资金对账日期范围',
+						fieldLabel : '资金对账日期',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',

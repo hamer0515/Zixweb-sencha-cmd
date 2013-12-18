@@ -37,7 +37,7 @@ Ext.define('Zixweb.view.book.hist.blc', {
 								return false;
 							}
 						},
-						load : function(thiz, records, successful, eOpts) {
+						load : function(me, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -47,7 +47,7 @@ Ext.define('Zixweb.view.book.hist.blc', {
 										});
 								return;
 							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
+							var jsonData = me.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbfj_acctdden') {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -215,7 +215,7 @@ Ext.define('Zixweb.view.book.hist.blc', {
 										}]
 							}, {
 								xtype : 'fieldcontainer',
-								fieldLabel : '差错日期范围',
+								fieldLabel : '差错日期',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',

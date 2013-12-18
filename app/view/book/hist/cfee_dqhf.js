@@ -37,7 +37,7 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 								return false;
 							}
 						},
-						load : function(thiz, records, successful, eOpts) {
+						load : function(me, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -47,7 +47,7 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 										});
 								return;
 							}
-							var jsonData = thiz.proxy.reader.jsonData.success;
+							var jsonData = me.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -222,7 +222,7 @@ Ext.define('Zixweb.view.book.hist.cfee_dqhf', {
 
 							}, {
 								xtype : 'fieldcontainer',
-								fieldLabel : '交易日期范围',
+								fieldLabel : '交易日期',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',

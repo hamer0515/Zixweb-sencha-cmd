@@ -8,8 +8,8 @@ Ext.define('Zixweb.view.North', {
 	autoShow : true,
 	border : false,
 	listeners : {
-		afterlayout : function(thiz, eOpts) {
-			var panel = thiz;
+		afterlayout : function(me, eOpts) {
+			var panel = me;
 			var button = Ext.get('north_logout_button');
 			if (button) {
 				button.on('click', function(e, btn, eOpts) {

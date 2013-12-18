@@ -68,6 +68,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.fhydbook.detail.yfamt_ch_fhyd": [],
   "Ext.ux.dd.PanelFieldDragZone": [],
   "overrides.panel.Table": [],
+  "Zixweb.view.component.QueryForm": [],
   "overrides.BasicForm": [],
   "Zixweb.view.book.detail.deposit_bfj": [],
   "Zixweb.controller.Roles": [],
@@ -165,8 +166,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.fhydbook.hist.yplc_fhyd": [],
   "Zixweb.view.yspz.yspzq.y0108": [],
   "Zixweb.view.yspz.yspzq.y0038": [],
-  "Zixweb.view.yspz.yspzq.y0037": [],
   "Zixweb.view.yspz.yspzq.y0107": [],
+  "Zixweb.view.yspz.yspzq.y0037": [],
   "Zixweb.view.yspz.yspzq.y0109": [],
   "Zixweb.view.yspz.yspzq.y0039": [],
   "overrides.Component": [],
@@ -433,12 +434,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.West": [],
   "Zixweb.view.component.SHStatus": [],
   "Zixweb.view.yspz.yspzq.yF0029": [],
+  "Zixweb.view.component.ExportBtn": [],
   "Zixweb.view.yspz.yspzq.yF0028": [],
   "Zixweb.view.book.hist.wlzj_ysbf": [],
   "Zixweb.view.book.hist.wlzj_yszy": [],
   "Zixweb.view.yspz.yspzq.yF0023": [],
   "Zixweb.view.yspz.yspzq.yF0022": [],
   "Zixweb.view.yspz.yspzq.yF0021": [],
+  "Zixweb.view.component.MyStore": [],
   "Zixweb.view.yspz.yspzq.yF0020": [],
   "Zixweb.view.yspz.yspzq.yF0027": [],
   "Zixweb.view.book.detail.bsc": [],
@@ -613,6 +616,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.ux.dd.PanelFieldDragZone": [],
   "overrides.panel.Table": [],
+  "Zixweb.view.component.QueryForm": [
+    "widget.queryform"
+  ],
   "overrides.BasicForm": [],
   "Zixweb.view.book.detail.deposit_bfj": [
     "widget.book_detail_deposit_bfj"
@@ -861,11 +867,11 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0038": [
     "widget.y0038"
   ],
-  "Zixweb.view.yspz.yspzq.y0037": [
-    "widget.y0037"
-  ],
   "Zixweb.view.yspz.yspzq.y0107": [
     "widget.y0107"
+  ],
+  "Zixweb.view.yspz.yspzq.y0037": [
+    "widget.y0037"
   ],
   "Zixweb.view.yspz.yspzq.y0109": [
     "widget.y0109"
@@ -1554,6 +1560,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.yF0029": [
     "widget.yF0029"
   ],
+  "Zixweb.view.component.ExportBtn": [
+    "widget.exportbtn"
+  ],
   "Zixweb.view.yspz.yspzq.yF0028": [
     "widget.yF0028"
   ],
@@ -1571,6 +1580,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.yspz.yspzq.yF0021": [
     "widget.yF0021"
+  ],
+  "Zixweb.view.component.MyStore": [
+    "widget.mystore"
   ],
   "Zixweb.view.yspz.yspzq.yF0020": [
     "widget.yF0020"

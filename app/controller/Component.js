@@ -18,6 +18,8 @@ Ext.define('Zixweb.controller.Component', {
 					'component.FypAcct', 'component.FhydAcct',
 					'component.FywType', 'component.YsTypeF',
 					'component.plugins.PageComboResizer', 'component.Money',
-					'component.Fields', 'component.AcctStatus']
+					'component.Fields', 'component.AcctStatus',
+					'component.ExportBtn', 'component.MyStore',
+					'component.QueryForm']
 
 		});

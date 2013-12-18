@@ -14,7 +14,7 @@ Ext.define('Zixweb.view.role.Add', {
 								url : 'base/routes'
 							},
 							listeners : {
-								load : function(thiz, records, successful,
+								load : function(me, records, successful,
 										eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
@@ -24,7 +24,7 @@ Ext.define('Zixweb.view.role.Add', {
 													icon : Ext.Msg.ERROR
 												});
 									}
-									var jsonData = thiz.proxy.reader.jsonData.success;
+									var jsonData = me.proxy.reader.jsonData.success;
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',

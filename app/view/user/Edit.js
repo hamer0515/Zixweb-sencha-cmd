@@ -26,7 +26,7 @@ Ext.define('Zixweb.view.user.Edit', {
 						fieldLabel : '用户名',
 						anchor : '100%',
 						allowBlank : false,
-						validateOnChange : 2,
+						validateOnChange : false,
 						msgTarget : 'qtip',
 						verify : {
 							url : 'user/check',
@@ -65,8 +65,7 @@ Ext.define('Zixweb.view.user.Edit', {
 								}
 							},
 							listeners : {
-								load : function(thiz, records, successful,
-										eOpts) {
+								load : function(me, records, successful, eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
 													title : '警告',
@@ -75,7 +74,7 @@ Ext.define('Zixweb.view.user.Edit', {
 													icon : Ext.Msg.ERROR
 												});
 									}
-									var jsonData = thiz.proxy.reader.jsonData.success;
+									var jsonData = me.proxy.reader.jsonData.success;
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',

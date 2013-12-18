@@ -19,7 +19,7 @@ Ext.define('Zixweb.view.component.YsTypeF', {
 							},
 
 							listeners : {
-								load : function(thiz, records, successful,
+								load : function(me, records, successful,
 										eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
@@ -30,7 +30,7 @@ Ext.define('Zixweb.view.component.YsTypeF', {
 												});
 										return;
 									}
-									var jsonData = thiz.proxy.reader.jsonData.success;
+									var jsonData = me.proxy.reader.jsonData.success;
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',

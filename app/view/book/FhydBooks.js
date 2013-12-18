@@ -20,7 +20,7 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 							url : 'book/fhyd'
 						},
 						listeners : {
-							load : function(thiz, records, successful, eOpts) {
+							load : function(me, records, successful, eOpts) {
 								if (!successful) {
 									Ext.MessageBox.show({
 												title : '警告',
@@ -30,7 +30,7 @@ Ext.define('Zixweb.view.book.FhydBooks', {
 											});
 									return;
 								}
-								var jsonData = thiz.proxy.reader.jsonData.success;
+								var jsonData = me.proxy.reader.jsonData.success;
 								if (jsonData && jsonData === 'forbidden') {
 									Ext.MessageBox.show({
 												title : '警告',

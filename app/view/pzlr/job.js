@@ -23,7 +23,7 @@ Ext.define('Zixweb.view.pzlr.job', {
 						}
 					},
 					listeners : {
-						load : function(thiz, records, successful, eOpts) {
+						load : function(me, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',

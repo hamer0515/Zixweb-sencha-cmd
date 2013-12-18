@@ -34,14 +34,14 @@ Ext.define('Zixweb.view.component.HSX', {
 				displayField : 'name',
 				valueField : 'value',
 				listeners : {
-					change : function(thiz, newValue, oldValue, eOpts) {
+					change : function(me, newValue, oldValue, eOpts) {
 						if (oldValue) {
 							var index = sta.findExact('value', oldValue);
 							if (index != -1) {
 								var record = sta.getAt(index);
 								var combos = panel.query('combobox');
 								for (var i in combos) {
-									if (combos[i] === thiz) {
+									if (combos[i] === me) {
 										continue;
 									}
 									var s = combos[i].store;
@@ -53,15 +53,15 @@ Ext.define('Zixweb.view.component.HSX', {
 								}
 							}
 						}
-						var i = thiz.store.findExact('value', newValue);
+						var i = me.store.findExact('value', newValue);
 						if (i == -1) {
-							thiz.setValue('');
+							me.setValue('');
 							newValue = '';
 							return;
 						}
 						var combos = panel.query('combobox');
 						for (var i in combos) {
-							if (combos[i] === thiz) {
+							if (combos[i] === me) {
 								continue;
 							}
 							var s = combos[i].store;

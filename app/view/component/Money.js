@@ -4,7 +4,7 @@ Ext.define('Zixweb.view.component.Money', {
 			labelWidth : 70,
 			vtype : 'money',
 			listeners : {
-				blur : function(thiz, the, opts) {
+				blur : function(me, the, opts) {
 					if (this.isValid()) {
 						var v = this.value;
 						if (v == undefined || v == '') {
