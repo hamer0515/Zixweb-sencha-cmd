@@ -71,7 +71,7 @@ Ext.define('Zixweb.view.pzlr.i0101', {
 												form.getForm().submit({
 													clientValidation : true,
 													url : '/pzlr/i0101',
-													success : function(form,
+													success : function(f,
 															action) {
 														var result = action.result.success;
 														if (result) {
@@ -93,9 +93,9 @@ Ext.define('Zixweb.view.pzlr.i0101', {
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.INFO,
 																		fn : function() {
-																			Ext
-																					.getCmp('center_i0101')
-																					.close();
+																			form
+																					.getForm()
+																					.reset();
 																		}
 																	});
 														} else {

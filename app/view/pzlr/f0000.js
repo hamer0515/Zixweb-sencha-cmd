@@ -28,8 +28,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fhw_type : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.FhwType');
+				var store = Ext.data.StoreManager.lookup('component.FhwType');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -37,8 +36,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fhyd_acct : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.FhydAcct');
+				var store = Ext.data.StoreManager.lookup('component.FhydAcct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -58,8 +56,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fyp_acct : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.FypAcct');
+				var store = Ext.data.StoreManager.lookup('component.FypAcct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -67,8 +64,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fyw_type : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.FywType');
+				var store = Ext.data.StoreManager.lookup('component.FywType');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -322,7 +318,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 														data : Ext.JSON
 																.encode(sendData)
 													},
-													success : function(form,
+													success : function(f,
 															action) {
 														var result = action.result.success;
 														if (result) {
@@ -344,9 +340,15 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.INFO,
 																		fn : function() {
-																			Ext
-																					.getCmp('center_f0000')
-																					.close();
+																			form
+																					.getForm()
+																					.reset();
+																			form.current_fl = 0;
+																			var count = form.items.length;
+																			for (var i = 4; i < count; i++) {
+																				form
+																						.remove(form.items.items[i])
+																			}
 																		}
 																	});
 														} else {

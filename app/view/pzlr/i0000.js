@@ -16,8 +16,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 	renderers : {
 		acct : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.Acct');
+				var store = Ext.data.StoreManager.lookup('component.Acct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -25,8 +24,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		},
 		bfj_acct : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.BfjAcct');
+				var store = Ext.data.StoreManager.lookup('component.BfjAcct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -34,8 +32,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		},
 		zyzj_acct : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.ZyzjAcct');
+				var store = Ext.data.StoreManager.lookup('component.ZyzjAcct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -43,8 +40,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		},
 		zjbd_type : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.ZjbdType');
+				var store = Ext.data.StoreManager.lookup('component.ZjbdType');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -70,8 +66,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		},
 		p : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.Product');
+				var store = Ext.data.StoreManager.lookup('component.Product');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -79,8 +74,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		},
 		bi : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager
-						.lookup('component.Bi');
+				var store = Ext.data.StoreManager.lookup('component.Bi');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -332,7 +326,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 														data : Ext.JSON
 																.encode(sendData)
 													},
-													success : function(form,
+													success : function(f,
 															action) {
 														var result = action.result.success;
 														if (result) {
@@ -354,9 +348,15 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.INFO,
 																		fn : function() {
-																			Ext
-																					.getCmp('center_i0000')
-																					.close();
+																			form
+																					.getForm()
+																					.reset();
+																			form.current_fl = 1;
+																			var count = form.items.length;
+																			for (var i = 4; i < count; i++) {
+																				form
+																						.remove(form.items.items[i])
+																			}
 																		}
 																	});
 														} else {

@@ -69,7 +69,7 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 												form.getForm().submit({
 													clientValidation : true,
 													url : '/pzlr/i0014',
-													success : function(form,
+													success : function(f,
 															action) {
 														var result = action.result.success;
 														if (result) {
@@ -91,9 +91,9 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.INFO,
 																		fn : function() {
-																			Ext
-																					.getCmp('center_i0014')
-																					.close();
+																			form
+																					.getForm()
+																					.reset();
 																		}
 																	});
 														} else {

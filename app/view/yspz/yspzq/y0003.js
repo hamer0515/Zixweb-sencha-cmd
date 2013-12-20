@@ -3,14 +3,16 @@ Ext.define('Zixweb.view.yspz.yspzq.y0003', {
 	alias : 'widget.y0003',
 	prefix : 'yspzq_y0003',
 	url : 'y0003',
+
 	defaults : {
 		border : false
 	},
 
 	initComponent : function() {
 		var panel = this;
+
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'period'],
+					fields : ['id', 'flag', 'bi', 'tx_amt', 'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -29,6 +31,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0003', {
 					},
 					listeners : {
 						beforeload : function(store, operation, eOpts) {
+
 							var form = Ext.getCmp(panel.prefix + '_form')
 									.getForm();
 							if (form.isValid()) {
@@ -37,7 +40,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0003', {
 								return false;
 							}
 						},
-						load : function(me, records, successful, eOpts) {
+						load : function(thiz, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -47,7 +50,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0003', {
 										});
 								return;
 							}
-							var jsonData = me.proxy.reader.jsonData.success;
+							var jsonData = thiz.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -65,6 +68,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0003', {
 					id : panel.prefix + '_form',
 					collapsible : true,
 					bodyPadding : 5,
+
 					fieldDefaults : {
 						labelWidth : 140
 					},
@@ -76,7 +80,13 @@ Ext.define('Zixweb.view.yspz.yspzq.y0003', {
 											fieldLabel : 'ID',
 											width : 516,
 											name : 'id',
+											margin : '0 10 0 0',
 											vtype : "id"
+										}, {
+											xtype : 'bi',
+											fieldLabel : '银行接口编号',
+											width : 516,
+											name : 'bi'
 										}]
 							}, {
 								xtype : 'fieldcontainer',
@@ -156,14 +166,36 @@ Ext.define('Zixweb.view.yspz.yspzq.y0003', {
 								dataIndex : 'period',
 								itemId : 'period',
 								sortable : false,
-								flex : 2,
+								flex : 1,
 								renderer : Ext.util.Format
 										.dateRenderer('Y年m月d日')
+							}, {
+								text : "银行接口编号",
+								itemId : 'bi',
+								dataIndex : 'bi',
+								sortable : false,
+								renderer : function(value, p, record) {
+									var bi = Ext.data.StoreManager
+											.lookup('component.Bi');
+									var index = bi.findExact('id', value);
+									return bi.getAt(index).data.name;
+								},
+								flex : 2
+							}, {
+								text : "支付金额",
+								dataIndex : 'tx_amt',
+								width : 100,
+								sortable : false,
+								flex : 1,
+								renderer : function(value) {
+									return Ext.util.Format.number(
+											parseInt(value) / 100, '0,0.00');
+								}
 							}, {
 								text : "撤销状态",
 								dataIndex : 'flag',
 								sortable : false,
-								flex : 2,
+								flex : 1,
 								renderer : function(value) {
 									var text = ['未撤销', '已撤销', '撤销申请中'];
 									return text[value];

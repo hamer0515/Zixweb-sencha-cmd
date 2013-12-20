@@ -41,7 +41,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 								return false;
 							}
 						},
-						load : function(me, records, successful, eOpts) {
+						load : function(thiz, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -51,7 +51,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 										});
 								return;
 							}
-							var jsonData = me.proxy.reader.jsonData.success;
+							var jsonData = thiz.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -196,6 +196,20 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 						sortable : false,
 						flex : 1
 					}, {
+						text : "期间日期",
+						dataIndex : 'period',
+						itemId : 'period',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "银行清算日期",
+						dataIndex : 'clear_date',
+						itemId : 'clear_date',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
 						text : "本金备付金银行账号",
 						itemId : 'bfj_acct_bj',
 						dataIndex : 'bfj_acct_bj',
@@ -230,24 +244,10 @@ Ext.define('Zixweb.view.yspz.yspzq.y0104', {
 									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
-						text : "期间日期",
-						dataIndex : 'period',
-						itemId : 'period',
-						sortable : false,
-						flex : 2,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
-						text : "银行清算日期",
-						dataIndex : 'clear_date',
-						itemId : 'clear_date',
-						sortable : false,
-						flex : 2,
-						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-					}, {
 						text : "撤销状态",
 						dataIndex : 'flag',
 						sortable : false,
-						flex : 2,
+						flex : 1,
 						renderer : function(value) {
 							var text = ['未撤销', '已撤销', '撤销申请中'];
 							return text[value];

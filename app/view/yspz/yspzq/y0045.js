@@ -12,7 +12,8 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 		var panel = this;
 
 		var store = new Ext.data.Store({
-					fields : ['id', 'flag', 'clear_date', 'period'],
+					fields : ['id', 'bi', 'bfj_acct_bj', 'clear_date',
+							'tx_amt', 'flag', 'period'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -40,7 +41,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 								return false;
 							}
 						},
-						load : function(me, records, successful, eOpts) {
+						load : function(thiz, records, successful, eOpts) {
 							if (!successful) {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -50,7 +51,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 										});
 								return;
 							}
-							var jsonData = me.proxy.reader.jsonData.success;
+							var jsonData = thiz.proxy.reader.jsonData.success;
 							if (jsonData && jsonData === 'forbidden') {
 								Ext.MessageBox.show({
 											title : '警告',
@@ -78,9 +79,9 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 						items : [{
 									xtype : 'textfield',
 									fieldLabel : 'ID',
-									margin : '0 10 0 0',
 									width : 516,
 									name : 'id',
+									margin : '0 10 0 0',
 									vtype : "id"
 								}, {
 									xtype : 'fieldcontainer',
@@ -91,21 +92,27 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 												format : 'Y-m-d',
 												name : 'clear_date_from',
 												margin : '0 10 0 0',
-												allowBlank : true,
-												verify : {
-													id : 'yspzq_y0045_clear_date_to'
-												},
-												// vtype : 'dateinterval',
 												width : 180
 											}, {
 												xtype : 'datefield',
-												id : 'yspzq_y0045_clear_date_to',
 												format : 'Y-m-d',
 												name : 'clear_date_to',
-												// margin : '0 10 0 0',
-												allowBlank : true,
 												width : 180
 											}]
+								}]
+					}, {
+						xtype : 'fieldcontainer',
+						layout : 'hbox',
+						items : [{
+									xtype : 'bfjacct',
+									fieldLabel : '本金备付金银行账号',
+									margin : '0 10 0 0',
+									name : 'bfj_acct_bj'
+								}, {
+									xtype : 'bi',
+									fieldLabel : '银行接口编号',
+									width : 516,
+									name : 'bi'
 								}]
 					}, {
 						xtype : 'fieldcontainer',
@@ -185,20 +192,54 @@ Ext.define('Zixweb.view.yspz.yspzq.y0045', {
 						dataIndex : 'period',
 						itemId : 'period',
 						sortable : false,
-						flex : 2,
+						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "银行清算日期",
 						dataIndex : 'clear_date',
 						itemId : 'clear_date',
 						sortable : false,
-						flex : 2,
+						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "本金备付金银行账号",
+						itemId : 'bfj_acct_bj',
+						dataIndex : 'bfj_acct_bj',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var bfjacct = Ext.data.StoreManager
+									.lookup('component.BfjAcct');
+							var index = bfjacct.findExact('id', value);
+							return bfjacct.getAt(index).data.name;
+						},
+						flex : 2
+					}, {
+						text : "银行接口编号",
+						itemId : 'bi',
+						dataIndex : 'bi',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var bi = Ext.data.StoreManager
+									.lookup('component.Bi');
+							var index = bi.findExact('id', value);
+							return bi.getAt(index).data.name;
+						},
+						flex : 1
+					}, {
+						text : "交易金额",
+						dataIndex : 'tx_amt',
+						width : 100,
+						sortable : false,
+						flex : 1,
+						renderer : function(value) {
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
+						}
 					}, {
 						text : "撤销状态",
 						dataIndex : 'flag',
 						sortable : false,
-						flex : 2,
+						flex : 1,
 						renderer : function(value) {
 							var text = ['未撤销', '已撤销', '撤销申请中'];
 							return text[value];

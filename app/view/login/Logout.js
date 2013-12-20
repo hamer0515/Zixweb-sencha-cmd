@@ -4,7 +4,7 @@ Ext.define('Zixweb.view.login.Logout', {
 	autoShow : true,
 
 	initComponent : function() {
-		var panel = this;
+		var me = this;
 		Ext.Msg.show({
 			floating : true,
 			title : '警告',
@@ -31,7 +31,7 @@ Ext.define('Zixweb.view.login.Logout', {
 											});
 									return;
 								}
-								var viewport = panel.up('viewport');
+								var viewport = me.up('viewport');
 								viewport.removeAll();
 								viewport.add({
 											xtype : 'loginform'
@@ -53,6 +53,6 @@ Ext.define('Zixweb.view.login.Logout', {
 			},
 			icon : Ext.window.MessageBox.WARNING
 		});
-		this.callParent(arguments);
+		me.callParent(arguments);
 	}
 });

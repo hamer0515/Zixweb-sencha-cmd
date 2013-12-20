@@ -3,18 +3,19 @@ Ext.define('Zixweb.controller.Login', {
 			views : ['login.LoginForm', 'login.PasswordReset', 'login.Logout'],
 
 			init : function() {
-				this.control({
+				var me = this;
+				me.control({
 							'loginform button[action=submit]' : {
-								click : this.submit
+								click : me.submit
 							},
 							'loginform button[action=reset]' : {
-								click : this.reset
+								click : me.reset
 							},
 							'passwordreset button[action=passwordreset]' : {
-								click : this.passwordreset
+								click : me.passwordreset
 							},
 							'passwordreset button[action=reset]' : {
-								click : this.reset
+								click : me.reset
 							}
 						});
 			},
@@ -24,7 +25,7 @@ Ext.define('Zixweb.controller.Login', {
 				if (form.isValid()) {
 					form.submit({
 								clientValidation : true,
-								url : panel.url,
+								url : '/login/login',
 								success : function(form, action) {
 									var response = action.result.success;
 									if (response) {
