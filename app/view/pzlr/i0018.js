@@ -25,7 +25,7 @@ Ext.define('Zixweb.view.pzlr.i0018', {
 								allowBlank : false
 							}, {
 								xtype : 'datefield',
-								fieldLabel : '入帐期间',
+								fieldLabel : '入帐日期',
 								format : 'Y-m-d',
 								name : 'zjbd_date_in',
 								width : 516,

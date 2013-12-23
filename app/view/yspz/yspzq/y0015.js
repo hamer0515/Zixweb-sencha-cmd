@@ -13,7 +13,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 
 		var store = new Ext.data.Store({
 					fields : ['id', 'flag', 'period', 'bfj_acct_in',
-							'bfj_acct_out'],
+							'bfj_acct_out', 'zjhb_amt'],
 
 					pageSize : 50,
 					remoteSort : true,
@@ -164,116 +164,142 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 								xtype : 'pagingtoolbar',
 								store : store
 							}],
+					features : [{
+								ftype : 'summary',
+								dock : 'bottom'
+							}],
 					columns : [{
-								text : "ID",
-								itemId : 'id',
-								dataIndex : 'id',
-								sortable : false,
-								flex : 1
-							}, {
-								text : "入款备付金银行账号",
-								itemId : 'bfj_acct_in',
-								dataIndex : 'bfj_acct_in',
-								sortable : false,
-								renderer : function(value, p, record) {
-									var bfjacctin = Ext.data.StoreManager
-											.lookup('component.BfjAcct');
-									var index = bfjacctin
-											.findExact('id', value);
-									return bfjacctin.getAt(index).data.name;
-								},
-								flex : 2
-							}, {
-								text : "出款备付金银行账号",
-								itemId : 'bfj_acct_out',
-								dataIndex : 'bfj_acct_out',
-								sortable : false,
-								renderer : function(value, p, record) {
-									var bfjacctout = Ext.data.StoreManager
-											.lookup('component.BfjAcct');
-									var index = bfjacctout.findExact('id',
-											value);
-									return bfjacctout.getAt(index).data.name;
-								},
-								flex : 2
-							}, {
-								text : "期间日期",
-								dataIndex : 'period',
-								itemId : 'period',
-								sortable : false,
-								flex : 2,
-								renderer : Ext.util.Format
-										.dateRenderer('Y年m月d日')
-							}, {
-								text : "撤销状态",
-								dataIndex : 'flag',
-								sortable : false,
-								flex : 2,
-								renderer : function(value) {
-									var text = ['未撤销', '已撤销', '撤销申请中'];
-									return text[value];
+						text : "ID",
+						itemId : 'id',
+						dataIndex : 'id',
+						sortable : false,
+						width : 80,
+						summaryRenderer : function(value, summaryData,
+								dataIndex) {
+							return '合计：';
+						}
+					}, {
+						text : "入款备付金银行账号",
+						itemId : 'bfj_acct_in',
+						dataIndex : 'bfj_acct_in',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var bfjacctin = Ext.data.StoreManager
+									.lookup('component.BfjAcct');
+							var index = bfjacctin.findExact('id', value);
+							return bfjacctin.getAt(index).data.name;
+						},
+						flex : 1
+					}, {
+						text : "出款备付金银行账号",
+						itemId : 'bfj_acct_out',
+						dataIndex : 'bfj_acct_out',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var bfjacctout = Ext.data.StoreManager
+									.lookup('component.BfjAcct');
+							var index = bfjacctout.findExact('id', value);
+							return bfjacctout.getAt(index).data.name;
+						},
+						flex : 1
+					}, {
+						text : "资金划拨金额",
+						itemId : 'zjhb_amt',
+						dataIndex : 'zjhb_amt',
+						sortable : false,
+						renderer : function(value) {
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
+						},
+						flex : 1,
+						summaryType : function(records) {
+							var i = 0, length = records.length, total = 0, record;
+							for (; i < length; ++i) {
+								record = records[i];
+								total += parseInt(record.data.zjhb_amt);
+							}
+							return total;
+						},
+						summaryRenderer : function(value) {
+							if (!value) {
+								value = 0;
+							}
+							return Ext.util.Format.number(
+									parseInt(value) / 100, '0,0.00');
+						}
+					}, {
+						text : "期间日期",
+						dataIndex : 'period',
+						itemId : 'period',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "撤销状态",
+						dataIndex : 'flag',
+						sortable : false,
+						flex : 1,
+						renderer : function(value) {
+							var text = ['未撤销', '已撤销', '撤销申请中'];
+							return text[value];
+						}
+					}, {
+						xtype : 'actioncolumn',
+						text : '操作',
+						width : 100,
+						align : 'center',
+						items : [{
+							tooltip : '详细',
+							getClass : function(v, meta, rec) {
+								return 'detail';
+							},
+							handler : function(grid, rowIndex, colIndex) {
+								var rec = grid.getStore().getAt(rowIndex);
+								var viewport = grid.up('viewport'), center = viewport
+										.down('center'), id = 'yspzq_detail_0015'
+										+ rec.data.id, cmp = Ext.getCmp(id);
+								var yspzqdetail = Ext
+										.createByAlias('widget.yspzqdetail');
+								yspzqdetail.store.load({
+											params : {
+												ys_type : '0015',
+												ys_id : rec.data.id
+											}
+										});
+								if (cmp) {
+									center.setActiveTab(cmp);
+								} else {
+									center.add({
+										closable : true,
+										xtype : 'panel',
+										items : yspzqdetail,
+										id : 'yspzq_detail_0015' + rec.data.id,
+										title : '凭证0015' + '编号' + rec.data.id
+												+ '详细信息'
+									}).show();
 								}
-							}, {
-								xtype : 'actioncolumn',
-								text : '操作',
-								width : 100,
-								align : 'center',
-								items : [{
-									tooltip : '详细',
-									getClass : function(v, meta, rec) {
-										return 'detail';
-									},
-									handler : function(grid, rowIndex, colIndex) {
-										var rec = grid.getStore()
-												.getAt(rowIndex);
-										var viewport = grid.up('viewport'), center = viewport
-												.down('center'), id = 'yspzq_detail_0015'
-												+ rec.data.id, cmp = Ext
-												.getCmp(id);
-										var yspzqdetail = Ext
-												.createByAlias('widget.yspzqdetail');
-										yspzqdetail.store.load({
-													params : {
-														ys_type : '0015',
-														ys_id : rec.data.id
-													}
-												});
-										if (cmp) {
-											center.setActiveTab(cmp);
-										} else {
-											center.add({
-												closable : true,
-												xtype : 'panel',
-												items : yspzqdetail,
-												id : 'yspzq_detail_0015'
-														+ rec.data.id,
-												title : '凭证0015' + '编号'
-														+ rec.data.id + '详细信息'
-											}).show();
-										}
-										viewport.doLayout();
-									}
-								}, {
-									tooltip : '撤销',
-									getClass : function(v, meta, rec) {
-										if (rec.data.flag == 0) {
-											return 'revoke';
-										}
-										return 'none';
-									},
-									handler : function(grid, rowIndex, colIndex) {
-										var rec = grid.getStore()
-												.getAt(rowIndex);
-										Ext.widget('yspzrevoke_cause', {
-													modal : true,
-													resizable : false,
-													ys_type : '0015',
-													ys_id : rec.data.id,
-													period : rec.data.period
-												})
-									}
-								}]
-							}]
+								viewport.doLayout();
+							}
+						}, {
+							tooltip : '撤销',
+							getClass : function(v, meta, rec) {
+								if (rec.data.flag == 0) {
+									return 'revoke';
+								}
+								return 'none';
+							},
+							handler : function(grid, rowIndex, colIndex) {
+								var rec = grid.getStore().getAt(rowIndex);
+								Ext.widget('yspzrevoke_cause', {
+											modal : true,
+											resizable : false,
+											ys_type : '0015',
+											ys_id : rec.data.id,
+											period : rec.data.period
+										})
+							}
+						}]
+					}]
 				}];
 		this.callParent(arguments);
 	}

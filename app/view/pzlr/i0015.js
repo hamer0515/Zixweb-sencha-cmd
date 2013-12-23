@@ -13,8 +13,8 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 	bodyPadding : 10,
 
 	initComponent : function() {
-		var form = this;
-		this.items = [{
+		var me = this;
+		me.items = [{
 					xtype : 'fieldcontainer',
 					layout : 'hbox',
 					items : [{
@@ -25,10 +25,11 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 								allowBlank : false
 							}, {
 								xtype : 'datefield',
-								fieldLabel : '出帐期间',
+								fieldLabel : '出帐日期',
 								format : 'Y-m-d',
 								name : 'zjbd_date_out',
 								width : 516,
+								value : new Date(),
 								allowBlank : false
 							}]
 
@@ -43,10 +44,11 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 								allowBlank : false
 							}, {
 								xtype : 'datefield',
-								fieldLabel : '入帐期间',
+								fieldLabel : '入帐日期',
 								format : 'Y-m-d',
 								name : 'zjbd_date_in',
 								width : 516,
+								value : new Date(),
 								allowBlank : false
 							}]
 
@@ -63,6 +65,7 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 							}, {
 								xtype : 'money',
 								name : 'bfj_bfee',
+								value : '0.00',
 								width : 516,
 								fieldLabel : '银行手续费金额',
 								allowBlank : false
@@ -81,13 +84,13 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 						margin : '0 20 0 0',
 						text : '提交',
 						handler : function(button) {
-							if (form.getForm().isValid()) {
+							var form = me.getForm();
+							if (form.isValid()) {
 								Ext.MessageBox.confirm('提示', '确定没有错误，要提交吗?',
 										function(optional) {
 											if (optional === 'yes') {
-												var value = form.getForm()
-														.getValues();
-												form.getForm().submit({
+												var value = form.getValues();
+												form.submit({
 													clientValidation : true,
 													url : '/pzlr/i0015',
 													success : function(f,
@@ -113,7 +116,6 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 																		icon : Ext.Msg.INFO,
 																		fn : function() {
 																			form
-																					.getForm()
 																					.reset();
 																		}
 																	});
@@ -127,7 +129,7 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 																	});
 														}
 													},
-													failure : function(form,
+													failure : function(f,
 															action) {
 														switch (action.failureType) {
 															case Ext.form.action.Action.CLIENT_INVALID :
@@ -171,12 +173,11 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 						margin : '0 10 0 0',
 						text : '重置',
 						handler : function(button) {
-							button.up('panel').getForm().reset();
+							me.getForm().reset();
 						}
 					}]
 
 				}];
-
-		this.callParent(arguments);
+		me.callParent(arguments);
 	}
 });
