@@ -1,8 +1,7 @@
-Ext.define('Zixweb.view.book.hist.deposit_bfj', {
+Ext.define('Zixweb.view.book.hist.bsc_jf', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.book_hist_deposit_bfj',
-	prefix : 'book_hist_deposit_bfj',
-
+	alias : 'widget.book_hist_bsc_jf',
+	prefix : 'book_hist_bsc_jf',
 	defaults : {
 		border : false
 	},
@@ -10,64 +9,66 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 	initComponent : function() {
 		var panel = this;
 		var store = new Ext.data.Store({
-			fields : ['id', 'bfj_acct', 'period', 'j', 'd', 'ys_id', 'ys_type'],
+					fields : ['id', 'bfj_acct', 'zjbd_type', 'e_date',
+							'period', 'j', 'd', 'ys_id', 'ys_type'],
 
-			pageSize : 50,
-			remoteSort : true,
+					pageSize : 50,
+					remoteSort : true,
 
-			proxy : {
-				type : 'ajax',
-				api : {
-					read : 'book/hist/deposit_bfj'
-				},
-				reader : {
-					type : 'json',
-					root : 'data',
-					totalProperty : 'totalCount',
-					successProperty : 'success'
-				}
-			},
-			listeners : {
-				beforeload : function(store, operation, eOpts) {
-					var form = Ext.getCmp(panel.prefix + '_form').getForm();
-					if (form.isValid()) {
-						store.proxy.extraParams = form.getValues();
-					} else {
-						return false;
+					proxy : {
+						type : 'ajax',
+						api : {
+							read : 'book/hist/bsc_jf'
+						},
+						reader : {
+							type : 'json',
+							root : 'data',
+							totalProperty : 'totalCount',
+							successProperty : 'success'
+						}
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							var form = Ext.getCmp(panel.prefix + '_form')
+									.getForm();
+							if (form.isValid()) {
+								store.proxy.extraParams = form.getValues();
+							} else {
+								return false;
+							}
+						},
+						load : function(me, records, successful, eOpts) {
+							if (!successful) {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '备付金银行短款科目历史数据加载失败,请联系管理员',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							var jsonData = me.proxy.reader.jsonData.success;
+							if (jsonData && jsonData === 'forbidden') {
+								Ext.MessageBox.show({
+											title : '警告',
+											msg : '抱歉，没有备付金银行短款科目历史数据访问权限',
+											buttons : Ext.Msg.YES,
+											icon : Ext.Msg.ERROR
+										});
+								return;
+							}
+							panel.values = Ext.getCmp(panel.prefix + '_form')
+									.getForm().getValues();
+							if (records.length > 0) {
+								Ext.getCmp(panel.prefix + '_exporterbutton')
+										.setDisabled(false);
+							} else {
+								Ext.getCmp(panel.prefix + '_exporterbutton')
+										.setDisabled(true);
+							}
+						}
 					}
-				},
-				load : function(me, records, successful, eOpts) {
-					if (!successful) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '备付金存款科目历史数据加载失败,请联系管理员',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					var jsonData = me.proxy.reader.jsonData.success;
-					if (jsonData && jsonData === 'forbidden') {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '抱歉，没有备付金存款科目历史数据访问权限',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					panel.values = Ext.getCmp(panel.prefix + '_form').getForm()
-							.getValues();
-					if (records.length > 0) {
-						Ext.getCmp(panel.prefix + '_exporterbutton')
-								.setDisabled(false);
-					} else {
-						Ext.getCmp(panel.prefix + '_exporterbutton')
-								.setDisabled(true);
-					}
-				}
-			}
-		});
+				});
 		var grid = new Ext.grid.Panel({
 			id : panel.prefix + '_grid',
 			store : store,
@@ -93,6 +94,25 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 							return bfjacct.getAt(index).data.name;
 						},
 						flex : 2
+					}, {
+						text : "资金变动类型",
+						itemId : 'zjbd_type',
+						dataIndex : 'zjbd_type',
+						sortable : false,
+						renderer : function(value, p, record) {
+							var zjbdtype = Ext.data.StoreManager
+									.lookup('component.ZjbdType');
+							var index = zjbdtype.findExact('id', value);
+							return zjbdtype.getAt(index).data.name;
+						},
+						flex : 2
+					}, {
+						text : "差错日期",
+						dataIndex : 'e_date',
+						itemId : 'e_date',
+						sortable : false,
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "期间日期",
 						dataIndex : 'period',
@@ -152,8 +172,8 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 										items : yspzqdetail,
 										id : 'yspzq_detail_' + rec.data.ys_type
 												+ rec.data.ys_id,
-										title : '凭证' + rec.data.ys_type + '编号'
-												+ rec.data.ys_id + '详细信息'
+										title : '凭证' + rec.data.ys_type
+												+ '详细信息-' + rec.data.ys_id
 									}).show();
 								}
 								viewport.doLayout();
@@ -180,18 +200,16 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 											format : 'Y-m-d',
 											name : 'period_from',
 											margin : '0 10 0 0',
-											allowBlank : false,
 											verify : {
-												id : panel.prefix + '_to'
+												id : panel.prefix + '_to_3'
 											},
 											vtype : 'dateinterval',
 											width : 180
 										}, {
 											xtype : 'datefield',
-											id : panel.prefix + '_to',
+											id : panel.prefix + '_to_3',
 											format : 'Y-m-d',
 											name : 'period_to',
-											allowBlank : false,
 											width : 180
 										}]
 							}, {
@@ -209,9 +227,34 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 											fieldLabel : '原始凭证ID',
 											width : 516,
 											name : 'ys_id',
+											margin : '0 10 0 0',
 											vtype : 'id'
 										}]
-
+							}, {
+								xtype : 'fieldcontainer',
+								layout : 'hbox',
+								items : [{
+											xtype : 'fieldcontainer',
+											fieldLabel : '差错日期',
+											layout : 'hbox',
+											items : [{
+														xtype : 'datefield',
+														format : 'Y-m-d',
+														name : 'e_date_from',
+														margin : '0 10 0 0',
+														width : 180
+													}, {
+														xtype : 'datefield',
+														format : 'Y-m-d',
+														name : 'e_date_to',
+														margin : '0 10 0 0',
+														width : 180
+													}, {
+														xtype : 'ystype',
+														name : 'ys_type',
+														fieldLabel : '原始凭证类型'
+													}]
+										}]
 							}, {
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -221,9 +264,9 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 											margin : '0 10 0 0',
 											fieldLabel : '备付金账号'
 										}, {
-											xtype : 'ystype',
-											name : 'ys_type',
-											fieldLabel : '原始凭证类型'
+											xtype : 'zjbdtype',
+											name : 'zjbd_type',
+											fieldLabel : '资金变动类型'
 										}]
 
 							}, {
@@ -295,7 +338,7 @@ Ext.define('Zixweb.view.book.hist.deposit_bfj', {
 												bid : panel.bid,
 												modal : true,
 												params : panel.values,
-												url : 'book/hist/deposit_bfj_excel',
+												url : 'book/hist/bsc_jf_excel',
 												resizable : false
 											});
 								}

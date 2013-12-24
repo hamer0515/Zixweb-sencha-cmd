@@ -77,6 +77,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.GroupTabPanel": [],
   "Ext.ux.statusbar.ValidationStatus": [],
   "Ext.ux.layout.Center": [],
+  "Zixweb.view.book.detail.bsc_jf": [],
   "Zixweb.view.yspz.yspzq.y0145": [],
   "Zixweb.view.yspz.yspzq.y0143": [],
   "Zixweb.view.yspz.yspzq.y0144": [],
@@ -472,6 +473,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0090": [],
   "Zixweb.view.book.hist.cost_bfee_zg": [],
   "Zixweb.view.yspz.yspzq.y0094": [],
+  "Zixweb.view.book.hist.bsc_jf": [],
   "Zixweb.view.yspz.yspzq.y0093": [],
   "Zixweb.view.yspz.yspzq.y0092": [],
   "Ext.ux.RowExpander": [],
@@ -634,6 +636,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.statusbar.ValidationStatus": [],
   "Ext.ux.layout.Center": [
     "layout.ux.center"
+  ],
+  "Zixweb.view.book.detail.bsc_jf": [
+    "widget.book_detail_bsc_jf"
   ],
   "Zixweb.view.yspz.yspzq.y0145": [
     "widget.y0145"
@@ -1665,6 +1670,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Zixweb.view.yspz.yspzq.y0094": [
     "widget.y0094"
+  ],
+  "Zixweb.view.book.hist.bsc_jf": [
+    "widget.book_hist_bsc_jf"
   ],
   "Zixweb.view.yspz.yspzq.y0093": [
     "widget.y0093"
