@@ -52,7 +52,7 @@ Ext.define('Zixweb.view.book.detail.bfj_cust', {
 														'name' : "客户编号"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}]
 										}, {
 											xtype : 'button',

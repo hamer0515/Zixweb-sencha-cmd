@@ -77,7 +77,7 @@ Ext.define('Zixweb.view.book.detail.bamt_yhyf', {
 												'name' : "自有资金银行账号"
 											}, {
 												'value' : "period",
-												'name' : "期间日期"
+												'name' : "会计期间"
 											}, {
 												'value' : "zjbd_date",
 												'name' : "资金变动日期"

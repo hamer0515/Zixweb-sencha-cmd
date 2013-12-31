@@ -2,7 +2,6 @@ Ext.define('Zixweb.view.component.MyStore', {
 			extend : 'Ext.data.Store',
 			alias : 'widget.mystore',
 			pageSize : 50,
-			remoteSort : true,
 
 			listeners : {
 				load : function(me, records, successful, eOpts) {
@@ -36,7 +35,7 @@ Ext.define('Zixweb.view.component.MyStore', {
 				},
 				beforeload : function(me, operation, eOpts) {
 					var form = me._form, columns = me._columns, grid = me._grid;
-					if (form) {
+					if (form && form.down('hsx')) {
 						var values = form.getForm().getValues();
 						var cols = [];
 						var hsxes = [];

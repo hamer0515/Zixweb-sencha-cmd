@@ -171,8 +171,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0037": [],
   "Zixweb.view.yspz.yspzq.y0109": [],
   "Zixweb.view.yspz.yspzq.y0039": [],
-  "overrides.Component": [],
   "Zixweb.view.yspz.yspzq.y0104": [],
+  "overrides.Component": [],
   "Zixweb.view.yspz.yspzq.y0103": [],
   "Zixweb.view.yspz.yspzq.y0106": [],
   "Zixweb.view.yspz.yspzq.y0105": [],
@@ -357,6 +357,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.task.TaskF0000detail": [],
   "Ext.ux.GMapPanel": [],
   "Zixweb.view.fhydbook.hist.deposit_fhyd": [],
+  "Zixweb.view.component.Period": [],
   "Zixweb.view.zjdz.bfj": [],
   "Zixweb.view.book.detail.wlzj_ysbf": [],
   "overrides.panel.Panel": [],
@@ -884,10 +885,10 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0039": [
     "widget.y0039"
   ],
-  "overrides.Component": [],
   "Zixweb.view.yspz.yspzq.y0104": [
     "widget.y0104"
   ],
+  "overrides.Component": [],
   "Zixweb.view.yspz.yspzq.y0103": [
     "widget.y0103"
   ],
@@ -1384,6 +1385,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.fhydbook.hist.deposit_fhyd": [
     "widget.book_hist_deposit_fhyd"
   ],
+  "Zixweb.view.component.Period": [
+    "widget.period"
+  ],
   "Zixweb.view.zjdz.bfj": [
     "widget.zjdzbfj"
   ],
@@ -1475,9 +1479,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.book.hist.fee_jrjg": [
     "widget.book_hist_fee_jrjg"
   ],
-  "Zixweb.view.book.hist.wlzj_yfzy": [
-    "widget.book_hist_wlzj_yfzy"
-  ],
+  "Zixweb.view.book.hist.wlzj_yfzy": [],
   "Zixweb.store.component.Status": [],
   "Zixweb.store.component.Acct": [],
   "Zixweb.view.user.Add": [

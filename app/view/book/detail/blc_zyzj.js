@@ -73,7 +73,7 @@ Ext.define('Zixweb.view.book.detail.blc_zyzj', {
 														'name' : "差错日期"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}]
 										}, {
 											xtype : 'button',

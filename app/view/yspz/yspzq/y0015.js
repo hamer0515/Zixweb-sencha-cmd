@@ -16,7 +16,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 							'bfj_acct_out', 'zjhb_amt'],
 
 					pageSize : 50,
-					remoteSort : true,
+					remoteSort : false,
 
 					proxy : {
 						type : 'ajax',
@@ -172,7 +172,6 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 						text : "ID",
 						itemId : 'id',
 						dataIndex : 'id',
-						sortable : false,
 						width : 80,
 						summaryRenderer : function(value, summaryData,
 								dataIndex) {
@@ -182,7 +181,6 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 						text : "入款备付金银行账号",
 						itemId : 'bfj_acct_in',
 						dataIndex : 'bfj_acct_in',
-						sortable : false,
 						renderer : function(value, p, record) {
 							var bfjacctin = Ext.data.StoreManager
 									.lookup('component.BfjAcct');
@@ -194,7 +192,6 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 						text : "出款备付金银行账号",
 						itemId : 'bfj_acct_out',
 						dataIndex : 'bfj_acct_out',
-						sortable : false,
 						renderer : function(value, p, record) {
 							var bfjacctout = Ext.data.StoreManager
 									.lookup('component.BfjAcct');
@@ -206,7 +203,6 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 						text : "资金划拨金额",
 						itemId : 'zjhb_amt',
 						dataIndex : 'zjhb_amt',
-						sortable : false,
 						renderer : function(value) {
 							return Ext.util.Format.number(
 									parseInt(value) / 100, '0,0.00');
@@ -228,16 +224,14 @@ Ext.define('Zixweb.view.yspz.yspzq.y0015', {
 									parseInt(value) / 100, '0,0.00');
 						}
 					}, {
-						text : "期间日期",
+						text : "会计期间",
 						dataIndex : 'period',
 						itemId : 'period',
-						sortable : false,
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
 						text : "撤销状态",
 						dataIndex : 'flag',
-						sortable : false,
 						flex : 1,
 						renderer : function(value) {
 							var text = ['未撤销', '已撤销', '撤销申请中'];

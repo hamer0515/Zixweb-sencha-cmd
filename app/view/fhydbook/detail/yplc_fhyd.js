@@ -23,7 +23,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 				flex : 2
 			},
 			period : {
-				text : "期间日期",
+				text : "会计期间",
 				dataIndex : 'period',
 				itemId : 'period',
 				sortable : false,
@@ -185,7 +185,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期',
+						fieldLabel : '会计期间',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',
@@ -232,7 +232,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yplc_fhyd', {
 									'name' : "易宝中间账户号"
 								}, {
 									'value' : "period",
-									'name' : "期间日期"
+									'name' : "会计期间"
 								}, {
 									'value' : "fe_date",
 									'name' : "差错日期"

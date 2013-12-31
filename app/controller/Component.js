@@ -20,6 +20,6 @@ Ext.define('Zixweb.controller.Component', {
 					'component.plugins.PageComboResizer', 'component.Money',
 					'component.Fields', 'component.AcctStatus',
 					'component.ExportBtn', 'component.MyStore',
-					'component.QueryForm']
+					'component.QueryForm', 'component.Period']
 
 		});

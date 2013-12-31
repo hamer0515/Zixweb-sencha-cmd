@@ -23,7 +23,7 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 				flex : 2
 			},
 			period : {
-				text : "期间日期",
+				text : "会计期间",
 				dataIndex : 'period',
 				itemId : 'period',
 				sortable : false,
@@ -156,7 +156,7 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期',
+						fieldLabel : '会计期间',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',
@@ -182,7 +182,7 @@ Ext.define('Zixweb.view.fhydbook.detail.deposit_fhyd', {
 									'name' : "富汇易达帐号"
 								}, {
 									'value' : "period",
-									'name' : "期间日期"
+									'name' : "会计期间"
 								}]
 					}, {
 						xtype : 'button',

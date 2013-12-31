@@ -44,7 +44,7 @@ Ext.define('Zixweb.view.fhydbook.detail.tctxamt_dqr_oyf_fhyd', {
 				flex : 1
 			},
 			period : {
-				text : "期间日期",
+				text : "会计期间",
 				dataIndex : 'period',
 				itemId : 'period',
 				sortable : false,
@@ -198,7 +198,7 @@ Ext.define('Zixweb.view.fhydbook.detail.tctxamt_dqr_oyf_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期',
+						fieldLabel : '会计期间',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',
@@ -274,7 +274,7 @@ Ext.define('Zixweb.view.fhydbook.detail.tctxamt_dqr_oyf_fhyd', {
 									'name' : "交易日期"
 								}, {
 									'value' : "period",
-									'name' : "期间日期"
+									'name' : "会计期间"
 								}]
 					}, {
 						xtype : 'button',

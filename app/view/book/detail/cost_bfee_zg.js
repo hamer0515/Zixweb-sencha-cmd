@@ -102,7 +102,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 														'name' : "周期确认规则"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}, {
 														'value' : "tx_date",
 														'name' : "交易日期"

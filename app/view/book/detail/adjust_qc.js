@@ -41,7 +41,7 @@ Ext.define('Zixweb.view.book.detail.adjust_qc', {
 														xtype : 'hsx',
 														data : [{
 																	'value' : "period",
-																	'name' : "期间日期"
+																	'name' : "会计期间"
 																}]
 													}]
 										}, {

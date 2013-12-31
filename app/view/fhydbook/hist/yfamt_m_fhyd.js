@@ -96,7 +96,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_m_fhyd', {
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
-						text : "期间日期",
+						text : "会计期间",
 						dataIndex : 'period',
 						itemId : 'period',
 						sortable : false,
@@ -176,7 +176,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_m_fhyd', {
 					},
 					items : [{
 								xtype : 'fieldcontainer',
-								fieldLabel : '期间日期',
+								fieldLabel : '会计期间',
 								layout : 'hbox',
 								items : [{
 											xtype : 'datefield',

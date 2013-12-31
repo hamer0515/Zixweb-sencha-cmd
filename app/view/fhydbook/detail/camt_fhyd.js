@@ -38,7 +38,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 				renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 			},
 			period : {
-				text : "期间日期",
+				text : "会计期间",
 				dataIndex : 'period',
 				itemId : 'period',
 				sortable : false,
@@ -177,7 +177,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期',
+						fieldLabel : '会计期间',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',
@@ -233,7 +233,7 @@ Ext.define('Zixweb.view.fhydbook.detail.camt_fhyd', {
 									'name' : "交易日期"
 								}, {
 									'value' : "period",
-									'name' : "期间日期"
+									'name' : "会计期间"
 								}]
 					}, {
 						xtype : 'button',

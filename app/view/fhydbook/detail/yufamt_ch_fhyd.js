@@ -30,7 +30,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 				flex : 1
 			},
 			period : {
-				text : "期间日期",
+				text : "会计期间",
 				dataIndex : 'period',
 				itemId : 'period',
 				sortable : false,
@@ -166,7 +166,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期',
+						fieldLabel : '会计期间',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',
@@ -206,7 +206,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yufamt_ch_fhyd', {
 									'name' : "客户编号"
 								}, {
 									'value' : "period",
-									'name' : "期间日期"
+									'name' : "会计期间"
 								}]
 					}, {
 						xtype : 'button',

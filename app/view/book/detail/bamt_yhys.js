@@ -82,7 +82,7 @@ Ext.define('Zixweb.view.book.detail.bamt_yhys', {
 												'name' : "资金变动日期"
 											}, {
 												'value' : "period",
-												'name' : "期间日期"
+												'name' : "会计期间"
 											}]
 								}, {
 									xtype : 'button',

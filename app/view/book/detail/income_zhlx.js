@@ -51,7 +51,7 @@ Ext.define('Zixweb.view.book.detail.income_zhlx', {
 														'name' : "银行账户号及开户行"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}]
 										}, {
 											xtype : 'button',

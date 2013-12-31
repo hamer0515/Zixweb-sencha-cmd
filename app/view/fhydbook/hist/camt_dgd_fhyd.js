@@ -109,7 +109,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_dgd_fhyd', {
 						flex : 1,
 						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 					}, {
-						text : "期间日期",
+						text : "会计期间",
 						dataIndex : 'period',
 						itemId : 'period',
 						sortable : false,

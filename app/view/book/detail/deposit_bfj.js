@@ -51,7 +51,7 @@ Ext.define('Zixweb.view.book.detail.deposit_bfj', {
 														'name' : "备付金帐号"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}]
 										}, {
 											xtype : 'button',

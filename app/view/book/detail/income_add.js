@@ -53,7 +53,7 @@ Ext.define('Zixweb.view.book.detail.income_add', {
 														'name' : "产品类型"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}]
 										}, {
 											xtype : 'button',

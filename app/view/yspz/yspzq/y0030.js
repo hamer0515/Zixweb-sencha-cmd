@@ -239,7 +239,7 @@ Ext.define('Zixweb.view.yspz.yspzq.y0030', {
 											parseInt(value) / 100, '0,0.00');
 								}
 							}, {
-								text : "期间日期",
+								text : "会计期间",
 								dataIndex : 'period',
 								itemId : 'period',
 								sortable : false,

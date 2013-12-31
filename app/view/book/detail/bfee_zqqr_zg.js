@@ -106,7 +106,7 @@ Ext.define('Zixweb.view.book.detail.bfee_zqqr_zg', {
 														'name' : "交易日期"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}]
 										}, {
 											xtype : 'button',

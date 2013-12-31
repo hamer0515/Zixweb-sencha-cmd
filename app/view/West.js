@@ -5,7 +5,6 @@ Ext.define('Zixweb.view.West', {
 			autoShow : true,
 			disableSelection : true,
 			rootVisible : false,
-			// split : true,
 			cls : 'x-unselectable',
 			viewConfig : {
 				loadMask : true
@@ -23,8 +22,7 @@ Ext.define('Zixweb.view.West', {
 								url : 'login/menu'
 							},
 							listeners : {
-								load : function(me, records, successful,
-										eOpts) {
+								load : function(me, records, successful, eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
 													title : '警告',

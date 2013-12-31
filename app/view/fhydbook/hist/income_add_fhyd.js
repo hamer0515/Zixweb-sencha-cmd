@@ -107,7 +107,7 @@ Ext.define('Zixweb.view.fhydbook.hist.income_add_fhyd', {
 							return fhwtype.getAt(index).data.name;
 						}
 					}, {
-						text : "期间日期",
+						text : "会计期间",
 						dataIndex : 'period',
 						itemId : 'period',
 						sortable : false,
@@ -186,7 +186,7 @@ Ext.define('Zixweb.view.fhydbook.hist.income_add_fhyd', {
 			},
 			items : [{
 						xtype : 'fieldcontainer',
-						fieldLabel : '期间日期',
+						fieldLabel : '会计期间',
 						layout : 'hbox',
 						items : [{
 									xtype : 'datefield',

@@ -52,7 +52,7 @@ Ext.define('Zixweb.view.book.detail.wlzj_ysbf', {
 														'name' : "往来类型"
 													}, {
 														'value' : "period",
-														'name' : "期间日期"
+														'name' : "会计期间"
 													}]
 										}, {
 											xtype : 'button',
