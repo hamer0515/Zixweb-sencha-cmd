@@ -26,7 +26,6 @@ Ext.define('Zixweb.view.Center', {
 						html : '财务中心-帐务处理系统',
 						closable : false
 					}],
-			autoShow : true,
 			// listeners : {
 			// tabchange : function(tabPanel, newCard, oldCard, eOpts) {
 			// if (/^(center_task)/.test(newCard.id)) {

@@ -5,21 +5,24 @@ Ext.define('Zixweb.view.component.ZjbdType', {
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {
-				blur : function(self, The, eOpts) {
-					var value = self.getValue();
-					var result = self.getStore().queryBy(function(record) {
+				blur : function(me, The, eOpts) {
+					var value = me.getValue();
+					var result = me.getStore().queryBy(function(record) {
 								if (record.data.id == value) {
 									return true;
 								}
 								return false;
 							});
 					if (result.length == 0) {
-						self.setValue('');
+						me.setValue('');
 					}
 				}
 			},
+			valueField : 'id',
+			displayField : 'name',
 			initComponent : function() {
-				this.store = new Ext.data.Store({
+				var me = this;
+				me.store = new Ext.data.Store({
 							extend : 'Ext.data.Store',
 							fields : ['id', 'name'],
 							autoLoad : true,
@@ -29,12 +32,11 @@ Ext.define('Zixweb.view.component.ZjbdType', {
 								url : 'base/zjbdtype'
 							},
 							listeners : {
-								load : function(me, records, successful,
-										eOpts) {
+								load : function(me, records, successful, eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '资金变动类型字典数据加载失败,请联系管理员',
+													msg : '资金变动类型数据加载失败,请联系管理员',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
@@ -44,7 +46,7 @@ Ext.define('Zixweb.view.component.ZjbdType', {
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '抱歉，没有资金变动类型字典数据访问权限',
+													msg : '抱歉，没有资金变动类型数据访问权限',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
@@ -52,8 +54,6 @@ Ext.define('Zixweb.view.component.ZjbdType', {
 								}
 							}
 						});
-				this.valueField = 'id';
-				this.displayField = 'name';
-				this.callParent(arguments);
+				me.callParent(arguments);
 			}
 		});

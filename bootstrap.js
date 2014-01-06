@@ -1479,7 +1479,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.book.hist.fee_jrjg": [
     "widget.book_hist_fee_jrjg"
   ],
-  "Zixweb.view.book.hist.wlzj_yfzy": [],
+  "Zixweb.view.book.hist.wlzj_yfzy": [
+    "widget.book_hist_wlzj_yfzy"
+  ],
   "Zixweb.store.component.Status": [],
   "Zixweb.store.component.Acct": [],
   "Zixweb.view.user.Add": [

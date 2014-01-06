@@ -4,15 +4,18 @@ Ext.define('Zixweb.view.component.HSX', {
 	layout : 'vbox',
 	names : ['一', '二', '三', '四', '五', '六', '七'],
 	submitNames : ['fir', 'sec', 'thi', 'fou', 'fiv', 'six', 'sev'],
+	items : [],
 	initComponent : function() {
-		this.items = [];
-		var panel = this;
-		var data = this.data;
-		var sta = new Ext.data.Store({
+		var panel = this, items = panel.items, data = panel.data, sta = new Ext.data.Store(
+				{
 					fields : ['value', 'name'],
 					data : data
-				});
-		var container;
+				}), container;
+		// this.items = [];
+		// var panel = this;
+		// var data = this.data;
+		// var sta =
+		// var container;
 		for (var i in data) {
 			if (container == undefined) {
 				container = Ext
@@ -76,13 +79,13 @@ Ext.define('Zixweb.view.component.HSX', {
 			}
 			container.items.push(item);
 			if ((parseInt(i) + 1) % 2 == 0) {
-				this.items.push(container);
+				items.push(container);
 				container = undefined;
 			}
 		}
 		if (container != undefined) {
-			this.items.push(container);
+			items.push(container);
 		}
-		this.callParent(arguments);
+		panel.callParent(arguments);
 	}
 });

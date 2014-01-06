@@ -18,8 +18,11 @@ Ext.define('Zixweb.view.component.ZQQRStatus', {
 					}
 				}
 			},
+			valueField : 'id',
+			displayField : 'name',
 			initComponent : function() {
-				this.store = new Ext.data.Store({
+				var me = this;
+				me.store = new Ext.data.Store({
 							fields : ['id', 'name'],
 							data : [{
 										id : -1,
@@ -38,8 +41,6 @@ Ext.define('Zixweb.view.component.ZQQRStatus', {
 										name : '生成成功'
 									}]
 						});
-				this.valueField = 'id';
-				this.displayField = 'name';
-				this.callParent(arguments);
+				me.callParent(arguments);
 			}
 		});

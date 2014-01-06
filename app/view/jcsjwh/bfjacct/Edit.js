@@ -1,12 +1,11 @@
 Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.bfjacctedit',
-	// title : '备付金账户基础数据修改',
 	border : false,
 	initComponent : function() {
-		this.items = [{
+		var me = this, list = me._list;
+		me.items = [{
 			xtype : 'form',
-			id : 'bfjacctEditform',
 			border : false,
 			bodyPadding : 5,
 			fieldDefaults : {
@@ -72,12 +71,10 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 						xtype : 'button',
 						text : '修改',
 						margin : '0 20 0 900',
-						// menuAlign : 'tr-br',
 						handler : function() {
-							var panel = Ext.getCmp('bfjacctEditform');
-							var form = panel.getForm();
-							var param = form.getRecord();
+							var panel = me.down('form'), form = panel.getForm();
 							if (form.isValid()) {
+								var param = form.getRecord();
 								Ext.MessageBox.confirm('确认修改', '是否确认修改账户及信息？',
 										function(optional) {
 											if (optional === 'yes') {
@@ -101,8 +98,6 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 																		});
 																return;
 															}
-															var list = Ext
-																	.getCmp('bfjacct_list_grid');
 															if (list) {
 																list
 																		.getStore()
@@ -115,13 +110,10 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 																		closable : false,
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.INFO,
-																		scope : panel
-																				.up('window'),
+																		scope : me,
 																		fn : function() {
-																			this
-																					.close();
-																			Ext
-																					.getCmp('bfjacctedit')
+																			me
+																					.up('panel')
 																					.close();
 																		}
 																	});
@@ -177,14 +169,13 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Edit', {
 					}, {
 						xtype : 'button',
 						text : '取消',
-						scope : this,
+						scope : me,
 						handler : function() {
-							var panel = Ext.getCmp('bfjacctedit');
-							panel.close();
+							me.close();
 						}
 					}]
 		}];
 
-		this.callParent(arguments);
+		me.callParent(arguments);
 	}
 });

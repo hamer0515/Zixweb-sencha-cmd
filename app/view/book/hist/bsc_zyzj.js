@@ -151,7 +151,7 @@ Ext.define('Zixweb.view.book.hist.bsc_zyzj', {
 					store : store,
 					columns : [Ext.columns.id, Ext.columns.zyzj_acct,
 							Ext.columns.e_date, Ext.columns.period,
-							Ext.columns.j, Ext.columns.d,
+							Ext.columns.j, Ext.columns.d, Ext.columns.ys_type,
 							Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;

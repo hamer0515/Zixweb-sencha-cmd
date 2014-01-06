@@ -14,7 +14,7 @@ Ext.define('Zixweb.store.component.FhwType', {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '货物类型字典数据加载失败,请联系管理员',
+									msg : '货物类型数据加载失败,请联系管理员',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -24,7 +24,7 @@ Ext.define('Zixweb.store.component.FhwType', {
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '抱歉，没有货物类型字典数据访问权限',
+									msg : '抱歉，没有货物类型数据访问权限',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});

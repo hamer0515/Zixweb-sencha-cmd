@@ -7,13 +7,12 @@ Ext.define('Zixweb.view.component.Fields', {
 			autoShow : true,
 
 			initComponent : function() {
-				var win = this;
-				var items = [];
+				var me = this, items = [];
 				Ext.Ajax.request({
 							async : false,
 							url : 'base/table_headers',
 							params : {
-								id : win.bid,
+								id : me.bid,
 								type : 'book'
 							},
 							success : function(response, opts) {
@@ -29,7 +28,7 @@ Ext.define('Zixweb.view.component.Fields', {
 										});
 							}
 						});
-				this.items = [{
+				me.items = [{
 							xtype : 'form',
 							border : false,
 							bodyPadding : 5,
@@ -41,11 +40,11 @@ Ext.define('Zixweb.view.component.Fields', {
 									}]
 						}];
 
-				this.buttons = [{
+				me.buttons = [{
 					text : '确定',
 					action : 'submit',
 					handler : function() {
-						var header = win.down('form').getValues();
+						var header = me.down('form').getValues();
 						if (Object.keys(header).length == 0) {
 							Ext.MessageBox.show({
 										title : '警告',
@@ -55,18 +54,18 @@ Ext.define('Zixweb.view.component.Fields', {
 									});
 							return;
 						}
-						var params = win.params;
+						var params = me.params;
 						params.header = Ext.encode(header);
 						Ext.Ajax.request({
 									async : false,
-									url : win.url,
+									url : me.url,
 									params : params,
 									success : function(response, opts) {
 										var res = Ext
 												.decode(response.responseText);
 										Ext.downloadURL('base/excel?file='
 												+ res.file);
-										win.close();
+										me.close();
 									},
 									failure : function(response, opts) {
 										Ext.MessageBox.show({
@@ -81,10 +80,10 @@ Ext.define('Zixweb.view.component.Fields', {
 					}
 				}, {
 					text : '取消',
-					scope : this,
-					handler : this.close
+					scope : me,
+					handler : me.close
 				}];
 
-				this.callParent(arguments);
+				me.callParent(arguments);
 			}
 		});

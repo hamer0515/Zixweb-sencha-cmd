@@ -5,22 +5,24 @@ Ext.define('Zixweb.view.component.Books', {
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {
-				blur : function(self, The, eOpts) {
-					var value = self.getValue();
-					var result = self.getStore().queryBy(function(record) {
+				blur : function(me, The, eOpts) {
+					var value = me.getValue();
+					var result = me.getStore().queryBy(function(record) {
 								if (record.data.id == value) {
 									return true;
 								}
 								return false;
 							});
 					if (result.length == 0) {
-						self.setValue('');
+						me.setValue('');
 					}
 				}
 			},
+			valueField : 'id',
+			displayField : 'name',
 			initComponent : function() {
-				var combo = this;
-				this.store = new Ext.data.Store({
+				var me = this;
+				me.store = new Ext.data.Store({
 							fields : ['id', 'name', 'set'],
 							autoLoad : true,
 
@@ -31,15 +33,14 @@ Ext.define('Zixweb.view.component.Books', {
 							listeners : {
 								beforeload : function(store, operation, eOpts) {
 									store.proxy.extraParams = {
-										set : Ext.encode(combo.set)
+										set : Ext.encode(me.set)
 									};
 								},
-								load : function(me, records, successful,
-										eOpts) {
+								load : function(me, records, successful, eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '科目字典数据加载失败,请联系管理员',
+													msg : '科目数据加载失败,请联系管理员',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
@@ -49,7 +50,7 @@ Ext.define('Zixweb.view.component.Books', {
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '抱歉，没有科目字典数据访问权限',
+													msg : '抱歉，没有科目数据访问权限',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
@@ -57,8 +58,7 @@ Ext.define('Zixweb.view.component.Books', {
 								}
 							}
 						});
-				this.valueField = 'id';
-				this.displayField = 'name';
-				this.callParent(arguments);
+
+				me.callParent(arguments);
 			}
 		});

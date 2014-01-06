@@ -57,6 +57,11 @@ Ext.define('overrides.Ext', {
 			dataIndex : 'id',
 			width : 80
 		},
+		ys_type : {
+			text : "凭证类型",
+			dataIndex : 'ys_type',
+			width : 80
+		},
 		acct : {
 			text : "银行账户号",
 			dataIndex : 'acct',

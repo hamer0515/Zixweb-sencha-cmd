@@ -2,13 +2,11 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.bfjacctadd',
 	border : false,
-	defaults : {
-		border : false
-	},
 	initComponent : function() {
-		this.items = [{
+		var me = this, list = me._list;
+		me.items = [{
 			xtype : 'form',
-			id : 'bfjacctaddform',
+			border : false,
 			bodyPadding : 5,
 			fieldDefaults : {
 				labelWidth : 100
@@ -74,8 +72,7 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 						text : '添加',
 						margin : '0 20 0 900',
 						handler : function() {
-							var panel = Ext.getCmp('bfjacctaddform');
-							var form = panel.getForm();
+							var panel = me.down('form'), form = panel.getForm();
 							if (form.isValid()) {
 								Ext.MessageBox.confirm('确认添加',
 										'是否确认添加新的账户及信息？', function(optional) {
@@ -97,8 +94,6 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 																		});
 																return;
 															}
-															var list = Ext
-																	.getCmp('bfjacct_list_grid');
 															if (list) {
 																list
 																		.getStore()
@@ -111,14 +106,11 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 																		closable : false,
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.INFO,
-																		scope : panel
-																				.up('window'),
 																		fn : function() {
-																			this
-																					.close();
-																			Ext
-																					.getCmp('bfjacctadd')
-																					.close();
+																			me
+																					.down('form')
+																					.getForm()
+																					.reset();
 																		}
 																	});
 														} else {
@@ -173,14 +165,13 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.Add', {
 					}, {
 						xtype : 'button',
 						text : '取消',
-						scope : this,
+						scope : me,
 						handler : function() {
-							var panel = Ext.getCmp('bfjacctadd');
-							panel.close();
+							me.close();
 						}
 					}]
 		}];
 
-		this.callParent(arguments);
+		me.callParent(arguments);
 	}
 });

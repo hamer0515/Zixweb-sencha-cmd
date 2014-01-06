@@ -136,7 +136,7 @@ Ext.define('Zixweb.view.book.hist.txamt_dqr_oyf', {
 					store : store,
 					columns : [Ext.columns.id, Ext.columns.bi,
 							Ext.columns.tx_date, Ext.columns.period,
-							Ext.columns.j, Ext.columns.d,
+							Ext.columns.j, Ext.columns.d, Ext.columns.ys_type,
 							Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;

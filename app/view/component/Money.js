@@ -5,13 +5,13 @@ Ext.define('Zixweb.view.component.Money', {
 			vtype : 'money',
 			listeners : {
 				blur : function(me, the, opts) {
-					if (this.isValid()) {
-						var v = this.value;
+					if (me.isValid()) {
+						var v = me.value;
 						if (v == undefined || v == '') {
 							return;
 						}
 						var v = v.replace(/\,/g, '');
-						this.setValue(Ext.util.Format.number(parseFloat(v),
+						me.setValue(Ext.util.Format.number(parseFloat(v),
 								'0,0.00'));
 					}
 				}

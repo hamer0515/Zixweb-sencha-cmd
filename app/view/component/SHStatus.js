@@ -5,21 +5,24 @@ Ext.define('Zixweb.view.component.SHStatus', {
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {
-				blur : function(self, The, eOpts) {
-					var value = self.getValue();
-					var result = self.getStore().queryBy(function(record) {
+				blur : function(me, The, eOpts) {
+					var value = me.getValue();
+					var result = me.getStore().queryBy(function(record) {
 								if (record.data.id == value) {
 									return true;
 								}
 								return false;
 							});
 					if (result.length == 0) {
-						self.setValue('');
+						me.setValue('');
 					}
 				}
 			},
+			valueField : 'id',
+			displayField : 'name',
 			initComponent : function() {
-				this.store = new Ext.data.Store({
+				var me = this;
+				me.store = new Ext.data.Store({
 							fields : ['id', 'name'],
 							data : [{
 										"id" : 0,
@@ -32,8 +35,6 @@ Ext.define('Zixweb.view.component.SHStatus', {
 										"name" : "审核未通过"
 									}]
 						});
-				this.valueField = 'id';
-				this.displayField = 'name';
-				this.callParent(arguments);
+				me.callParent(arguments);
 			}
 		});

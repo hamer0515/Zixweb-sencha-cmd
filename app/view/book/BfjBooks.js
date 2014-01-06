@@ -93,14 +93,13 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 											xtype : 'book_detail_'
 													+ rec.data.url
 										},
-										id : 'book_detail_' + rec.data.url,
+										id : id,
 										title : rec.data.text
 												.substr(rec.data.text
 														.indexOf("-")
 														+ 1)
 												+ '科目汇总'
 									}).show();
-									// viewport.doLayout();
 								}
 							}
 						}, {
@@ -120,14 +119,13 @@ Ext.define('Zixweb.view.book.BfjBooks', {
 											xtype : 'book_hist_' + rec.data.url,
 											bid : rec.data.bid
 										},
-										id : 'book_hist_' + rec.data.url,
+										id : id,
 										title : rec.data.text
 												.substr(rec.data.text
 														.indexOf("-")
 														+ 1)
 												+ '科目明细查询'
 									}).show();
-									// viewport.doLayout();
 								}
 							},
 							getClass : function(v, meta, rec) {

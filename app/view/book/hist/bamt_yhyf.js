@@ -141,7 +141,7 @@ Ext.define('Zixweb.view.book.hist.bamt_yhyf', {
 					columns : [Ext.columns.id, Ext.columns.zyzj_acct,
 							Ext.columns.zjbd_type, Ext.columns.zjbd_date,
 							Ext.columns.period, Ext.columns.j, Ext.columns.d,
-							Ext.columns.book_detail_action]
+							Ext.columns.ys_type, Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;
 		// 添加底部分页工具栏

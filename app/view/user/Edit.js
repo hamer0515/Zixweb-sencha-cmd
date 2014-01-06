@@ -1,16 +1,14 @@
 Ext.define('Zixweb.view.user.Edit', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.useredit',
-	id : 'panel.useredit',
 	title : '更新用户',
 	layout : 'fit',
 	autoShow : true,
 
 	initComponent : function() {
-		this.items = [{
+		var me = this, list = me._list;
+		me.items = [{
 			xtype : 'form',
-			id : 'usereditform',
-			url : 'user/update',
 			border : false,
 			fieldDefaults : {
 				labelWidth : 70
@@ -47,7 +45,6 @@ Ext.define('Zixweb.view.user.Edit', {
 					}, {
 						xtype : 'itemselector',
 						name : 'roles',
-						id : 'itemselector-roles-edit',
 						width : 700,
 						height : 300,
 						fieldLabel : '角色选择',
@@ -88,22 +85,95 @@ Ext.define('Zixweb.view.user.Edit', {
 						}),
 						displayField : 'name',
 						valueField : 'role_id',
-						allowBlank : false,
 						msgTarget : 'qtip',
 						fromTitle : '可选择',
 						toTitle : '已选择'
 					}]
 		}];
 
-		this.buttons = [{
-					text : '更新',
-					action : 'update'
-				}, {
-					text : '取消',
-					scope : this,
-					handler : this.close
-				}];
+		me.buttons = [{
+			text : '更新',
+			handler : function(button) {
+				var panel = me.down('form'), form = panel.getForm();
+				if (form.isValid()) {
+					var roles = panel.down('itemselector').getValue();
+					form.submit({
+								clientValidation : true,
+								url : 'user/update',
+								params : {
+									roles : roles
+								},
+								success : function(form, action) {
+									var response = action.result.success;
+									if (response) {
+										if (response == 'forbidden') {
+											Ext.MessageBox.show({
+														title : '警告',
+														msg : '抱歉，没有更新用户操作权限',
+														buttons : Ext.Msg.YES,
+														icon : Ext.Msg.ERROR
+													});
+											return;
+										}
+										list.getStore().reload();
+										Ext.MessageBox.show({
+													title : '提示',
+													msg : '用户更新成功',
+													closable : false,
+													buttons : Ext.Msg.YES,
+													icon : Ext.Msg.INFO,
+													fn : function() {
+														me.close();
+													}
+												});
+									} else {
+										Ext.MessageBox.show({
+													title : '失败',
+													msg : action.result.msg,
+													buttons : Ext.Msg.YES,
+													icon : Ext.Msg.ERROR
+												});
+									}
+								},
+								failure : function(form, action) {
+									switch (action.failureType) {
+										case Ext.form.action.Action.CLIENT_INVALID :
+											Ext.MessageBox.show({
+														title : '失败',
+														msg : '表单数据有误，请检查',
+														buttons : Ext.Msg.YES,
+														icon : Ext.Msg.ERROR
+													});
+											break;
+										case Ext.form.action.Action.CONNECT_FAILURE :
+											Ext.MessageBox.show({
+														title : '失败',
+														msg : '网络链接出错',
+														buttons : Ext.Msg.YES,
+														icon : Ext.Msg.ERROR
+													});
+											break;
+										case Ext.form.action.Action.SERVER_INVALID :
+											Ext.MessageBox.show({
+														title : '失败',
+														msg : action.result.msg,
+														buttons : Ext.Msg.YES,
+														icon : Ext.Msg.ERROR
+													});
+									}
+								},
+								waitMsg : '请求提交中...',
+								waitTitle : '请稍等'
+							});
+				}
+			}
+		}, {
+			text : '取消',
+			handler : function() {
+				me.close();
+			}
+		}];
 
-		this.callParent(arguments);
+		me.callParent(arguments);
 	}
 });

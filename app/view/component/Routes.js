@@ -2,17 +2,16 @@ Ext.define('Zixweb.view.component.Routes', {
 			extend : 'Ext.panel.Panel',
 			alias : 'widget.routes',
 
-			id : 'component.routes',
 			layout : {
 				type : 'table',
 				columns : 1
 			},
-			autoShow : true,
 			border : false,
 			cls : 'x-unselectable',
 
 			initComponent : function() {
-				this.items = [{
+				var me = this;
+				me.items = [{
 							xtype : 'checkboxgroup',
 							fieldLabel : '权限选择',
 							columns : 2,
@@ -30,7 +29,7 @@ Ext.define('Zixweb.view.component.Routes', {
 							xtype : 'treepanel',
 							rootVisible : false,
 							id : 'routes',
-							store : this.store,
+							store : me.store,
 							width : 400,
 							viewConfig : {
 								loadMask : true
@@ -38,6 +37,6 @@ Ext.define('Zixweb.view.component.Routes', {
 							height : 200
 						}],
 
-				this.callParent(arguments);
+				me.callParent(arguments);
 			}
 		});

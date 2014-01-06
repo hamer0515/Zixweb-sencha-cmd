@@ -35,29 +35,35 @@ Ext.define('Zixweb.view.component.MyStore', {
 				},
 				beforeload : function(me, operation, eOpts) {
 					var form = me._form, columns = me._columns, grid = me._grid;
-					if (form && form.down('hsx')) {
-						var values = form.getForm().getValues();
-						var cols = [];
-						var hsxes = [];
-						var list = Ext.hsx;
-						for (var i in list) {
-							if (values[list[i]]) {
-								hsxes.push(values[list[i]]);
-							}
+					if (form) {
+						if (!form.isValid()) {
+							return false;
 						}
-						if (hsxes.length == 0) {
-							for (var key in columns) {
-								cols.push(columns[key]);
+						if (form.down('hsx')) {
+							var values = form.getForm().getValues();
+							var cols = [];
+							var hsxes = [];
+							var list = Ext.hsx;
+							for (var i in list) {
+								if (values[list[i]]) {
+									hsxes.push(values[list[i]]);
+								}
 							}
-						} else {
-							for (var i = 0; i < hsxes.length; i++) {
-								cols.push(columns[hsxes[i]]);
+							if (hsxes.length == 0) {
+								for (var key in columns) {
+									cols.push(columns[key]);
+								}
+							} else {
+								for (var i = 0; i < hsxes.length; i++) {
+									cols.push(columns[hsxes[i]]);
+								}
+								cols.push(columns.j);
+								cols.push(columns.d);
 							}
-							cols.push(columns.j);
-							cols.push(columns.d);
+							grid.reconfigure(me, cols);
 						}
-						grid.reconfigure(me, cols);
 					}
+
 				}
 			}
 		});

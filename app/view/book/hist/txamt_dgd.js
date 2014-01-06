@@ -140,7 +140,7 @@ Ext.define('Zixweb.view.book.hist.txamt_dgd', {
 					store : store,
 					columns : [Ext.columns.id, Ext.columns.bi,
 							Ext.columns.period, Ext.columns.j, Ext.columns.d,
-							Ext.columns.book_detail_action]
+							Ext.columns.ys_type, Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;
 		// 添加底部分页工具栏

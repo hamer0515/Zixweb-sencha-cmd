@@ -14,7 +14,7 @@ Ext.define('Zixweb.store.component.Acct', {
 					if (!successful) {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '帐号数据加载失败,请联系管理员',
+									msg : '银行帐号数据加载失败,请联系管理员',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});
@@ -24,7 +24,7 @@ Ext.define('Zixweb.store.component.Acct', {
 					if (jsonData && jsonData === 'forbidden') {
 						Ext.MessageBox.show({
 									title : '警告',
-									msg : '抱歉，没有帐号数据访问权限',
+									msg : '抱歉，没有银行帐号数据访问权限',
 									buttons : Ext.Msg.YES,
 									icon : Ext.Msg.ERROR
 								});

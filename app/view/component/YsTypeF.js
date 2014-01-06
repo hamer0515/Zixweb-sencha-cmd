@@ -4,9 +4,26 @@ Ext.define('Zixweb.view.component.YsTypeF', {
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			listeners : {
+				blur : function(me, The, eOpts) {
+					var value = me.getValue();
+					var result = me.getStore().queryBy(function(record) {
+								if (record.data.id == value) {
+									return true;
+								}
+								return false;
+							});
+					if (result.length == 0) {
+						me.setValue('');
+					}
+				}
+			},
+			valueField : 'id',
+			displayField : 'name',
 
 			initComponent : function() {
-				this.store = new Ext.data.Store({
+				var me = this;
+				me.store = new Ext.data.Store({
 							fields : ['id', 'name'],
 							autoLoad : true,
 
@@ -19,12 +36,11 @@ Ext.define('Zixweb.view.component.YsTypeF', {
 							},
 
 							listeners : {
-								load : function(me, records, successful,
-										eOpts) {
+								load : function(me, records, successful, eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '凭证状态字典数据加载失败,请联系管理员',
+													msg : '凭证类型数据加载失败,请联系管理员',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
@@ -34,7 +50,7 @@ Ext.define('Zixweb.view.component.YsTypeF', {
 									if (jsonData && jsonData === 'forbidden') {
 										Ext.MessageBox.show({
 													title : '警告',
-													msg : '抱歉，没有凭证状态字典数据访问权限',
+													msg : '抱歉，没有凭证类型数据访问权限',
 													buttons : Ext.Msg.YES,
 													icon : Ext.Msg.ERROR
 												});
@@ -42,8 +58,6 @@ Ext.define('Zixweb.view.component.YsTypeF', {
 								}
 							}
 						});
-				this.valueField = 'id';
-				this.displayField = 'name';
-				this.callParent(arguments);
+				me.callParent(arguments);
 			}
 		});

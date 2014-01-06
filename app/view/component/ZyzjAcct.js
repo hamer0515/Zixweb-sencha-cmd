@@ -19,7 +19,8 @@ Ext.define('Zixweb.view.component.ZyzjAcct', {
 				}
 			},
 			initComponent : function() {
-				this.store = new Ext.data.Store({
+				var me = this;
+				me.store = new Ext.data.Store({
 							fields : ['id', 'name'],
 							autoLoad : true,
 
@@ -28,8 +29,7 @@ Ext.define('Zixweb.view.component.ZyzjAcct', {
 								url : 'base/zyzjacct'
 							},
 							listeners : {
-								load : function(me, records, successful,
-										eOpts) {
+								load : function(me, records, successful, eOpts) {
 									if (!successful) {
 										Ext.MessageBox.show({
 													title : '警告',
@@ -51,8 +51,6 @@ Ext.define('Zixweb.view.component.ZyzjAcct', {
 								}
 							}
 						});
-				this.valueField = 'id';
-				this.displayField = 'name';
-				this.callParent(arguments);
+				me.callParent(arguments);
 			}
 		});

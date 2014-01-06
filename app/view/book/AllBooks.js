@@ -92,7 +92,7 @@ Ext.define('Zixweb.view.book.AllBooks', {
 											xtype : 'book_detail_'
 													+ rec.data.url
 										},
-										id : 'book_detail_' + rec.data.url,
+										id : id,
 										title : rec.data.text
 												.substr(rec.data.text
 														.indexOf("-")
@@ -118,7 +118,7 @@ Ext.define('Zixweb.view.book.AllBooks', {
 											xtype : 'book_hist_' + rec.data.url,
 											bid : rec.data.bid
 										},
-										id : 'book_hist_' + rec.data.url,
+										id : id,
 										title : rec.data.text
 												.substr(rec.data.text
 														.indexOf("-")

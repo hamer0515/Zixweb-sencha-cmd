@@ -5,21 +5,24 @@ Ext.define('Zixweb.view.component.MStatus', {
 			queryMode : 'local',
 			anyMatch : true,
 			listeners : {
-				blur : function(self, The, eOpts) {
-					var value = self.getValue();
-					var result = self.getStore().queryBy(function(record) {
+				blur : function(me, The, eOpts) {
+					var value = me.getValue();
+					var result = me.getStore().queryBy(function(record) {
 								if (record.data.id == value) {
 									return true;
 								}
 								return false;
 							});
 					if (result.length == 0) {
-						self.setValue('');
+						me.setValue('');
 					}
 				}
 			},
+			valueField : 'id',
+			displayField : 'name',
 			initComponent : function() {
-				this.store = new Ext.data.Store({
+				var me = this;
+				me.store = new Ext.data.Store({
 							fields : ['id', 'name'],
 							data : [{
 										id : 1,
@@ -53,8 +56,7 @@ Ext.define('Zixweb.view.component.MStatus', {
 										name : '运行失败'
 									}]
 						});
-				this.valueField = 'id';
-				this.displayField = 'name';
-				this.callParent(arguments);
+
+				me.callParent(arguments);
 			}
 		});
