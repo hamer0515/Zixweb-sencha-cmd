@@ -6,36 +6,11 @@ Ext.define('Zixweb.view.West', {
 	disableSelection : true,
 	rootVisible : false,
 	cls : 'x-unselectable',
-	viewConfig : {
-		loadMask : true
-	},
 	collapseMode : 'header',
-	listeners : {
-		itemclick : function(view, rec) {
-			if (rec.data.leaf) {
-				var viewport = view.up('viewport'), center = viewport
-						.down('center'), id = 'center_' + rec.data.url, cmp = Ext
-						.getCmp(id);
-				if (cmp) {
-					center.setActiveTab(cmp);
-				} else {
-					center.add({
-								closable : true,
-								xtype : 'panel',
-								items : {
-									xtype : rec.data.url
-								},
-								id : id,
-								title : rec.data.text
-							}).show();
-				}
-			}
-		}
-	},
 
 	initComponent : function() {
 		var me = this;
-		var store = new Ext.data.TreeStore({
+		me.store = new Ext.data.TreeStore({
 					fields : ['text', 'url'],
 
 					autoLoad : true,
@@ -66,7 +41,26 @@ Ext.define('Zixweb.view.West', {
 						}
 					}
 				});
-		me.store = store;
+		me.on("itemclick", function(view, rec) {
+			if (rec.data.leaf) {
+				var viewport = view.up('viewport'), center = viewport
+						.down('center'), id = 'center_' + rec.data.url, cmp = Ext
+						.getCmp(id);
+				if (cmp) {
+					center.setActiveTab(cmp);
+				} else {
+					center.add({
+								closable : true,
+								xtype : 'panel',
+								items : {
+									xtype : rec.data.url
+								},
+								id : id,
+								title : rec.data.text
+							}).show();
+				}
+			}
+		}, me);
 		me.callParent(arguments);
 	}
 });

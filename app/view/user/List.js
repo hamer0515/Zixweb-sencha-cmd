@@ -5,7 +5,7 @@ Ext.define('Zixweb.view.user.List', {
 
 	initComponent : function() {
 		var me = this, store;
-		me.store = store = new Ext.data.Store({
+		me.store = store = Ext.create('widget.mystore', {
 			fields : ['username', 'pwd_chg_date', 'status', 'rowid', 'user_id'],
 			autoLoad : true,
 

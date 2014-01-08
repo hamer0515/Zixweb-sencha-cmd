@@ -79,13 +79,23 @@ Ext.define('Zixweb.view.login.LoginForm', {
 													region : 'west',
 													xtype : 'west',
 													margins : '0 0 0 5',
-													width : 200,
+													minWidth : 200,
 													collapsible : true,
-													layout : 'fit'
+													split : true,
+													tools : [{
+														type : 'refresh',
+														tooltip : '刷新菜单',
+														handler : function(
+																event, toolEl,
+																panelHeader) {
+															viewport
+																	.down('west').store
+																	.reload();
+														}
+													}]
 												}, {
 													region : 'center',
 													xtype : 'center',
-													layout : 'fit',
 													height : 683,
 													margins : '0 5 0 0'
 												}, {

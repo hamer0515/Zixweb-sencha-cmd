@@ -5,9 +5,6 @@ Ext.define('Zixweb.view.book.AllBooks', {
 	rootVisible : false,
 	disableSelection : true,
 	border : false,
-	viewConfig : {
-		loadMask : true
-	},
 
 	initComponent : function() {
 

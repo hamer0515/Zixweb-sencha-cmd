@@ -6,22 +6,6 @@ Ext.define('Zixweb.view.component.MyStore', {
 			listeners : {
 				load : function(me, records, successful, eOpts) {
 					if (!successful) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '数据加载失败',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					var jsonData = me.proxy.reader.jsonData.success;
-					if (jsonData && jsonData === 'forbidden') {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '没有访问权限',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
 						return;
 					}
 					var exportBtn = me._exportBtn;
@@ -34,6 +18,16 @@ Ext.define('Zixweb.view.component.MyStore', {
 					}
 				},
 				beforeload : function(me, operation, eOpts) {
+					operation.callback = function(records, op, success) {
+						if (!success)
+							Ext.MessageBox.show({
+										title : '错误',
+										msg : op.error.status + ' '
+												+ op.error.statusText,
+										buttons : Ext.Msg.YES,
+										icon : Ext.Msg.ERROR
+									});
+					}
 					var form = me._form, columns = me._columns, grid = me._grid;
 					if (form) {
 						if (!form.isValid()) {
@@ -57,8 +51,13 @@ Ext.define('Zixweb.view.component.MyStore', {
 								for (var i = 0; i < hsxes.length; i++) {
 									cols.push(columns[hsxes[i]]);
 								}
+								// 科目汇总查询时增加借贷金额列
 								cols.push(columns.j);
 								cols.push(columns.d);
+								// 挂帐情况查询时增加载长短款金额列
+								cols.push(columns.blc);
+								cols.push(columns.bsc);
+								cols.push(columns.action);
 							}
 							grid.reconfigure(me, cols);
 						}

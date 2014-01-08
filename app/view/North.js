@@ -9,8 +9,7 @@ Ext.define('Zixweb.view.North', {
 	border : false,
 	listeners : {
 		afterlayout : function(me, eOpts) {
-			var panel = me;
-			var button = Ext.get('north_logout_button');
+			var panel = me, button = Ext.get('north_logout_button');
 			if (button) {
 				button.on('click', function(e, btn, eOpts) {
 					Ext.Msg.show({
@@ -65,9 +64,8 @@ Ext.define('Zixweb.view.North', {
 		}
 	},
 	initComponent : function() {
-		var panel = this;
-		var swidth = screen.width;
-		this.items = [{
+		var panel = this, swidth = document.body.clientWidth;
+		panel.items = [{
 					xtype : 'image',
 					border : false,
 					height : 39,
@@ -88,12 +86,20 @@ Ext.define('Zixweb.view.North', {
 					width : 16,
 					src : 'resources/images/door_in.png',
 					apck : 'end',
-					margin : "0 0 0 " + parseInt(swidth) / 2
+					margin : "0 0 0 " + (parseInt(swidth) - 500)
 				}, {
 					xtype : 'displayfield',
 					value : "<a href='javascript:void(0)' id='north_logout_button'>安全退出</a>",
 					margin : '0 0 0 5'
 				}];
-		this.callParent(arguments);
+		// 阻止弹出右键菜单
+		document.oncontextmenu = function() {
+			return false;
+		}
+		// 页面关闭前提示
+		window.onbeforeunload = function() {
+			return "确认退出?";
+		}
+		panel.callParent(arguments);
 	}
 });

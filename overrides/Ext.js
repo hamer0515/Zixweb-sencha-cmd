@@ -52,6 +52,98 @@ Ext.define('overrides.Ext', {
 				}
 			}]
 		},
+		zjdz_gzcx_action : {
+			xtype : 'actioncolumn',
+			text : '明细',
+			width : 80,
+			align : 'center',
+			items : [{
+				tooltip : '长款余额',
+				getClass : function(v, meta, rec) {
+					return 'blcdetail';
+				},
+				handler : function(grid, rowIndex, colIndex) {
+					var rec = grid.getStore().getAt(rowIndex);
+					var center = grid.up('center'), id = 'book_hist_blc', cmp = Ext
+							.getCmp(id), panel;
+					if (!cmp) {
+						cmp = Ext.widget('book_hist_blc');
+						panel = center.add({
+									closable : true,
+									xtype : 'panel',
+									items : cmp,
+									id : id,
+									title : '备份金银行长款科目明细查询'
+								});
+					}
+					var form = cmp.down('form').getForm(), store = cmp
+							.down("gridpanel").store;
+					form.reset();
+					cmp.down("datefield[name='e_date_from']")
+							.setValue(rec.data.e_date);
+					cmp.down("datefield[name='e_date_to']")
+							.setValue(rec.data.e_date);
+					cmp.down("datefield[name='period_from']")
+							.setValue(rec.data.period);
+					cmp.down("datefield[name='period_to']")
+							.setValue(rec.data.period);
+					cmp.down("bfjacct[name='bfj_acct']")
+							.setValue(rec.data.bfj_acct);
+					cmp.down("zjbdtype[name='zjbd_type']")
+							.setValue(rec.data.zjbd_type);
+					store.proxy.extraParams = form.getValues();
+					store.loadPage(1);
+					if (panel) {
+						panel.show();
+					} else {
+						center.setActiveTab(cmp);
+					}
+				}
+
+			}, {
+				tooltip : '短款余额',
+				getClass : function(v, meta, rec) {
+					return 'bscdetail';
+				},
+				handler : function(grid, rowIndex, colIndex) {
+					var rec = grid.getStore().getAt(rowIndex);
+					var center = grid.up('center'), id = 'book_hist_bsc', cmp = Ext
+							.getCmp(id), panel;
+					if (!cmp) {
+						cmp = Ext.widget('book_hist_bsc');
+						panel = center.add({
+									closable : true,
+									xtype : 'panel',
+									items : cmp,
+									id : id,
+									title : '备份金银行短款科目明细查询'
+								});
+					}
+					var form = cmp.down('form').getForm(), store = cmp
+							.down("gridpanel").store;
+					form.reset();
+					cmp.down("datefield[name='e_date_from']")
+							.setValue(rec.data.e_date);
+					cmp.down("datefield[name='e_date_to']")
+							.setValue(rec.data.e_date);
+					cmp.down("datefield[name='period_from']")
+							.setValue(rec.data.period);
+					cmp.down("datefield[name='period_to']")
+							.setValue(rec.data.period);
+					cmp.down("bfjacct[name='bfj_acct']")
+							.setValue(rec.data.bfj_acct);
+					cmp.down("zjbdtype[name='zjbd_type']")
+							.setValue(rec.data.zjbd_type);
+					store.proxy.extraParams = form.getValues();
+					store.loadPage(1);
+					if (panel) {
+						panel.show();
+					} else {
+						center.setActiveTab(cmp);
+					}
+				}
+			}]
+		},
 		id : {
 			text : "ID",
 			dataIndex : 'id',
@@ -219,6 +311,144 @@ Ext.define('overrides.Ext', {
 			renderer : function(value) {
 				return Ext.util.Format.number(parseInt(value) / 100, '0,0.00');
 			}
+		},
+		blc : {
+			text : "长款余额",
+			dataIndex : 'blc',
+			flex : 1,
+			renderer : function(value) {
+				return Ext.util.Format.number(parseInt(value) / 100, '0,0.00');
+			}
+		},
+		bsc : {
+			text : "短款余额",
+			dataIndex : 'bsc',
+			flex : 1,
+			renderer : function(value) {
+				return Ext.util.Format.number(parseInt(value) / 100, '0,0.00');
+			}
+		},
+		fyw_type : {
+			text : "业务类型",
+			dataIndex : "fyw_type",
+			renderer : function(value, meta, record) {
+				var fywtype = Ext.data.StoreManager.lookup('component.FywType');
+				var index = fywtype.findExact('id', value);
+				if (index == -1) {
+					meta.style = 'color:red';
+				}
+				return index == -1 ? '无效的数据(' + value + ')' : fywtype
+						.getAt(index).data.name;
+			},
+			flex : 1
+		},
+		fc : {
+			text : "客户编号",
+			dataIndex : 'fc',
+			flex : 1
+		},
+		f_dcn : {
+			text : "代充通道编号",
+			dataIndex : "f_dcn",
+			flex : 1
+		},
+		f_rate : {
+			text : "结算折扣率",
+			dataIndex : 'f_rate',
+			flex : 1
+		},
+		f_ssn : {
+			text : "唯一销卡编号",
+			dataIndex : 'f_ssn',
+			flex : 1
+		},
+		fcg_date : {
+			text : "商品采购日期",
+			dataIndex : 'fcg_date',
+			flex : 1,
+			renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+		},
+		fch_rate : {
+			text : "渠道结算折扣率",
+			dataIndex : 'fch_rate',
+			flex : 1
+		},
+		fch_ssn : {
+			text : "渠道方销卡编号",
+			dataIndex : 'fch_ssn',
+			flex : 1
+		},
+		fe_date : {
+			text : "差错日期",
+			dataIndex : 'fe_date',
+			flex : 1,
+			renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+		},
+		fhyd_acct : {
+			text : "富汇易达账号",
+			dataIndex : 'fhyd_acct',
+			renderer : function(value, meta, record) {
+				var fhydacct = Ext.data.StoreManager
+						.lookup('component.FhydAcct');
+				var index = fhydacct.findExact('id', value);
+				if (index == -1) {
+					meta.style = 'color:red';
+				}
+				return index == -1 ? '无效的数据(' + value + ')' : fhydacct
+						.getAt(index).data.name;
+			},
+			flex : 1
+		},
+		fio_date : {
+			text : "易宝出入账日期",
+			dataIndex : 'fio_date',
+			flex : 1,
+			renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+		},
+		fm : {
+			text : "商户编号",
+			dataIndex : 'fm',
+			flex : 1
+		},
+		fs_rate : {
+			text : "销卡结算折扣率",
+			dataIndex : "fs_rate",
+			flex : 1
+		},
+		ftx_date : {
+			text : "交易日期",
+			dataIndex : 'ftx_date',
+			flex : 1,
+			renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+		},
+		fyp_acct : {
+			text : "富汇易达账号",
+			dataIndex : 'fyp_acct',
+			renderer : function(value, meta, record) {
+				var fypacct = Ext.data.StoreManager.lookup('component.FypAcct');
+				var index = fypacct.findExact('id', value);
+				if (index == -1) {
+					meta.style = 'color:red';
+				}
+				return index == -1 ? '无效的数据(' + value + ')' : fypacct
+						.getAt(index).data.name;
+			},
+			flex : 1
+		},
+		fhw_type : {
+			text : "货物类型",
+			dataIndex : 'fhw_type',
+			renderer : function(value, meta, record) {
+				var fhwtype = Ext.data.StoreManager.lookup('component.FhwType');
+				var index = fhwtype.findExact('id', value);
+				if (index == -1) {
+					meta.style = 'color:red';
+				}
+				return index == -1 ? '无效的数据(' + value + ')' : fhwtype
+						.getAt(index).data.name;
+
+			},
+			flex : 1
 		}
 	}
 });

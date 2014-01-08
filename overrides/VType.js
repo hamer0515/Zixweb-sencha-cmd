@@ -43,7 +43,6 @@ Ext.define('overrides.VType', {
 				if (field.verify.id)
 					id = Ext.getCmp(field.verify.id).getSubmitValue();
 				Ext.Ajax.request({
-							async : false,
 							url : url,
 							params : {
 								name : val,

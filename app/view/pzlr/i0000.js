@@ -10,7 +10,6 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		type : 'vbox',
 		align : 'center'
 	},
-	prev_jdbook : [],
 	bodyPadding : 10,
 	current_fl : 1,
 	renderers : {
@@ -352,10 +351,13 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 																					.getForm()
 																					.reset();
 																			form.current_fl = 1;
+																			form.fields = [];
+																			form.deleted = [];
 																			var count = form.items.length;
-																			for (var i = 4; i < count; i++) {
+																			for (var i = count
+																					- 1; i > 3; i--) {
 																				form
-																						.remove(form.items.items[i])
+																						.remove(form.items.items[i]);
 																			}
 																		}
 																	});
@@ -412,10 +414,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 
 				}];
 		this.check = function() {
-			var fields = this.fields;
-			var deleted = this.deleted;
-			var data = {};
-			var empty = true;
+			var fields = this.fields, deleted = this.deleted, data = {}, empty = true;
 
 			for (var index in fields) {
 				if (fields[index] == undefined) {
