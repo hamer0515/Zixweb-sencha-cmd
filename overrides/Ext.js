@@ -1,5 +1,6 @@
 Ext.define('overrides.Ext', {
 	override : 'Ext',
+	version : 'v2.7',
 	downloadURL : function(url) {
 		var hiddenIFrameID = 'hiddenDownloader', iframe = document
 				.getElementById(hiddenIFrameID);

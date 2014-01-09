@@ -14,7 +14,7 @@ Ext.define('Zixweb.view.pzlr.i0101', {
 
 	initComponent : function() {
 		var form = this;
-		this.items = [{
+		form.items = [{
 					xtype : 'fieldcontainer',
 					layout : 'hbox',
 					items : [{
@@ -158,6 +158,6 @@ Ext.define('Zixweb.view.pzlr.i0101', {
 
 				}];
 
-		this.callParent(arguments);
+		form.callParent(arguments);
 	}
 });

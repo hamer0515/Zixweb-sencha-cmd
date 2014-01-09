@@ -11,7 +11,6 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		align : 'center'
 	},
 	bodyPadding : 10,
-	current_fl : 1,
 	renderers : {
 		acct : function(v) {
 			if (v) {
@@ -99,8 +98,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 	},
 	initComponent : function() {
 		var form = this;
-		this.fields = [];
-		this.deleted = [];
+		form.current_fl = 1, form.fields = [], form.deleted = [];
 		Ext.Ajax.request({
 					async : false,
 					url : 'base/book_headers',
@@ -131,7 +129,7 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 								});
 					}
 				});
-		this.items = [{
+		form.items = [{
 					xtype : 'textarea',
 					name : 'cause',
 					fieldLabel : '添加特种调账单的原因',
@@ -256,9 +254,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 											name : value
 										},
 										success : function(response) {
-											var v = Ext
+											result = Ext
 													.decode(response.responseText).success;
-											result = v;
 										}
 									});
 								}
@@ -413,9 +410,8 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 					}]
 
 				}];
-		this.check = function() {
+		form.check = function() {
 			var fields = this.fields, deleted = this.deleted, data = {}, empty = true;
-
 			for (var index in fields) {
 				if (fields[index] == undefined) {
 					continue;
@@ -486,6 +482,6 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 			// 标名原始凭证类型
 			return data;
 		};
-		this.callParent(arguments);
+		form.callParent(arguments);
 	}
 });

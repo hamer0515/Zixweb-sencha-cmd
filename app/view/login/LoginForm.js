@@ -1,7 +1,6 @@
 Ext.define('Zixweb.view.login.LoginForm', {
 	extend : 'Ext.form.Panel',
 	alias : 'widget.loginform',
-	title : '帐务处理系统',
 	autoShow : true,
 	floating : true,
 	width : 200,
@@ -34,6 +33,7 @@ Ext.define('Zixweb.view.login.LoginForm', {
 
 	initComponent : function() {
 		var me = this;
+		me.title = '帐务处理系统' + Ext.version;
 		me.buttons = [{
 			text : '登录',
 			handler : function(button) {
@@ -81,18 +81,7 @@ Ext.define('Zixweb.view.login.LoginForm', {
 													margins : '0 0 0 5',
 													minWidth : 200,
 													collapsible : true,
-													split : true,
-													tools : [{
-														type : 'refresh',
-														tooltip : '刷新菜单',
-														handler : function(
-																event, toolEl,
-																panelHeader) {
-															viewport
-																	.down('west').store
-																	.reload();
-														}
-													}]
+													split : true
 												}, {
 													region : 'center',
 													xtype : 'center',
