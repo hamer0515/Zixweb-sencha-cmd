@@ -2,7 +2,6 @@ Ext.define('Zixweb.view.zqqr.submit', {
 	extend : 'Ext.form.Panel',
 	alias : 'widget.zqqrsubmit',
 
-	border : false,
 	fieldDefaults : {
 		labelWidth : 140
 	},
@@ -11,8 +10,8 @@ Ext.define('Zixweb.view.zqqr.submit', {
 		align : 'left'
 	},
 	initComponent : function() {
-		var form = this;
-		this.items = [{
+		var me = this;
+		me.items = [{
 					xtype : 'datefield',
 					fieldLabel : '确认日期',
 					format : 'Y-m-d',
@@ -24,21 +23,12 @@ Ext.define('Zixweb.view.zqqr.submit', {
 					xtype : 'button',
 					text : '提交',
 					handler : function(button) {
-						if (form.getForm().isValid()) {
-							form.getForm().submit({
+						var form = me.getForm();
+						if (form.isValid()) {
+							form.submit({
 								clientValidation : true,
 								url : '/zqqr/submit',
 								success : function(form, action) {
-									var result = action.result.success;
-									if (result && result === 'forbidden') {
-										Ext.MessageBox.show({
-													title : '警告',
-													msg : '抱歉，没有周期确认提交权限',
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.ERROR
-												});
-										return;
-									}
 									Ext.MessageBox.show({
 												title : '提示',
 												msg : '周期确认提交成功',
@@ -51,23 +41,23 @@ Ext.define('Zixweb.view.zqqr.submit', {
 									switch (action.failureType) {
 										case Ext.form.action.Action.CLIENT_INVALID :
 											Ext.MessageBox.show({
-														title : '失败',
-														msg : '表单数据有误，请检查',
+														title : '警告',
+														msg : '表单验证失败',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});
 											break;
 										case Ext.form.action.Action.CONNECT_FAILURE :
 											Ext.MessageBox.show({
-														title : '失败',
-														msg : '网络链接出错',
+														title : '警告',
+														msg : '与服务器链接错误',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});
 											break;
 										case Ext.form.action.Action.SERVER_INVALID :
 											Ext.MessageBox.show({
-														title : '失败',
+														title : '警告',
 														msg : action.result.msg,
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
@@ -82,6 +72,6 @@ Ext.define('Zixweb.view.zqqr.submit', {
 					}
 
 				}];
-		this.callParent(arguments);
+		me.callParent(arguments);
 	}
 });

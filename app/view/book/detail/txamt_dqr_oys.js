@@ -11,7 +11,7 @@ Ext.define('Zixweb.view.book.detail.txamt_dqr_oys', {
 			j : Ext.columns.j,
 			d : Ext.columns.d
 		};
-		store =Ext.create('widget.mystore', {
+		store = Ext.create('widget.mystore', {
 					_exportBtn : exportBtn = Ext.create('widget.exportbtn', {
 								_url : 'book/detail/txamt_dqr_oys_excel',
 								_grid : grid = new Ext.grid.Panel({

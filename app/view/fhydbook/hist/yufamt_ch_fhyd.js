@@ -45,10 +45,9 @@ Ext.define('Zixweb.view.fhydbook.hist.yufamt_ch_fhyd', {
 												margin : '0 10 0 0',
 												fieldLabel : '业务类型'
 											}, {
-												xtype : 'textfield',
-												name : 'fc',
-												width : 516,
-												fieldLabel : '客户编号'
+												xtype : 'fch',
+												name : 'fch',
+												fieldLabel : '渠道方客户编号'
 											}]
 								}, {
 									xtype : 'fieldcontainer',
@@ -105,7 +104,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yufamt_ch_fhyd', {
 								}, exportBtn]
 					}),
 
-			fields : ['id', 'fyw_type', 'fc', 'period', 'j', 'd', 'ys_id',
+			fields : ['id', 'fyw_type', 'fch', 'period', 'j', 'd', 'ys_id',
 					'ys_type'],
 
 			proxy : {
@@ -124,8 +123,9 @@ Ext.define('Zixweb.view.fhydbook.hist.yufamt_ch_fhyd', {
 		grid = new Ext.grid.Panel({
 					store : store,
 					columns : [Ext.columns.id, Ext.columns.fyw_type,
-							Ext.columns.fc, Ext.columns.period, Ext.columns.j,
-							Ext.columns.d, Ext.columns.book_detail_action]
+							Ext.columns.fch, Ext.columns.period, Ext.columns.j,
+							Ext.columns.d, Ext.columns.ys_type,
+							Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;
 		// 添加底部分页工具栏

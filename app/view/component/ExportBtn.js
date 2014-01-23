@@ -46,17 +46,10 @@ Ext.define('Zixweb.view.component.ExportBtn', {
 							url : url,
 							params : params,
 							success : function(response, opts) {
-								var res = Ext.decode(response.responseText);
-								Ext.downloadURL('base/excel?file=' + res.file);
-							},
-							failure : function(response, opts) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '服务器端出错，错误码:'
-													+ response.status,
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
+								Ext
+										.downloadURL('base/excel?file='
+												+ Ext
+														.decode(response.responseText).file);
 							}
 						});
 			};

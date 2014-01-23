@@ -24,8 +24,7 @@ Ext.define('Zixweb.view.role.List', {
 		me.columns = [{
 					text : "编号",
 					dataIndex : 'role_id',
-					width : 80,
-					flex : 1
+					width : 80
 				}, {
 					text : "角色名",
 					dataIndex : 'name',
@@ -71,25 +70,24 @@ Ext.define('Zixweb.view.role.List', {
 													id : record.data.role_id
 												},
 												success : function(response) {
-													var text = Ext
+													var res = Ext
 															.decode(response.responseText);
-													if (text.success) {
-														if (text.success == 'forbidden') {
-															Ext.MessageBox
-																	.show({
-																		title : '警告',
-																		msg : '抱歉，没有删除角色操作权限',
-																		buttons : Ext.Msg.YES,
-																		icon : Ext.Msg.ERROR
-																	});
-															return;
-														}
-														Ext.MessageBox.alert(
-																'提醒', '删除角色成功');
+													if (res.success) {
+														Ext.MessageBox.show({
+															title : '提示',
+															msg : '删除角色成功',
+															closable : false,
+															buttons : Ext.Msg.YES,
+															icon : Ext.Msg.INFO
+														});
 														store.reload();
 													} else {
-														Ext.MessageBox.alert(
-																'提醒', '删除角色失败');
+														Ext.MessageBox.show({
+															title : '错误',
+															msg : res.msg,
+															buttons : Ext.Msg.YES,
+															icon : Ext.Msg.ERROR
+														});
 													}
 												}
 											});

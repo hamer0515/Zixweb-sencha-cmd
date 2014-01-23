@@ -14,7 +14,7 @@ Ext.define('Zixweb.view.book.detail.cost_bfee_zg', {
 			j : Ext.columns.j,
 			d : Ext.columns.d
 		};
-		store =Ext.create('widget.mystore', {
+		store = Ext.create('widget.mystore', {
 					_exportBtn : exportBtn = Ext.create('widget.exportbtn', {
 								_url : 'book/detail/cost_bfee_zg_excel',
 								_grid : grid = new Ext.grid.Panel({

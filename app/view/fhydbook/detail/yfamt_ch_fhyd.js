@@ -5,7 +5,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 	initComponent : function() {
 		var me = this, columns, store, grid, exportBtn, form;
 		columns = {
-			fc : Ext.columns.fc,
+			fch : Ext.columns.fch,
 			fyw_type : Ext.columns.fyw_type,
 			ftx_date : Ext.columns.ftx_date,
 			period : Ext.columns.period,
@@ -18,7 +18,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 								_url : 'book/detail/yfamt_ch_fhyd_excel',
 								_grid : grid = new Ext.grid.Panel({
 											store : store,
-											columns : [columns.fc,
+											columns : [columns.fch,
 													columns.fyw_type,
 													columns.ftx_date,
 													columns.period, columns.j,
@@ -46,10 +46,9 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 														margin : '0 10 0 0',
 														width : 180
 													}, {
-														fieldLabel : '客户编号',
-														xtype : 'textfield',
-														name : 'fc',
-														width : 516
+														fieldLabel : '渠道方客户编号',
+														xtype : 'fch',
+														name : 'fch'
 													}]
 										}, {
 											xtype : 'fieldcontainer',
@@ -76,8 +75,8 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 										}, {
 											xtype : 'hsx',
 											data : [{
-														'value' : "fc",
-														'name' : "客户编号"
+														'value' : "fch",
+														'name' : "渠道方客户编号"
 													}, {
 														'value' : "fyw_type",
 														'name' : "业务类型"
@@ -111,7 +110,7 @@ Ext.define('Zixweb.view.fhydbook.detail.yfamt_ch_fhyd', {
 
 							}),
 
-					fields : ['fc', 'fyw_type', 'ftx_date', 'period', 'j', 'd'],
+					fields : ['fch', 'fyw_type', 'ftx_date', 'period', 'j', 'd'],
 
 					proxy : {
 						type : 'ajax',

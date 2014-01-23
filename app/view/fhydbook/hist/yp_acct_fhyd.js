@@ -134,7 +134,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yp_acct_fhyd', {
 					store : store,
 					columns : [Ext.columns.id, Ext.columns.fyp_acct,
 							Ext.columns.fio_date, Ext.columns.period,
-							Ext.columns.j, Ext.columns.d,
+							Ext.columns.j, Ext.columns.d, Ext.columns.ys_type,
 							Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;

@@ -168,7 +168,7 @@ Ext.define('Zixweb.view.fhydbook.hist.camt_dgd_fhyd', {
 							Ext.columns.fc, Ext.columns.ftx_date,
 							Ext.columns.period, Ext.columns.fhw_type,
 							Ext.columns.f_ssn, Ext.columns.fs_rate,
-							Ext.columns.j, Ext.columns.d,
+							Ext.columns.j, Ext.columns.d, Ext.columns.ys_type,
 							Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;

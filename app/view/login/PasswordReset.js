@@ -51,70 +51,23 @@ Ext.define('Zixweb.view.login.PasswordReset', {
 						margin : '0 20 0 0',
 						text : '确定',
 						handler : function(button) {
-							var panel = button.up('panel'), form = panel
-									.getForm();
+							var form = me.getForm();
 							if (form.isValid()) {
 								form.submit({
-									clientValidation : true,
-									url : '/login/passwordreset',
-									success : function(form, action) {
-										var response = action.result.success;
-										if (response) {
-											if (response == 'forbidden') {
+											clientValidation : true,
+											url : '/login/passwordreset',
+											success : function(form, action) {
 												Ext.MessageBox.show({
-															title : '警告',
-															msg : '抱歉，没有密码修改操作权限',
+															title : '提示',
+															msg : '密码修改成功',
 															buttons : Ext.Msg.YES,
-															icon : Ext.Msg.ERROR
+															icon : Ext.Msg.INFO
 														});
-												return;
-											}
-											Ext.MessageBox.show({
-														title : '提示',
-														msg : '密码修改成功',
-														buttons : Ext.Msg.YES,
-														icon : Ext.Msg.INFO
-													});
-											form.reset();
-										} else {
-											Ext.MessageBox.show({
-														title : '失败',
-														msg : action.result.msg,
-														buttons : Ext.Msg.YES,
-														icon : Ext.Msg.ERROR
-													});
-										}
-									},
-									failure : function(form, action) {
-										switch (action.failureType) {
-											case Ext.form.action.Action.CLIENT_INVALID :
-												Ext.MessageBox.show({
-															title : '失败',
-															msg : '表单数据有误，请检查',
-															buttons : Ext.Msg.YES,
-															icon : Ext.Msg.ERROR
-														});
-												break;
-											case Ext.form.action.Action.CONNECT_FAILURE :
-												Ext.MessageBox.show({
-															title : '失败',
-															msg : '网络链接出错',
-															buttons : Ext.Msg.YES,
-															icon : Ext.Msg.ERROR
-														});
-												break;
-											case Ext.form.action.Action.SERVER_INVALID :
-												Ext.MessageBox.show({
-															title : '失败',
-															msg : action.result.msg,
-															buttons : Ext.Msg.YES,
-															icon : Ext.Msg.ERROR
-														});
-										}
-									},
-									waitMsg : '正在提交请求...',
-									waitTitle : '请稍等'
-								});
+												form.reset();
+											},
+											waitMsg : '正在提交请求...',
+											waitTitle : '请稍等'
+										});
 							}
 						}
 					}, {

@@ -1,9 +1,6 @@
 Ext.define('Zixweb.view.zjdz.bfjacctmemo', {
 			extend : 'Ext.panel.Panel',
 			alias : 'widget.bfjacctmemo',
-			defaults : {
-				border : false
-			},
 			initComponent : function() {
 				var bfjid = this.bfj_id;
 				var myFormPanel = new Ext.form.FormPanel({
@@ -33,15 +30,6 @@ Ext.define('Zixweb.view.zjdz.bfjacctmemo', {
 					success : function(form, action) {
 						var response = action.result.success;
 						if (response) {
-							if (response == 'forbidden') {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '抱歉，没有增加备付金账户信息操作权限',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-								return;
-							}
 							Ext.getCmp('memoInfo_' + bfjid)
 									.setValue(action.result.data[0].memo);
 						}

@@ -95,48 +95,25 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 													url : '/pzlr/i0015',
 													success : function(f,
 															action) {
-														var result = action.result.success;
-														if (result) {
-															if (result === 'forbidden') {
-																Ext.MessageBox
-																		.show({
-																			title : '警告',
-																			msg : '抱歉，没有i0015录入权限',
-																			buttons : Ext.Msg.YES,
-																			icon : Ext.Msg.ERROR
-																		});
-																return;
+														Ext.MessageBox.show({
+															title : '提示',
+															msg : 'i0015添加成功',
+															closable : false,
+															buttons : Ext.Msg.YES,
+															icon : Ext.Msg.INFO,
+															fn : function() {
+																form.reset();
 															}
-															Ext.MessageBox
-																	.show({
-																		title : '提示',
-																		msg : 'i0015添加成功',
-																		closable : false,
-																		buttons : Ext.Msg.YES,
-																		icon : Ext.Msg.INFO,
-																		fn : function() {
-																			form
-																					.reset();
-																		}
-																	});
-														} else {
-															Ext.MessageBox
-																	.show({
-																		title : '失败',
-																		msg : action.result.msg,
-																		buttons : Ext.Msg.YES,
-																		icon : Ext.Msg.ERROR
-																	});
-														}
+														});
 													},
-													failure : function(f,
+													failure : function(form,
 															action) {
 														switch (action.failureType) {
 															case Ext.form.action.Action.CLIENT_INVALID :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
-																			msg : '表单数据有误，请检查',
+																			title : '警告',
+																			msg : '表单验证失败',
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
 																		});
@@ -144,8 +121,8 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 															case Ext.form.action.Action.CONNECT_FAILURE :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
-																			msg : '网络链接出错',
+																			title : '警告',
+																			msg : '与服务器链接错误',
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
 																		});
@@ -153,7 +130,7 @@ Ext.define('Zixweb.view.pzlr.i0015', {
 															case Ext.form.action.Action.SERVER_INVALID :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
+																			title : '警告',
 																			msg : action.result.msg,
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR

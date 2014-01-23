@@ -4,10 +4,7 @@ Ext.define('Zixweb.view.component.MyStore', {
 			pageSize : 50,
 
 			listeners : {
-				load : function(me, records, successful, eOpts) {
-					if (!successful) {
-						return;
-					}
+				load : function(me, records, success, eOpts) {
 					var exportBtn = me._exportBtn;
 					if (exportBtn) {
 						if (records.length > 0) {
@@ -18,16 +15,7 @@ Ext.define('Zixweb.view.component.MyStore', {
 					}
 				},
 				beforeload : function(me, operation, eOpts) {
-					operation.callback = function(records, op, success) {
-						if (!success)
-							Ext.MessageBox.show({
-										title : '错误',
-										msg : op.error.status + ' '
-												+ op.error.statusText,
-										buttons : Ext.Msg.YES,
-										icon : Ext.Msg.ERROR
-									});
-					}
+					operation.callback = Ext.storeCallBack;
 					var form = me._form, columns = me._columns, grid = me._grid;
 					if (form) {
 						if (!form.isValid()) {

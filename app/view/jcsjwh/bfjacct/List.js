@@ -7,7 +7,6 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 		store = Ext.create('widget.mystore', {
 					fields : ['id', 'b_acct', 'valid', 'b_name', 'acct_name',
 							'memo'],
-
 					autoLoad : true,
 
 					proxy : {
@@ -84,35 +83,29 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 			columns : [{
 						text : "ID",
 						dataIndex : 'id',
-						sortable : false,
 						width : 80
 
 					}, {
 						text : "memo",
 						dataIndex : 'memo',
 						hidden : true,
-						sortable : false,
 						flex : 1
 					}, {
 						text : "开户行名称",
 						dataIndex : 'b_name',
-						sortable : false,
 						flex : 2
 
 					}, {
 						text : "备付金银行账户",
 						dataIndex : 'b_acct',
-						sortable : false,
 						flex : 2
 					}, {
 						text : "开户信息",
 						dataIndex : 'acct_name',
-						sortable : false,
 						flex : 1
 					}, {
 						text : "有效性",
 						dataIndex : 'valid',
-						sortable : false,
 						renderer : function(value, p, record) {
 							var statusArray = ["启用", "禁用"];
 							return statusArray[value - 1];
@@ -128,8 +121,8 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 							tooltip : '修改',
 							action : 'edit',
 							handler : function(grid, rowIndex, colIndex) {
-								var record = grid.getStore().getAt(rowIndex);
-								var center = grid.up('center'), id = 'bfjacctedit', cmp = center
+								var record = grid.getStore().getAt(rowIndex), center = grid
+										.up('center'), id = 'bfjacctedit', cmp = center
 										.down(id), panel;
 								if (!cmp) {
 									cmp = Ext.widget('bfjacctedit', {

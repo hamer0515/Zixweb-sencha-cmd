@@ -97,14 +97,6 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 					url : 'base/book_headers',
 					success : function(response) {
 						form.headers = Ext.decode(response.responseText).success;
-					},
-					failure : function(response, opts) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '加载科目信息出错，错误码:' + response.status,
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
 					}
 				});
 		Ext.Ajax.request({
@@ -112,14 +104,6 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 					url : 'base/book_dim',
 					success : function(response) {
 						form.names = Ext.decode(response.responseText).success;
-					},
-					failure : function(response, opts) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '加载科目核算项信息出错，错误码:' + response.status,
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
 					}
 				});
 		form.items = [{
@@ -317,49 +301,27 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 													},
 													success : function(f,
 															action) {
-														var result = action.result.success;
-														if (result) {
-															if (result === 'forbidden') {
-																Ext.MessageBox
-																		.show({
-																			title : '警告',
-																			msg : '抱歉，没有特种调帐单录入权限',
-																			buttons : Ext.Msg.YES,
-																			icon : Ext.Msg.ERROR
-																		});
-																return;
+														Ext.MessageBox.show({
+															title : '提示',
+															msg : '特种调账单添加成功',
+															closable : false,
+															buttons : Ext.Msg.YES,
+															icon : Ext.Msg.INFO,
+															fn : function() {
+																form
+																		.getForm()
+																		.reset();
+																form.current_fl = 1;
+																form.fields = [];
+																form.deleted = [];
+																var count = form.items.length;
+																for (var i = count
+																		- 1; i > 3; i--) {
+																	form
+																			.remove(form.items.items[i]);
+																}
 															}
-															Ext.MessageBox
-																	.show({
-																		title : '提示',
-																		msg : '特种调账单添加成功',
-																		closable : false,
-																		buttons : Ext.Msg.YES,
-																		icon : Ext.Msg.INFO,
-																		fn : function() {
-																			form
-																					.getForm()
-																					.reset();
-																			form.current_fl = 1;
-																			form.fields = [];
-																			form.deleted = [];
-																			var count = form.items.length;
-																			for (var i = count
-																					- 1; i > 3; i--) {
-																				form
-																						.remove(form.items.items[i]);
-																			}
-																		}
-																	});
-														} else {
-															Ext.MessageBox
-																	.show({
-																		title : '失败',
-																		msg : action.result.msg,
-																		buttons : Ext.Msg.YES,
-																		icon : Ext.Msg.ERROR
-																	});
-														}
+														});
 													},
 													failure : function(form,
 															action) {
@@ -367,8 +329,8 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 															case Ext.form.action.Action.CLIENT_INVALID :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
-																			msg : '表单数据有误，请检查',
+																			title : '警告',
+																			msg : '表单验证失败',
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
 																		});
@@ -376,8 +338,8 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 															case Ext.form.action.Action.CONNECT_FAILURE :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
-																			msg : '网络链接出错',
+																			title : '警告',
+																			msg : '与服务器链接错误',
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
 																		});
@@ -385,7 +347,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 															case Ext.form.action.Action.SERVER_INVALID :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
+																			title : '警告',
 																			msg : action.result.msg,
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
@@ -440,7 +402,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 										/\,/g, ''))
 										* 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
-							|| f == 'tx_date') {
+							|| f == 'tx_date' || f == 'ftx_date') {
 						// 借方日期对象转换为日期字符串
 						data[fl]["j_book"][f] = jbook[f].pattern('yyyy-MM-dd');
 					} else {
@@ -461,7 +423,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 										/\,/g, ''))
 										* 100);
 					} else if (f === 'e_date' || f == 'zjbd_date'
-							|| f == 'tx_date') {
+							|| f == 'tx_date' || f == 'ftx_date') {
 						// 贷方日期对象转换为日期字符串
 						data[fl]["d_book"][f] = dbook[f].pattern('yyyy-MM-dd');
 					} else {

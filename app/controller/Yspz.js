@@ -40,7 +40,8 @@ Ext.define('Zixweb.controller.Yspz', {
 					'yspz.yspzq.y0116', 'yspz.yspzq.y0117', 'yspz.yspzq.y0118',
 					'yspz.yspzq.y0119', 'yspz.yspzq.y0120', 'yspz.yspzq.y0121',
 					'yspz.yspzq.y0122', 'yspz.yspzq.y0123', 'yspz.yspzq.y0143',
-					'yspz.yspzq.y0144', 'yspz.yspzq.y0145',
+					'yspz.yspzq.y0144', 'yspz.yspzq.y0145', 'yspz.yspzq.y0146',
+					'yspz.yspzq.y0147', 'yspz.yspzq.y0148', 'yspz.yspzq.y0149',
 					'yspz.yspzq.yF0001', 'yspz.yspzq.yF0002',
 					'yspz.yspzq.yF0003', 'yspz.yspzq.yF0004',
 					'yspz.yspzq.yF0005', 'yspz.yspzq.yF0006',
@@ -62,6 +63,7 @@ Ext.define('Zixweb.controller.Yspz', {
 					'yspz.yspzq.yF0037', 'yspz.yspzq.yF0038',
 					'yspz.yspzq.yF0039', 'yspz.yspzq.yF0040',
 					'yspz.yspzq.yF0041', 'yspz.yspzq.yF0042',
-					'yspz.yspzq.yF0043', 'yspz.yspzq.yF0044']
+					'yspz.yspzq.yF0043', 'yspz.yspzq.yF0044',
+					'yspz.yspzq.yF0045', 'yspz.yspzq.yF0047']
 
 		});

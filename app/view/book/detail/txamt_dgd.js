@@ -11,7 +11,7 @@ Ext.define('Zixweb.view.book.detail.txamt_dgd', {
 			j : Ext.columns.j,
 			d : Ext.columns.d
 		};
-		store =Ext.create('widget.mystore', {
+		store = Ext.create('widget.mystore', {
 					_exportBtn : exportBtn = Ext.create('widget.exportbtn', {
 								_url : 'book/detail/txamt_dgd_excel',
 								_grid : grid = new Ext.grid.Panel({
@@ -61,7 +61,7 @@ Ext.define('Zixweb.view.book.detail.txamt_dgd', {
 													}, {
 														xtype : 'bi',
 														name : 'bi',
-														fieldLabel : '银行借口编号'
+														fieldLabel : '银行接口编号'
 													}]
 										}, {
 											xtype : 'hsx',

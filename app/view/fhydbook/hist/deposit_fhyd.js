@@ -38,11 +38,11 @@ Ext.define('Zixweb.view.fhydbook.hist.deposit_fhyd', {
 									items : [{
 												xtype : 'ystypef',
 												name : 'ys_type',
+												margin : '0 10 0 0',
 												fieldLabel : '原始凭证类型'
 											}, {
 												xtype : 'fhydacct',
 												name : 'fhyd_acct',
-												margin : '0 10 0 0',
 												fieldLabel : '富汇易达帐号'
 											}]
 
@@ -119,7 +119,7 @@ Ext.define('Zixweb.view.fhydbook.hist.deposit_fhyd', {
 					store : store,
 					columns : [Ext.columns.id, Ext.columns.fhyd_acct,
 							Ext.columns.period, Ext.columns.j, Ext.columns.d,
-							Ext.columns.book_detail_action]
+							Ext.columns.ys_type, Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;
 		// 添加底部分页工具栏

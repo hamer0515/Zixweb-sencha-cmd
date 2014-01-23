@@ -16,28 +16,6 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 						proxy : {
 							type : 'ajax',
 							url : 'book/zyzj'
-						},
-						listeners : {
-							load : function(me, records, successful, eOpts) {
-								if (!successful) {
-									Ext.MessageBox.show({
-												title : '警告',
-												msg : '自有资金帐套数据加载失败,请联系管理员',
-												buttons : Ext.Msg.YES,
-												icon : Ext.Msg.ERROR
-											});
-									return;
-								}
-								var jsonData = me.proxy.reader.jsonData.success;
-								if (jsonData && jsonData === 'forbidden') {
-									Ext.MessageBox.show({
-												title : '警告',
-												msg : '抱歉，没有自有资金帐套数据访问权限',
-												buttons : Ext.Msg.YES,
-												icon : Ext.Msg.ERROR
-											});
-								}
-							}
 						}
 					}),
 			columns : [{
@@ -77,8 +55,7 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 							},
 							handler : function(grid, rowIndex, colIndex) {
 								var rec = grid.getStore().getAt(rowIndex);
-								var viewport = grid.up('viewport'), center = viewport
-										.down('center'), id = 'book_detail_'
+								var center = grid.up('center'), id = 'book_detail_'
 										+ rec.data.url, cmp = Ext.getCmp(id);
 								if (cmp) {
 									center.setActiveTab(cmp);
@@ -103,8 +80,7 @@ Ext.define('Zixweb.view.book.ZyzjBooks', {
 							tooltip : '明细查询',
 							handler : function(grid, rowIndex, colIndex) {
 								var rec = grid.getStore().getAt(rowIndex);
-								var viewport = grid.up('viewport'), center = viewport
-										.down('center'), id = 'book_hist_'
+								var center = grid.up('center'), id = 'book_hist_'
 										+ rec.data.url, cmp = Ext.getCmp(id);
 								if (cmp) {
 									center.setActiveTab(cmp);

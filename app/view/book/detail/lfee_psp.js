@@ -12,7 +12,7 @@ Ext.define('Zixweb.view.book.detail.lfee_psp', {
 			j : Ext.columns.j,
 			d : Ext.columns.d
 		};
-		store =Ext.create('widget.mystore', {
+		store = Ext.create('widget.mystore', {
 					_exportBtn : exportBtn = Ext.create('widget.exportbtn', {
 								_url : 'book/detail/lfee_psp_excel',
 								_grid : grid = new Ext.grid.Panel({

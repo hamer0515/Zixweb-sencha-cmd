@@ -134,25 +134,6 @@ Ext.define('Zixweb.view.task.Task0000detail', {
 			},
 			listeners : {
 				load : function(me, records, successful, eOpts) {
-					if (!successful) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '凭证0000详细数据加载失败,请联系管理员',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
-					var jsonData = me.proxy.reader.jsonData.success;
-					if (jsonData && jsonData === 'forbidden') {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '抱歉，没有凭证0000详细数据访问权限',
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
-						return;
-					}
 					var expander = grid.getPlugin('rowexpander');
 					for (i = 0; i < grid.getStore().getCount(); i++) {
 						expander.toggleRow(i, grid.getStore().getAt(i));
@@ -179,40 +160,27 @@ Ext.define('Zixweb.view.task.Task0000detail', {
 														id : id
 													},
 													success : function(response) {
-														var success = Ext
-																.decode(response.responseText).success;
-														if (success) {
-															if (response === 'forbidden') {
-																Ext.MessageBox
-																		.show({
-																			title : '警告',
-																			msg : '抱歉，没有审核通过操作权限',
-																			buttons : Ext.Msg.YES,
-																			icon : Ext.Msg.ERROR
-																		});
-																return;
-															}
+														var res = Ext
+																.decode(response.responseText);
+														if (res.success) {
 															Ext.MessageBox
-																	.alert(
-																			'提示',
-																			'操作成功');
+																	.show({
+																		title : '提示',
+																		msg : '操作成功',
+																		closable : false,
+																		buttons : Ext.Msg.YES,
+																		icon : Ext.Msg.INFO
+																	});
 															store.reload();
 														} else {
 															Ext.MessageBox
-																	.alert(
-																			'警告',
-																			'操作失败');
+																	.show({
+																		title : '错误',
+																		msg : res.msg,
+																		buttons : Ext.Msg.YES,
+																		icon : Ext.Msg.ERROR
+																	});
 														}
-													},
-													failure : function(
-															response, opts) {
-														Ext.MessageBox.show({
-															title : '警告',
-															msg : '服务器端出错，错误码:'
-																	+ response.status,
-															buttons : Ext.Msg.YES,
-															icon : Ext.Msg.ERROR
-														});
 													}
 												});
 											}
@@ -228,40 +196,27 @@ Ext.define('Zixweb.view.task.Task0000detail', {
 														id : id
 													},
 													success : function(response) {
-														var success = Ext
-																.decode(response.responseText).success;
-														if (success) {
-															if (response === 'forbidden') {
-																Ext.MessageBox
-																		.show({
-																			title : '警告',
-																			msg : '抱歉，没有审核拒绝操作权限',
-																			buttons : Ext.Msg.YES,
-																			icon : Ext.Msg.ERROR
-																		});
-																return;
-															}
+														var res = Ext
+																.decode(response.responseText);
+														if (res.success) {
 															Ext.MessageBox
-																	.alert(
-																			'提示',
-																			'操作成功');
+																	.show({
+																		title : '提示',
+																		msg : '操作成功',
+																		closable : false,
+																		buttons : Ext.Msg.YES,
+																		icon : Ext.Msg.INFO
+																	});
+															store.reload();
 														} else {
 															Ext.MessageBox
-																	.alert(
-																			'警告',
-																			'操作失败');
+																	.show({
+																		title : '错误',
+																		msg : res.msg,
+																		buttons : Ext.Msg.YES,
+																		icon : Ext.Msg.ERROR
+																	});
 														}
-														store.reload();
-													},
-													failure : function(
-															response, opts) {
-														Ext.MessageBox.show({
-															title : '警告',
-															msg : '服务器端出错，错误码:'
-																	+ response.status,
-															buttons : Ext.Msg.YES,
-															icon : Ext.Msg.ERROR
-														});
 													}
 												});
 											}
@@ -272,13 +227,13 @@ Ext.define('Zixweb.view.task.Task0000detail', {
 				}
 			}
 		});
-		this.store = store;
-		this.columns = [{
+		grid.store = store;
+		grid.columns = [{
 					text : "标题",
 					dataIndex : 'title',
 					width : '100%',
 					sortable : false
 				}];
-		this.callParent(arguments);
+		grid.callParent(arguments);
 	}
 });

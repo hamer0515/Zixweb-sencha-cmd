@@ -92,14 +92,6 @@ Ext.define('Zixweb.view.North', {
 					value : "<a href='javascript:void(0)' id='north_logout_button'>安全退出</a>",
 					margin : '0 0 0 5'
 				}];
-		// 阻止弹出右键菜单
-		document.oncontextmenu = function() {
-			return false;
-		}
-		// 页面关闭前提示
-		window.onbeforeunload = function() {
-			return "确认退出?";
-		}
 		panel.callParent(arguments);
 	}
 });

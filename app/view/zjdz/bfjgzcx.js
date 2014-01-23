@@ -11,7 +11,98 @@ Ext.define('Zixweb.view.zjdz.bfjgzcx', {
 			period : Ext.columns.period,
 			blc : Ext.columns.blc,
 			bsc : Ext.columns.bsc,
-			action : Ext.columns.zjdz_gzcx_action
+			action : {
+				xtype : 'actioncolumn',
+				text : '明细',
+				width : 80,
+				align : 'center',
+				items : [{
+					tooltip : '长款余额',
+					getClass : function(v, meta, rec) {
+						return 'blcdetail';
+					},
+					handler : function(grid, rowIndex, colIndex) {
+						var rec = grid.getStore().getAt(rowIndex);
+						var center = grid.up('center'), id = 'book_hist_blc', cmp = Ext
+								.getCmp(id), panel;
+						if (!cmp) {
+							cmp = Ext.widget('book_hist_blc');
+							panel = center.add({
+										closable : true,
+										xtype : 'panel',
+										items : cmp,
+										id : id,
+										title : '备份金银行长款科目明细查询'
+									});
+						}
+						var form = cmp.down('form').getForm(), store = cmp
+								.down("gridpanel").store;
+						form.reset();
+						cmp.down("datefield[name='e_date_from']")
+								.setValue(rec.data.e_date);
+						cmp.down("datefield[name='e_date_to']")
+								.setValue(rec.data.e_date);
+						cmp.down("datefield[name='period_from']")
+								.setValue(rec.data.period);
+						cmp.down("datefield[name='period_to']")
+								.setValue(rec.data.period);
+						cmp.down("bfjacct[name='bfj_acct']")
+								.setValue(rec.data.bfj_acct);
+						cmp.down("zjbdtype[name='zjbd_type']")
+								.setValue(rec.data.zjbd_type);
+						store.proxy.extraParams = form.getValues();
+						store.loadPage(1);
+						if (panel) {
+							panel.show();
+						} else {
+							center.setActiveTab(cmp);
+						}
+					}
+
+				}, {
+					tooltip : '短款余额',
+					getClass : function(v, meta, rec) {
+						return 'bscdetail';
+					},
+					handler : function(grid, rowIndex, colIndex) {
+						var rec = grid.getStore().getAt(rowIndex);
+						var center = grid.up('center'), id = 'book_hist_bsc', cmp = Ext
+								.getCmp(id), panel;
+						if (!cmp) {
+							cmp = Ext.widget('book_hist_bsc');
+							panel = center.add({
+										closable : true,
+										xtype : 'panel',
+										items : cmp,
+										id : id,
+										title : '备份金银行短款科目明细查询'
+									});
+						}
+						var form = cmp.down('form').getForm(), store = cmp
+								.down("gridpanel").store;
+						form.reset();
+						cmp.down("datefield[name='e_date_from']")
+								.setValue(rec.data.e_date);
+						cmp.down("datefield[name='e_date_to']")
+								.setValue(rec.data.e_date);
+						cmp.down("datefield[name='period_from']")
+								.setValue(rec.data.period);
+						cmp.down("datefield[name='period_to']")
+								.setValue(rec.data.period);
+						cmp.down("bfjacct[name='bfj_acct']")
+								.setValue(rec.data.bfj_acct);
+						cmp.down("zjbdtype[name='zjbd_type']")
+								.setValue(rec.data.zjbd_type);
+						store.proxy.extraParams = form.getValues();
+						store.loadPage(1);
+						if (panel) {
+							panel.show();
+						} else {
+							center.setActiveTab(cmp);
+						}
+					}
+				}]
+			}
 		};
 		store = Ext.create('widget.mystore', {
 			_grid : grid = new Ext.grid.Panel({

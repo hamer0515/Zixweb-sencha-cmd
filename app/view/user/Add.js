@@ -99,59 +99,40 @@ Ext.define('Zixweb.view.user.Add', {
 									roles : roles
 								},
 								success : function(form, action) {
-									var response = action.result.success;
-									if (response) {
-										if (response == 'forbidden') {
-											Ext.MessageBox.show({
-														title : '警告',
-														msg : '抱歉，没有增加用户操作权限',
-														buttons : Ext.Msg.YES,
-														icon : Ext.Msg.ERROR
-													});
-											return;
-										}
-										list.getStore().reload();
-										Ext.MessageBox.show({
-													title : '提示',
-													msg : '用户添加成功',
-													closable : false,
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.INFO,
-													scope : panel.up('window'),
-													fn : function() {
-														this.close();
-													}
-												});
-									} else {
-										Ext.MessageBox.show({
-													title : '失败',
-													msg : action.result.msg,
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.ERROR
-												});
-									}
+									list.getStore().reload();
+									Ext.MessageBox.show({
+												title : '提示',
+												msg : '用户添加成功',
+												closable : false,
+												buttons : Ext.Msg.YES,
+												icon : Ext.Msg.INFO,
+												scope : panel.up('window'),
+												fn : function() {
+													this.close();
+												}
+											});
 								},
 								failure : function(form, action) {
 									switch (action.failureType) {
 										case Ext.form.action.Action.CLIENT_INVALID :
 											Ext.MessageBox.show({
-														title : '失败',
-														msg : '表单数据有误，请检查',
+														title : '警告',
+														msg : '表单验证失败',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});
 											break;
 										case Ext.form.action.Action.CONNECT_FAILURE :
 											Ext.MessageBox.show({
-														title : '失败',
-														msg : '网络链接出错',
+														title : '警告',
+														msg : '与服务器链接错误',
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});
 											break;
 										case Ext.form.action.Action.SERVER_INVALID :
 											Ext.MessageBox.show({
-														title : '失败',
+														title : '警告',
 														msg : action.result.msg,
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR

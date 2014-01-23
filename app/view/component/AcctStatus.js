@@ -5,8 +5,8 @@ Ext.define('Zixweb.view.component.AcctStatus', {
 			anyMatch : true,
 			listeners : {
 				blur : function(me, The, eOpts) {
-					var value = me.getValue();
-					var result = me.getStore().queryBy(function(record) {
+					var value = me.getValue(), result = me.getStore().queryBy(
+							function(record) {
 								if (record.data.id == value) {
 									return true;
 								}

@@ -2,16 +2,10 @@ Ext.define('Zixweb.view.zqqr.query', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.zqqrquery',
 
-	defaults : {
-		border : false
-	},
-
 	initComponent : function() {
-		var store = new Ext.data.Store({
+		var me = this, store, grid, form;
+		store = Ext.create('widget.mystore', {
 					fields : ['id', 'sm_date', 'zqqrstatus'],
-
-					pageSize : 50,
-					remoteSort : true,
 					autoLoad : true,
 
 					proxy : {
@@ -25,53 +19,9 @@ Ext.define('Zixweb.view.zqqr.query', {
 							totalProperty : 'totalCount',
 							successProperty : 'success'
 						}
-					},
-					listeners : {
-						beforeload : function(store, operation, eOpts) {
-							var form = Ext.getCmp('zqqrqueryform').getForm();
-							var values = form.getValues();
-							var grid = Ext.getCmp('zqqrquerygrid');
-							if (form.isValid()) {
-								store.proxy.extraParams = values;
-							} else {
-								return false;
-							}
-						},
-						listeners : {
-							load : function(me, records, successful, eOpts) {
-								if (!successful) {
-									Ext.MessageBox.show({
-												title : '警告',
-												msg : '周期确认状态数据加载失败,请联系管理员',
-												buttons : Ext.Msg.YES,
-												icon : Ext.Msg.ERROR
-											});
-									return;
-								}
-								var jsonData = me.proxy.reader.jsonData.success;
-								if (jsonData && jsonData === 'forbidden') {
-									Ext.MessageBox.show({
-												title : '警告',
-												msg : '抱歉，没有周期确认状态数据访问权限',
-												buttons : Ext.Msg.YES,
-												icon : Ext.Msg.ERROR
-											});
-								}
-							}
-						}
 					}
 				});
-		this.store = store;
-		this.items = [{
-					xtype : 'form',
-					title : '查询',
-					id : 'zqqrqueryform',
-					bodyPadding : 5,
-					collapsible : true,
-
-					fieldDefaults : {
-						labelWidth : 140
-					},
+		form = Ext.create('widget.queryform', {
 					items : [{
 								xtype : 'fieldcontainer',
 								layout : 'hbox',
@@ -101,119 +51,92 @@ Ext.define('Zixweb.view.zqqr.query', {
 									button.up('panel').getForm().reset();
 								}
 							}]
-				}, {
-					xtype : 'gridpanel',
-					id : 'zqqrquerygrid',
-
-					store : this.store,
-					dockedItems : [{
-								xtype : 'pagingtoolbar',
-								store : this.store,
-								dock : 'bottom',
-								displayInfo : true
-							}],
-					columns : [{
-								text : "ID",
-								dataIndex : 'id',
-								sortable : false,
-								width : 80
-							}, {
-								text : "扫描日期",
-								dataIndex : 'sm_date',
-								sortable : false,
-								flex : 1,
-								renderer : Ext.util.Format
-										.dateRenderer('Y年m月d日')
-							}, {
-								text : "状态",
-								dataIndex : 'zqqrstatus',
-								sortable : false,
-								flex : 1,
-								renderer : function(value) {
-									value = parseInt(value);
-									var zqqrstatus = Ext.data.StoreManager
-											.lookup('component.ZQQRStatus');
-									var index = zqqrstatus.findExact('id',
-											value);
-									return zqqrstatus.getAt(index).data.name;
+				});
+		grid = new Ext.grid.Panel({
+			store : store,
+			columns : [{
+						text : "ID",
+						dataIndex : 'id',
+						width : 80
+					}, {
+						text : "扫描日期",
+						dataIndex : 'sm_date',
+						flex : 1,
+						renderer : Ext.util.Format.dateRenderer('Y年m月d日')
+					}, {
+						text : "状态",
+						dataIndex : 'zqqrstatus',
+						flex : 1,
+						renderer : function(value) {
+							var zqqrstatus = Ext.data.StoreManager
+									.lookup('component.ZQQRStatus');
+							return zqqrstatus.getAt(zqqrstatus.findExact('id',
+									parseInt(value))).data.name;
+						}
+					}, {
+						xtype : 'actioncolumn',
+						text : '操作',
+						width : 80,
+						align : 'center',
+						items : [{
+							tooltip : '生成',
+							getClass : function(v, meta, rec) {
+								if (rec.data.zqqrstatus == 1
+										|| rec.data.zqqrstatus == -2
+										|| rec.data.zqqrstatus == -3) {
+									return 'generate';
+								} else {
+									return 'hide';
 								}
-							}, {
-								xtype : 'actioncolumn',
-								text : '操作',
-								width : 80,
-								align : 'center',
-								items : [{
-									tooltip : '生成',
-									getClass : function(v, meta, rec) {
-										if (rec.data.zqqrstatus == 1
-												|| rec.data.zqqrstatus == -2
-												|| rec.data.zqqrstatus == -3) {
-											return 'generate';
-										} else {
-											return 'hide';
-										}
-									},
-									handler : function(grid, rowIndex, colIndex) {
-										var rec = grid.getStore()
-												.getAt(rowIndex);
-										Ext.MessageBox.confirm('提示', '执行生成操作',
-												function(opt) {
-													if (opt === 'yes') {
-														Ext.Ajax.request({
-															async : false,
-															url : 'zqqr/submit',
-															params : {
-																sm_date : rec.data.sm_date
-															},
-															success : function(
-																	response) {
-																var success = Ext
-																		.decode(response.responseText).success;
-																if (success) {
-																	if (response === 'forbidden') {
-																		Ext.MessageBox
-																				.show(
-																						{
-																							title : '警告',
-																							msg : '抱歉，没有周期确认生成操作权限',
-																							buttons : Ext.Msg.YES,
-																							icon : Ext.Msg.ERROR
-																						});
-																		return;
-																	}
-																	Ext.MessageBox
-																			.alert(
-																					'提示',
-																					'操作成功');
-																	store
-																			.reload();
-																} else {
-																	Ext.MessageBox
-																			.alert(
-																					'警告',
-																					'操作失败');
-																}
-															},
-															failure : function(
-																	response,
-																	opts) {
-																Ext.MessageBox
-																		.show({
-																			title : '警告',
-																			msg : '服务器端出错，错误码:'
-																					+ response.status,
-																			buttons : Ext.Msg.YES,
-																			icon : Ext.Msg.ERROR
-																		});
-															}
-														});
+							},
+							handler : function(grid, rowIndex, colIndex) {
+								var rec = grid.getStore().getAt(rowIndex);
+								Ext.MessageBox.confirm('提示', '执行生成操作',
+										function(opt) {
+											if (opt === 'yes') {
+												Ext.Ajax.request({
+													async : false,
+													url : 'zqqr/submit',
+													params : {
+														sm_date : rec.data.sm_date
+													},
+													success : function(response) {
+														var res = Ext
+																.decode(response.responseText);
+														if (res.success) {
+															Ext.MessageBox
+																	.show({
+																		title : '提示',
+																		msg : '操作成功',
+																		closable : false,
+																		buttons : Ext.Msg.YES,
+																		icon : Ext.Msg.INFO
+																	});
+															store.reload();
+														} else {
+															Ext.MessageBox
+																	.show({
+																		title : '错误',
+																		msg : res.msg,
+																		buttons : Ext.Msg.YES,
+																		icon : Ext.Msg.ERROR
+																	});
+														}
 													}
 												});
-									}
-								}]
-							}]
-
-				}];
-		this.callParent(arguments);
+											}
+										});
+							}
+						}]
+					}]
+		});
+		// 添加底部分页工具栏
+		grid.addDocked({
+					xtype : 'pagingtoolbar',
+					store : store,
+					dock : 'bottom'
+				});
+		me.items = [form, grid];
+		me.callParent(arguments);
 	}
 });

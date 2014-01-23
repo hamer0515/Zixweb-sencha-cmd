@@ -13,8 +13,8 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 	bodyPadding : 10,
 
 	initComponent : function() {
-		var form = this;
-		form.items = [{
+		var me = this;
+		me.items = [{
 					xtype : 'fieldcontainer',
 					layout : 'hbox',
 					items : [{
@@ -60,51 +60,27 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 						margin : '0 20 0 0',
 						text : '提交',
 						handler : function(button) {
-							if (form.getForm().isValid()) {
+							var form = me.getForm();
+							if (form.isValid()) {
 								Ext.MessageBox.confirm('提示', '确定没有错误，要提交吗?',
 										function(optional) {
 											if (optional === 'yes') {
-												var value = form.getForm()
-														.getValues();
-												form.getForm().submit({
+												var value = form.getValues();
+												form.submit({
 													clientValidation : true,
 													url : '/pzlr/i0014',
 													success : function(f,
 															action) {
-														var result = action.result.success;
-														if (result) {
-															if (result === 'forbidden') {
-																Ext.MessageBox
-																		.show({
-																			title : '警告',
-																			msg : '抱歉，没有i0014录入权限',
-																			buttons : Ext.Msg.YES,
-																			icon : Ext.Msg.ERROR
-																		});
-																return;
+														Ext.MessageBox.show({
+															title : '提示',
+															msg : 'i0014添加成功',
+															closable : false,
+															buttons : Ext.Msg.YES,
+															icon : Ext.Msg.INFO,
+															fn : function() {
+																form.reset();
 															}
-															Ext.MessageBox
-																	.show({
-																		title : '提示',
-																		msg : 'i0014添加成功',
-																		closable : false,
-																		buttons : Ext.Msg.YES,
-																		icon : Ext.Msg.INFO,
-																		fn : function() {
-																			form
-																					.getForm()
-																					.reset();
-																		}
-																	});
-														} else {
-															Ext.MessageBox
-																	.show({
-																		title : '失败',
-																		msg : action.result.msg,
-																		buttons : Ext.Msg.YES,
-																		icon : Ext.Msg.ERROR
-																	});
-														}
+														});
 													},
 													failure : function(form,
 															action) {
@@ -112,8 +88,8 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 															case Ext.form.action.Action.CLIENT_INVALID :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
-																			msg : '表单数据有误，请检查',
+																			title : '警告',
+																			msg : '表单验证失败',
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
 																		});
@@ -121,8 +97,8 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 															case Ext.form.action.Action.CONNECT_FAILURE :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
-																			msg : '网络链接出错',
+																			title : '警告',
+																			msg : '与服务器链接错误',
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
 																		});
@@ -130,7 +106,7 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 															case Ext.form.action.Action.SERVER_INVALID :
 																Ext.MessageBox
 																		.show({
-																			title : '失败',
+																			title : '警告',
 																			msg : action.result.msg,
 																			buttons : Ext.Msg.YES,
 																			icon : Ext.Msg.ERROR
@@ -150,12 +126,12 @@ Ext.define('Zixweb.view.pzlr.i0014', {
 						margin : '0 10 0 0',
 						text : '重置',
 						handler : function(button) {
-							form.getForm().reset();
+							me.getForm().reset();
 						}
 					}]
 
 				}];
 
-		form.callParent(arguments);
+		me.callParent(arguments);
 	}
 });

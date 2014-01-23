@@ -2,12 +2,9 @@ Ext.define('Zixweb.view.pzlr.job', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.pzlrjob',
 
-	defaults : {
-		border : false
-	},
-
 	initComponent : function() {
-		var store = new Ext.data.Store({
+		var me = this, store, grid;
+		store = Ext.create('widget.mystore', {
 					fields : ['id', 'type', 'date', 'index', 'total', 'fail',
 							'succ', 'ts_u', 'ts_c', 'jstatus', 'color'],
 					proxy : {
@@ -21,36 +18,10 @@ Ext.define('Zixweb.view.pzlr.job', {
 							totalProperty : 'totalCount',
 							successProperty : 'success'
 						}
-					},
-					listeners : {
-						load : function(me, records, successful, eOpts) {
-							if (!successful) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '数据加载失败,请联系管理员',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR
-										});
-							}
-						}
 					}
 				});
-		this.dockedItems = [{
-					xtype : 'toolbar',
-					dock : 'top',
-					items : [{
-								iconCls : 'refresh',
-								text : '刷新',
-								tooltip : '刷新',
-								handler : function() {
-									store.reload();
-								}
-							}]
-				}];
-		this.store = store;
-		this.items = [{
-			xtype : 'gridpanel',
-
+		grid = new Ext.grid.Panel({
+			store : store,
 			viewConfig : {
 				getRowClass : function(record) {
 					var color;
@@ -65,69 +36,56 @@ Ext.define('Zixweb.view.pzlr.job', {
 					return color;
 				}
 			},
-			store : this.store,
 			columns : [{
 						text : "ID",
-						itemId : 'id',
 						dataIndex : 'id',
-						sortable : false,
-						flex : 0.8
+						width : 80
 					}, {
 						text : "顺序号",
 						dataIndex : 'index',
-						sortable : false,
-						flex : 0.8
+						flex : 1
 					}, {
 						text : "类型",
 						dataIndex : 'type',
-						sortable : false,
-						flex : 0.8
+						flex : 1
 					}, {
 						text : "日期",
 						dataIndex : 'date',
-						sortable : false,
 						flex : 1
 					}, {
 						text : "记录数",
 						dataIndex : 'total',
-						sortable : false,
 						flex : 1
 					}, {
 						text : "成功数",
 						dataIndex : 'succ',
-						sortable : false,
 						flex : 1
 					}, {
 						text : "失败数",
 						dataIndex : 'fail',
-						sortable : false,
 						flex : 1
 					}, {
 						text : "启动时间",
 						dataIndex : 'ts_c',
-						sortable : false,
-						flex : 1.8
+						flex : 2
 					}, {
 						text : "结束时间",
 						dataIndex : 'ts_u',
-						sortable : false,
-						flex : 1.8
+						flex : 2
 					}, {
 						text : "状态",
 						dataIndex : 'jstatus',
-						sortable : false,
-						flex : 0.8,
+						width : 80,
 						renderer : function(value, metaData, record, rowIndex,
 								colIndex, store, view) {
-							value = parseInt(value);
 							var jstatus = Ext.data.StoreManager
 									.lookup('component.JStatus');
-							var index = jstatus.findExact('id', value);
-							return jstatus.getAt(index).data.name;
+							return jstatus.getAt(jstatus.findExact('id',
+									parseInt(value))).data.name;
 						}
 					}, {
 						xtype : 'actioncolumn',
-						flex : 0.8,
+						width : 80,
 						text : '操作',
 						align : 'center',
 						items : [{
@@ -140,9 +98,9 @@ Ext.define('Zixweb.view.pzlr.job', {
 								return 'hide';
 							},
 							handler : function(grid, rowIndex, colIndex) {
-								var data = {};
+								var data = {}, rec = grid.getStore()
+										.getAt(rowIndex);
 								data.action = 'get_log';
-								var rec = grid.getStore().getAt(rowIndex);
 								data.date = rec.data.date;
 								data.type = rec.data.type;
 								data.id = rec.data.id;
@@ -151,32 +109,23 @@ Ext.define('Zixweb.view.pzlr.job', {
 									url : 'pzlr/action',
 									params : data,
 									success : function(response) {
-										var response = Ext
+										var res = Ext
 												.decode(response.responseText);
-										var success = response.success
-										if (success && success === 'forbidden') {
+										if (res.success) {
+											Ext.MessageBox.show({
+												title : '日志查看',
+												msg : Ext
+														.decode(response.responseText).text,
+												buttons : Ext.Msg.YES
+											});
+										} else {
 											Ext.MessageBox.show({
 														title : '警告',
-														msg : '抱歉，没有下載文件操作权限',
+														msg : res.msg,
 														buttons : Ext.Msg.YES,
 														icon : Ext.Msg.ERROR
 													});
-											return;
 										}
-										Ext.MessageBox.show({
-													title : '日志查看',
-													msg : response.text,
-													buttons : Ext.Msg.YES
-												});
-									},
-									failure : function(response, opts) {
-										Ext.MessageBox.show({
-													title : '警告',
-													msg : '服务器端出错，错误码:'
-															+ response.status,
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.ERROR
-												});
 									}
 								});
 							}
@@ -193,10 +142,10 @@ Ext.define('Zixweb.view.pzlr.job', {
 								Ext.MessageBox.confirm('提示', '提交[运行任务]操作请求',
 										function(opt) {
 											if (opt === 'yes') {
-												var data = {};
-												data.action = 'run_job';
-												var rec = grid.getStore()
+												var data = {}, rec = grid
+														.getStore()
 														.getAt(rowIndex);
+												data.action = 'run_job';
 												data.date = rec.data.date;
 												data.type = rec.data.type;
 												data.id = rec.data.id;
@@ -205,19 +154,9 @@ Ext.define('Zixweb.view.pzlr.job', {
 													url : 'pzlr/action',
 													params : data,
 													success : function(response) {
-														var response = Ext
-																.decode(response.responseText).success;
-														if (response) {
-															if (response === 'forbidden') {
-																Ext.MessageBox
-																		.show({
-																			title : '警告',
-																			msg : '抱歉，没有运行任务操作权限',
-																			buttons : Ext.Msg.YES,
-																			icon : Ext.Msg.ERROR
-																		});
-																return;
-															}
+														var res = Ext
+																.decode(response.responseText);
+														if (res.success) {
 															Ext.MessageBox
 																	.show({
 																		title : '提示',
@@ -231,21 +170,11 @@ Ext.define('Zixweb.view.pzlr.job', {
 															Ext.MessageBox
 																	.show({
 																		title : '警告',
-																		msg : '[运行任务]请求提交失败',
+																		msg : res.msg,
 																		buttons : Ext.Msg.YES,
 																		icon : Ext.Msg.ERROR
 																	});
 														}
-													},
-													failure : function(
-															response, opts) {
-														Ext.MessageBox.show({
-															title : '警告',
-															msg : '服务器端出错，错误码:'
-																	+ response.status,
-															buttons : Ext.Msg.YES,
-															icon : Ext.Msg.ERROR
-														});
 													}
 												});
 											}
@@ -253,8 +182,20 @@ Ext.define('Zixweb.view.pzlr.job', {
 							}
 						}]
 					}]
-
-		}];
-		this.callParent(arguments);
+		});
+		me.items = [grid];
+		me.dockedItems = [{
+					xtype : 'toolbar',
+					dock : 'top',
+					items : [{
+								iconCls : 'refresh',
+								text : '刷新',
+								tooltip : '刷新',
+								handler : function() {
+									store.reload();
+								}
+							}]
+				}];
+		me.callParent(arguments);
 	}
 });

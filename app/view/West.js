@@ -11,36 +11,28 @@ Ext.define('Zixweb.view.West', {
 	initComponent : function() {
 		var me = this;
 		me.store = new Ext.data.TreeStore({
-					fields : ['text', 'url'],
+			fields : ['text', 'url'],
 
-					autoLoad : true,
+			autoLoad : true,
 
-					proxy : {
-						type : 'ajax',
-						url : 'login/menu'
-					},
-					listeners : {
-						load : function(me, records, successful, eOpts) {
-							if (!successful) {
-								Ext.MessageBox.show({
-											title : '警告',
-											msg : '菜单加载失败，请重新登录',
-											buttons : Ext.Msg.YES,
-											icon : Ext.Msg.ERROR,
-											fn : function() {
-												var viewport = me
-														.up('viewport');
-												viewport.removeAll();
-												viewport.add({
-															xtype : 'loginform'
-														});;
-											}
-										});
-
-							}
-						}
-					}
-				});
+			proxy : {
+				type : 'ajax',
+				url : 'login/menu'
+			}
+				// listeners : {
+				// load : function(me, node, records, success, eOpts) {
+				// if (success
+				// && me.proxy.reader.jsonData.success == 'forbidden') {
+				// Ext.MessageBox.show({
+				// title : '警告',
+				// msg : '抱歉，没有菜单访问权限',
+				// buttons : Ext.Msg.YES,
+				// icon : Ext.Msg.ERROR
+				// });
+				// }
+				// }
+				// }
+			});
 		me.on("itemclick", function(view, rec) {
 			if (rec.data.leaf) {
 				var viewport = view.up('viewport'), center = viewport

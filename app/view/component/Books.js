@@ -35,26 +35,6 @@ Ext.define('Zixweb.view.component.Books', {
 									store.proxy.extraParams = {
 										set : Ext.encode(me.set)
 									};
-								},
-								load : function(me, records, successful, eOpts) {
-									if (!successful) {
-										Ext.MessageBox.show({
-													title : '警告',
-													msg : '科目数据加载失败,请联系管理员',
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.ERROR
-												});
-										return;
-									}
-									var jsonData = me.proxy.reader.jsonData.success;
-									if (jsonData && jsonData === 'forbidden') {
-										Ext.MessageBox.show({
-													title : '警告',
-													msg : '抱歉，没有科目数据访问权限',
-													buttons : Ext.Msg.YES,
-													icon : Ext.Msg.ERROR
-												});
-									}
 								}
 							}
 						});

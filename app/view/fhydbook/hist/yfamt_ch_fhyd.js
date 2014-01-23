@@ -39,11 +39,11 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 									items : [{
 												xtype : 'ystypef',
 												name : 'ys_type',
+                                                margin : '0 10 0 0',
 												fieldLabel : '原始凭证类型'
 											}, {
 												xtype : 'fywtype',
 												name : 'fyw_type',
-												margin : '0 10 0 0',
 												fieldLabel : '业务类型'
 											}]
 								}, {
@@ -63,10 +63,9 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 												margin : '0 10 0 0',
 												width : 180
 											}, {
-												xtype : 'textfield',
-												name : 'fc',
-												width : 516,
-												fieldLabel : '客户编号'
+												xtype : 'fch',
+												name : 'fch',
+												fieldLabel : '渠道方客户编号'
 											}]
 								}, {
 									xtype : 'fieldcontainer',
@@ -122,7 +121,7 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 									}
 								}, exportBtn]
 					}),
-			fields : ['id', 'fyw_type', 'ftx_date', 'period', 'fc', 'j', 'd',
+			fields : ['id', 'fyw_type', 'ftx_date', 'period', 'fch', 'j', 'd',
 					'ys_id', 'ys_type'],
 
 			proxy : {
@@ -142,8 +141,8 @@ Ext.define('Zixweb.view.fhydbook.hist.yfamt_ch_fhyd', {
 					store : store,
 					columns : [Ext.columns.id, Ext.columns.fyw_type,
 							Ext.columns.ftx_date, Ext.columns.period,
-							Ext.columns.fc, Ext.columns.j, Ext.columns.d,
-							Ext.columns.book_detail_action]
+							Ext.columns.fch, Ext.columns.j, Ext.columns.d,
+							Ext.columns.ys_type, Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;
 		// 添加底部分页工具栏

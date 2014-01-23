@@ -11,7 +11,7 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 			j : Ext.columns.j,
 			d : Ext.columns.d
 		};
-		store =Ext.create('widget.mystore', {
+		store = Ext.create('widget.mystore', {
 					_exportBtn : exportBtn = Ext.create('widget.exportbtn', {
 								_url : 'book/detail/bfee_cwwf_excel',
 								_grid : grid = new Ext.grid.Panel({
@@ -45,7 +45,7 @@ Ext.define('Zixweb.view.book.detail.bfee_cwwf', {
 														xtype : 'bi',
 														name : 'bi',
 														margin : '0 10 0 0',
-														fieldLabel : '银行借口编号'
+														fieldLabel : '银行接口编号'
 													}]
 										}, {
 											xtype : 'fieldcontainer',

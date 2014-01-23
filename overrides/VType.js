@@ -38,13 +38,11 @@ Ext.define('overrides.VType', {
 
 	remoteverify : function(val, field) {
 		field.markInvalid('验证中...');
-		// var valiStatus = false;// 验证状态
 		var url = field.verify.url;
 		var id = -1;
 		if (field.verify.id)
 			id = Ext.getCmp(field.verify.id).getSubmitValue();
 		Ext.Ajax.request({
-					// async : false,
 					url : url,
 					params : {
 						name : val,
@@ -55,14 +53,6 @@ Ext.define('overrides.VType', {
 						if (Ext.decode(response.responseText).success == false) {
 							field.markInvalid('名称已存在，请重新输入');
 						}
-					},
-					failure : function(response, opts) {
-						Ext.MessageBox.show({
-									title : '警告',
-									msg : '服务器端出错，错误码:' + response.status,
-									buttons : Ext.Msg.YES,
-									icon : Ext.Msg.ERROR
-								});
 					}
 				});
 		return true;

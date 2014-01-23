@@ -136,7 +136,7 @@ Ext.define('Zixweb.view.fhydbook.hist.cost_tcss_fhyd', {
 					columns : [Ext.columns.id, Ext.columns.fch_ssn,
 							Ext.columns.fhw_type, Ext.columns.period,
 							Ext.columns.fc, Ext.columns.j, Ext.columns.d,
-							Ext.columns.book_detail_action]
+							Ext.columns.ys_type, Ext.columns.book_detail_action]
 				});
 		exportBtn._grid = grid;
 		// 添加底部分页工具栏
