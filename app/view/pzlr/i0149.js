@@ -17,7 +17,6 @@ Ext.define('Zixweb.view.pzlr.i0149', {
 		me.items = [{
 					xtype : 'fieldcontainer',
 					layout : 'hbox',
-					margin : '0 10 0 0',
 					items : [{
 								xtype : 'bfjacct',
 								name : 'bfj_acct_bj',
