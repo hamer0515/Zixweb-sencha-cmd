@@ -27,13 +27,6 @@ Ext.define('Zixweb.view.Center', {
 						html : '财务中心-帐务处理系统',
 						closable : false
 					}],
-			// listeners : {
-			// tabchange : function(tabPanel, newCard, oldCard, eOpts) {
-			// if (/^(center_task)/.test(newCard.id)) {
-			// newCard.items.items[0].store.reload();
-			// }
-			// }
-			// },
 			listeners : {
 				tabchange : function(tabPanel, tab) {
 					var tabs = [], ownerCt = tabPanel.ownerCt, oldToken, newToken;
@@ -70,8 +63,5 @@ Ext.define('Zixweb.view.Center', {
 								}
 							});
 				}
-			},
-			initComponent : function() {
-				this.callParent(arguments);
 			}
 		});

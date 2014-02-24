@@ -8,7 +8,6 @@ Ext.define('Zixweb.view.book.AllBooks', {
 	deferRowRender : true,
 
 	initComponent : function() {
-
 		Ext.apply(this, {
 			store : Ext.create('Ext.data.TreeStore', {
 						fields : ['text', 'j', 'd', 'url', 'success', 'bid'],

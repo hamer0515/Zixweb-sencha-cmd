@@ -71,6 +71,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.dd.PanelFieldDragZone": [],
   "overrides.panel.Table": [],
   "Zixweb.view.component.QueryForm": [],
+  "Zixweb.store.component.CBase": [],
   "overrides.BasicForm": [],
   "Zixweb.view.book.detail.deposit_bfj": [],
   "Zixweb.controller.Roles": [],
@@ -89,7 +90,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.view.yspz.yspzq.y0149": [],
   "Zixweb.view.yspz.yspzq.y0147": [],
   "Zixweb.view.yspz.yspzq.y0148": [],
-  "Zixweb.store.component.Routes": [],
   "Ext.ux.event.Player": [],
   "Zixweb.store.component.FypAcct": [],
   "Zixweb.view.fhydbook.detail.nctxamt_dqr_oyf_fhyd": [],
@@ -308,11 +308,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.controller.Pzlr": [],
   "Zixweb.view.book.hist.bfee_cwwf": [],
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [],
+  "Zixweb.view.Const": [],
   "Zixweb.view.book.hist.adjust_qc": [],
   "Zixweb.view.South": [],
   "Zixweb.view.book.detail.wlzj_yfzy": [],
   "Ext.ux.PreviewPlugin": [],
   "Ext.ux.ajax.SimXhr": [],
+  "Zixweb.store.component.RStatus": [],
   "Zixweb.view.book.detail.cost_dfss": [],
   "Zixweb.view.yspz.yspzq.yF0002": [],
   "Ext.ux.CellDragDrop": [],
@@ -644,6 +646,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.component.QueryForm": [
     "widget.queryform"
   ],
+  "Zixweb.store.component.CBase": [],
   "overrides.BasicForm": [],
   "Zixweb.view.book.detail.deposit_bfj": [
     "widget.book_detail_deposit_bfj"
@@ -688,7 +691,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.yspz.yspzq.y0148": [
     "widget.y0148"
   ],
-  "Zixweb.store.component.Routes": [],
   "Ext.ux.event.Player": [],
   "Zixweb.store.component.FypAcct": [],
   "Zixweb.view.fhydbook.detail.nctxamt_dqr_oyf_fhyd": [
@@ -1264,6 +1266,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [
     "widget.book_detail_yfamt_dcch_fhyd"
   ],
+  "Zixweb.view.Const": [],
   "Zixweb.view.book.hist.adjust_qc": [
     "widget.book_hist_adjust_qc"
   ],
@@ -1277,6 +1280,7 @@ Ext.ClassManager.addNameAliasMappings({
     "plugin.preview"
   ],
   "Ext.ux.ajax.SimXhr": [],
+  "Zixweb.store.component.RStatus": [],
   "Zixweb.view.book.detail.cost_dfss": [
     "widget.book_detail_cost_dfss"
   ],

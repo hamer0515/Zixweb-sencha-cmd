@@ -19,6 +19,15 @@ Ext.define('Zixweb.view.zqqr.query', {
 							totalProperty : 'totalCount',
 							successProperty : 'success'
 						}
+					},
+					listeners : {
+						beforeload : function(store, operation, eOpts) {
+							if (form.isValid()) {
+								store.proxy.extraParams = form.getValues();
+							} else {
+								return false;
+							}
+						}
 					}
 				});
 		form = Ext.create('widget.queryform', {

@@ -1,9 +1,9 @@
 Ext.define('Zixweb.store.component.FhwType', {
-			extend : 'Ext.data.Store',
-			fields : ['id', 'name'],
+			extend : 'Zixweb.store.component.CBase',
 
 			proxy : {
 				type : 'ajax',
 				url : 'base/fhwtype'
 			}
+
 		});

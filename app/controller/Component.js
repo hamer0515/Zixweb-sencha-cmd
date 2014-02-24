@@ -1,7 +1,8 @@
 Ext.define('Zixweb.controller.Component', {
 			extend : 'Ext.app.Controller',
-			stores : ['component.Acct', 'component.BfjAcct', 'component.Bi',
-					'component.ZyzjAcct', 'component.Status',
+			stores : [/* 转义用数据集基类 */'component.CBase', 'component.Acct',
+					'component.BfjAcct', 'component.Bi', 'component.ZyzjAcct',
+					'component.Status', 'component.RStatus',
 					'component.MStatus', 'component.JStatus',
 					'component.ZjbdType', 'component.Product',
 					'component.YsType', 'component.ZQQRStatus',

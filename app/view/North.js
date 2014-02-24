@@ -64,8 +64,8 @@ Ext.define('Zixweb.view.North', {
 		}
 	},
 	initComponent : function() {
-		var panel = this, swidth = document.body.clientWidth;
-		panel.items = [{
+		var me = this, swidth = document.body.clientWidth;
+		me.items = [{
 					xtype : 'image',
 					border : false,
 					height : 39,
@@ -92,6 +92,6 @@ Ext.define('Zixweb.view.North', {
 					value : "<a href='javascript:void(0)' id='north_logout_button'>安全退出</a>",
 					margin : '0 0 0 5'
 				}];
-		panel.callParent(arguments);
+		me.callParent(arguments);
 	}
 });

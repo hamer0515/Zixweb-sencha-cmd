@@ -1,6 +1,5 @@
 Ext.define('Zixweb.store.component.Status', {
-			extend : 'Ext.data.Store',
-			fields : ['id', 'name'],
+			extend : 'Zixweb.store.component.CBase',
 			data : [{
 						"id" : 0,
 						"name" : '禁用'

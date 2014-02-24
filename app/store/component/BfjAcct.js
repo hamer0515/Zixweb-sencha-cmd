@@ -1,6 +1,5 @@
 Ext.define('Zixweb.store.component.BfjAcct', {
-			extend : 'Ext.data.Store',
-			fields : ['id', 'name'],
+			extend : 'Zixweb.store.component.CBase',
 
 			proxy : {
 				type : 'ajax',

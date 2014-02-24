@@ -1,7 +1,7 @@
 Ext.define('Zixweb.view.zqqr.submit', {
 	extend : 'Ext.form.Panel',
 	alias : 'widget.zqqrsubmit',
-
+	border : false,
 	fieldDefaults : {
 		labelWidth : 140
 	},
