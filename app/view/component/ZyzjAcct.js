@@ -20,7 +20,7 @@ Ext.define('Zixweb.view.component.ZyzjAcct', {
 			},
 			initComponent : function() {
 				var me = this;
-				me.store = new Ext.data.Store({
+				me.store = Ext.create('widget.mystore', {
 							fields : ['id', 'name'],
 							autoLoad : true,
 

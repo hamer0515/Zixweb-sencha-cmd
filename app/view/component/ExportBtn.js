@@ -4,8 +4,8 @@ Ext.define('Zixweb.view.component.ExportBtn', {
 	text : '导出Excel',
 	disabled : true,
 	initComponent : function() {
-		var me = this, grid = me._grid, url = me._url, widget = me._widget, bid = me._bid;
-		me.handler = function() {
+		var me = this, url = me._url, widget = me._widget, bid = me._bid;
+		me.on('click', function() {
 			var count = this._grid.store.getTotalCount();
 			if (count == 0) {
 				return;
@@ -18,8 +18,8 @@ Ext.define('Zixweb.view.component.ExportBtn', {
 						});
 				return;
 			}
-			if (widget) {
-				Ext.widget(widget, {
+			if (widget == 'widget') {
+				Ext.widget('tablefields', {
 							modal : true,
 							params : this._grid.store.proxy.extraParams,
 							url : url,
@@ -53,7 +53,7 @@ Ext.define('Zixweb.view.component.ExportBtn', {
 							}
 						});
 			};
-		}
+		});
 		me.callParent(arguments);
 	}
 });

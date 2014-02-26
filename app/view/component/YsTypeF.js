@@ -4,6 +4,9 @@ Ext.define('Zixweb.view.component.YsTypeF', {
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			name : 'ys_type',
+			margin : '0 10 0 0',
+			fieldLabel : '原始凭证类型',
 			listeners : {
 				blur : function(me, The, eOpts) {
 					var value = me.getValue();

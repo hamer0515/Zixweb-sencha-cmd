@@ -1,9 +1,12 @@
 Ext.define('Zixweb.view.component.FywType', {
 			extend : 'Ext.form.ComboBox',
-			alias : 'widget.fywtype',
+			alias : 'widget.fyw_type',
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			name : 'fyw_type',
+			fieldLabel : '业物类型',
+			margin : '0 10 0 0',
 			listeners : {
 				blur : function(me, The, eOpts) {
 					var value = me.getValue();

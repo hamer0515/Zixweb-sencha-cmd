@@ -6,7 +6,6 @@ Ext.define('Zixweb.view.component.Period', {
 			initComponent : function() {
 				var me = this, id = Ext.id(), period_from = Ext.create(
 						'Ext.form.field.Date', {
-							format : 'Y-m-d',
 							name : 'period_from',
 							margin : '0 10 0 0',
 							allowBlank : false,
@@ -16,7 +15,6 @@ Ext.define('Zixweb.view.component.Period', {
 							vtype : 'dateinterval',
 							width : 180
 						}), period_to = Ext.create('Ext.form.field.Date', {
-							format : 'Y-m-d',
 							name : 'period_to',
 							margin : '0 10 0 0',
 							allowBlank : false,

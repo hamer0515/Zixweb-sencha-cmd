@@ -1,104 +1,52 @@
 Ext.define('Zixweb.view.book.detail.wlzj_yfzy', {
-	extend : 'Ext.panel.Panel',
+	extend : 'Zixweb.view.Panel',
 	alias : 'widget.book_detail_wlzj_yfzy',
+	hasExporBtn : true,
+	_url : 'book/detail/wlzj_yfzy',
+	_fields : ['wlzj_type', 'period', 'j', 'd'],
+	_items : [{
+				xtype : 'fieldcontainer',
+				fieldLabel : '会计期间',
+				layout : 'hbox',
+				items : [{
+							xtype : 'datefield',
+							format : 'Y-m-d',
+							name : 'period_from',
+							margin : '0 10 0 0',
 
+							width : 180
+						}, {
+							xtype : 'datefield',
+							format : 'Y-m-d',
+							name : 'period_to',
+							margin : '0 10 0 0',
+
+							width : 180
+						}, {
+							xtype : 'wlzjtype',
+							name : 'wlzj_type',
+							margin : '0 10 0 0',
+							fieldLabel : '往来类型'
+						}]
+			}, {
+				xtype : 'hsx',
+				data : [{
+							'value' : "wlzj_type",
+							'name' : "往来类型"
+						}, {
+							'value' : "period",
+							'name' : "会计期间"
+						}]
+			}],
 	initComponent : function() {
-		var me = this, columns, store, grid, exportBtn, form;
-		columns = {
+		var me = this, columns;
+		me._columns = columns = {
 			wlzj_type : Ext.columns.wlzj_type,
 			period : Ext.columns.period,
 			j : Ext.columns.j,
 			d : Ext.columns.d
 		};
-		store = Ext.create('widget.mystore', {
-					_exportBtn : exportBtn = Ext.create('widget.exportbtn', {
-								_url : 'book/detail/wlzj_yfzy_excel',
-								_grid : grid = new Ext.grid.Panel({
-											store : store,
-											columns : [columns.wlzj_type,
-													columns.period, columns.j,
-													columns.d]
-										})
-							}),
-					_grid : grid,
-					_columns : columns,
-					_form : form = Ext.create('widget.queryform', {
-								items : [{
-											xtype : 'fieldcontainer',
-											fieldLabel : '会计期间',
-											layout : 'hbox',
-											items : [{
-														xtype : 'datefield',
-														format : 'Y-m-d',
-														name : 'period_from',
-														margin : '0 10 0 0',
-
-														width : 180
-													}, {
-														xtype : 'datefield',
-														format : 'Y-m-d',
-														name : 'period_to',
-														margin : '0 10 0 0',
-
-														width : 180
-													}, {
-														xtype : 'wlzjtype',
-														name : 'wlzj_type',
-														margin : '0 10 0 0',
-														fieldLabel : '往来类型'
-													}]
-										}, {
-											xtype : 'hsx',
-											data : [{
-														'value' : "wlzj_type",
-														'name' : "往来类型"
-													}, {
-														'value' : "period",
-														'name' : "会计期间"
-													}]
-										}, {
-											xtype : 'button',
-											text : '查询',
-											margin : '0 20 0 0',
-											handler : function() {
-												if (form.getForm().isValid()) {
-													store.proxy.extraParams = form
-															.getForm()
-															.getValues();
-													store.loadPage(1);
-												}
-											}
-										}, {
-											xtype : 'button',
-											text : '重置',
-											margin : '0 20 0 0',
-											handler : function() {
-												form.getForm().reset();
-											}
-										}, exportBtn]
-							}),
-					fields : ['wlzj_type', 'period', 'j', 'd'],
-
-					proxy : {
-						type : 'ajax',
-						api : {
-							read : 'book/detail/wlzj_yfzy'
-						},
-						reader : {
-							type : 'json',
-							root : 'data',
-							totalProperty : 'totalCount',
-							successProperty : 'success'
-						}
-					}
-				});
-		// 添加底部分页工具栏
-		grid.addDocked({
-					xtype : 'pagingtoolbar',
-					store : store,
-					dock : 'bottom'
-				});
-		me.items = [form, grid];
+		me._gcolumns = [columns.wlzj_type, columns.period, columns.j, columns.d];
 		me.callParent(arguments);
 	}
 });

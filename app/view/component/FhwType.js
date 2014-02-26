@@ -1,9 +1,12 @@
 Ext.define('Zixweb.view.component.FhwType', {
 			extend : 'Ext.form.ComboBox',
-			alias : 'widget.fhwtype',
+			alias : 'widget.fhw_type',
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			name : 'fhw_type',
+			fieldLabel : '货物类型',
+			margin : '0 10 0 0',
 			listeners : {
 				blur : function(me, The, eOpts) {
 					var value = me.getValue();

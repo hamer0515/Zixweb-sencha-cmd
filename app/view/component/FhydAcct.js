@@ -1,9 +1,12 @@
 Ext.define('Zixweb.view.component.FhydAcct', {
 			extend : 'Ext.form.ComboBox',
-			alias : 'widget.fhydacct',
+			alias : 'widget.fhyd_acct',
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			name : 'fhyd_acct',
+			fieldLabel : '富汇易达银行账户号',
+			margin : '0 10 0 0',
 			listeners : {
 				blur : function(me, The, eOpts) {
 					var value = me.getValue();

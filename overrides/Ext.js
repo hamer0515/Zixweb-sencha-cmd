@@ -19,7 +19,6 @@ Ext.define('overrides.Ext', {
 		if (index == -1) {
 			meta.style = 'color:red';
 		}
-		console.log("index:" + index);
 		return index == -1 ? '无效的数据(' + value + ')' : ds.getAt(index).data.name;
 	}
 });

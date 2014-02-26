@@ -335,7 +335,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.controller.Pzlr": [],
   "Zixweb.view.book.hist.bfee_cwwf": [],
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [],
-  "Zixweb.view.Const": [],
   "Zixweb.view.book.hist.adjust_qc": [],
   "Zixweb.view.South": [],
   "Zixweb.view.book.detail.wlzj_yfzy": [],
@@ -409,6 +408,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.statusbar.StatusBar": [
     "Ext.ux.StatusBar"
   ],
+  "Zixweb.view.Panel": [],
   "Zixweb.view.book.hist.lfee_psp": [],
   "Zixweb.view.book.hist.deposit_bfj": [],
   "Zixweb.view.book.hist.bfee_zqqr": [],
@@ -1311,7 +1311,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.fhydbook.detail.yfamt_dcch_fhyd": [
     "widget.book_detail_yfamt_dcch_fhyd"
   ],
-  "Zixweb.view.Const": [],
   "Zixweb.view.book.hist.adjust_qc": [
     "widget.book_hist_adjust_qc"
   ],
@@ -1507,6 +1506,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.statusbar.StatusBar": [
     "widget.statusbar"
   ],
+  "Zixweb.view.Panel": [],
   "Zixweb.view.book.hist.lfee_psp": [
     "widget.book_hist_lfee_psp"
   ],

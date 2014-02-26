@@ -1,9 +1,12 @@
 Ext.define('Zixweb.view.component.FypAcct', {
 			extend : 'Ext.form.ComboBox',
-			alias : 'widget.fypacct',
+			alias : 'widget.fyp_acct',
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			name : 'fyp_acct',
+			fieldLabel : '易宝中间账户号',
+			margin : '0 10 0 0',
 			listeners : {
 				blur : function(me, The, eOpts) {
 					var value = me.getValue();

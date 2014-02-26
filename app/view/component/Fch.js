@@ -4,6 +4,9 @@ Ext.define('Zixweb.view.component.Fch', {
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			name : 'fch',
+			fieldLabel : '渠道方编号',
+			margin : '0 10 0 0',
 			listeners : {
 				blur : function(me, The, eOpts) {
 					var value = me.getValue();
