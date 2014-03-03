@@ -4,6 +4,9 @@ Ext.define('Zixweb.view.component.RStatus', {
 			width : 516,
 			queryMode : 'local',
 			anyMatch : true,
+			fieldLabel : '撤销状态',
+			margin : '0 10 0 0',
+			name : 'flag',
 			listeners : {
 				blur : function(me, The, eOpts) {
 					var value = me.getValue();

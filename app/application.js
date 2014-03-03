@@ -28,6 +28,7 @@ Ext.define('Zixweb.Application', {
 					dataIndex : 'ys_type',
 					width : 80
 				},
+				// 易宝核算项
 				fp : {
 					text : "周期确认规则",
 					dataIndex : 'fp',
@@ -41,6 +42,12 @@ Ext.define('Zixweb.Application', {
 				cust_proto : {
 					text : "客户协议编号",
 					dataIndex : 'cust_proto',
+					flex : 1
+				},
+				// 富汇易达核算项
+				f_agm : {
+					text : "代理商编号",
+					dataIndex : 'f_agm',
 					flex : 1
 				},
 				fc : {
@@ -63,6 +70,11 @@ Ext.define('Zixweb.Application', {
 					dataIndex : 'f_ssn',
 					flex : 1
 				},
+				fch : {
+					text : "渠道方编号",
+					dataIndex : 'fch',
+					flex : 1
+				},
 				fch_rate : {
 					text : "渠道结算折扣率",
 					dataIndex : 'fch_rate',
@@ -73,7 +85,6 @@ Ext.define('Zixweb.Application', {
 					dataIndex : 'fch_ssn',
 					flex : 1
 				},
-
 				fm : {
 					text : "商户编号",
 					dataIndex : 'fm',
@@ -161,16 +172,9 @@ Ext.define('Zixweb.Application', {
 					flex : 1,
 					renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 				},
-
 				fe_date : {
 					text : "差错日期",
 					dataIndex : 'fe_date',
-					flex : 1,
-					renderer : Ext.util.Format.dateRenderer('Y年m月d日')
-				},
-				fio_date : {
-					text : "易宝出入账日期",
-					dataIndex : 'fio_date',
 					flex : 1,
 					renderer : Ext.util.Format.dateRenderer('Y年m月d日')
 				},

@@ -16,14 +16,30 @@ Ext.define('overrides.Treepanel', {
 					items : [Ext.create('Ext.Action', {
 										// icon :
 										// '../shared/icons/fam/delete.gif',
-										text : '展开所有',
+										text : '展开当前节点',
+										handler : function(widget, event) {
+											view.up('treepanel').expandNode(
+													rec, true);
+										}
+									}), Ext.create('Ext.Action', {
+										// icon :
+										// '../shared/icons/fam/delete.gif',
+										text : '折叠当前节点',
+										handler : function(widget, event) {
+											view.up('treepanel').collapseNode(
+													rec, false);
+										}
+									}), Ext.create('Ext.Action', {
+										// icon :
+										// '../shared/icons/fam/delete.gif',
+										text : '展开所有节点',
 										handler : function(widget, event) {
 											view.up('treepanel').expandAll();
 										}
 									}), Ext.create('Ext.Action', {
 										// icon :
 										// '../shared/icons/fam/delete.gif',
-										text : '折叠所有',
+										text : '折叠所有节点',
 										handler : function(widget, event) {
 											view.up('treepanel').collapseAll();
 										}

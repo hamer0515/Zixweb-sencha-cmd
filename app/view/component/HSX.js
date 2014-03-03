@@ -4,10 +4,51 @@ Ext.define('Zixweb.view.component.HSX', {
 	layout : 'vbox',
 	names : ['一', '二', '三', '四', '五', '六', '七'],
 	submitNames : ['fir', 'sec', 'thi', 'fou', 'fiv', 'six', 'sev'],
+	dimDict : {
+		'f_agm' : '代理商编号',
+		'f_dcn' : '代充通道编号',
+		'f_ssn' : '唯一销卡编号',
+		'fc' : '客户编号',
+		'fcg_date' : '商品采购日期',
+		'fch' : '渠道方编号',
+		'fe_date' : '差错日期',
+		'fhw_type' : '货物类型',
+		'fhyd_acct' : '富汇易达银行账户号',
+		'fm' : '商户编号',
+		'ftx_date' : '交易日期',
+		'fyp_acct' : '易宝中间账户号',
+		'fyw_type' : '业务类型',
+		// 'period' : '会计期间',
+		'acct' : '资金账号，包括自有资金与备付金账号',
+		'bfj_acct' : '备付金账号',
+		'bi' : '银行接口编号',
+		'c' : '客户编号',
+		'cust_proto' : '客户协议',
+		'e_date' : '差错日期',
+		'fp' : '周期确认规则',
+		'p' : '产品类型',
+		'tx_date' : '交易日期',
+		'wlzj_type' : '往来资金类型',
+		'zjbd_date' : '资金变动日期',
+		'zjbd_type' : '资金变动类型',
+		'zyzj_acct' : '自有资金账号'
+	},
 	initComponent : function() {
 		this.items = [];
 		var panel = this;
-		var data = this.data;
+		var data = [{
+					'value' : "period",
+					'name' : "会计期间"
+				}];
+		var items = this.data;
+		if (items) {
+			for (var i in items) {
+				data.unshift({
+							'value' : items[i],
+							'name' : this.dimDict[items[i]]
+						})
+			}
+		}
 		var sta = new Ext.data.Store({
 					fields : ['value', 'name'],
 					data : data

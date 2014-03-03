@@ -20,5 +20,13 @@ Ext.define('overrides.Ext', {
 			meta.style = 'color:red';
 		}
 		return index == -1 ? '无效的数据(' + value + ')' : ds.getAt(index).data.name;
+	},
+	asyncRequest : function(url, params, success) {
+		Ext.Ajax.request({
+					async : false,
+					url : url,
+					params : params,
+					success : success
+				});
 	}
 });

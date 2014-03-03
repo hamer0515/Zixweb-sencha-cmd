@@ -6,7 +6,7 @@ Ext.define('Zixweb.view.component.MyStore', {
 			listeners : {
 				load : function(me, records, success, eOpts) {
 					var exportBtn = me._exportBtn;
-					if (exportBtn) {
+					if (records && exportBtn) {
 						if (records.length > 0) {
 							exportBtn.setDisabled(false);
 						} else {
@@ -15,7 +15,7 @@ Ext.define('Zixweb.view.component.MyStore', {
 					}
 				},
 				beforeload : function(me, operation, eOpts) {
-					operation.callback = Ext.storeCallBack;
+					// operation.callback = Ext.storeCallBack;
 					var form = me._form, columns = me._columns, grid = me._grid;
 					if (form) {
 						if (!form.isValid()) {

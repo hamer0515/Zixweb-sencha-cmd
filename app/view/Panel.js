@@ -9,27 +9,42 @@ Ext.define('Zixweb.view.Panel', {
 	 */
 
 	initComponent : function() {
-		var me = this, columns = me._columns, gcolumns = me._gcolumns, items = me._items, fields = me._fields, url = me._url, form, exportBtn, store, grid;
+		var me = this, columns = me._columns, gcolumns = me._gcolumns
+				|| (columns && Ext.Object.getValues(columns)), items = me._items, fields = me._fields, url = me._url, form, exportBtn, store, grid;
+
 		// 判断有没有表格
 		if (gcolumns) {
+			/*
+			 * 检查列是否已經定义
+			 * 
+			 */
+			gcolumns.forEach(function(element, index, array) {
+						if (!element) {
+							Ext.Error.raise({
+										msg : '缺少列定义! fields:'
+												+ fields.join(', ')
+									});
+						}
+					});
+			// 創建表格數據集
+			store = Ext.create('widget.mystore', {
+						_columns : columns,
+						fields : fields,
+						proxy : {
+							type : 'ajax',
+							api : {
+								read : url
+							},
+							reader : {
+								type : 'json',
+								root : 'data',
+								totalProperty : 'totalCount',
+								successProperty : 'success'
+							}
+						}
+					});
 			grid = new Ext.grid.Panel({
-						// 創建表格數據集
-						store : store = Ext.create('widget.mystore', {
-									_columns : columns,
-									fields : fields,
-									proxy : {
-										type : 'ajax',
-										api : {
-											read : url
-										},
-										reader : {
-											type : 'json',
-											root : 'data',
-											totalProperty : 'totalCount',
-											successProperty : 'success'
-										}
-									}
-								}),
+						store : store,
 						columns : gcolumns
 					});
 			// 添加底部分页工具栏
@@ -45,6 +60,27 @@ Ext.define('Zixweb.view.Panel', {
 		}
 		// 有沒有表單
 		if (items) {
+			form = Ext.create('widget.queryform', {
+						items : items
+					});
+			form.add(Ext.create('widget.button', {
+						text : '查询',
+						margin : '0 20 0 0',
+						handler : function() {
+							if (form.getForm().isValid()) {
+								store.proxy.extraParams = form.getForm()
+										.getValues();
+								store.loadPage(1);
+							}
+						}
+					}));
+			form.add(Ext.create('widget.button', {
+						text : '重置',
+						margin : '0 20 0 0',
+						handler : function(button) {
+							form.getForm().reset();
+						}
+					}));
 			// 有没有导出excel按钮
 			if (me.hasExporBtn) {
 				exportBtn = Ext.create('widget.exportbtn', {
@@ -56,29 +92,9 @@ Ext.define('Zixweb.view.Panel', {
 				Ext.apply(store, {
 							_exportBtn : exportBtn
 						});
+				form.add(exportBtn);
 			};
-			items.push({
-						xtype : 'button',
-						text : '查询',
-						margin : '0 20 0 0',
-						handler : function() {
-							if (form.getForm().isValid()) {
-								store.proxy.extraParams = form.getForm()
-										.getValues();
-								store.loadPage(1);
-							}
-						}
-					}, {
-						xtype : 'button',
-						text : '重置',
-						margin : '0 20 0 0',
-						handler : function(button) {
-							form.getForm().reset();
-						}
-					}, exportBtn)
-			form = Ext.create('widget.queryform', {
-						items : items
-					});
+
 			Ext.apply(store, {
 						_form : form
 					});
