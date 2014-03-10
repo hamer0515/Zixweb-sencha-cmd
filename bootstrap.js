@@ -46,6 +46,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Zixweb.controller.Pzlr": [],
   "Zixweb.store.fhyd_acct": [],
   "Zixweb.view.South": [],
+  "Zixweb.store.yw_type": [],
   "Ext.ux.PreviewPlugin": [],
   "Zixweb.view.component.hsx.zyzj_acct": [],
   "Ext.ux.ajax.SimXhr": [],
@@ -301,6 +302,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Zixweb.view.South": [
     "widget.south"
   ],
+  "Zixweb.store.yw_type": [],
   "Ext.ux.PreviewPlugin": [
     "plugin.preview"
   ],

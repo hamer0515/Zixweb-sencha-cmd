@@ -3,7 +3,7 @@ Ext.define('Zixweb.controller.Component', {
 			stores : [/* 转义用数据集基类 */'CBase', 'acct', 'bfj_acct', 'bi', 'zyzj_acct',
 					'Status', 'RStatus', 'MStatus', 'JStatus', 'zjbd_type', 'p',
 					'YsType', 'ZQQRStatus', 'wlzj_type', 'fhw_type', 'fyp_acct', 'fhyd_acct',
-					'fyw_type'],
+					'fyw_type', 'yw_type'],
 			views : [
 					// 基类
 					'component.base.ComboBox', 'component.base.DateField', 'component.base.Money', 'component.base.MoneyField',

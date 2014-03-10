@@ -11,93 +11,46 @@ Ext.define('Zixweb.view.pzlr.i0000', {
 		align : 'center'
 	},
 	bodyPadding : 10,
-	renderers : {
-		acct : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('acct');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		bfj_acct : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('bfj_acct');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		zyzj_acct : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('zyzj_acct');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		zjbd_type : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('zjbd_type');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		zjbd_date : function(v) {
-			if (v) {
-				return Ext.Date.format(v, 'Y-m-d');
-			}
-			return v;
-		},
-		tx_date : function(v) {
-			if (v) {
-				return Ext.Date.format(v, 'Y-m-d');
-			}
-			return v;
-		},
-		e_date : function(v) {
-			if (v) {
-				return Ext.Date.format(v, 'Y-m-d');
-			}
-			return v;
-		},
-		p : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('p');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		bi : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('bi');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		}
-	},
 	editors : {
-		cust_proto : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		acct : "Ext.createByAlias('widget.acct', {submitValue : false})",
-		bfj_acct : "Ext.createByAlias('widget.bfjacct', {submitValue : false})",
-		zyzj_acct : "Ext.createByAlias('widget.zyzjacct', {submitValue : false})",
-		zjbd_type : "Ext.createByAlias('widget.zjbdtype', {submitValue : false})",
-		wlzj_type : "Ext.createByAlias('widget.wlzjtype', {submitValue : false})",
-		zjbd_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		tx_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		e_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		period : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		fp : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		c : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		p : "Ext.createByAlias('widget.product', {submitValue : false})",
-		bi : "Ext.createByAlias('widget.bi', {submitValue : false})",
+		cust_proto : "Ext.createByAlias('widget.cust_proto', {submitValue : false, hideLabel : true})",
+		acct : "Ext.createByAlias('widget.acct', {submitValue : false, hideLabel : true})",
+		bfj_acct : "Ext.createByAlias('widget.bfj_acct', {submitValue : false, hideLabel : true})",
+		zyzj_acct : "Ext.createByAlias('widget.zyzj_acct', {submitValue : false, hideLabel : true})",
+		zjbd_type : "Ext.createByAlias('widget.zjbd_type', {submitValue : false, hideLabel : true})",
+		wlzj_type : "Ext.createByAlias('widget.wlzj_type', {submitValue : false, hideLabel : true})",
+		yw_type : "Ext.createByAlias('widget.yw_type', {submitValue : false, hideLabel : true})",
+		zjbd_date : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		tx_date : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		e_date : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		period : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		fp : "Ext.createByAlias('widget.fp', {submitValue : false, hideLabel : true})",
+		c : "Ext.createByAlias('widget.c', {submitValue : false, hideLabel : true})",
+		p : "Ext.createByAlias('widget.p', {submitValue : false, hideLabel : true})",
+		bi : "Ext.createByAlias('widget.bi', {submitValue : false, hideLabel : true})",
 		amt : "Ext.createByAlias('widget.money', {submitValue : false})"
 	},
 	initComponent : function() {
 		var form = this;
+		Ext.apply(form, {
+					renderers : {
+						acct : Ext.data.StoreManager.lookup('acct').$render,
+						bfj_acct : Ext.data.StoreManager.lookup('bfj_acct').$render,
+						zyzj_acct : Ext.data.StoreManager.lookup('zyzj_acct').$render,
+						zjbd_type : Ext.data.StoreManager.lookup('zjbd_type').$render,
+						p : Ext.data.StoreManager.lookup('p').$render,
+						bi : Ext.data.StoreManager.lookup('bi').$render,
+						yw_type : Ext.data.StoreManager.lookup('yw_type').$render,
+						zjbd_date : function(v) {
+							return v ? Ext.Date.format(v, 'Y-m-d') : v;
+						},
+						tx_date : function(v) {
+							return v ? Ext.Date.format(v, 'Y-m-d') : v;
+						},
+						e_date : function(v) {
+							return v ? Ext.Date.format(v, 'Y-m-d') : v;
+						}
+					}
+				});
 		form.current_fl = 1, form.fields = [], form.deleted = [];
 		Ext.Ajax.request({
 					async : false,

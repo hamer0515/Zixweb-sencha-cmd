@@ -11,86 +11,48 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		align : 'center'
 	},
 	bodyPadding : 10,
-	renderers : {
-		fcg_date : function(v) {
-			if (v) {
-				return Ext.Date.format(v, 'Y-m-d');
-			}
-			return v;
-		},
-		fe_date : function(v) {
-			if (v) {
-				return Ext.Date.format(v, 'Y-m-d');
-			}
-			return v;
-		},
-		fhw_type : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('fhw_type');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		fhyd_acct : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('fhyd_acct');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		fio_date : function(v) {
-			if (v) {
-				return Ext.Date.format(v, 'Y-m-d');
-			}
-			return v;
-		},
-		ftx_date : function(v) {
-			if (v) {
-				return Ext.Date.format(v, 'Y-m-d');
-			}
-			return v;
-		},
-		fyp_acct : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('fyp_acct');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		},
-		fyw_type : function(v) {
-			if (v) {
-				var store = Ext.data.StoreManager.lookup('fyw_type');
-				var index = store.findExact('id', v);
-				return store.getAt(index).data.name;
-			}
-			return v;
-		}
-	},
 	editors : {
-		period : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		f_dcn : "Ext.createByAlias('widget.textfield', {submitValue :false})",
-		f_rate : "Ext.createByAlias('widget.textfield', {submitValue :false})",
-		f_ssn : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		fc : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		fcg_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		fch_rate : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		fch_ssn : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		fe_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		fhw_type : "Ext.createByAlias('widget.fhwtype', {submitValue : false})",
-		fhyd_acct : "Ext.createByAlias('widget.fhydacct', {submitValue : false})",
-		fio_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		fm : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		fs_rate : "Ext.createByAlias('widget.textfield', {submitValue : false})",
-		ftx_date : "Ext.createByAlias('widget.datefield', {submitValue : false, format : 'Y-m-d'})",
-		fyp_acct : "Ext.createByAlias('widget.fypacct', {submitValue : false})",
-		fyw_type : "Ext.createByAlias('widget.fywtype', {submitValue : false})",
+		period : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		f_dcn : "Ext.createByAlias('widget.f_dcn', {submitValue :false, hideLabel : true})",
+		f_rate : "Ext.createByAlias('widget.f_rate', {submitValue :false, hideLabel : true})",
+		f_ssn : "Ext.createByAlias('widget.f_ssn', {submitValue : false, hideLabel : true})",
+		fc : "Ext.createByAlias('widget.fc', {submitValue : false, hideLabel : true})",
+		fcg_date : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		fch_rate : "Ext.createByAlias('widget.fch_rate', {submitValue : false, hideLabel : true})",
+		fch_ssn : "Ext.createByAlias('widget.fch_ssn', {submitValue : false, hideLabel : true})",
+		fe_date : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		fhw_type : "Ext.createByAlias('widget.fhw_type', {submitValue : false, hideLabel : true})",
+		fhyd_acct : "Ext.createByAlias('widget.fhyd_acct', {submitValue : false, hideLabel : true})",
+		fio_date : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		fm : "Ext.createByAlias('widget.fm', {submitValue : false, hideLabel : true})",
+		fs_rate : "Ext.createByAlias('widget.fs_rate', {submitValue : false, hideLabel : true})",
+		ftx_date : "Ext.createByAlias('widget.datefield', {submitValue : false})",
+		fyp_acct : "Ext.createByAlias('widget.fyp_acct', {submitValue : false, hideLabel : true})",
+		fyw_type : "Ext.createByAlias('widget.fyw_type', {submitValue : false, hideLabel : true})",
 		amt : "Ext.createByAlias('widget.money', {submitValue : false})"
 	},
 	initComponent : function() {
 		var form = this;
+		Ext.apply(form, {
+					renderers : {
+						fcg_date : function(v) {
+							return v ? Ext.Date.format(v, 'Y-m-d') : v;
+						},
+						fe_date : function(v) {
+							return v ? Ext.Date.format(v, 'Y-m-d') : v;
+						},
+						fhw_type : Ext.data.StoreManager.lookup('fhw_type').$render,
+						fhyd_acct : Ext.data.StoreManager.lookup('fhyd_acct').$render,
+						fio_date : function(v) {
+							return v ? Ext.Date.format(v, 'Y-m-d') : v;
+						},
+						ftx_date : function(v) {
+							return v ? Ext.Date.format(v, 'Y-m-d') : v;
+						},
+						fyp_acct : Ext.data.StoreManager.lookup('fyp_acct').$render,
+						fyw_type : Ext.data.StoreManager.lookup('fyw_type').$render
+					}
+				});
 		form.current_fl = 1, form.fields = [], form.deleted = [];
 		Ext.Ajax.request({
 					async : false,
@@ -271,7 +233,10 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 											}]
 										}, {
 											xtype : 'fieldcontainer',
-											layout : 'hbox',
+											layout : {
+												type : 'hbox',
+												align : 'top'
+											},
 											items : [jbook, dbook]
 										}]
 									});

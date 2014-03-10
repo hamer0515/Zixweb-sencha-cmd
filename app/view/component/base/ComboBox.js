@@ -1,6 +1,6 @@
 Ext.define('Zixweb.view.component.base.ComboBox', {
 			extend : 'Ext.form.ComboBox',
-			minWidth : 516,
+			width : 516,
 			margin : '0 10 0 0',
 			queryMode : 'local',
 			anyMatch : true,
