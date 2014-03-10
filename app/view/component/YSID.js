@@ -1,9 +1,6 @@
 Ext.define('Zixweb.view.component.YSID', {
-			extend : 'Ext.form.field.Text',
+			extend : 'Zixweb.view.component.base.Number',
 			alias : 'widget.ysidfield',
-			fieldLabel : '原始凭证ID',
-			margin : '0 10 0 0',
-			width : 516,
 			name : 'ys_id',
-			vtype : 'id'
+			fieldLabel : '原始凭证ID'
 		});

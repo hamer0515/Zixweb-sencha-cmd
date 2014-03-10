@@ -16,8 +16,5 @@ Ext.define('Zixweb.view.component.Status', {
 						name : 'status',
 						inputValue : '1',
 						checked : true
-					}],
-			initComponent : function() {
-				this.callParent(arguments);
-			}
+					}]
 		});

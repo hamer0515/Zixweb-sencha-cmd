@@ -101,7 +101,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 				dataIndex : 'b_acct',
 				renderer : function(value, meta, record) {
 					var bfjacct = Ext.data.StoreManager
-							.lookup('component.BfjAcct');
+							.lookup('BfjAcct');
 					var index = bfjacct.findExact('id', value);
 					if (index == -1) {
 						meta.style = 'color:red';
@@ -133,7 +133,7 @@ Ext.define('Zixweb.view.zjdz.bfj', {
 							center.setActiveTab(cmp);
 						} else {
 							var bfjacct = Ext.data.StoreManager
-									.lookup('component.BfjAcct');
+									.lookup('BfjAcct');
 							var index = bfjacct
 									.findExact('id', rec.data.b_acct);
 							var acct = bfjacct.getAt(index).data.name;

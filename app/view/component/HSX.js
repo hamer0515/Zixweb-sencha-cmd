@@ -5,6 +5,7 @@ Ext.define('Zixweb.view.component.HSX', {
 	names : ['一', '二', '三', '四', '五', '六', '七'],
 	submitNames : ['fir', 'sec', 'thi', 'fou', 'fiv', 'six', 'sev'],
 	dimDict : {
+		'yw_type' : '业务类型',
 		'f_agm' : '代理商编号',
 		'f_dcn' : '代充通道编号',
 		'f_ssn' : '唯一销卡编号',
@@ -18,7 +19,6 @@ Ext.define('Zixweb.view.component.HSX', {
 		'ftx_date' : '交易日期',
 		'fyp_acct' : '易宝中间账户号',
 		'fyw_type' : '业务类型',
-		// 'period' : '会计期间',
 		'acct' : '资金账号，包括自有资金与备付金账号',
 		'bfj_acct' : '备付金账号',
 		'bi' : '银行接口编号',

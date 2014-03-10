@@ -29,7 +29,10 @@ Ext.define('Zixweb.view.book.DetailPanel', {
 					items : [{
 								xtype : 'period'
 							}, {
-								xtype : 'ys_type'
+								xtype : 'ys_type',
+								_extraParams : {
+									entity : me._entity
+								}
 							}]
 				}], fields = ['id', 'period', 'j', 'd', 'ys_id', 'ys_type'], dims = me._dims
 				|| [], dimsarr = [], item;

@@ -58,6 +58,7 @@ Ext.define('Zixweb.view.pzlr.i0149', {
 								fieldLabel : '资金变动类型',
 								format : 'Y-m-d',
 								name : 'zjbd_type',
+								margin : '0 0 0 0',
 								width : 1042,
 								allowBlank : false
 							}]

@@ -32,9 +32,7 @@ Ext.define('Zixweb.view.jcsjwh.bfjacct.List', {
 									margin : '0 10 0 0',
 									fieldLabel : '备付金银行账户'
 								}, {
-									xtype : 'acctStatus',
-									name : 'valid',
-									fieldLabel : '使用状态'
+									xtype : 'acctStatus'
 								}]
 
 					}, {

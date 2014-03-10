@@ -10,7 +10,8 @@ Ext.define('Zixweb.view.Panel', {
 
 	initComponent : function() {
 		var me = this, columns = me._columns, gcolumns = me._gcolumns
-				|| (columns && Ext.Object.getValues(columns)), items = me._items, fields = me._fields, url = me._url, form, exportBtn, store, grid;
+				|| (columns && Ext.Object.getValues(columns)), gridconfig = me._gridconfig
+				|| {}, items = me._items, fields = me._fields, url = me._url, form, exportBtn, store, grid;
 
 		// 判断有没有表格
 		if (gcolumns) {
@@ -43,10 +44,10 @@ Ext.define('Zixweb.view.Panel', {
 							}
 						}
 					});
-			grid = new Ext.grid.Panel({
+			grid = new Ext.grid.Panel(Ext.Object.merge({
 						store : store,
 						columns : gcolumns
-					});
+					}, gridconfig));
 			// 添加底部分页工具栏
 			grid.addDocked({
 						xtype : 'pagingtoolbar',

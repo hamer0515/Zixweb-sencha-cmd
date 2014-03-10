@@ -12,10 +12,10 @@ Ext.define('Zixweb.view.Viewport', {
 					'Ext.ux.form.ItemSelector', 'overrides.Ext',
 					'overrides.Date', 'overrides.Format', 'overrides.Table',
 					'overrides.TabCloseMenu', 'overrides.VType',
-					'overrides.RowExpander', 'overrides.BasicForm',
-					'overrides.Gridpanel', 'overrides.Paging',
-					'overrides.Treepanel', 'overrides.Connection',
-					'overrides.DateField'],
+					'overrides.RowExpander', 'overrides.Gridpanel',
+					'overrides.Paging', 'overrides.Treepanel',
+					'overrides.Connection', 'overrides.DateField',
+					'overrides.HBox'],
 
 			layout : {
 				type : 'border'

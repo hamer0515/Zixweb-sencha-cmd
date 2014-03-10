@@ -44,17 +44,13 @@ Ext.define('Zixweb.view.login.LoginForm', {
 										url : '/login/login',
 										success : function(form, action) {
 											// 加载数据集数据
-											var stores = ['BfjAcct', 'Acct',
-													'Bi', 'FhwType',
-													'FhydAcct', 'FypAcct',
-													'FywType', 'Product',
-													'WlzjType', 'YsType',
-													'ZjbdType', 'ZyzjAcct'];
+											var stores = Ext.stores;
 											for (var i in stores) {
-												Ext.data.StoreManager
-														.lookup('component.'
-																+ stores[i])
-														.load();
+												var store = Ext.data.StoreManager
+														.lookup(stores[i]);
+												if (store.getProxy().url) {
+													store.load();
+												}
 											}
 											// 添加主页面板
 											var viewport = me.up('viewport');

@@ -39,7 +39,7 @@ Ext.define('Zixweb.view.book.SumPanel', {
 					_fields : fields.concat(dims),
 					_items : dimsarr,
 					_columns : columns
-				})
+				});
 		me.callParent(arguments);
 	}
 });

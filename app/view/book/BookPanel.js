@@ -10,7 +10,8 @@ Ext.define('Zixweb.view.book.BookPanel', {
 		var me = this;
 		Ext.apply(me, {
 			store : Ext.create('Ext.data.TreeStore', {
-						fields : ['text', 'j', 'd', 'url', 'success', 'bid'],
+						fields : ['text', 'j', 'd', 'url', 'success', 'bid',
+								'entity'],
 						autoload : true,
 						proxy : {
 							type : 'ajax',
@@ -59,11 +60,14 @@ Ext.define('Zixweb.view.book.BookPanel', {
 								if (cmp) {
 									center.setActiveTab(cmp);
 								} else {
-									cls = 'Zixweb.view.book.sum.'
-											+ rec.data.url;
-									try {
+									cls = Ext.ClassManager
+											.getNameByAlias('widget.book_sum_'
+													+ rec.data.url);
+									if (cls) {
 										cmp = Ext.create(cls);
-									} catch (e) {
+									} else {
+										cls = 'Zixweb.view.book.sum.'
+												+ rec.data.url;
 										Ext.asyncRequest('base/dimbyid', {
 													id : rec.data.bid
 												}, function(response) {
@@ -97,27 +101,59 @@ Ext.define('Zixweb.view.book.BookPanel', {
 								if (cmp) {
 									center.setActiveTab(cmp);
 								} else {
-									cls = 'Zixweb.view.book.detail.'
-											+ rec.data.url;
-									try {
+									cls = Ext.ClassManager
+											.getNameByAlias('widget.book_detail_'
+													+ rec.data.url);
+									if (cls) {
 										cmp = Ext.create(cls);
-									} catch (e) {
-										Ext.Ajax.request({
-											async : false,
-											url : 'base/dimbyid',
-											params : {
-												id : rec.data.bid
-											},
-											success : function(response) {
-												Ext.define(cls, {
-													extend : 'Zixweb.view.book.DetailPanel',
-													_dims : Ext
-															.decode(response.responseText)
+									} else {
+										cls = 'Zixweb.view.book.detail.'
+												+ rec.data.url;
+										Ext.asyncRequest('base/dimbyid', {
+													id : rec.data.bid
+												}, function(response) {
+													Ext.define(cls, {
+														extend : 'Zixweb.view.book.SumPanel',
+														_dims : Ext
+																.decode(response.responseText)
+													});
+													cmp = Ext.create(cls);
 												});
-												cmp = Ext.create(cls);
-											}
-										});
 									}
+
+									// cls = 'Zixweb.view.book.detail.'
+									// + rec.data.url;
+									// try {
+									// cmp = Ext.create(cls);
+									// } catch (e) {
+									// Ext.asyncRequest('base/dimbyid', {
+									// id : rec.data.bid
+									// }, function(response) {
+									// Ext.define(cls, {
+									// extend : 'Zixweb.view.book.DetailPanel',
+									// _dims : Ext
+									// .decode(response.responseText)
+									// });
+									// cmp = Ext.create(cls);
+									// });
+									// Ext.Ajax.request({
+									// async : false,
+									// url : 'base/dimbyid',
+									// params : {
+									// id : rec.data.bid
+									// },
+									// success : function(response) {
+									// Ext.define(cls, {
+									// extend :
+									// 'Zixweb.view.book.DetailPanel',
+									// _dims : Ext
+									// .decode(response.responseText),
+									// _entity : rec.data.entity
+									// });
+									// cmp = Ext.create(cls);
+									// }
+									// });
+									// }
 									center.add({
 										closable : true,
 										xtype : 'panel',

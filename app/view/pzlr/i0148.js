@@ -67,6 +67,7 @@ Ext.define('Zixweb.view.pzlr.i0148', {
 								format : 'Y-m-d',
 								name : 'zjbd_type',
 								width : 516,
+								margin : '0 0 0 0',
 								allowBlank : false
 							}]
 				}, {

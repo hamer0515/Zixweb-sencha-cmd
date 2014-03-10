@@ -26,7 +26,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fhw_type : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager.lookup('component.FhwType');
+				var store = Ext.data.StoreManager.lookup('fhw_type');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -34,7 +34,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fhyd_acct : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager.lookup('component.FhydAcct');
+				var store = Ext.data.StoreManager.lookup('fhyd_acct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -54,7 +54,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fyp_acct : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager.lookup('component.FypAcct');
+				var store = Ext.data.StoreManager.lookup('fyp_acct');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -62,7 +62,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 		},
 		fyw_type : function(v) {
 			if (v) {
-				var store = Ext.data.StoreManager.lookup('component.FywType');
+				var store = Ext.data.StoreManager.lookup('fyw_type');
 				var index = store.findExact('id', v);
 				return store.getAt(index).data.name;
 			}
@@ -107,14 +107,21 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 					}
 				});
 		form.items = [{
-					xtype : 'textarea',
-					name : 'cause',
-					fieldLabel : '添加特种调账单的原因',
-					width : 990,
-					allowBlank : false
+					xtype : 'fieldcontainer',
+					width : 1052,
+					layout : 'hbox',
+					items : [{
+								xtype : 'textarea',
+								margin : '0 10 5 0',
+								name : 'cause',
+								fieldLabel : '添加特种调账单的原因',
+								width : 1042,
+								allowBlank : false
+							}]
+
 				}, {
 					xtype : 'fieldcontainer',
-					width : 990,
+					width : 1052,
 					layout : 'hbox',
 					items : [{
 								xtype : 'datefield',
@@ -131,14 +138,12 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 					items : [{
 								xtype : 'books',
 								margin : '0 10 0 0',
-								width : 490,
 								id : 'pzlrfitztzjbook',
 								submitValue : false,
 								set : [2],
 								fieldLabel : '借方科目'
 							}, {
 								xtype : 'books',
-								width : 490,
 								submitValue : false,
 								set : [2],
 								fieldLabel : '贷方科目',
@@ -197,7 +202,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 							var jbook = Ext.create('Ext.grid.property.Grid', {
 										_type : j,
 										title : "借方科目：" + j_options.book_name,
-										width : 490,
+										width : 516,
 										margin : '0 10 0 0',
 										sourceConfig : j_sourceConfig,
 										source : j_options.source,
@@ -210,7 +215,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 							var dbook = Ext.create('Ext.grid.property.Grid', {
 										_type : d,
 										title : "贷方科目：" + d_options.book_name,
-										width : 490,
+										width : 516,
 										sourceConfig : d_sourceConfig,
 										source : d_options.source,
 										clicksToEdit : 1,
@@ -245,7 +250,7 @@ Ext.define('Zixweb.view.pzlr.f0000', {
 							var header = Ext.createByAlias(
 									'widget.fieldcontainer', {
 										fl_id : form.current_fl,
-										width : 990,
+										width : 1052,
 										layout : 'vbox',
 										items : [{
 											xtype : 'fieldcontainer',
