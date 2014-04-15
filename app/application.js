@@ -339,9 +339,11 @@ Ext.define('Zixweb.Application', {
 									return 'detail';
 								},
 								handler : function(grid, rowIndex, colIndex) {
-									var rec = grid.getStore().getAt(rowIndex), center = grid
-											.up('center'), id = 'yspzq_detail_0000'
-											+ rec.data.id, cmp = Ext.getCmp(id);
+									var cls = grid.up("panel").up("panel").ystype, rec = grid
+											.getStore().getAt(rowIndex), center = grid
+											.up('center'), id = 'yspzq_detail_'
+											+ cls + rec.data.id, cmp = Ext
+											.getCmp(id);
 									if (cmp) {
 										center.setActiveTab(cmp);
 									} else {
@@ -349,7 +351,7 @@ Ext.define('Zixweb.Application', {
 												.createByAlias('widget.yspzqdetail');
 										detailPanel.store.load({
 													params : {
-														ys_type : '0000',
+														ys_type : cls,
 														ys_id : rec.data.id
 													}
 												});
@@ -358,7 +360,7 @@ Ext.define('Zixweb.Application', {
 											xtype : 'panel',
 											items : detailPanel,
 											id : id,
-											title : '凭证0000' + '编号'
+											title : '凭证' + cls + '编号'
 													+ rec.data.id + '详细信息'
 										}).show();
 									}
@@ -374,12 +376,12 @@ Ext.define('Zixweb.Application', {
 								handler : function(grid, rowIndex, colIndex) {
 									var rec = grid.getStore().getAt(rowIndex);
 									Ext.widget('yspzrevoke_cause', {
-												modal : true,
-												resizable : false,
-												ys_type : '0000',
-												ys_id : rec.data.id,
-												period : rec.data.period
-											})
+										modal : true,
+										resizable : false,
+										ys_type : grid.up("panel").up("panel").ystype,
+										ys_id : rec.data.id,
+										period : rec.data.period
+									})
 								}
 							}]
 						}]

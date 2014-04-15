@@ -144,7 +144,7 @@ Ext.define('Zixweb.view.yspz.Detail', {
 				url : 'yspzq/detail'
 			},
 			listeners : {
-				load : function(me, records, successful, eOpts) {
+				load : function(store, records, successful, eOpts) {
 					// if (!successful) {
 					// Ext.MessageBox.show({
 					// title : '警告',
@@ -166,8 +166,8 @@ Ext.define('Zixweb.view.yspz.Detail', {
 					// }
 					var expander = me.getPlugin('rowexpander'), button = Ext
 							.get('revoke_button');
-					for (i = 0; i < me.getStore().getCount(); i++) {
-						expander.toggleRow(i, me.getStore().getAt(i));
+					for (i = 0; i < store.getCount(); i++) {
+						expander.toggleRow(i, store.getAt(i));
 					}
 					if (button) {
 						button.on('click', function(e, btn, eOpts) {

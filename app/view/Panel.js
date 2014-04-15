@@ -54,6 +54,10 @@ Ext.define('Zixweb.view.Panel', {
 						store : store,
 						dock : 'bottom'
 					});
+			// grid中绑定原始凭证类型
+			Ext.apply(grid, {
+						ystype : me._ys_type
+					});
 			// 数据集中添加表格的引用
 			Ext.apply(store, {
 						_grid : grid
@@ -78,7 +82,7 @@ Ext.define('Zixweb.view.Panel', {
 			form.add(Ext.create('widget.button', {
 						text : '重置',
 						margin : '0 20 0 0',
-						handler : function(button) {
+						handler : function() {
 							form.getForm().reset();
 						}
 					}));

@@ -15,6 +15,9 @@ Ext.define('overrides.Ext', {
 	hsx : ['fir', 'sec', 'thi', 'fou', 'fiv', 'six', 'sev', 'eig'],
 	_render : function(value, meta, record, rowIndex, colIndex, store, view, /* 数据集 */
 			ds) {
+		if (value == undefined) {
+			return '';
+		}
 		var index = ds.findExact('id', value);
 		if (index == -1) {
 			meta.style = 'color:red';

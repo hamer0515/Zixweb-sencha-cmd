@@ -95,60 +95,7 @@ Ext.define('Zixweb.view.yspz.Panel', {
 							name : i,
 							fieldLabel : label
 						});
-				// cls = 'Zixweb.view.yspz.' + rec.data.url;
-				// Ext.asyncRequest('base/yspz_fields', {
-				// id : 'yspz_' + url.substr(1)
-				// }, function(response) {
-				// Ext.define(cls, {
-				// extend : 'Zixweb.view.yspz.Panel',
-				// _fields : Ext
-				// .decode(response.responseText)
-				// });
-				// cmp = Ext.create(cls_, {
-				// name : i,
-				// fieldLabel : label
-				// });
-				// // cmp = Ext.create(cls);
-				// });
 			}
-			// try {
-			// cmp = Ext.widget(i, {
-			// name : i,
-			// fieldLabel : label
-			// });
-			// } catch (e) {
-			// if (type == 'date') {
-			// Ext.define('Zixweb.view.yspz.' + i, {
-			// extend : 'Zixweb.view.component.base.DateField',
-			// alias : 'widget.' + i
-			// });
-			// } else if (type == 'money') {
-			// Ext.define('Zixweb.view.yspz.' + i, {
-			// extend : 'Zixweb.view.component.base.MoneyField',
-			// alias : 'widget.' + i
-			// });
-			// } else if (type == 'number') {
-			// Ext.define('Zixweb.view.yspz.' + i, {
-			// extend : 'Zixweb.view.component.base.Number',
-			// alias : 'widget.' + i
-			// });
-			// } else if (type == 'text') {
-			// Ext.define('Zixweb.view.yspz.' + i, {
-			// extend : 'Zixweb.view.component.base.TextField',
-			// alias : 'widget.' + i
-			// });
-			// } else {
-			// Ext.define('Zixweb.view.yspz.' + i, {
-			// extend : Ext.getClassName(Ext.ClassManager
-			// .getByAlias('widget.' + type)),
-			// alias : 'widget.' + i
-			// });
-			// }
-			// cmp = Ext.widget(i, {
-			// name : i,
-			// fieldLabel : label
-			// });
-			// }
 			if (type == 'date') {
 				gcolumn = {
 					text : label,
@@ -205,9 +152,11 @@ Ext.define('Zixweb.view.yspz.Panel', {
 			itemsarr.push(item);
 			item = undefined;
 		}
+		console.log(cls.substr(1));
 		Ext.apply(me, {
 					alias : 'widget.' + cls,
 					_url : 'yspzq/' + cls,
+					_ys_type : cls.substr(1),
 					_fields : _fieldsarr.concat(_fields),
 					_items : itemsarr.concat(items),
 					_gcolumns : gcolumns.concat(Ext.columns.yspz)
